@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useState } from "react";
+import { SearchResults } from "./components/OffersList/SearchResults/SearchResults";
+
 
 function App() {
-
   return (
     <div>
-      DZIEN DOBRY
+     najem
+      <SearchResults />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
