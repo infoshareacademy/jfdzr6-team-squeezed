@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { SearchBar } from "./components/SearchOffers/SearchBar/SearchBar"
 
 function App() {
 
   return (
-    <div>
-      DZIEN DOBRY
-    </div>
+    <SearchBar />
+    // <div>
+    //   DZIEN DOBRY
+    // </div>
   )
 }
 
