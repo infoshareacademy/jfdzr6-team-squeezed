@@ -1,14 +1,7 @@
 import { db } from "../../../utils/firebase";
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  getDoc,
-  doc,
-} from "firebase/firestore";
+import { collection, query, where, getDocs, doc } from "firebase/firestore";
 import { useState, useEffect } from "react";
-import "./SearchResult.css";
+
 import styled from "styled-components";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -76,12 +69,12 @@ export const SearchResults = (props) => {
   `;
 
   const Arrow = styled.div`
-    color:black;
+    color: black;
     font-size: 40px;
     display: none;
-    cursor:pointer;
-    &:hover {     
-    color:gray;
+    cursor: pointer;
+    &:hover {
+      color: gray;
     }
 
     @media (min-width: 768px) {
