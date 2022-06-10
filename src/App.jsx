@@ -5,7 +5,7 @@ import { SearchResults } from "./components/OffersList/SearchResults/SearchResul
 function App() {
   return (
     <div>
-     najem
+     
       <SearchResults />
     </div>
   );

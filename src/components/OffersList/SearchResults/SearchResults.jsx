@@ -10,12 +10,28 @@ import {
 import { useState, useEffect } from "react";
 import "./SearchResult.css";
 import styled from "styled-components";
-import ArrowLeftSvg from "../../../icons/arrow-left.svg";
-import ArrowRightSvg from "../../../icons/arrow-right.svg";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+
 export const SearchResults = (props) => {
   const currentLoginUserId = "bJNNHzx9bmIilhl0jEIJ";
   const [flats, setFlats] = useState([]);
   const flatsRef = collection(db, "flats");
+
+  const OfferList = styled.div`
+    background-color: #e3dddd;
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: 1fr 1fr;
+    width: fit-content;
+    /* background-color: yellow; */
+
+    @media (min-width: 768px) {
+      /* background-color: red; */
+      display: grid;
+    }
+  `;
 
   const OfferBackground = styled.div`
     background-color: white;
@@ -26,15 +42,25 @@ export const SearchResults = (props) => {
     align-items: center;
     justify-content: center;
     box-shadow: 5px 5px 5px gray;
+    flex-wrap: wrap;
+    @media (min-width: 768px) {
+      flex-wrap: nowrap;
+    }
   `;
 
   const OfferImg = styled.div`
-    margin:25px;
-    width: auto;
-    height: 200px;
+    margin: 10px;
+    width: 100%;
+    height: auto;
     padding: 0;
     box-sizing: border-box;
     display: flex;
+    @media (min-width: 768px) {
+      height: 200px;
+      width: auto;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
   `;
 
   const InfoBox = styled.div`
@@ -42,23 +68,28 @@ export const SearchResults = (props) => {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height:100%;
-    padding:25px;
-  `;
-
-  const Arrow = styled.img`
-    line {
-      stroke: black;
+    width: 100%;
+    padding: 25px;
+    @media (min-width: 768px) {
+      width: auto;
     }
-    width: 25px;
-    margin: 5px;
   `;
 
-  const OfferList = styled.div`
-    background-color: #e3dddd;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: fit-content;
+  const Arrow = styled.div`
+    color:black;
+    font-size: 40px;
+    display: none;
+    cursor:pointer;
+    &:hover {     
+    color:gray;
+    }
+
+    @media (min-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 10px;
+    }
   `;
 
   const PriceBox = styled.div`
@@ -73,6 +104,7 @@ export const SearchResults = (props) => {
       const data = await getDocs(q);
       console.log(data.docs);
       const u = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      // setFlats(u);
       setFlats([...u, ...u, ...u]);
     };
     getFlats();
@@ -83,27 +115,42 @@ export const SearchResults = (props) => {
     <OfferList>
       {flats.map((flat) => {
         return (
-          <OfferBackground>
+          <OfferBackground key={flat.id}>
             <OfferImg>
-              <Arrow alt=" " src={ArrowLeftSvg}></Arrow>
-
+              <Arrow>
+                <FontAwesomeIcon icon={faAngleLeft} />
+              </Arrow>
               <img
-                style={{ height: "200px" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
                 src={
                   flat.photos && flat.photos.length > 0 ? flat.photos[0] : ""
                 }
               />
 
-              <Arrow alt=" " src={ArrowRightSvg}></Arrow>
+              <Arrow>
+                <FontAwesomeIcon icon={faAngleRight} />
+              </Arrow>
             </OfferImg>
 
             <InfoBox>
               <h3> {flat.title}</h3>
               <div>
-                <p><b>Miasto: </b>{flat.city}</p>
-                <p><b>Ulica:</b> {flat.street}</p>
-                <p><b>Ilość pokoi:</b> {flat.rooms}</p>
-                <p><b>m2:</b> {flat.size} m2</p>
+                <p>
+                  <b>Miasto: </b>
+                  {flat.city}
+                </p>
+                <p>
+                  <b>Ulica:</b> {flat.street}
+                </p>
+                <p>
+                  <b>Ilość pokoi:</b> {flat.rooms}
+                </p>
+                <p>
+                  <b>m2:</b> {flat.size} m2
+                </p>
               </div>
 
               <PriceBox>Cena: {flat.price} zł/msc</PriceBox>
