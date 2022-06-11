@@ -1,13 +1,26 @@
-import { useState } from "react";
 import { SearchResults } from "./components/OffersList/SearchResults/SearchResults";
 
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { AddOffer } from "./components/ClientPanel/AddOffer/AddOffer";
+import { NavBarClientPanel } from "./components/ClientPanel/NavBarClientPanel/NavBarClientPanel";
 
 function App() {
   return (
-    <div>
-     
-      <SearchResults />
-    </div>
+    <BrowserRouter>
+      <div>
+        <SearchResults />
+      </div>
+
+      <NavBarClientPanel />
+      <div>
+        <Routes>
+          <Route path="newoffer" element={<AddOffer />}>
+            {/* </Routes>/<Route path="newoffer/:flatsId" element={<AddOffer />} /> */}
+            {/* <AddOffer /> */}
+          </Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
