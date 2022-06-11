@@ -12,8 +12,7 @@ export const StyledSearchSuggestion = styled.div`
 
 export const StyledSearchSuggestionsWrapper = styled.div`
   position: absolute;
-  left: 26%;
-  top: 20px;
+  top: 15px;
   width: 200px;
   z-index: -1;
   border: 1px solid black;
@@ -21,7 +20,6 @@ export const StyledSearchSuggestionsWrapper = styled.div`
 `;
 
 export const StyledSearchInput = styled.input`
-  position: relative;
   width: 200px;
   padding-left: 2px;
 `;

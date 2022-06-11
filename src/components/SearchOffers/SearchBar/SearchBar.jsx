@@ -17,7 +17,7 @@ export const SearchBar = () => {
   //check if input matches cities from offers and return matching results to state
   const handleCitySuggestions = (e) => {
     e.preventDefault();
-    suggestions = flatsFromDb.filter(({ city }) => {
+    suggestions = flatsFromDb.filter(({ city }, i) => {
       if (e.target.value.length > 0 && city.includes(e.target.value)) {
         return city
         ;
@@ -54,11 +54,12 @@ export const SearchBar = () => {
   useEffect(() => {
     getFlats();
   }, []);
-
+let sug = [];
   return (
     <>
       <form onSubmit={handleCitySearch} autoComplete='off'>
         <label htmlFor='searchCity'>Wpisz miasto: </label>
+        <div style={{display: 'flex', flexDirection: 'column', position: 'relative', width: '200px'}}>
         <StyledSearchInput
           onChange={handleCitySuggestions}
           type='text'
@@ -68,12 +69,14 @@ export const SearchBar = () => {
         />
         <StyledSearchSuggestionsWrapper>
           {/* render matching suggestions under input field */}
-          {searchSuggestions.map(({ city }) => (
+          {
+          searchSuggestions.map(({ city }) => (
             <StyledSearchSuggestion onClick={handleSuggestionPick} key={city}>
               {city}
             </StyledSearchSuggestion>
           ))}
         </StyledSearchSuggestionsWrapper>
+        </div>
       </form>
     </>
   );
