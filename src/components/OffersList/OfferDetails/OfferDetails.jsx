@@ -1,82 +1,7 @@
 import { db } from "../../../utils/firebase";
 import { collection, doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import styled from 'styled-components';
-
-
-const ContainerDivStyled = styled.div`
-background-color: #c4c4c4;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-width: 70%;
-margin: 20px auto;
-
-h2 {
-    background-color: #f7f7f7;
-    text-align: center;
-
-}
-
-.section-1 {
-   display: flex;
-   flex-direction: row;
-   justify-content: space-around;
-}
-
-.picture {
-   width: 40%;
-   height: 200px;
-   background-color: #e4e4e4;
-}
-
-.picture img {
-   width: 300px;
-   height: 200px;
-   background-color: #e4e4e4;
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-   height: 200px;
-   background-color: #e4e4e4;
-    
-}
-
-.section-2 {
-    display: flex;
-   flex-direction: row;
-   justify-content: space-around;
-}
-
-.render-div {
-    margin-top: 20px;
-    width: 40%;
-   height: 200px;
-   background-color: #e4e4e4;
-}
-
-.render-list {
-    list-style: none;
-}
-
-.map {
-    margin-top: 20px;
-    width: 40%;
-   height: 200px;
-   background-color: #e4e4e4;
-}
-
-.description {
-    display: flex;
-   flex-direction: row;
-   justify-content: center;
-   margin: 30px;
-}
-
-`
+import { ContainerDivStyled } from "./OfferDetails.Styled"
 
 
 
@@ -120,14 +45,20 @@ export const OfferDetails = () => {
                 <section className="section-1">
                     <div className="picture"><img src={photos} /></div>
                     <div className="form">
-                        <div>dane kontaktowe właściciela:{floor}</div>
+                        <h3>Dane kontaktowe właściciela</h3>
                         <form >
-                            <label name="name" >Twoje imię</label>
-                            <input name="name" type="text" placeholder="Wpisz swoję imię"></input>
-                            <label name="email" >Adres email</label>
-                            <input name="email" type="email" placeholder="Wpisz swój email"></input>
-                            <label name="area" >Wiadomość</label>
-                            <input name="area" type="area" placeholder="Zostaw wiadomość"></input>
+                            <div>
+                                <label name="name" >Twoje imię</label>
+                                <input name="name" type="text" placeholder="Wpisz swoję imię"></input>
+                            </div>
+                            <div>
+                                <label name="email" >Adres email</label>
+                                <input name="email" type="email" placeholder="Wpisz swój email"></input>
+                            </div>
+                            <div>
+                                <label name="area" >Wiadomość</label>
+                                <input name="area" type="area" placeholder="Zostaw wiadomość"></input>
+                            </div>
                         </form>
                     </div>
                 </section>
@@ -143,20 +74,33 @@ export const OfferDetails = () => {
                             <li>liczba pokoi: {rooms}</li>
                         </ul>
                     </div>
-                    <div className="map">Lokalizacja</div>
+                    <div className="map">
+                        <h3>Mapa</h3>
+                    </div>
                 </section>
 
                 <div className="description">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus fuga tempore quos distinctio, ratione est, accusamus, incidunt nulla nam quis in eius consequatur numquam veritatis harum. Laboriosam architecto earum possimus!
+                    <h3>Opis</h3>
+                    <p>Luksusowy apartament na terenie prestiżowego osiedla na Mokotowie, przy ul. {street}.
+                        Apartament {size} m2 składa się z :
+                        salonu połączonego jadalnią i kuchnią wyposażoną w nowy sprzęt AGD
 
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus fuga tempore quos distinctio, ratione est, accusamus, incidunt nulla nam quis in eius consequatur numquam veritatis harum. Laboriosam architecto earum possimus!</div>
+                        3 pokoje,
+                        2 łazienki,
+                        przedpokój,
+                        taras,
+                        miejsce postojowe w garażu podziemnym
+                    </p>
+                    <h3>Lokalizacja</h3>
+                    <p>Doskonała lokalizacja, bardzo dobry dojazd do centrum i na lotnisko. Blisko metro, linie tramwajowe, autobus. Na terenie osiedla liczne sklepy, restauracje, kafejki, przedszkola. Na osiedlu jest duży ogród oraz bezpośrednie przejście do parku.</p>
+                    <h3>Dodatkowe informacje</h3>
+                    <p>Do mieszkania przynależy miejsce postojowe w garażu podziemnym.</p>
+                </div>
 
             </ContainerDivStyled>
 
         </>
     )
-
-
 
 
 }
