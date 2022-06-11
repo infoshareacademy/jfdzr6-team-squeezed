@@ -1,3 +1,4 @@
+import { SearchBar } from "./components/SearchOffers/SearchBar/SearchBar"
 import { SearchResults } from "./components/OffersList/SearchResults/SearchResults";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AddOffer } from "./components/ClientPanel/AddOffer/AddOffer";

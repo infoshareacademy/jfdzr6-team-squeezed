@@ -7,10 +7,10 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
-export const SearchResults = (props) => {
+export const SearchResults = ({flats}) => {
   const currentLoginUserId = "bJNNHzx9bmIilhl0jEIJ";
-  const [flats, setFlats] = useState([]);
-  const flatsRef = collection(db, "flats");
+  // const [flats, setFlats] = useState([]);
+  // const flatsRef = collection(db, "flats");
 
   const OfferList = styled.div`
     background-color: #e3dddd;
@@ -90,18 +90,18 @@ export const SearchResults = (props) => {
     font-weight: 900;
   `;
 
-  useEffect(() => {
-    const getFlats = async () => {
-      const userDoc = doc(db, "users", currentLoginUserId);
-      const q = query(flatsRef, where("userId", "==", userDoc));
-      const data = await getDocs(q);
-      console.log(data.docs);
-      const u = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      // setFlats(u);
-      setFlats([...u, ...u, ...u]);
-    };
-    getFlats();
-  }, []);
+  // useEffect(() => {
+  //   const getFlats = async () => {
+  //     const userDoc = doc(db, "users", currentLoginUserId);
+  //     const q = query(flatsRef, where("userId", "==", userDoc));
+  //     const data = await getDocs(q);
+  //     console.log(data.docs);
+  //     const u = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  //     // setFlats(u);
+  //     setFlats([...u, ...u, ...u]);
+  //   };
+  //   getFlats();
+  // }, []);
 
   console.log(db);
   return (
