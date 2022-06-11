@@ -10,34 +10,33 @@ import {
 
 export const SearchBar = () => {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
-  const [searchResult, setSearchResult] = useState([]);
+  const [flatsFromDb, setFlatsFromDb] = useState([]);
   const [pickedSuggestion, setPickedSuggestion] = useState(null);
   let suggestions = [];
 
   //check if input matches cities from offers and return matching results to state
   const handleCitySuggestions = (e) => {
     e.preventDefault();
-    suggestions = searchResult.filter(({ city }) =>
-      e.target.value.length > 0 && city.includes(e.target.value)
-        ? city
-        : console.log("nie znaleziono")
-    );
+    suggestions = flatsFromDb.filter(({ city }) => {
+      if (e.target.value.length > 0 && city.includes(e.target.value)) {
+        return city
+        ;
+      }
+    });
     console.log(suggestions);
     setSearchSuggestions(suggestions);
   };
-//get picked suggestion, set it as an input value and submit search
+  //get picked suggestion, set it as an input value and submit search
   const handleSuggestionPick = (e) => {
     setPickedSuggestion(e.target.innerText);
   };
   //filter and return flats IDs from input
   const handleCitySearch = (e) => {
     e.preventDefault();
-    searchResult.filter(({ city, price, description, id }) =>
-      city === e.target.searchCity.value
-        ? console.log(id)
-        : console.log("niema")
+    flatsFromDb.filter((flat) =>
+      flat.city === e.target.searchCity.value ? console.log(flat) : null
     );
-    form.reset();
+    e.target.reset();
   };
   //get flats list and set it to state
   const getFlats = () => {
@@ -47,9 +46,9 @@ export const SearchBar = () => {
         id: doc.id,
         ...doc.data(),
       }));
-      setSearchResult(result);
+      setFlatsFromDb(result);
     });
-    console.log(searchResult);
+    console.log(flatsFromDb);
   };
 
   useEffect(() => {
@@ -65,7 +64,7 @@ export const SearchBar = () => {
           type='text'
           name='searchCity'
           id='searchCity'
-          defaultValue={pickedSuggestion ? pickedSuggestion : 'null'}
+          defaultValue={pickedSuggestion ? pickedSuggestion : null}
         />
         <StyledSearchSuggestionsWrapper>
           {/* render matching suggestions under input field */}
