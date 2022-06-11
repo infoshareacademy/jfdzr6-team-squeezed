@@ -4,7 +4,7 @@ import {
   Route,
   Routes
 } from "react-router-dom";
-import {AddOffer} from "./components/ClientPanel/AddOffer/AddOffer";
+import { AddOffer } from "./components/ClientPanel/AddOffer/AddOffer";
 import { NavBarClientPanel } from "./components/ClientPanel/NavBarClientPanel/NavBarClientPanel";
 
 function App() {
@@ -12,16 +12,14 @@ function App() {
   return (
     <BrowserRouter>
       <NavBarClientPanel />
-        <div>
-            <Routes>
-              <Route path="newoffer" element={<AddOffer />}>
-            {/* </Routes>/<Route path="newoffer/:flatsId" element={<AddOffer />} /> */}
-            {/* <AddOffer /> */}
-            
-              </Route>
-                
-            </Routes>
-        </div>
+      <Routes>
+        <Route path="newoffer" element={<AddOffer />}>
+          {/* </Routes>/<Route path="newoffer/:flatsId" element={<AddOffer />} /> */}
+          {/* <AddOffer /> */}
+
+        </Route>
+
+      </Routes>
     </BrowserRouter>
   );
 };
