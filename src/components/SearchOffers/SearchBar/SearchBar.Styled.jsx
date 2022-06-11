@@ -22,4 +22,11 @@ export const StyledSearchSuggestionsWrapper = styled.div`
 export const StyledSearchInput = styled.input`
   width: 200px;
   padding-left: 2px;
+  background-color: inherit;
+  border: none;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid black;
+  }
+
 `;

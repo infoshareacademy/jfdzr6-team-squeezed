@@ -8,7 +8,7 @@ import {
   StyledSearchInput,
 } from "./SearchBar.Styled";
 
-export const SearchBar = () => {
+export const SearchBar = ({ setFlats }) => {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [flatsFromDb, setFlatsFromDb] = useState([]);
   const [pickedSuggestion, setPickedSuggestion] = useState(null);
@@ -19,8 +19,7 @@ export const SearchBar = () => {
     e.preventDefault();
     suggestions = flatsFromDb.filter(({ city }, i) => {
       if (e.target.value.length > 0 && city.includes(e.target.value)) {
-        return city
-        ;
+        return city;
       }
     });
     console.log(suggestions);
@@ -33,9 +32,12 @@ export const SearchBar = () => {
   //filter and return flats IDs from input
   const handleCitySearch = (e) => {
     e.preventDefault();
+    let flatsResults = [];
     flatsFromDb.filter((flat) =>
-      flat.city === e.target.searchCity.value ? console.log(flat) : null
+      flat.city === e.target.searchCity.value ? flatsResults.push(flat) : null
     );
+    setFlats(flatsResults);
+    console.log(flatsResults);
     e.target.reset();
   };
   //get flats list and set it to state
@@ -54,28 +56,32 @@ export const SearchBar = () => {
   useEffect(() => {
     getFlats();
   }, []);
-let sug = [];
   return (
     <>
       <form onSubmit={handleCitySearch} autoComplete='off'>
         <label htmlFor='searchCity'>Wpisz miasto: </label>
-        <div style={{display: 'flex', flexDirection: 'column', position: 'relative', width: '200px'}}>
-        <StyledSearchInput
-          onChange={handleCitySuggestions}
-          type='text'
-          name='searchCity'
-          id='searchCity'
-          defaultValue={pickedSuggestion ? pickedSuggestion : null}
-        />
-        <StyledSearchSuggestionsWrapper>
-          {/* render matching suggestions under input field */}
-          {
-          searchSuggestions.map(({ city }) => (
-            <StyledSearchSuggestion onClick={handleSuggestionPick} key={city}>
-              {city}
-            </StyledSearchSuggestion>
-          ))}
-        </StyledSearchSuggestionsWrapper>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            position: "relative",
+            width: "200px",
+          }}>
+          <StyledSearchInput
+            onChange={handleCitySuggestions}
+            type='text'
+            name='searchCity'
+            id='searchCity'
+            defaultValue={pickedSuggestion ? pickedSuggestion : null}
+          />
+          <StyledSearchSuggestionsWrapper>
+            {/* render matching suggestions under input field */}
+            {searchSuggestions.map(({ city }) => (
+              <StyledSearchSuggestion onClick={handleSuggestionPick} key={city}>
+                {city}
+              </StyledSearchSuggestion>
+            ))}
+          </StyledSearchSuggestionsWrapper>
         </div>
       </form>
     </>
