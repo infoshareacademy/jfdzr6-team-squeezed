@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ContainerDivStyled = styled.div`
-background-color: #c4c4c4;
+background-color: #e7e7e7;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
@@ -9,7 +9,7 @@ width: 70%;
 margin: 20px auto;
 
 h2 {
-    background-color: #f7f7f7;
+    background-color: white;
     text-align: center;
 
 }
@@ -23,7 +23,7 @@ h2 {
 .picture {
    width: 40%;
    height: 200px;
-   background-color: #e4e4e4;
+   background-color: white;
    box-shadow: 7px 7px 19px -14px rgba(66, 68, 90, 1);
 }
 
@@ -31,7 +31,7 @@ h2 {
    width: 100%;
    max-width: 100%;
    max-height: 100%;
-   background-color: #e4e4e4;
+   background-color: white;;
    
 }
 
@@ -40,7 +40,7 @@ h2 {
     flex-direction: column;
     width: 40%;
     height: 200px;
-    background-color: #e4e4e4;
+    background-color: white;
     box-shadow: 7px 7px 19px -14px rgba(66, 68, 90, 1);
     
 }
@@ -56,7 +56,7 @@ h2 {
     margin-top: 20px;
     width: 40%;
    height: 200px;
-   background-color: #e4e4e4;
+   background-color: white;
    box-shadow: 7px 7px 19px -14px rgba(66, 68, 90, 1);
 }
 
@@ -68,7 +68,7 @@ h2 {
     margin-top: 20px;
     width: 40%;
    height: 200px;
-   background-color: #e4e4e4;
+   background-color: white;
    box-shadow: 7px 7px 19px -14px rgba(66, 68, 90, 1);
 }
 
@@ -76,7 +76,9 @@ h2 {
     display: flex;
    flex-direction: column;
    justify-content: center;
-   margin: 30px;
+   background-color: white;
+   box-shadow: 7px 7px 19px -14px rgba(66, 68, 90, 1);
+    margin-top: 20px;
 }
 
 `
