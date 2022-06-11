@@ -1,6 +1,7 @@
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
-import { useNavigate } from 'react-router-dom'
-import { db } from '../../../utils/firebase'
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import { db } from '../../../utils/firebase';
+import { Sections } from '../AddOffer/AddOffer.Styled';
 
 export const AddOffer = ({ flats }) => {     //problem - co ma sie znaleźć w parametrze?
 //   const navigate = useNavigate()
@@ -38,7 +39,7 @@ export const AddOffer = ({ flats }) => {     //problem - co ma sie znaleźć w p
     <>
       <h4>Im więcej szczegółów tym lepiej!</h4>
       <form onSubmit={handleSubmit}>
-        <section>
+        <Sections>
             <ul>
                 <li><label htmlFor="title">Tytuł</label>
                 <input type="text" name="title" id="title" required/></li> 
@@ -52,9 +53,9 @@ export const AddOffer = ({ flats }) => {     //problem - co ma sie znaleźć w p
                 <li><label htmlFor="city">Miasto:</label>
                 <input type="text" name="city" id="city" required/></li>
             </ul>
-        </section>
-         <section>
-             <ul>
+        </Sections>
+        <Sections>
+            <ul>
                 <li><label htmlFor="photos">Zdjęcie:</label>
                 <input type="file" name="photos" id="photos" required/></li>
 
@@ -86,7 +87,7 @@ export const AddOffer = ({ flats }) => {     //problem - co ma sie znaleźć w p
                 <input name="isParking" type="checkbox" /></li>
 
             </ul>
-            </section>
+            </Sections>
         <button type="submit">Dodaj ogłoszenie</button>
       </form>
     </>

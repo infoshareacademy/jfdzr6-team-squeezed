@@ -1,23 +1,29 @@
-// import { useState } from 'react'
+import React from "react";
+import {
+  BrowserRouter,
+  Route,
+  Routes
+} from "react-router-dom";
 import {AddOffer} from "./components/ClientPanel/AddOffer/AddOffer";
-import {ClientMainPage} from "./components/ClientPanel/ClientMainPage/ClientMainPage";
+import { NavBarClientPanel } from "./components/ClientPanel/NavBarClientPanel/NavBarClientPanel";
 
 function App() {
 
   return (
-  //   <BrowserRouter>
-  //      <Routes>
-  //       <Route path="newoffer" element={<AddOffer />} />
-  //       {/* <Route path="newoffer/:flatsId" element={<AddOffer />} /> */}
-  //         </Routes>
-  // </BrowserRouter>
-    
-    <div>
-      <ClientMainPage/>
-      <AddOffer/>
-     
-    </div>
-  )
-}
+    <BrowserRouter>
+      <NavBarClientPanel />
+        <div>
+            <Routes>
+              <Route path="newoffer" element={<AddOffer />}>
+            {/* </Routes>/<Route path="newoffer/:flatsId" element={<AddOffer />} /> */}
+            {/* <AddOffer /> */}
+            
+              </Route>
+                
+            </Routes>
+        </div>
+    </BrowserRouter>
+  );
+};
 
 export default App
