@@ -5,21 +5,28 @@ import {
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 
-import { SocialMedia } from "./Footer.styled";
+import { SocialMedia, FooterContainer } from "./Footer.styled";
 
 export const Footer = () => {
   return (
-    <>
-      <p>Znajdź nas w social media</p>
+    <FooterContainer>
+      <p>Znajdź nas w social media:</p>
       <div>
         <SocialMedia>
-
-          <div>     <FontAwesomeIcon icon={faFacebook} /></div>
-          <div>     <FontAwesomeIcon icon={faInstagram} /></div>
-          <div>     <FontAwesomeIcon icon={faYoutube} /></div>
-
+          <div>
+            {" "}
+            <FontAwesomeIcon icon={faFacebook} />
+          </div>
+          <div>
+            {" "}
+            <FontAwesomeIcon icon={faInstagram} />
+          </div>
+          <div>
+            {" "}
+            <FontAwesomeIcon icon={faYoutube} />
+          </div>
         </SocialMedia>
       </div>
-    </>
+    </FooterContainer>
   );
 };
