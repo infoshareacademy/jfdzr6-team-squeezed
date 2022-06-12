@@ -14,14 +14,23 @@ export const SocialMedia = styled.div`
   svg {
     color: white;
   }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 export const FooterContainer = styled.div`
   display: flex;
   background-color: #0975c3;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding-left: 20px;
+  flex-wrap: wrap;
+
+  @media (min-width: 768px) {
+    flex-wrap: nowrap;
+  }
 
   p {
     display: flex;
@@ -29,5 +38,10 @@ export const FooterContainer = styled.div`
     color: white;
     font-family: "Open Sans", sans-serif;
     font-weight: bolder;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
   }
 `;
