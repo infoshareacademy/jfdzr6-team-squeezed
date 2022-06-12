@@ -14,15 +14,12 @@ export const Footer = () => {
       <div>
         <SocialMedia>
           <div>
-            {" "}
             <FontAwesomeIcon icon={faFacebook} />
           </div>
           <div>
-            {" "}
             <FontAwesomeIcon icon={faInstagram} />
           </div>
           <div>
-            {" "}
             <FontAwesomeIcon icon={faYoutube} />
           </div>
         </SocialMedia>
