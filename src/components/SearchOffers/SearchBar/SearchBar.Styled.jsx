@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledSearchSuggestion = styled.div`
-  font-size: 16px;
+  font-size: 26px;
   padding: 5px 5px 5px 2px;
   background-color: #ffffff9d;
   border-radius: 0 ;
@@ -14,8 +14,8 @@ export const StyledSearchSuggestion = styled.div`
 
 export const StyledSearchSuggestionsWrapper = styled.div`
   position: absolute;
-  top: 45px;
-  width: 200px;
+  top: 60px;
+  width: 300px;
   z-index: 1;
   border: 1px solid black;
   border-radius: 5px;
@@ -25,8 +25,10 @@ export const StyledSearchSuggestionsWrapper = styled.div`
 `;
 
 export const StyledSearchInput = styled.input`
-  width: 200px;
-  margin-bottom: 200px;
+  font-size: 26px;
+  width: 300px;
+  height: 50px;
+  margin-bottom: 10px;
   padding: 10px 10px 10px 10px;
   background-color: inherit;
   border: none;

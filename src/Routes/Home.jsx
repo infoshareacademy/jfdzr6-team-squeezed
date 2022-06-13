@@ -6,6 +6,7 @@ import Map from "../components/Map/Map";
 import { Navigation } from "../Navigation";
 import { db } from "../utils/firebase";
 import { collection, getDocs } from "firebase/firestore";
+import { Footer } from '../components/Footer/Footer'
 
 export const Home = () => {
   const [flats, setFlats] = useState([]);
@@ -38,6 +39,7 @@ export const Home = () => {
       <SearchBar flatsFromDb={flatsFromDb} setFlats={setFlats} />
       {isLoaded ? <Map flats={flats} /> : null}
       <SearchResults flats={flats} />
+      <Footer></Footer>
     </div>
   );
 };

@@ -67,7 +67,7 @@ function Map({ flats }) {
   );
   console.log(flats);
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div style={{ display: "flex", justifyContent: "center", marginBottom: '50px' }}>
       <GoogleMap
         onLoad={handleOnLoad}
         // center={city}
