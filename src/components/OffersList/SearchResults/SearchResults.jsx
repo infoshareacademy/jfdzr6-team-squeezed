@@ -16,8 +16,9 @@ export const SearchResults = ({flats}) => {
     background-color: #e3dddd;
     display: flex;
     flex-direction: column;
-    grid-template-columns: 1fr 1fr;
     width: fit-content;
+    justify-content: center;
+    width: 100%;
     /* background-color: yellow; */
 
     @media (min-width: 768px) {

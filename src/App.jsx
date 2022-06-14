@@ -5,14 +5,34 @@ import { AddOffer } from "./components/ClientPanel/AddOffer/AddOffer";
 import { NavBarClientPanel } from "./components/ClientPanel/NavBarClientPanel/NavBarClientPanel";
 import { Home } from "./Routes/Home";
 import { OfferDetails } from "./components/OffersList/OfferDetails/OfferDetails"
+import { useState, useEffect } from 'react'
+import { db } from "./utils/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 function App() {
+const [flatsFromDb, setFlatsFromDb] = useState([])
+  const getFlats = () => {
+    const flatsCollection = collection(db, "flats");
+    getDocs(flatsCollection).then((querySnapshot) => {
+      const result = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setFlatsFromDb(result)
+      
+    });
+    
+  };
+  console.log(flatsFromDb)
+
+  useEffect(() => {
+    getFlats();
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/details" element={<OfferDetails />} />
-
         <Route path="newoffer" element={<AddOffer />}>
           {/* </Routes>/<Route path="newoffer/:flatsId" element={<AddOffer />} /> */}
           {/* <AddOffer /> */}
