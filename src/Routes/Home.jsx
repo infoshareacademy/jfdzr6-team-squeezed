@@ -9,6 +9,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { Footer } from '../components/Footer/Footer'
 
 export const Home = () => {
+
   const [flats, setFlats] = useState([]);
   const [flatsFromDb, setFlatsFromDb] = useState([]);
   const getFlats = () => {
