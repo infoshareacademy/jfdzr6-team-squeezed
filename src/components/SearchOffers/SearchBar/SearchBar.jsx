@@ -1,65 +1,62 @@
-import { db } from "../../../utils/firebase";
-import { collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
-import { cities } from "../../../utils/citySearchSuggestions";
 import {
   StyledSearchSuggestion,
   StyledSearchSuggestionsWrapper,
   StyledSearchInput,
 } from "./SearchBar.Styled";
 
-export const SearchBar = ({ setFlats }) => {
+export const SearchBar = ({ setFlats, flatsFromDb }) => {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
-  const [flatsFromDb, setFlatsFromDb] = useState([]);
+  const [suggestionsToPrint, setSuggestionsToPrint] = useState([]);
   const [pickedSuggestion, setPickedSuggestion] = useState(null);
   let suggestions = [];
 
   //check if input matches cities from offers and return matching results to state
   const handleCitySuggestions = (e) => {
     e.preventDefault();
-    suggestions = flatsFromDb.filter(({ city }, i) => {
-      if (e.target.value.length > 0 && city.includes(e.target.value)) {
+    //allow only letters 
+    const hasOnlyLetters = /^[a-zA-Z]+$/;
+    if (hasOnlyLetters.test(e.target.value) === false) {
+      setPickedSuggestion(
+        (e.target.value = e.target.value.slice(0, e.target.value.length - 1))
+      );
+    }
+    setPickedSuggestion(null);
+    //compare input with cities
+    suggestions = searchSuggestions.filter((city) => {
+      if (
+        e.target.value.length > 0 &&
+        city.toLowerCase().startsWith(e.target.value.toLowerCase())
+      ) {
         return city;
       }
     });
-    console.log(suggestions);
-    setSearchSuggestions(suggestions);
+    setSuggestionsToPrint(suggestions);
   };
-  //get picked suggestion, set it as an input value and submit search
+
+  //get picked suggestion, set it as an input value
   const handleSuggestionPick = (e) => {
-    setPickedSuggestion(e.target.innerText);
+    setPickedSuggestion(e.target.innerText.slice(3));
+    setSuggestionsToPrint([]);
   };
   //filter and return flats IDs from input
   const handleCitySearch = (e) => {
     e.preventDefault();
-    let flatsResults = [];
+    const flatsResults = [];
     flatsFromDb.filter((flat) =>
       flat.city === e.target.searchCity.value ? flatsResults.push(flat) : null
     );
     setFlats(flatsResults);
-    console.log(flatsResults);
     e.target.reset();
-  };
-  //get flats list and set it to state
-  const getFlats = () => {
-    const flatsCollection = collection(db, "flats");
-    getDocs(flatsCollection).then((querySnapshot) => {
-      const result = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setFlatsFromDb(result);
-    });
-    console.log(flatsFromDb);
   };
 
   useEffect(() => {
-    getFlats();
-  }, []);
+    setSearchSuggestions([...new Set(flatsFromDb.map(({ city }) => city))]);
+  }, [flatsFromDb, pickedSuggestion]);
   return (
-    <>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       <form onSubmit={handleCitySearch} autoComplete='off'>
-        <label htmlFor='searchCity'>Wpisz miasto: </label>
+        <label htmlFor='searchCity' />
         <div
           style={{
             display: "flex",
@@ -72,18 +69,24 @@ export const SearchBar = ({ setFlats }) => {
             type='text'
             name='searchCity'
             id='searchCity'
-            defaultValue={pickedSuggestion ? pickedSuggestion : null}
+            value={pickedSuggestion ? pickedSuggestion : null}
+            placeholder='Wpisz miasto...'
           />
-          <StyledSearchSuggestionsWrapper>
-            {/* render matching suggestions under input field */}
-            {searchSuggestions.map(({ city }) => (
-              <StyledSearchSuggestion onClick={handleSuggestionPick} key={city}>
-                {city}
-              </StyledSearchSuggestion>
-            ))}
-          </StyledSearchSuggestionsWrapper>
+
+          {suggestionsToPrint.length > 0 && (
+            <StyledSearchSuggestionsWrapper>
+              {/* render matching suggestions under input field */}
+              {suggestionsToPrint?.map((city) => (
+                <StyledSearchSuggestion
+                  onClick={handleSuggestionPick}
+                  key={city}>
+                  &#x1f4cd; {city}
+                </StyledSearchSuggestion>
+              ))}
+            </StyledSearchSuggestionsWrapper>
+          )}
         </div>
       </form>
-    </>
+    </div>
   );
 };
