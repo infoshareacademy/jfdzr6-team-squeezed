@@ -7,3 +7,22 @@ export const Sections = styled.section`
   padding: 15px;
   justify-content: center;
 `;
+
+export const PhotoSpan = styled.span`
+  background-color: white;
+`;
+
+export const PhotoInput = styled.input`
+   background-color: white;
+`;
+export const PhotoLabel = styled.label`
+   background-color: white;
+`;
+
+export const MainDiv = styled.div`
+   background-color: white;
+`;
+
+export const ElementListTitle = styled.ul`
+   background-color: white;
+`;

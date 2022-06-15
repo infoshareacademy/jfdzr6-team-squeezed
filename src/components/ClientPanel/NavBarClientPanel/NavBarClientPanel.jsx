@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import styledComponents from "styled-components";
+
 import { NavBar } from "./NavBarClientPanel.Styled";
 
 export const NavBarClientPanel = () => {
