@@ -9,6 +9,7 @@ import { OfferDetails } from "./components/OffersList/OfferDetails/OfferDetails"
 function App() {
   return (
     <BrowserRouter>
+      <NavBarClientPanel />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/details" element={<OfferDetails />} />
