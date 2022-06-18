@@ -4,13 +4,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AddOffer } from "./components/ClientPanel/AddOffer/AddOffer";
 import { NavBarClientPanel } from "./components/ClientPanel/NavBarClientPanel/NavBarClientPanel";
 import { Home } from "./Routes/Home";
+import { NewOffer } from "./Routes/NewOffer";
 import { OfferDetails } from "./components/OffersList/OfferDetails/OfferDetails"
 import { useState, useEffect } from 'react'
 import { db } from "./utils/firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 function App() {
-const [flatsFromDb, setFlatsFromDb] = useState([])
+  const [flatsFromDb, setFlatsFromDb] = useState([])
   const getFlats = () => {
     const flatsCollection = collection(db, "flats");
     getDocs(flatsCollection).then((querySnapshot) => {
@@ -19,9 +20,9 @@ const [flatsFromDb, setFlatsFromDb] = useState([])
         ...doc.data(),
       }));
       setFlatsFromDb(result)
-      
+
     });
-    
+
   };
   console.log(flatsFromDb)
 
@@ -34,9 +35,9 @@ const [flatsFromDb, setFlatsFromDb] = useState([])
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/details" element={<OfferDetails />} />
-        <Route path="newoffer" element={<AddOffer />}>
+        <Route path="newoffer" element={<NewOffer />}>
           {/* </Routes>/<Route path="newoffer/:flatsId" element={<AddOffer />} /> */}
-          {/* <AddOffer /> */}
+
         </Route>
       </Routes>
     </BrowserRouter>

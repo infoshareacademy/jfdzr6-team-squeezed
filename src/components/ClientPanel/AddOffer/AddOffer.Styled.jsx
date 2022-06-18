@@ -71,7 +71,8 @@ img {
   cursor:pointer;
   border:none;
   color: #9E9E9E;
-  background-color: white;
+  font-size: 12px;
+  background-color: #e7e7e7;
   border-radius: 5px;
   padding: 2px;
 }
@@ -81,9 +82,10 @@ img {
 }
 
 .photo p {
-  padding: 0 0.5 rem;
+  padding: 0 0.5rem;
   margin: 0;
   color: white;
+  height: 25px;
   /* color: #9E9E9E; */
 }
 .photos {

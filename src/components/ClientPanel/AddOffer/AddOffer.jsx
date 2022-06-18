@@ -38,11 +38,14 @@ const AddOffer1 = ({ flats }) => {
       price,
       rooms,
       floor,
+      airCondition,
       isAC,
       isElevator,
       isFurnished,
       isLoggia,
       isParking,
+      mobileNumber,
+      mailAddress,
     } = form;
 
     console.log(photos.files, price.value, "hello");
@@ -86,11 +89,14 @@ const AddOffer1 = ({ flats }) => {
           price: price.value,
           rooms: rooms.value,
           floor: floor.value,
+          airCondition: airCondition.value,
           isAC: isAC.value,
           isElevator: isElevator.value,
           isFurnished: isFurnished.value,
           isLoggia: isLoggia.value,
           isParking: isParking.value,
+          mobileNumber: mobileNumber.value,
+          mailAddress: mailAddress.value,
           createAt: serverTimestamp(),
         };
 
@@ -228,8 +234,8 @@ const AddOffer1 = ({ flats }) => {
               </li>
 
               <li>
-                <label htmlFor="isAC">Dostępne:</label>
-                <input name="isAC" type="checkbox" />
+                <label htmlFor="iaAC">Dostępność:</label>
+                <input type="date" name="isAC" id="isAC" required />
               </li>
 
               <li>
@@ -241,7 +247,10 @@ const AddOffer1 = ({ flats }) => {
                 <label htmlFor="isFurnished">Umeblowanie:</label>
                 <input name="isFurnished" type="checkbox" />
               </li>
-
+              <li>
+                <label htmlFor="airCondition">Klimatyzacja:</label>
+                <input name="airCondition" type="checkbox" />
+              </li>
               <li>
                 <label htmlFor="isLoggia">Balkon:</label>
                 <input name="isLoggia" type="checkbox" />
@@ -251,7 +260,17 @@ const AddOffer1 = ({ flats }) => {
                 <label htmlFor="isParking">Parking:</label>
                 <input name="isParking" type="checkbox" />
               </li>
+
             </ElementListTitle>
+            <div className="contactForm">
+              <label htmlFor="mobileNumber">Numer telefonu:</label>
+              <input type="text" name="mobileNumber" id="mobileNumber" required />
+
+              <label htmlFor="mailAddress">Mail:</label>
+              <input type="text" name="mailAddress" id="mailAddress" required />
+
+            </div>
+
           </Sections>
           {/* <button onClick={handleUpload} type="submit">Dodaj ogłoszenie</button> */}
           <button type="submit">            Dodaj ogłoszenie
