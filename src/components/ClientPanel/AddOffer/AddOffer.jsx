@@ -13,17 +13,17 @@ import {
 } from "../AddOffer/AddOffer.Styled";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
-import { useEffect } from "react";
 
-export const AddOffer = ({ flats }) => {
+export const AddOffer = () => {
+  return (
+    <>
+      <AddOffer1 />
+    </>
+  )
+};
+
+const AddOffer1 = ({ flats }) => {
   // const navigate = useNavigate()
-  const [geo, setGeo] = useState(null);
-
-
-  // useEffect(() => {
-  // setGeo((prevState) => prevState + newGeo);
-  // }, []);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,71 +61,52 @@ export const AddOffer = ({ flats }) => {
         imagesUrl.push(downloadUrl);
       }
     }
-    useEffect(() => {
 
-
-
-    }, []);
-
-    Geocode.setApiKey("AIzaSyC - s3g21oo0hfRTiSijJiyIBVIAlKBCgTU");
+    Geocode.setApiKey("AIzaSyBS9ENJtnxhEwwTw5YcFb8Ml57rjHZbxuA");
     Geocode.setLanguage("pl");
     Geocode.setRegion("pl");
     Geocode.setLocationType("ROOFTOP");
 
     const address = (`${street.value}, ${city.value}`);
-    // let newGeo = new GeoPoint(0, 0);
 
     Geocode.fromAddress(address).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
         const newGeo = new GeoPoint(lat, lng);
-        setGeo(newGeo);
+        const flatsRef = collection(db, "flats");
 
-        console.log(newGeo);
-        console.log(lat, lng);
+        const flat = {
+          title: title.value,
+          cords: newGeo,
+          description: description.value,
+          street: street.value,
+          city: city.value,
+          photos: imagesUrl,
+          size: size.value,
+          price: price.value,
+          rooms: rooms.value,
+          floor: floor.value,
+          isAC: isAC.value,
+          isElevator: isElevator.value,
+          isFurnished: isFurnished.value,
+          isLoggia: isLoggia.value,
+          isParking: isParking.value,
+          createAt: serverTimestamp(),
+        };
+
+        addDoc(flatsRef, {
+          ...flat, cords: newGeo
+        });
+
       },
       (error) => {
         console.error(error);
       }
     );
-    console.log(newGeo);
 
-    // console.log(geo);
-
-    // const pointy = new GeoPoint(52.229675, 21.01223);
-    const flat = {
-      title: title.value,
-      cords: geo,
-      description: description.value,
-      street: street.value,
-      city: city.value,
-      photos: imagesUrl,
-      size: size.value,
-      price: price.value,
-      rooms: rooms.value,
-      floor: floor.value,
-      isAC: isAC.value,
-      isElevator: isElevator.value,
-      isFurnished: isFurnished.value,
-      isLoggia: isLoggia.value,
-      isParking: isParking.value,
-      createAt: serverTimestamp(),
-    };
-
-    const flatsRef = collection(db, "flats");
-
-    addDoc(flatsRef, {
-      ...flat
-    })
-      .then((data) => {
-        console.log(data);
-        //   navigate('/newoffer')
-      })
-      .catch((error) => console.log(error));
   };
 
   const [selectedPhotos, setSelectedPhotos] = useState([]);
-
 
   const onSelectFile = (e) => {
     const selectedFiles = e.target.files;
