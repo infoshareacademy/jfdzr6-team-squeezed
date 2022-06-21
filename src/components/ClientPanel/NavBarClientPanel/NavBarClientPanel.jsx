@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import styledComponents from "styled-components";
 import { NavBar } from "./NavBarClientPanel.Styled";
 
 export const NavBarClientPanel = () => {
@@ -31,6 +31,15 @@ export const NavBarClientPanel = () => {
             <NavLink
               className="navbar-item"
               // activeClassName="is-active"
+              to="/"
+            >
+              <button type="button" value="Home">
+                Home
+              </button>
+            </NavLink>
+            <NavLink
+              className="navbar-item"
+              // activeClassName="is-active"
               to="/messages"
             >
               <button
@@ -41,16 +50,6 @@ export const NavBarClientPanel = () => {
                 Wiadomości
               </button>
             </NavLink>
-            <NavLink
-              className="navbar-item"
-              // activeClassName="is-active"
-              to="/favorites"
-            >
-              <button type="button" value="Ulubione">
-                Ulubione
-              </button>
-            </NavLink>
-
             <NavLink
               className="navbar-item"
               // activeClassName="is-active"
