@@ -10,6 +10,7 @@ import {
   PhotoInput,
   MainDiv,
   ElementListTitle,
+  ContactForm
 } from "../AddOffer/AddOffer.Styled";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
@@ -38,7 +39,7 @@ const AddOffer1 = ({ flats }) => {
       price,
       rooms,
       floor,
-      airCondition,
+      available,
       isAC,
       isElevator,
       isFurnished,
@@ -65,7 +66,7 @@ const AddOffer1 = ({ flats }) => {
       }
     }
 
-    Geocode.setApiKey("AIzaSyBS9ENJtnxhEwwTw5YcFb8Ml57rjHZbxuA");
+    Geocode.setApiKey("");
     Geocode.setLanguage("pl");
     Geocode.setRegion("pl");
     Geocode.setLocationType("ROOFTOP");
@@ -89,7 +90,7 @@ const AddOffer1 = ({ flats }) => {
           price: price.value,
           rooms: rooms.value,
           floor: floor.value,
-          airCondition: airCondition.value,
+          available: available.value,
           isAC: isAC.value,
           isElevator: isElevator.value,
           isFurnished: isFurnished.value,
@@ -234,8 +235,8 @@ const AddOffer1 = ({ flats }) => {
               </li>
 
               <li>
-                <label htmlFor="iaAC">Dostępność:</label>
-                <input type="date" name="isAC" id="isAC" required />
+                <label htmlFor="available">Dostępność:</label>
+                <input type="date" name="available" id="available" required />
               </li>
 
               <li>
@@ -248,8 +249,8 @@ const AddOffer1 = ({ flats }) => {
                 <input name="isFurnished" type="checkbox" />
               </li>
               <li>
-                <label htmlFor="airCondition">Klimatyzacja:</label>
-                <input name="airCondition" type="checkbox" />
+                <label htmlFor="isAC">Klimatyzacja:</label>
+                <input name="isAC" type="checkbox" />
               </li>
               <li>
                 <label htmlFor="isLoggia">Balkon:</label>
@@ -262,14 +263,14 @@ const AddOffer1 = ({ flats }) => {
               </li>
 
             </ElementListTitle>
-            <div className="contactForm">
+            <ContactForm>
               <label htmlFor="mobileNumber">Numer telefonu:</label>
               <input type="text" name="mobileNumber" id="mobileNumber" required />
 
               <label htmlFor="mailAddress">Mail:</label>
               <input type="text" name="mailAddress" id="mailAddress" required />
 
-            </div>
+            </ContactForm>
 
           </Sections>
           {/* <button onClick={handleUpload} type="submit">Dodaj ogłoszenie</button> */}

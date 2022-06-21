@@ -133,3 +133,19 @@ export const PhotoSpan = styled.span`
 export const PhotoInput = styled.input`
   display:none;
 `
+
+export const ContactForm = styled.div`
+  display:flex;
+  position:relative;
+  padding: 10px;
+  margin:0 30px auto 30px;
+  background-color:#e7e7e7;
+  display:inline;
+
+  input {
+    border:none;
+    margin:10px;
+
+  }
+  
+`
