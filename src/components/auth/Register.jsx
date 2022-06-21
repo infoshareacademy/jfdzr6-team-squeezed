@@ -1,23 +1,23 @@
-import { Form } from "./Form";
+import { Form } from "./Form";;
 import { auth } from "../../utils/firebase";
 import { getFormData } from "../../utils/getFormData";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { firebaseErrors } from "../../utils/firebaseErrors";
 
 export const Register = () => {
     const handleRegister = e => {
         e.preventDefault()
-        const { email, password } = getFormData(e);
+        const { email, password } = getFormData(e)
         createUserWithEmailAndPassword(auth, email, password)
-            .then(res => {
-                console.log(res)
+            .then(jwt => {
+                e.target.reset()
+                console.log(jwt)
+                signOut(auth)
             })
             .catch(e => {
-                console.log(e)
                 alert(firebaseErrors[e.code])
             })
     }
 
-    return <Form submitText="Zarejestruj się" onSubmit={handleRegister} />;
-
+    return <Form submitText="Zarejestruj się" headerText="Załóż konto już teraz!" paragraphText="Dzięki Rejstracji konta na naszej stronie możesz dodawać ogłoszenia wynajmu nieruchomości." onSubmit={handleRegister} />
 }

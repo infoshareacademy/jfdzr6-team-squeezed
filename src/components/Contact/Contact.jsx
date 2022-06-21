@@ -1,4 +1,4 @@
 export const Contact = () => {
 
-    return <div>Kontakt</div>
+    return <h2>Kontakt</h2>
 };

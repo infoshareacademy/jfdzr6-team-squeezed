@@ -14,17 +14,25 @@ import { Admin } from "./components/Admin/Admin";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./utils/firebase";
+import { ForgotPassword } from "./components/auth/ForgotPassword";
 
 
 
 function App() {
 
-  const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState(null)
+  const [isAuth, setIsAuth] = useState(false)
 
   useEffect(() => {
     onAuthStateChanged(auth, user => {
-      setIsAuth(!!user)
+      console.log('auth user', user)
+      if (user) {
+        setIsAuth(true)
+        setUser(user)
+      } else {
+        setIsAuth(false)
+        setUser(null)
+      }
     })
   }, [])
 
@@ -32,21 +40,23 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navigation />
+      <Navigation isAuth={isAuth} email={user?.email} />
       <Routes>
+
         <Route path="/" element={<Home />} />
-        <Route path="auth" element={<Auth />} >
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={isAuth ? <Navigate to="/offer" /> : <Login />} />
-        </Route>
-        <Route path="admin" element={<Admin />} />
-
-
-        {/* 
         <Route path="/o-nas" element={<AboutUs />} />
         <Route path="/kontakt" element={<Contact />} />
-        <Route path="/details" element={<OfferDetails />} /> */}
-        <Route path="offer" element={<AddOffer />} />
+        <Route path="/details" element={<OfferDetails />} />
+
+        <Route path="auth" element={isAuth ? <Navigate to="/offer" /> : <Auth />} >
+          <Route path="register" element={isAuth ? <Navigate to="/offer" /> : <Register />} />
+          <Route path="login" element={isAuth ? <Navigate to="/offer" /> : <Login />} />
+          <Route path="forgot-password" element={isAuth ? <Navigate to="/auth/login" /> : <ForgotPassword />} />
+        </Route>
+        <Route path="offer" element={!isAuth ? <Navigate to="/" /> : <AddOffer />} />
+        <Route path="admin" element={!isAuth ? <Navigate to="/admin" /> : <Admin />} />
+
+
 
 
       </Routes>
