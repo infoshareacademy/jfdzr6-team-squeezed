@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-export const Footer = () => {
-
-    return <div>Footer</div>
-
-};
-=======
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
@@ -43,4 +36,3 @@ export const Footer = () => {
     </FooterContainer>
   );
 };
->>>>>>> main

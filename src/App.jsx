@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { AddOffer } from "./components/ClientPanel/AddOffer/AddOffer";
 import { Home } from "./Routes/Home";
 import { OfferDetails } from "./components/OffersList/OfferDetails/OfferDetails"
-<<<<<<< HEAD
 import { Navigation } from "./components/Nav/Nav";
 import { Contact } from "./components/Contact/Contact";
 import { AboutUs } from "./components/AboutUs/About";
@@ -39,31 +38,6 @@ function App() {
 
 
 
-=======
-import { useState, useEffect } from 'react'
-import { db } from "./utils/firebase";
-import { collection, getDocs } from "firebase/firestore";
-
-function App() {
-const [flatsFromDb, setFlatsFromDb] = useState([])
-  const getFlats = () => {
-    const flatsCollection = collection(db, "flats");
-    getDocs(flatsCollection).then((querySnapshot) => {
-      const result = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setFlatsFromDb(result)
-      
-    });
-    
-  };
-  console.log(flatsFromDb)
-
-  useEffect(() => {
-    getFlats();
-  }, []);
->>>>>>> main
   return (
     <BrowserRouter>
       <Navigation isAuth={isAuth} email={user?.email} />
@@ -73,24 +47,14 @@ const [flatsFromDb, setFlatsFromDb] = useState([])
         <Route path="/o-nas" element={<AboutUs />} />
         <Route path="/kontakt" element={<Contact />} />
         <Route path="/details" element={<OfferDetails />} />
-<<<<<<< HEAD
 
         <Route path="auth" element={isAuth ? <Navigate to="/offer" /> : <Auth />} >
           <Route path="register" element={isAuth ? <Navigate to="/offer" /> : <Register />} />
           <Route path="login" element={isAuth ? <Navigate to="/offer" /> : <Login />} />
           <Route path="forgot-password" element={isAuth ? <Navigate to="/auth/login" /> : <ForgotPassword />} />
-=======
-        <Route path="newoffer" element={<AddOffer />}>
-          {/* </Routes>/<Route path="newoffer/:flatsId" element={<AddOffer />} /> */}
-          {/* <AddOffer /> */}
->>>>>>> main
         </Route>
-        <Route path="offer" element={!isAuth ? <Navigate to="/" /> : <AddOffer />} />
+        <Route path="offer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
         <Route path="admin" element={!isAuth ? <Navigate to="/admin" /> : <Admin />} />
-
-
-
-
       </Routes>
     </BrowserRouter>
   );
