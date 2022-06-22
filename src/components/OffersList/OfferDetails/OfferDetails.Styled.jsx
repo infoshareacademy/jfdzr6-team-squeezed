@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ContainerDivStyled = styled.div`
 background-color: #e7e7e7;
@@ -77,6 +77,7 @@ background: linear-gradient(-45deg,  #e7e7e7, #fff, #e7e7e7);
     width: 400px;
     height: 500px;
     background-color: white;
+<<<<<<< HEAD
     box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
     
 }
@@ -148,12 +149,18 @@ button {
 }
 
 .section-2 {
-    display: flex;
-   flex-direction: row;
-   justify-content: space-around;
-   
-}
+=======
+    box-shadow: 7px 7px 19px -14px rgba(66, 68, 90, 1);
+  }
 
+  .section-2 {
+>>>>>>> main
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+<<<<<<< HEAD
 .render-div {
     display: flex;
     flex-direction: row;
@@ -177,9 +184,19 @@ button {
     
    
 }
+=======
+  .render-div {
+    margin-top: 20px;
+    width: 40%;
+    height: 200px;
+    background-color: white;
+    box-shadow: 7px 7px 19px -14px rgba(66, 68, 90, 1);
+  }
+>>>>>>> main
 
-.render-list {
+  .render-list {
     list-style: none;
+<<<<<<< HEAD
     
 }
 
@@ -197,18 +214,30 @@ button {
   color: #0975C3;
   opacity: 100%;
 }
+=======
+  }
+>>>>>>> main
 
-.map {
+  .map {
     margin-top: 20px;
+<<<<<<< HEAD
     width: 400px;
    height: 200px;
    background-color: white;
    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
    background-color:#0975C3 ;
 }
+=======
+    width: 40%;
+    height: 200px;
+    background-color: white;
+    box-shadow: 7px 7px 19px -14px rgba(66, 68, 90, 1);
+  }
+>>>>>>> main
 
-.description {
+  .description {
     display: flex;
+<<<<<<< HEAD
    flex-direction: column;
    width: 1370px;
    height: auto;
@@ -247,3 +276,12 @@ button {
 }
 
 `
+=======
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 7px 7px 19px -14px rgba(66, 68, 90, 1);
+    margin-top: 20px;
+  }
+`;
+>>>>>>> main
