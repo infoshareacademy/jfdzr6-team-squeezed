@@ -14,6 +14,7 @@ export const SearchResults = ({flats}) => {
 
   const OfferList = styled.div`
     background-color: #e3dddd;
+    margin-top: 150px;
     display: flex;
     flex-direction: column;
     width: fit-content;
