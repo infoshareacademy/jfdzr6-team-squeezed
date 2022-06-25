@@ -6,10 +6,12 @@ export const SocialMedia = styled.div`
   color: black;
   font-size: 30px;
   display: flex;
+  
 
   flex-direction: row;
   div {
     margin: 0 20px;
+    
   }
   svg {
     color: white;
@@ -27,6 +29,8 @@ export const FooterContainer = styled.div`
   justify-content: space-between;
   padding-left: 20px;
   flex-wrap: wrap;
+  width: 1440px;
+  margin: 0 auto;
 
   @media (min-width: 768px) {
     flex-wrap: nowrap;
