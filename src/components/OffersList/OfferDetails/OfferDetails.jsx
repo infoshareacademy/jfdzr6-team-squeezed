@@ -11,14 +11,18 @@ import roomsSVG from "../Images/pokoje.svg"
 import parkSVG from "../Images/parking.svg"
 import logiaSVG from "../Images/logia.svg"
 import floorSVG from "../Images/pietro.svg"
+import { useParams } from "react-router-dom";
 
 export const OfferDetails = () => {
+    const { id: idFlat } = useParams("id")
 
     const [flat, setFlat] = useState(null);
 
     const getFlats = () => {
-        const flatsCollection = doc(db, 'flats', "3V7QXBV4KEuGbrEQ3l8J");
+        const flatsCollection = doc(db, 'flats', idFlat);
         getDoc(flatsCollection).then(querySnapshot => {
+
+            console.log(querySnapshot)
             const flat = {
                 id: querySnapshot.id,
                 ...querySnapshot.data(),
