@@ -20,14 +20,14 @@ export const Form = ({ submitText, isPasswordHidden = false, onSubmit, headerTex
           <div className="floating-label">
             <label htmlFor="email">Podaj email</label>
             <input type="email" placeholder="e-mail" name="email" id="email" />
-            <div class="icon"><img src={emailSVG} alt="" /></div>
+            <div className="icon"><img src={emailSVG} alt="" /></div>
           </div>
 
           {!isPasswordHidden && (
             <div className="floating-label">
               <label htmlFor="password">Podaj hasło</label>
               <input type="password" placeholder="hasło" name="password" id="password" />
-              <div class="icon"><img src={passwordSVG} alt="" /></div>
+              <div className="icon"><img src={passwordSVG} alt="" /></div>
             </div>
           )}
           <button>{submitText}</button>

@@ -46,7 +46,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/o-nas" element={<AboutUs />} />
         <Route path="/kontakt" element={<Contact />} />
-        <Route path="/details" element={<OfferDetails />} />
+        <Route path="/details/:id" element={<OfferDetails />} />
 
         <Route path="auth" element={isAuth ? <Navigate to="/offer" /> : <Auth />} >
           <Route path="register" element={isAuth ? <Navigate to="/offer" /> : <Register />} />

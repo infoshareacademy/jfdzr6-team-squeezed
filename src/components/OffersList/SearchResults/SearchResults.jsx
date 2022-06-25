@@ -75,7 +75,7 @@ export const SearchResults = ({ flats }) => {
               </div>
 
               <div className="btnContainer">
-                <NavLink to={"/details/"}>
+                <NavLink to={`/details/${flat.id}`}>
                   <Button> Więcej</Button>
                 </NavLink>
 
