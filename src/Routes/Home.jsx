@@ -36,7 +36,6 @@ export const Home = () => {
         flexDirection: "column",
         justifyContent: "center",
       }}>
-      <Navigation />
       <SearchBar flatsFromDb={flatsFromDb} setFlats={setFlats} />
       {isLoaded ? <Map flats={flats} /> : null}
       <SearchResults flats={flats} />

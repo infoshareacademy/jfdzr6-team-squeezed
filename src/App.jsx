@@ -1,44 +1,61 @@
 import { SearchBar } from "./components/SearchOffers/SearchBar/SearchBar"
 import { SearchResults } from "./components/OffersList/SearchResults/SearchResults";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { AddOffer } from "./components/ClientPanel/AddOffer/AddOffer";
-import { NavBarClientPanel } from "./components/ClientPanel/NavBarClientPanel/NavBarClientPanel";
 import { Home } from "./Routes/Home";
 import { NewOffer } from "./Routes/NewOffer";
 import { OfferDetails } from "./components/OffersList/OfferDetails/OfferDetails"
-import { useState, useEffect } from 'react'
-import { db } from "./utils/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { Navigation } from "./components/Nav/Nav";
+import { Contact } from "./components/Contact/Contact";
+import { AboutUs } from "./components/AboutUs/About";
+import { Auth } from "./components/auth/Auth";
+import { Register } from "./components/auth/Register";
+import { Login } from "./components/auth/Login";
+import { Admin } from "./components/Admin/Admin";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./utils/firebase";
+import { ForgotPassword } from "./components/auth/ForgotPassword";
+
+
 
 function App() {
-  const [flatsFromDb, setFlatsFromDb] = useState([])
-  const getFlats = () => {
-    const flatsCollection = collection(db, "flats");
-    getDocs(flatsCollection).then((querySnapshot) => {
-      const result = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setFlatsFromDb(result)
 
-    });
-
-  };
-  console.log(flatsFromDb)
+  const [user, setUser] = useState(null)
+  const [isAuth, setIsAuth] = useState(false)
 
   useEffect(() => {
-    getFlats();
-  }, []);
+    onAuthStateChanged(auth, user => {
+      console.log('auth user', user)
+      if (user) {
+        setIsAuth(true)
+        setUser(user)
+      } else {
+        setIsAuth(false)
+        setUser(null)
+      }
+    })
+  }, [])
+
+
+
   return (
     <BrowserRouter>
-      <NavBarClientPanel />
+      <Navigation isAuth={isAuth} email={user?.email} />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/details" element={<OfferDetails />} />
-        <Route path="newoffer" element={<NewOffer />}>
-          {/* </Routes>/<Route path="newoffer/:flatsId" element={<AddOffer />} /> */}
 
+        <Route path="/" element={<Home />} />
+        <Route path="/o-nas" element={<AboutUs />} />
+        <Route path="/kontakt" element={<Contact />} />
+        <Route path="/details" element={<OfferDetails />} />
+
+        <Route path="auth" element={isAuth ? <Navigate to="/offer" /> : <Auth />} >
+          <Route path="register" element={isAuth ? <Navigate to="/offer" /> : <Register />} />
+          <Route path="login" element={isAuth ? <Navigate to="/offer" /> : <Login />} />
+          <Route path="forgot-password" element={isAuth ? <Navigate to="/auth/login" /> : <ForgotPassword />} />
         </Route>
+        <Route path="offer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
+        <Route path="admin" element={!isAuth ? <Navigate to="/admin" /> : <Admin />} />
       </Routes>
     </BrowserRouter>
   );

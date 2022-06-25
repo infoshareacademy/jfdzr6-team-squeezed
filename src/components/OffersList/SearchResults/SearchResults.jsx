@@ -25,7 +25,7 @@ import { NavLink } from "react-router-dom";
 export const SearchResults = ({ flats }) => {
   const [currentPhotoInfo, setCurrentPhoto] = useState([]);
 
-  const addFlatToFavorite = (flat) => {};
+  const addFlatToFavorite = (flat) => { };
   const caruselInterval = 36000000;
 
   return (
