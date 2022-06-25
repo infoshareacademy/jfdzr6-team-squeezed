@@ -1,9 +1,10 @@
-import { SearchBar } from "./components/SearchOffers/SearchBar/SearchBar"
+import { SearchBar } from "./components/SearchOffers/SearchBar/SearchBar";
 import { SearchResults } from "./components/OffersList/SearchResults/SearchResults";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { AddOffer } from "./components/ClientPanel/AddOffer/AddOffer";
 import { Home } from "./Routes/Home";
-import { OfferDetails } from "./components/OffersList/OfferDetails/OfferDetails"
+import { NewOffer } from "./Routes/NewOffer";
+import { OfferDetails } from "./components/OffersList/OfferDetails/OfferDetails";
 import { Navigation } from "./components/Nav/Nav";
 import { Contact } from "./components/Contact/Contact";
 import { AboutUs } from "./components/AboutUs/About";
@@ -37,7 +38,6 @@ function App() {
   }, [])
 
 
-
   return (
     <BrowserRouter>
       <Navigation isAuth={isAuth} email={user?.email} />
@@ -59,5 +59,7 @@ function App() {
     </BrowserRouter>
   );
 }
+
+
 
 export default App;
