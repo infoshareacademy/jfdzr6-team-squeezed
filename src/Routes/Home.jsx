@@ -46,7 +46,7 @@ export const Home = () => {
         justifyContent: "center",
         alignItems: "center",
       }}>
-      <Navigation />
+      <SearchBar flatsFromDb={flatsFromDb} setFlats={setFlats} />
       {isLoaded ? <Map flats={flats} /> : null}
       <SearchWrapper>
         <SearchBar
@@ -62,3 +62,4 @@ export const Home = () => {
     </div>
   );
 };
+
