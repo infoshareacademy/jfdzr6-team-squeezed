@@ -9,10 +9,10 @@ import { collection, getDocs } from "firebase/firestore";
 import { Footer } from "../components/Footer/Footer";
 import { SearchWrapper } from "../components/SearchOffers/SearchWrapper/SearchWrapper";
 import { SearchFilters } from "../components/SearchOffers/SearchFilters/SearchFilters";
-import { SearchPlaces } from "../components/Map/SearchPlaces";
 
 const libraries = ["places"];
 export const Home = () => {
+
   const [flats, setFlats] = useState([]);
   const [filters, setFilters] = useState([]);
   const [flatsFromDb, setFlatsFromDb] = useState([]);
@@ -59,7 +59,6 @@ export const Home = () => {
       {/* <SearchFilters /> */}
       <SearchResults flats={flats} />
       <Footer />
-      <SearchPlaces />
     </div>
   );
 };

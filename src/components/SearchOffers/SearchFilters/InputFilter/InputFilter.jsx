@@ -1,3 +1,3 @@
 import { StyledInputFilter } from "./InputFilter.Styled";
 
-export const InputFilter = ({name}) => <StyledInputFilter></StyledInputFilter>
+export const InputFilter = ({name, placeholder}) => <StyledInputFilter placeholder={placeholder} name={name}></StyledInputFilter>
