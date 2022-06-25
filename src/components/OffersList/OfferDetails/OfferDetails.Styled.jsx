@@ -159,13 +159,10 @@ button {
     justify-content: space-around;
     margin-top: 20px;
     width: 900px;
-   height: 200px;
-   background-color: white;
-   box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
-   
-   
+    height: 200px;
+    background-color: white;
+    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
 }
-
 
 .render-div2 {
     display: flex;
@@ -173,8 +170,6 @@ button {
     justify-content: space-around; 
     width: 900px;
     height: 200px;
-    
-   
 }
 
   .render-list {
@@ -200,19 +195,19 @@ button {
   .map {
     margin-top: 20px;
     width: 400px;
-   height: 200px;
-   background-color: white;
-   box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
-   background-color:#0975C3 ;
+    height: 200px;
+    background-color: white;
+    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+    background-color:#0975C3 ;
 }
 
   .description {
     display: flex;
-   flex-direction: column;
-   width: 1370px;
-   height: auto;
-   background-color: white;
-   box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+    flex-direction: column;
+    width: 1370px;
+    height: auto;
+    background-color: white;
+    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
     margin: 20px auto 0;
     padding: 20px;
     

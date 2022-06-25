@@ -37,5 +37,5 @@ export const StyledSearchInput = styled.input`
     outline: none;
     background-color: #fff;
   }
-
 `;
+
