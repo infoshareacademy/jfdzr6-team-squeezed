@@ -57,6 +57,16 @@ export const InfoBox = styled.div`
     width: 75% !important;
   }
 
+  
+  .icon {
+  height: 20px;
+  align-self: center;
+}
+
+
+
+
+
   .btnContainer {
     display: flex;
     justify-content: flex-end;
