@@ -70,9 +70,9 @@ export const Navigation = ({ isAuth, email }) => {
                 </div>
 
             </NavBar>
-            <AuthStyled>
-                {email && <p className="auth">Jesteś zalogowany pod adresem: <a href="mailto:" target="_blank" > {email}</a></p>}
-            </AuthStyled>
+
+            {email && <AuthStyled><p className="auth">Jesteś zalogowany pod adresem: <a href="mailto:" target="_blank" > {email}</a></p>  </AuthStyled>}
+
         </>
     );
 };
