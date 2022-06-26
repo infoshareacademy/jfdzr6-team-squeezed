@@ -3,7 +3,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import { NavBar } from "./NavBar.Styled";
 import { AuthStyled } from "./isAuth.Styled";
-import logo from "./logo/logo.svg"
+import logo from "./logo/logo.ico"
 
 export const Navigation = ({ isAuth, email }) => {
 
