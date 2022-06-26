@@ -69,14 +69,14 @@ export const SearchResults = ({ flats, favourites }) => {
   console.log(flats);
 
   let flatsToRender = [];
-  if(favourites === true) {
-    flatsToRender = (JSON.parse(localStorage.getItem("favourites")))
+  if (favourites === true) {
+    flatsToRender = JSON.parse(localStorage.getItem("favourites"));
   } else {
-    flatsToRender = flats
+    flatsToRender = flats;
   }
   useEffect(() => {
     favourites ? (flatsToRender = favourites) : (flatsToRender = flats);
-    console.log(flatsToRender)
+    console.log(flatsToRender);
   }, [favourites, flats]);
 
   return (
@@ -90,17 +90,18 @@ export const SearchResults = ({ flats, favourites }) => {
                   <Carousel interval={caruselInterval}>
                     {flat.photos.map((photoSrc) => (
                       <Carousel.Item>
-                        <img src={photoSrc} alt='First slide' />
+                        <div className="carouselItemImg">
+                          <img src={photoSrc} alt="First slide" />
+                        </div>
                       </Carousel.Item>
                     ))}
                   </Carousel>
 
                   <FontAwesomeIcon
-                    className='zoomIcon'
+                    className="zoomIcon"
                     icon={faMagnifyingGlassPlus}
-                    onClick={() =>
-                      setCurrentPhoto(flat.photos)
-                    }></FontAwesomeIcon>
+                    onClick={() => setCurrentPhoto(flat.photos)}
+                  ></FontAwesomeIcon>
                 </CarouselContainer>
               </>
             ) : (
@@ -126,7 +127,7 @@ export const SearchResults = ({ flats, favourites }) => {
                 <PriceBox> Cena: {flat.price} zł/msc</PriceBox>
               </div>
 
-              <div className='btnContainer'>
+              <div className="btnContainer">
                 <NavLink to={`/details/${flat.id}`}>
                   <Button> Więcej</Button>
                 </NavLink>
@@ -147,24 +148,17 @@ export const SearchResults = ({ flats, favourites }) => {
 
       {currentPhotoInfo.length > 0 ? (
         <MoreInfoBox>
-          <div className='closeIcon'>
+          <div className="closeIcon">
             <FontAwesomeIcon
               icon={faXmark}
-              onClick={() => setCurrentPhoto([])}></FontAwesomeIcon>
+              onClick={() => setCurrentPhoto([])}
+            ></FontAwesomeIcon>
           </div>
           <CarouselContainerInMsgBox>
             <Carousel interval={caruselInterval}>
               {currentPhotoInfo.map((photoSrc) => (
                 <Carousel.Item>
-                  <img
-                    style={{
-                      width: "fit-contnet",
-                      height: "600px",
-                      wrap: false,
-                    }}
-                    src={photoSrc}
-                    alt='First slide'
-                  />
+                  <img src={photoSrc} alt="First slide" />
                 </Carousel.Item>
               ))}
             </Carousel>
