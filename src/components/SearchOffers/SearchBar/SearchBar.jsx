@@ -120,7 +120,7 @@ export const SearchBar = ({ setFlats, flatsFromDb, setFilters, setFavourites }) 
   }, [flatsFromDb, pickedSuggestion, selectedFilters]);
 
   return (
-    <form onSubmit={handleCitySearch} autoComplete='off'>
+    <form style={{width: '40%'}}onSubmit={handleCitySearch} autoComplete='off'>
       <StyledSearchWrapper>
         <label htmlFor='searchCity' />
         <StyledSearchInput
@@ -131,7 +131,9 @@ export const SearchBar = ({ setFlats, flatsFromDb, setFilters, setFavourites }) 
           value={pickedSuggestion ? pickedSuggestion : null}
           placeholder='Wpisz miasto...'
         />
+        <StyledShowMoreFilters>
         <button type='submit'>Szukaj</button>
+        <button onClick={handleShowMoreFilters}>Więcej filtrów</button></StyledShowMoreFilters>
         {suggestionsToPrint.length > 0 && (
           <StyledSearchSuggestionsWrapper>
             {/* render matching suggestions under input field */}
@@ -144,67 +146,65 @@ export const SearchBar = ({ setFlats, flatsFromDb, setFilters, setFavourites }) 
         )}
       </StyledSearchWrapper>
       {/* przerzucone */}
-      <StyledSearchFiltersWrapper>
-        <label htmlFor='text'></label>
-        <StyledInputWrapper>
-          <input
-            placeholder='powierzchnia od'
-            name='sizeMin'
-            onChange={handleFilters}
-            type='number'
-          />
-          <StyledLabel htmlFor='text'>m2</StyledLabel>
-        </StyledInputWrapper>
-        <label htmlFor='text'></label>
-        <StyledInputWrapper>
-          <input
-            type='number'
-            placeholder='powierzchnia do'
-            name='sizeMax'
-            onChange={handleFilters}
-          />
-          <StyledLabel htmlFor='text'>m2</StyledLabel>
-        </StyledInputWrapper>
-        <label htmlFor='text'></label>
-        <StyledInputWrapper>
-          <input
-            placeholder='cena od'
-            name='priceMin'
-            onChange={handleFilters}
-          />
-          <StyledLabel htmlFor='text'>zł</StyledLabel>
-        </StyledInputWrapper>
-        <StyledInputWrapper>
-          <input
-            placeholder='cena do'
-            name='priceMax'
-            onChange={handleFilters}
-          />
-          <StyledLabel htmlFor='text'>zł</StyledLabel>
-        </StyledInputWrapper>
-        <label htmlFor='text' />
-        <StyledInputWrapper>
-          <input
-            placeholder='liczba pokoi od'
-            name='roomsMin'
-            onChange={handleFilters}
-          />
-          <StyledLabel htmlFor='text'></StyledLabel>
-        </StyledInputWrapper>
-        <StyledInputWrapper>
-          <input
-            placeholder='liczba pokoi do'
-            name='roomsMax'
-            onChange={handleFilters}
-          />
-          <StyledLabel htmlFor='text'></StyledLabel>
-        </StyledInputWrapper>
-      </StyledSearchFiltersWrapper>
-
-      <StyledShowMoreFilters>
-        <img onClick={handleShowMoreFilters} src={arrowDown} width='30' />
-      </StyledShowMoreFilters>
+ 
       {showMoreFilters && (
+        <>
+             <StyledSearchFiltersWrapper>
+             <label htmlFor='text'></label>
+             <StyledInputWrapper>
+               <input
+                 placeholder='powierzchnia od'
+                 name='sizeMin'
+                 onChange={handleFilters}
+                 type='number'
+               />
+               <StyledLabel htmlFor='text'>m2</StyledLabel>
+             </StyledInputWrapper>
+             <label htmlFor='text'></label>
+             <StyledInputWrapper>
+               <input
+                 type='number'
+                 placeholder='powierzchnia do'
+                 name='sizeMax'
+                 onChange={handleFilters}
+               />
+               <StyledLabel htmlFor='text'>m2</StyledLabel>
+             </StyledInputWrapper>
+             <label htmlFor='text'></label>
+             <StyledInputWrapper>
+               <input
+                 placeholder='cena od'
+                 name='priceMin'
+                 onChange={handleFilters}
+               />
+               <StyledLabel htmlFor='text'>zł</StyledLabel>
+             </StyledInputWrapper>
+             <StyledInputWrapper>
+               <input
+                 placeholder='cena do'
+                 name='priceMax'
+                 onChange={handleFilters}
+               />
+               <StyledLabel htmlFor='text'>zł</StyledLabel>
+             </StyledInputWrapper>
+             <label htmlFor='text' />
+             <StyledInputWrapper>
+               <input
+                 placeholder='liczba pokoi od'
+                 name='roomsMin'
+                 onChange={handleFilters}
+               />
+               <StyledLabel htmlFor='text'></StyledLabel>
+             </StyledInputWrapper>
+             <StyledInputWrapper>
+               <input
+                 placeholder='liczba pokoi do'
+                 name='roomsMax'
+                 onChange={handleFilters}
+               />
+               <StyledLabel htmlFor='text'></StyledLabel>
+             </StyledInputWrapper>
+           </StyledSearchFiltersWrapper>
         <StyledSearchFiltersWrapper>
           <StyledInputWrapper>
             <input
@@ -268,7 +268,9 @@ export const SearchBar = ({ setFlats, flatsFromDb, setFilters, setFavourites }) 
             />
           </StyledInputWrapper>
         </StyledSearchFiltersWrapper>
-      )}
+        
+        </>)}
     </form>
+    
   );
 };

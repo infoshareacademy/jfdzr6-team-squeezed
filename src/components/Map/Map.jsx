@@ -127,8 +127,9 @@ const Map = ({ flats }) => {
         display: "flex",
         justifyContent: "center",
         position: "relative",
+        height: '85vh'
       }}>
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative", height: '100%' }}>
         <StyledMapHeader>
           <span>
             <img src={logo} width='80' />

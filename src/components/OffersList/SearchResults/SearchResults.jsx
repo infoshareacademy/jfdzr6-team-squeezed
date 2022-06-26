@@ -60,7 +60,7 @@ import { Carousel, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { FavouriteBtn } from "./FavouriteBtn/FavouriteBtn";
 
-export const SearchResults = ({ flats, favourites }) => {
+export const SearchResultsList = ({ flats, favourites }) => {
   const [currentPhotoInfo, setCurrentPhoto] = useState([]);
 
   // const addFlatToFavorite = (flat) => {};
