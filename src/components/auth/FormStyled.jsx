@@ -3,13 +3,14 @@ import styled from "styled-components";
 export const ContainerStyled = styled.div`
   display:  flex; 
   flex-direction:  row; 
-  width: 1440px;
-  height:  auto; 
+  width: 700px;
+  height: auto;
   margin:  0 auto; 
   margin-top: 20px;
   background:  #ffffff; 
-  border-radius:  4px; 
+  border-radius:  20px; 
   box-shadow:  0px 2px 6px -1px rgba(0,0,0,.12);
+  box-shadow: 1px 7px 12px 3px rgba(66, 68, 90, 1);
   
 
   
@@ -17,10 +18,10 @@ export const ContainerStyled = styled.div`
   width:  320px; 
   height:  auto; 
   min-height:  100%; 
-  background-image: url("https://images.unsplash.com/photo-1600263309890-36524242f6c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=742&q=80");
   background-size:  cover;
-  border-top-left-radius:  4px; 
-  border-bottom-left-radius:  4px; 
+  border-top-left-radius:  20px; 
+  border-bottom-left-radius:  20px; 
+
   }
 
 
