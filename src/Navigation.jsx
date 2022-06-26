@@ -4,14 +4,14 @@ const NavBar = styled.nav`
 display: flex;
 background-color: #149BFC;
 justify-content: space-between;
-margin: 0px auto 10px auto;
+margin: 0px auto 0 auto;
 padding: 20px;
 ul {
     display: flex;
     flex-direction: row;
     list-style: none;
     text-align: center;
-    width: 70vw;
+    width: 1280px;
     justify-content: end;
 }
 li {

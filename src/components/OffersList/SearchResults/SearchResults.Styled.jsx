@@ -61,10 +61,10 @@ export const InfoBox = styled.div`
     display: flex;
     justify-content: flex-end;
   }
-
+  /* 
   .likeIcon {
     margin: 0px 10px;
-  }
+  } */
 `;
 
 export const Arrow = styled.div`
@@ -84,6 +84,11 @@ export const Arrow = styled.div`
   }
 `;
 
+export const StyledFavouriteBtn = styled.div`
+  .likeIcon {
+    margin: 0px 10px;
+  }
+`;
 export const PriceBox = styled.div`
   font-weight: 900;
 `;
@@ -151,25 +156,36 @@ export const CarouselContainer = styled.div`
   .zoomIcon:hover {
     color: rgba(255, 255, 255, 0.834);
   }
+  @media (min-width: 768px) {
+    width: 800px;
+    height: 330px;
+  }
 
-  img {
-    width: 100%;
-    height: 100%;
-
+  .carouselItemImg {
+    background-color: lightgray;
+    width: fit-content;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     @media (min-width: 768px) {
-      width: fit-contnet;
       height: 300px;
     }
   }
 
-  @media (min-width: 768px) {
-    width: 800px;
-    height: 330px;
+  img {
+    width: 100%;
+    height: auto;
   }
 `;
 
 export const CarouselContainerInMsgBox = styled.div`
   display: flex;
   justify-content: center;
-  flex-wrap: false;
+  background-color: lightgray;
+  img {
+    object-fit: contain;
+    width: 600px;
+    height: 400px;
+  }
 `;

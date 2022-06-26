@@ -1,7 +1,6 @@
 import styled from "styled-components";
 // import React, { Component } from 'react';
 
-
 export const ElementListTitle = styled.ul`
 background-color:white;
 
@@ -111,6 +110,7 @@ export const Sections = styled.section`
   justify-content: center;
   background-color: white;
 `;
+
 
 export const PhotoLabel = styled.label`
   margin: 0;

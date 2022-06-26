@@ -16,6 +16,8 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./utils/firebase";
 import { ForgotPassword } from "./components/auth/ForgotPassword";
+import { Slider } from "./components/Landing/Slider";
+
 
 
 
@@ -43,10 +45,10 @@ function App() {
       <Navigation isAuth={isAuth} email={user?.email} />
       <Routes>
 
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Slider />} />
         <Route path="/o-nas" element={<AboutUs />} />
         <Route path="/kontakt" element={<Contact />} />
-        <Route path="/details" element={<OfferDetails />} />
+        <Route path="/details/:id" element={<OfferDetails />} />
 
         <Route path="auth" element={isAuth ? <Navigate to="/offer" /> : <Auth />} >
           <Route path="register" element={isAuth ? <Navigate to="/offer" /> : <Register />} />

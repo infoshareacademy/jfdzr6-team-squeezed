@@ -3,7 +3,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import { NavBar } from "./NavBar.Styled";
 import { AuthStyled } from "./isAuth.Styled";
-import logo from "./logo/logo.svg"
+import logo from "./logo/logo.ico"
 
 export const Navigation = ({ isAuth, email }) => {
 
@@ -70,9 +70,9 @@ export const Navigation = ({ isAuth, email }) => {
                 </div>
 
             </NavBar>
-            <AuthStyled>
-                {email && <p className="auth">Jesteś zalogowany pod adresem: <a href="mailto:" target="_blank" > {email}</a></p>}
-            </AuthStyled>
+
+            {email && <AuthStyled><p className="auth">Jesteś zalogowany pod adresem: <a href="mailto:" target="_blank" > {email}</a></p>  </AuthStyled>}
+
         </>
     );
 };
