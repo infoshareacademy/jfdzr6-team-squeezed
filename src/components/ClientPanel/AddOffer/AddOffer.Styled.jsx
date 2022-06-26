@@ -102,6 +102,7 @@ export const MainDiv = styled.div`
 background-color:white;
 margin:0px 100px;
 padding:20px;
+
 `;
 
 export const Sections = styled.section`
