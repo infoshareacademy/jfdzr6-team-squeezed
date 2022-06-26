@@ -63,7 +63,7 @@ function App() {
       <Navigation isAuth={isAuth} email={user?.email} />
       <Routes>
 
-        <Route path="/" element={<Slider setFlats={setFlats} setFlatsFromDb={setFlatsFromDb}/>} />
+        <Route path="/" element={<Slider setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} flatsFromDb={flatsFromDb}/>} />
         <Route path="/o-nas" element={<AboutUs />} />
         <Route path="/kontakt" element={<Contact />} />
         <Route path="/details/:id" element={<OfferDetails />} />

@@ -1,63 +1,64 @@
 import { useState, useEffect } from "react";
-import { sliderData } from './slider-data'
-import "./Slider.css"
+import { sliderData } from "./slider-data";
+import { SearchBar } from "../SearchOffers/SearchBar/SearchBar";
+import "./Slider.css";
 
-export const Slider = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const slideLength = sliderData.length;
+export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slideLength = sliderData.length;
 
-    const autoScroll = true;
-    let slideInterval;
-    let intervalTime = 7000;
+  const autoScroll = true;
+  let slideInterval;
+  let intervalTime = 7000;
 
-    const nextSlide = () => {
-        setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
-        console.log("next");
-    };
+  const nextSlide = () => {
+    setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
+    console.log("next");
+  };
 
+  function auto() {
+    slideInterval = setInterval(nextSlide, intervalTime);
+  }
 
-    function auto() {
-        slideInterval = setInterval(nextSlide, intervalTime);
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, []);
+
+  useEffect(() => {
+    if (autoScroll) {
+      auto();
     }
+    return () => clearInterval(slideInterval);
+  }, [currentSlide]);
 
-    useEffect(() => {
-        setCurrentSlide(0);
-    }, []);
-
-    useEffect(() => {
-        if (autoScroll) {
-            auto();
-        }
-        return () => clearInterval(slideInterval);
-    }, [currentSlide]);
-
-    return (
-        <>
-            <div className="slider">
-                {sliderData.map((slide, index) => {
-                    return (
-                        <div
-                            className={index === currentSlide ? "slide current" : "slide"}
-                            key={index}>
-                            {index === currentSlide && (
-                                <div>
-                                    <img src={slide.image} alt="slide" className="image" />
-                                </div>
-                            )}
-                        </div>
-                    );
-                })}
-
-                <div className="content">
-                    <h2>Zobacz ofertę mieszkań</h2>
-                    <p>Wpisz nazwę miasta, które Cię interesuję</p>
-                    <hr />
-                    <button>Tu ma być input</button>
+  return (
+    <>
+      <div className='slider'>
+        {sliderData.map((slide, index) => {
+          return (
+            <div
+              className={index === currentSlide ? "slide current" : "slide"}
+              key={index}>
+              {index === currentSlide && (
+                <div>
+                  <img src={slide.image} alt='slide' className='image' />
                 </div>
+              )}
             </div>
+          );
+        })}
 
-
-
-        </>
-    );
+        <div className='content'>
+          <h2>Zobacz ofertę mieszkań</h2>
+          <p>Wpisz nazwę miasta, które Cię interesuję</p>
+          <hr />
+          <SearchBar
+            flatsFromDb={flatsFromDb}
+            setFlats={setFlats}
+            setFavourites={setFavourites}
+          />
+        </div>
+      </div>
+    </>
+  );
 };
