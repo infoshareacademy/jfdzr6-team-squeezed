@@ -61,10 +61,10 @@ export const InfoBox = styled.div`
     display: flex;
     justify-content: flex-end;
   }
-
+/* 
   .likeIcon {
     margin: 0px 10px;
-  }
+  } */
 `;
 
 export const Arrow = styled.div`
@@ -84,6 +84,13 @@ export const Arrow = styled.div`
   }
 `;
 
+export const StyledFavouriteBtn = styled.div`
+
+
+.likeIcon {
+    margin: 0px 10px;
+  }
+`
 export const PriceBox = styled.div`
   font-weight: 900;
 `;

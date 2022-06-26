@@ -5,9 +5,13 @@ import { StyledMapHeader } from "./Map.Styled";
 import { mapContainerStyle, center, options } from "../../utils/mapConfig";
 import logo from "./logo-icon-only-blue.svg";
 import markerSVG from "./NicePng_home-icon-png_233447.png";
+import { MapCarousel } from "./MapCarousel/MapCarousel";
+
 
 const Map = ({ flats }) => {
   const [activeMarker, setActiveMarker] = useState(null);
+
+
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
@@ -51,7 +55,8 @@ const Map = ({ flats }) => {
           key={id}
           position={{ lat: cords._lat, lng: cords._long }}
           onClick={() => handleActiveMarker(id)}
-          label={{ text: `${price}zł`, color: "#ffffff", fontWeight: "bold" }}
+          label={{ text: `${price}zł`, color: "#ffffff", fontWeight: "bold", TextOutline: "4px solid #f0f0f0"}}
+          labelStyle={{backgroundColor: 'black'}}
           icon={{
             url: markerSVG,
             scaledSize: new window.google.maps.Size(30, 30),
@@ -69,7 +74,9 @@ const Map = ({ flats }) => {
                   flexDirection: "column",
                   alignItems: "flex-start",
                 }}>
-                <img src={photos[0]} width='100%' />
+                {/* <img style={{objectFit: 'cover'}} src={photos[0]} width='100%' height='200' /> */}
+                <MapCarousel photos={photos}/>
+                {/* <img style={{objectFit: 'cover'}} src={photos[0]} width='100%' height='200' /> */}
                 <div
                   style={{
                     display: "flex",
@@ -83,12 +90,12 @@ const Map = ({ flats }) => {
                     href='https:/www.google.pl'
                     style={{ textDecoration: "none", color: "black" }}>
                     {title}
-                    <div>
-                      metraż: {size} m<sup>2</sup>{" "}
+                    <div style={{position: 'absolute', top: '5px', padding: '2px', color: '#FFF', background: '#5a5656ac', zIndex: '10', fontWeight: 'bold', fontSize: '20px' }}>
+                      {size} m<sup>2</sup>{" "}
                     </div>
-                    <div>pokoje: {rooms}</div>
-                    <div>
-                      cena: <b>{price} zł</b>
+                    {/* <div>pokoje: {rooms}</div> */}
+                    <div style={{fontSize: '24px'}}>
+                      <b>{price} zł</b>
                     </div>
                   </a>
 

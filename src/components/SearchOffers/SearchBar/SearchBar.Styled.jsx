@@ -16,13 +16,14 @@ export const StyledSearchSuggestion = styled.div`
 
 export const StyledSearchSuggestionsWrapper = styled.div`
   position: absolute;
-  top: 60px;
+  top: 75px;
   width: 300px;
+  border-radius: 20px;
   z-index: 1;
   border: 1px solid black;
   border-radius: 5px;
   padding: 1px;
-  background-color: #ffffff9d;
+  background-color: #ffffffbc;
   transition: background-color 0.5s;
 `;
 
@@ -34,6 +35,8 @@ export const StyledSearchInput = styled.input`
   padding: 10px 10px 10px 10px;
   border: none;
   background-color: #eeeaea;
+  border-radius: 20px;
+  margin: 20px;
   &:focus {
     outline: none;
     background-color: #fff;
@@ -42,11 +45,35 @@ export const StyledSearchInput = styled.input`
 `;
 
 export const StyledSearchWrapper = styled.div`
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width: 100%;
-          position: relative;
-          margin-left: 0 auto;
-        
-`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  margin-left: 0 auto;
+  font-family: "Montserrat", sans-serif;
+
+  button {
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px 30px;
+    margin-top: 5px;
+    background-color: white;
+    color: #0975c3;
+    font-size: 18px;
+    margin-left: 0 auto;
+    box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.13);
+    border: none;
+    transition: all 0.3s ease;
+    outline: 0;
+    font-family: "Montserrat", sans-serif;
+  }
+  button:hover {
+    background-color: #0975c3;
+    color: white; 
+  }
+  button:active {
+    background-color: white;
+    color: #0975c3; 
+  }
+`;

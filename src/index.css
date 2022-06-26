@@ -55,3 +55,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.labels {
+  background-color: #5a5656ac;
+}

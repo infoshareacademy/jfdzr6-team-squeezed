@@ -6,7 +6,7 @@ import { StyledLabel } from "../SearchFilters/Label.Styled";
 import { SearchFilters } from "../SearchFilters/SearchFilters";
 import {
   StyledInputWrapper,
-  StyledSearchWrapper1,
+  StyledSearchFiltersWrapper,
   StyledShowMoreFilters,
 } from "../SearchFilters/SearchFilters.Styled";
 import {
@@ -17,7 +17,7 @@ import {
 } from "./SearchBar.Styled";
 import arrowDown from "./double-down-arrow-4854.svg";
 
-export const SearchBar = ({ setFlats, flatsFromDb, setFilters }) => {
+export const SearchBar = ({ setFlats, flatsFromDb, setFilters, setFavourites }) => {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [suggestionsToPrint, setSuggestionsToPrint] = useState([]);
   const [pickedSuggestion, setPickedSuggestion] = useState(null);
@@ -30,6 +30,9 @@ export const SearchBar = ({ setFlats, flatsFromDb, setFilters }) => {
     setShowMoreFilters(!showMoreFilters);
   };
 
+  const handleFilterFavourites = (e) => {
+    e.target.checked ? setFavourites(true) : setFavourites(false);
+  };
   //check if input matches cities from offers and return matching results to state
   const handleCitySuggestions = (e) => {
     e.preventDefault();
@@ -80,7 +83,6 @@ export const SearchBar = ({ setFlats, flatsFromDb, setFilters }) => {
       isParking,
     } = e.target;
 
-
     let flatsResults = [];
 
     flatsResults = flatsFromDb.filter(
@@ -91,9 +93,9 @@ export const SearchBar = ({ setFlats, flatsFromDb, setFilters }) => {
         (priceMin.value === "" || priceMin.value <= flat.price) &&
         (priceMax.value === "" || priceMax.value >= flat.price) &&
         (roomsMin.value === "" || roomsMin.value <= flat.rooms) &&
-        (roomsMax.value === "" || roomsMax.value >= flat.rooms) &&
-      (floorMin.value === "" || floorMin.value <= flat.floor) &&
-      (floorMax.value === "" || floorMax.value >= flat.floor)
+        (roomsMax.value === "" || roomsMax.value >= flat.rooms)
+      // (floorMin.value === "" || floorMin.value <= flat.floor) &&
+      // (floorMax.value === "" || floorMax.value >= flat.floor)
     );
 
     //continue with filtering results
@@ -102,15 +104,15 @@ export const SearchBar = ({ setFlats, flatsFromDb, setFilters }) => {
     setSuggestionsToPrint([]);
   };
   const handleFilters = (e) => {
-    e.target.type === 'checkbox' ?
-    setSelectedFilters({
-      ...selectedFilters,
-      [e.target.name]: e.target.checked,
-    }) :
-    setSelectedFilters({
-      ...selectedFilters,
-      [e.target.name]: e.target.value,
-    });
+    e.target.type === "checkbox"
+      ? setSelectedFilters({
+          ...selectedFilters,
+          [e.target.name]: e.target.checked,
+        })
+      : setSelectedFilters({
+          ...selectedFilters,
+          [e.target.name]: e.target.value,
+        });
     console.log(selectedFilters);
   };
   useEffect(() => {
@@ -129,7 +131,7 @@ export const SearchBar = ({ setFlats, flatsFromDb, setFilters }) => {
           value={pickedSuggestion ? pickedSuggestion : null}
           placeholder='Wpisz miasto...'
         />
-        <button type="submit">Szukaj</button>
+        <button type='submit'>Szukaj</button>
         {suggestionsToPrint.length > 0 && (
           <StyledSearchSuggestionsWrapper>
             {/* render matching suggestions under input field */}
@@ -142,7 +144,7 @@ export const SearchBar = ({ setFlats, flatsFromDb, setFilters }) => {
         )}
       </StyledSearchWrapper>
       {/* przerzucone */}
-      <StyledSearchWrapper1>
+      <StyledSearchFiltersWrapper>
         <label htmlFor='text'></label>
         <StyledInputWrapper>
           <input
@@ -182,30 +184,28 @@ export const SearchBar = ({ setFlats, flatsFromDb, setFilters }) => {
         </StyledInputWrapper>
         <label htmlFor='text' />
         <StyledInputWrapper>
-          <StyledInputWrapper>
-            <input
-              placeholder='liczba pokoi od'
-              name='roomsMin'
-              onChange={handleFilters}
-            />
-            <StyledLabel htmlFor='text'></StyledLabel>
-          </StyledInputWrapper>
-          <StyledInputWrapper>
-            <input
-              placeholder='liczba pokoi do'
-              name='roomsMax'
-              onChange={handleFilters}
-            />
-            <StyledLabel htmlFor='text'></StyledLabel>
-          </StyledInputWrapper>
+          <input
+            placeholder='liczba pokoi od'
+            name='roomsMin'
+            onChange={handleFilters}
+          />
+          <StyledLabel htmlFor='text'></StyledLabel>
         </StyledInputWrapper>
-      </StyledSearchWrapper1>
+        <StyledInputWrapper>
+          <input
+            placeholder='liczba pokoi do'
+            name='roomsMax'
+            onChange={handleFilters}
+          />
+          <StyledLabel htmlFor='text'></StyledLabel>
+        </StyledInputWrapper>
+      </StyledSearchFiltersWrapper>
 
-      <StyledShowMoreFilters onClick={handleShowMoreFilters}>
-        <img src={arrowDown} width='30' />
+      <StyledShowMoreFilters>
+        <img onClick={handleShowMoreFilters} src={arrowDown} width='30' />
       </StyledShowMoreFilters>
       {showMoreFilters && (
-        <div>
+        <StyledSearchFiltersWrapper>
           <StyledInputWrapper>
             <input
               placeholder='piętro od...'
@@ -214,6 +214,7 @@ export const SearchBar = ({ setFlats, flatsFromDb, setFilters }) => {
             />
             <StyledLabel htmlFor='text'>od</StyledLabel>
           </StyledInputWrapper>
+
           <StyledInputWrapper>
             <input
               placeholder='piętro do...'
@@ -225,25 +226,48 @@ export const SearchBar = ({ setFlats, flatsFromDb, setFilters }) => {
           <StyledInputWrapper>
             <StyledLabel>Klimatyzacja</StyledLabel>
             <input
-              type="checkbox"
-              name="isAC"
+              className='checkbox'
+              type='checkbox'
+              name='isAC'
               onChange={handleFilters}
             />
             <StyledLabel>Winda</StyledLabel>
-            <input onChange={handleFilters} type='checkbox' name='isElevator' />
+            <input
+              className='checkbox'
+              onChange={handleFilters}
+              type='checkbox'
+              name='isElevator'
+            />
             <StyledLabel>Meble / urządzone</StyledLabel>
             <input
-              type="checkbox"
+              className='checkbox'
+              type='checkbox'
               onChange={handleFilters}
-              name="isFurnished"
-       
+              name='isFurnished'
             />
             <StyledLabel>Loggia / balkon</StyledLabel>
-            <input onChange={handleFilters} type='checkbox' name='isLoggia' />
+            <input
+              className='checkbox'
+              onChange={handleFilters}
+              type='checkbox'
+              name='isLoggia'
+            />
             <StyledLabel>Parking</StyledLabel>
-            <input onChange={handleFilters} type='checkbox' name='isParking' />
+            <input
+              className='checkbox'
+              onChange={handleFilters}
+              type='checkbox'
+              name='isParking'
+            />
+             <StyledLabel>Pokaż ulubione</StyledLabel>
+            <input
+              className='checkbox'
+              onChange={handleFilterFavourites}
+              type='checkbox'
+              name='favouriteFlats'
+            />
           </StyledInputWrapper>
-        </div>
+        </StyledSearchFiltersWrapper>
       )}
     </form>
   );

@@ -9,6 +9,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { Footer } from "../components/Footer/Footer";
 import { SearchWrapper } from "../components/SearchOffers/SearchWrapper/SearchWrapper";
 import { SearchFilters } from "../components/SearchOffers/SearchFilters/SearchFilters";
+import { Spinner } from "../utils/Spinner";
 
 const libraries = ["places"];
 export const Home = () => {
@@ -16,6 +17,8 @@ export const Home = () => {
   const [flats, setFlats] = useState([]);
   const [filters, setFilters] = useState([]);
   const [flatsFromDb, setFlatsFromDb] = useState([]);
+  const [favourites, setFavourites] = useState(null)
+
   const getFlats = () => {
     const flatsCollection = collection(db, "flats");
     getDocs(flatsCollection).then((querySnapshot) => {
@@ -31,12 +34,12 @@ export const Home = () => {
     getFlats();
   }, []);
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBS9ENJtnxhEwwTw5YcFb8Ml57rjHZbxuA",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
 
   if (loadError) return "Błąd ładowania mapy";
-  if (!isLoaded) return "Ładowanie mapy";
+  if (!isLoaded) return <Spinner /> ;
 
   return (
     <div
@@ -46,7 +49,6 @@ export const Home = () => {
         justifyContent: "center",
         alignItems: "center",
       }}>
-      <SearchBar flatsFromDb={flatsFromDb} setFlats={setFlats} />
       {isLoaded ? <Map flats={flats} /> : null}
       <SearchWrapper>
         <SearchBar
@@ -54,10 +56,11 @@ export const Home = () => {
           setFlats={setFlats}
           filters={filters}
           setFilters={setFilters}
+          setFavourites={setFavourites}
         />
       </SearchWrapper>
       {/* <SearchFilters /> */}
-      <SearchResults flats={flats} />
+      <SearchResults flats={flats} favourites={favourites} />
       <Footer />
     </div>
   );

@@ -4,7 +4,7 @@ export const StyledSearchWrapper = styled.div`
     display: flex;
     justify-content: center;
     margin-left: 0 auto;
-    max-width: 1440px;
+    width: 1440px;
     background-color: #149BFC;
 
 `
