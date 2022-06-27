@@ -10,7 +10,9 @@ import {
   PhotoInput,
   MainDiv,
   ElementListTitle,
-  ContactForm
+  ContactForm,
+  CityStreet,
+  Container
 } from "../AddOffer/AddOffer.Styled";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
@@ -129,6 +131,150 @@ const AddOffer1 = ({ flats }) => {
     <>
       <MainDiv>
         <form onSubmit={handleSubmit}>
+          <Container>
+            <div className="box1">
+              <p>Im więcej szczegółów tym lepiej!</p>
+
+              <label className="title" htmlFor="title"><b>Tytuł ogłoszenia</b></label>
+              <br />
+              <input type="text" name="title" id="title" required placeholder="Wpisz tytuł ogłoszenia" />
+              <br />
+              <label className="description" htmlFor="description"><b>Opis</b></label>
+              <br />
+              <textarea id="description" name="description" />
+            </div>
+            <div className="box2">
+              <label className="Street" htmlFor="street"><b>Ulica i numer</b></label>
+              <br />
+              <input type="text" name="street" id="street" placeholder="Wpisz nazwę ulicy i numer budynku" />
+              <br />
+              <label htmlFor="city"><b>Miasto</b></label>
+              <br />
+              <input type="text" name="city" id="city" required />
+              <br />
+              <label htmlFor="size"><b>Powierzchnia</b></label>
+              <br />
+              <input type="number" name="flatSize" id="size" required placeholder="m&sup2;" />
+              <br />
+              <label htmlFor="price"><b>Cena</b></label>
+              <br />
+              <input type="number" name="price" id="price" required placeholder="PLN" />
+              <br />
+              <label htmlFor="rooms"><b>Liczba pokoi</b></label>
+              <br />
+              <input type="number" name="rooms" id="rooms" />
+              <br />
+              <label htmlFor="floor"><b>Piętro</b></label>
+              <br />
+              <input type="number" name="floor" id="floor" />
+              <br />
+              <label htmlFor="available"><b>Dostępność</b></label>
+              <br />
+              <input type="date" name="available" id="available" required />
+
+            </div>
+
+            <div className="box3">
+              <br />
+              <input name="isElevator" type="checkbox" />
+              <label htmlFor="isElevator">Winda</label>
+              <br />
+              <input name="isFurnished" type="checkbox" />
+              <label htmlFor="isFurnished">Umeblowanie</label>
+              <br />
+              <input name="isAC" type="checkbox" />
+              <label htmlFor="isAC">Klimatyzacja</label>
+              <br />
+              <input name="isLoggia" type="checkbox" />
+              <label htmlFor="isLoggia">Balkon</label>
+              <br />
+              <input name="isParking" type="checkbox" />
+              <label htmlFor="isParking">Parking</label>
+              <br />
+              <br />
+              <label htmlFor="mobileNumber"><b>Numer telefonu</b></label>
+              <br />
+              <input className="userData" type="text" name="mobileNumber" id="mobileNumber" required />
+              <br />
+              <br />
+              <label htmlFor="mailAddress"><b>Mail</b></label>
+              <br />
+              <input className="userData" type="text" name="mailAddress" id="mailAddress" required />
+            </div>
+
+            <div className="box4">
+              <div className="photosLabel">
+                <span>
+                  <PhotoLabel htmlFor="photos">
+                    Dodaj Zdjęcie:
+                    <br />
+                    <PhotoSpan>Nie więcej niż 10 zdjęć</PhotoSpan>
+                    <PhotoInput
+                      type="file"
+                      name="photos"
+                      id="photos"
+                      onChange={onSelectFile}
+                      multiple
+                      accept="photo/png , photo/jpeg , photo/webp , photo/svg , photo/gif"
+                      required
+                    />
+                  </PhotoLabel>
+                  <button type="submit">Dodaj ogłoszenie</button>
+                </span>
+                <br />
+                {selectedPhotos.length > 0 &&
+                  (selectedPhotos.length > 10 ? (
+                    <p className="error">
+                      Nie możesz dodać więcej niż 10 zdjęć. <br />
+                      <span>
+                        Ilość zdjęć do usunięcia:{" "}
+                        <b> {selectedPhotos.length - 10} </b>
+                      </span>
+                    </p>
+                  ) : (
+                    <button
+                      className="upload-btn"
+                      onClick={() => {
+                        console.log("Wgrane zdjęcia");
+                      }}
+                    >
+                      Wgrano {selectedPhotos.length} zdjęć.
+                      {selectedPhotos.length === 1 ? "" : ""}
+                    </button>
+                  ))}
+                <div className="photos">
+                  {selectedPhotos &&
+                    selectedPhotos.map((photo, index) => {
+                      return (
+                        <div key={photo} className="photo">
+                          <img src={photo} height="150" alt="upload" />
+                          <button
+                            onClick={() =>
+                              setSelectedPhotos(
+                                selectedPhotos.filter((e) => e !== photo)
+                              )
+                            }
+                          >
+                            Usuń
+                          </button>
+                          <p>{index + 1}</p>
+                        </div>
+                      );
+                    })}
+                </div>
+              </div>
+            </div>
+          </Container>
+
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+
+
+
+          {/* 
           <Sections>
             <p>Im więcej szczegółów tym lepiej!</p>
             <ElementListTitle>
@@ -142,18 +288,18 @@ const AddOffer1 = ({ flats }) => {
                 <br />
                 <textarea id="description" name="description" />
               </li>
-
-              <li>
+            </ElementListTitle>
+            <CityStreet>
+              <div>
                 <label htmlFor="street">Ulica:</label>
                 <br />
                 <input type="text" name="street" id="street" />
-              </li>
-
-              <li>
+              </div>
+              <div>
                 <label htmlFor="city">Miasto:</label>
                 <input type="text" name="city" id="city" required />
-              </li>
-            </ElementListTitle>
+              </div>
+            </CityStreet>
           </Sections>
           <Sections>
             <ElementListTitle>
@@ -272,10 +418,10 @@ const AddOffer1 = ({ flats }) => {
 
             </ContactForm>
 
-          </Sections>
-          {/* <button onClick={handleUpload} type="submit">Dodaj ogłoszenie</button> */}
-          <button type="submit">            Dodaj ogłoszenie
-          </button>
+          </Sections> */}
+          {/* <button type="submit">            Dodaj ogłoszenie
+          </button> */}
+
         </form>
       </MainDiv>
     </>
