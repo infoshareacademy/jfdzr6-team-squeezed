@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MegaSlider = styled.div`
   .slider {
     width: 100%;
-    height: 80vh;
+    height: 83vh;
     position: relative;
     overflow: hidden;
   }

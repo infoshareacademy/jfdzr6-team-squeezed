@@ -29,7 +29,8 @@ export const FooterContainer = styled.div`
   justify-content: space-between;
   padding-left: 20px;
   flex-wrap: wrap;
-  width: 1440px;
+  width: 100%;
+  height: 80px;
   margin: 0 auto;
 
   @media (min-width: 768px) {
@@ -38,7 +39,7 @@ export const FooterContainer = styled.div`
 
   p {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     color: white;
     font-family: "Open Sans", sans-serif;
     font-weight: bolder;

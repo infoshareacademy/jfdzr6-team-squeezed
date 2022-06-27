@@ -3,24 +3,24 @@ import styled from "styled-components";
 export const ContainerStyled = styled.div`
   display:  flex; 
   flex-direction:  row; 
-  width: 700px;
-  height: auto;
+  width: 730px;
   margin:  0 auto; 
-  margin-top: 20px;
+  margin-top: 10px;
   background:  #ffffff; 
   border-radius:  20px; 
-  box-shadow:  0px 2px 6px -1px rgba(0,0,0,.12);
-  box-shadow: 1px 7px 12px 3px rgba(66, 68, 90, 1);
+  box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+  
   
 
   
 .left {
-  width:  320px; 
+  width:  400px; 
   height:  auto; 
   min-height:  100%; 
   background-size:  cover;
   border-top-left-radius:  20px; 
   border-bottom-left-radius:  20px; 
+
 
   }
 
