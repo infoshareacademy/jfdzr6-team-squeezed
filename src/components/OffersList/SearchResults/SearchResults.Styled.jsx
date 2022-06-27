@@ -60,7 +60,7 @@ export const InfoBox = styled.div`
   .btnContainer {
     display: flex;
     justify-content: flex-end;
-    a {
+    a, button {
       margin: 0 5px;
     }
   }

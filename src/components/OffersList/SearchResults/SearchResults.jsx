@@ -59,6 +59,9 @@ import {
 import { Carousel, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { FavouriteBtn } from "./FavouriteBtn/FavouriteBtn";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "../../../utils/firebase";
+import { async } from "@firebase/util";
 
 export const SearchResults = ({ flats, favourites, userId }) => {
   const [currentPhotoInfo, setCurrentPhoto] = useState([]);
@@ -74,11 +77,17 @@ export const SearchResults = ({ flats, favourites, userId }) => {
   } else {
     flatsToRender = flats;
   }
+  
   useEffect(() => {
     favourites ? (flatsToRender = favourites) : (flatsToRender = flats);
     console.log(flatsToRender);
   }, [favourites, flats]);
 
+  const handleDeleteFlat = async (flatId) => {
+    await deleteDoc(doc(db, "flats", flatId));
+
+    
+  };
   return (
     <OfferList>
       {flatsToRender?.map((flat) => {
@@ -134,13 +143,11 @@ export const SearchResults = ({ flats, favourites, userId }) => {
 
                 {userId && (
                   <>
-                    <NavLink to={`/details/${flat.id}`}>
-                      <Button>Usuń</Button>
-                    </NavLink>
+                    <Button onClick={() => handleDeleteFlat(flat.id)}>
+                      Usuń
+                    </Button>
 
-                    <NavLink to={`/details/${flat.id}`}>
-                      <Button>Edytuj</Button>
-                    </NavLink>
+                    <Button>Edytuj</Button>
                   </>
                 )}
 
