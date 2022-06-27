@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import { SearchResults } from "../OffersList/SearchResults/SearchResults";
 
-import { NavBarClientPanel } from "./NavBarClientPanel/NavBarClientPanel";
-
 import { db } from "../../utils/firebase";
 
 import {
@@ -40,8 +38,7 @@ export const ClientPanel = (props) => {
 
   return (
     <div>
-      <NavBarClientPanel></NavBarClientPanel>
-      <SearchResults flats={flatsFromDb} />
+      <SearchResults flats={flatsFromDb} userId={props.userId}/>
     </div>
   );
 };

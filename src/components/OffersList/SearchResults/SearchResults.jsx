@@ -60,7 +60,7 @@ import { Carousel, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { FavouriteBtn } from "./FavouriteBtn/FavouriteBtn";
 
-export const SearchResults = ({ flats, favourites }) => {
+export const SearchResults = ({ flats, favourites, userId }) => {
   const [currentPhotoInfo, setCurrentPhoto] = useState([]);
 
   // const addFlatToFavorite = (flat) => {};
@@ -132,14 +132,19 @@ export const SearchResults = ({ flats, favourites }) => {
                   <Button> Więcej</Button>
                 </NavLink>
 
-                {/* <Button
-                  className="likeIcon"
-                  onClick={() => addFlatToFavorite(flat)}
-                >
-                  <FontAwesomeIcon c icon={faThumbsUp}></FontAwesomeIcon>
-                </Button> */}
+                {userId && (
+                  <>
+                    <NavLink to={`/details/${flat.id}`}>
+                      <Button>Usuń</Button>
+                    </NavLink>
 
-                <FavouriteBtn flat={flat} key={flat.id} />
+                    <NavLink to={`/details/${flat.id}`}>
+                      <Button>Edytuj</Button>
+                    </NavLink>
+                  </>
+                )}
+
+                {!userId && <FavouriteBtn flat={flat} key={flat.id} />}
               </div>
             </InfoBox>
           </OfferBackground>

@@ -60,11 +60,10 @@ export const InfoBox = styled.div`
   .btnContainer {
     display: flex;
     justify-content: flex-end;
+    a {
+      margin: 0 5px;
+    }
   }
-  /* 
-  .likeIcon {
-    margin: 0px 10px;
-  } */
 `;
 
 export const Arrow = styled.div`

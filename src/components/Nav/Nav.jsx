@@ -38,20 +38,20 @@ export const Navigation = ({ isAuth, email }) => {
                 </li>
               </>
             )}
+
             {isAuth && (
               <>
+                <li>
+                  <NavLink to="mypanel">Mój panel</NavLink>
+                </li>
+                <li>
+                  <NavLink to="messages">Wiadomości</NavLink>
+                </li>
                 <li>
                   <NavLink to="addoffer">Dodaj ogłoszenie</NavLink>
-                </li>
+                </li>{" "}
                 <li onClick={() => signOut(auth)}>
                   <NavLink to="/">Wyloguj się</NavLink>
-                </li>
-              </>
-            )}
-            {isAuth && (
-              <>
-                <li>
-                  <NavLink to="/mypanel">Mój panel</NavLink>
                 </li>
               </>
             )}
