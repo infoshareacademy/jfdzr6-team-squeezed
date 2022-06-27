@@ -4,16 +4,14 @@ import { ContainerStyled } from "./FormStyled"
 
 
 
-
-
-export const Form = ({ submitText, isPasswordHidden = false, onSubmit, headerText, paragraphText }) => {
+export const Form = ({ submitText, isPasswordHidden = false, onSubmit, headerText, paragraphText, image }) => {
 
   return (
     <>
 
       <ContainerStyled>
 
-        <div className="left"></div>
+        <img className="left" src={image} />
         <form className="log-in" onSubmit={onSubmit}>
           <h4>{headerText}</h4>
           <p>{paragraphText}</p>

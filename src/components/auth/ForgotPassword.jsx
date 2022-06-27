@@ -2,6 +2,7 @@ import { auth } from "../../utils/firebase";
 import { firebaseErrors } from "../../utils/firebaseErrors";
 import { Form } from "./Form";
 import { sendPasswordResetEmail } from "firebase/auth";
+import forgotpasswordIMG from "../auth/forgotpassword.avif"
 
 export const ForgotPassword = () => {
     const handleResetPass = e => {
@@ -17,5 +18,5 @@ export const ForgotPassword = () => {
             })
     }
 
-    return <Form submitText="Przypomnienie hasła" headerText="Zapomniałeś hasła?" paragraphText="Wpisz adres e-mail, na który zostało założone konto. Wyślemy na ten adres email wiadomość z linkiem do ustawienia nowego hasła." isPasswordHidden onSubmit={handleResetPass} />
+    return <Form submitText="Przypomnienie hasła" headerText="Zapomniałeś hasła?" image={forgotpasswordIMG} paragraphText="Wpisz adres e-mail, na który zostało założone konto. Wyślemy na ten adres email wiadomość z linkiem do ustawienia nowego hasła." isPasswordHidden onSubmit={handleResetPass} />
 };
