@@ -13,6 +13,12 @@ import {
   CarouselContainerInMsgBox,
 } from "./SearchResults.Styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import citySVG from "../Images/city.svg";
+import sizeSVG from "../Images/size.svg";
+import roomsSVG from "../Images/pokoje.svg";
+import streetSVG from "../Images/street.svg";
+import flatsizeSVG from "../Images/flatsize.svg";
+import priceSVG from "../Images/price.svg";
 
 import {
   faMagnifyingGlassPlus,
@@ -76,19 +82,26 @@ export const SearchResults = ({ flats, favourites }) => {
               <h3> {flat.title}</h3>
               <div>
                 <p>
-                  <b>Miasto: </b>
+                  <b>
+                    <img className="icon" src={citySVG} alt="" /> Miasto :{" "}
+                  </b>
                   {flat.city}
                 </p>
                 <p>
-                  <b>Ulica:</b> {flat.street}
+                  <b><img className="icon" src={streetSVG} alt="" /> Ulica:</b> {flat.street}
                 </p>
                 <p>
-                  <b>Ilość pokoi:</b> {flat.rooms}
+                  <b>
+                    {" "}
+                    <img className="icon" src={roomsSVG} alt="" /> ilość pokoi:
+                  </b>{" "}
+                  {flat.rooms}
                 </p>
                 <p>
-                  <b>m2:</b> {flat.size} m2
+                  <b><img className="icon" src={flatsizeSVG} alt="" /> m2:</b> {flat.size} m2
                 </p>
-                <PriceBox> Cena: {flat.price} zł/msc</PriceBox>
+               
+                <PriceBox> <img className="icon" src={priceSVG} alt="" />  Cena: {flat.price} zł/msc</PriceBox>
               </div>
 
               <div className="btnContainer">
