@@ -42,11 +42,11 @@ export const FavouriteBtn = ({ flat }) => {
     [];
   return (
     <StyledFavouriteBtn>
-      <Button className="likeIcon" onClick={handleFavourite}>
+      <button className="likeIcon" onClick={handleFavourite}>
         {/* zmiana koloru w zależnosci od stanu */}
         {/* {newFavourite ? "♡" : "❤"} */}
         <FontAwesomeIcon c icon={faThumbsUp} className="fal fa-user"></FontAwesomeIcon>
-      </Button>
+      </button>
     </StyledFavouriteBtn>
   );
 };

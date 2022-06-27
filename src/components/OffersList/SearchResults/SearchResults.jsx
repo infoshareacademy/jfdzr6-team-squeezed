@@ -13,43 +13,7 @@ import {
   CarouselContainerInMsgBox,
 } from "./SearchResults.Styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
-// export const SearchResults = ({flats}) => {
-//   const currentLoginUserId = "bJNNHzx9bmIilhl0jEIJ";
-//   // const [flats, setFlats] = useState([]);
-//   // const flatsRef = collection(db, "flats");
-
-//   const OfferList = styled.div`
-//     background-color: #e3dddd;
-//     margin-top: 150px;
-//     display: flex;
-//     flex-direction: column;
-//     width: fit-content;
-//     justify-content: center;
-//     width: 100%;
-//     /* background-color: yellow; */
-
-//     @media (min-width: 768px) {
-//       /* background-color: red; */
-//       display: grid;
-//     }
-//   `;
-
-//   const OfferBackground = styled.div`
-//     background-color: white;
-//     margin: 15px;
-//     padding: 0;
-//     box-sizing: border-box;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     box-shadow: 5px 5px 5px gray;
-//     flex-wrap: wrap;
-//     @media (min-width: 768px) {
-//       flex-wrap: nowrap;
-//     }
-//   `;
 import {
   faMagnifyingGlassPlus,
   faXmark,
@@ -128,9 +92,7 @@ export const SearchResults = ({ flats, favourites }) => {
               </div>
 
               <div className="btnContainer">
-                <NavLink to={`/details/${flat.id}`}>
-                  <Button> Więcej</Button>
-                </NavLink>
+                <NavLink to={`/details/${flat.id}`}>Więcej</NavLink>
 
                 {/* <Button
                   className="likeIcon"

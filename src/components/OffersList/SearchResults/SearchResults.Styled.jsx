@@ -60,6 +60,35 @@ export const InfoBox = styled.div`
   .btnContainer {
     display: flex;
     justify-content: flex-end;
+    a,
+    .likeIcon {
+      text-decoration: none;
+      width: auto;
+
+      border-radius: 20px;
+      text-align: center;
+      padding: 10px 20px;
+
+      background-color: #0975c3;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      margin-left: auto;
+      margin-top: 5px;
+      margin: 5px 5px;
+      box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.13);
+      border: none;
+      transition: all 0.3s ease;
+      outline: 0;
+      &:hover {
+        background-color: #0976c3a4;
+        transform: translateY(-3px);
+        box-shadow: 0 2px 6px -1px rgba($primary, 0.65);
+        &:active {
+          transform: scale(0.99);
+        }
+      }
+    }
   }
   /* 
   .likeIcon {
@@ -184,8 +213,8 @@ export const CarouselContainerInMsgBox = styled.div`
   justify-content: center;
   background-color: lightgray;
   img {
-    object-fit: contain;
-    width: 600px;
+    object-fit: cover;
+    width: 700px;
     height: 400px;
   }
 `;
