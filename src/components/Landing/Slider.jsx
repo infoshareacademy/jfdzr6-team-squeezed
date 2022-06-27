@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { sliderData } from "./slider-data";
 import { SearchBar } from "../SearchOffers/SearchBar/SearchBar";
-import "./Slider.css";
+import { MegaSlider } from "./Slider.Styled";
 
 export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites }) => {
+
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideLength = sliderData.length;
 
@@ -32,24 +34,26 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites }) => {
   }, [currentSlide]);
 
   return (
-    <>
-      <div className='slider'>
+    <MegaSlider>
+      <div className="slider">
         {sliderData.map((slide, index) => {
           return (
             <div
               className={index === currentSlide ? "slide current" : "slide"}
-              key={index}>
+              key={index}
+            >
               {index === currentSlide && (
                 <div>
-                  <img src={slide.image} alt='slide' className='image' />
+                  <img src={slide.image} alt="slide" className="image" />
                 </div>
               )}
             </div>
           );
         })}
 
-        <div className='content'>
-          <h2>WYMARZONE MIESZKANIE NA WYCIĄGNIĘCIE RĘKI</h2>
+
+        <div className="content">
+          <h2>Zobacz ofertę mieszkań</h2>
           <p>Wpisz nazwę miasta, które Cię interesuję</p>
           <hr />
           <SearchBar
@@ -60,6 +64,6 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites }) => {
           />
         </div>
       </div>
-    </>
+    </MegaSlider>
   );
 };

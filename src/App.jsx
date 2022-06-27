@@ -19,6 +19,7 @@ import { SearchResults } from "./Routes/SearchResults";
 import { db } from "./utils/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { Slider } from "./components/Landing/Slider";
+import { ClientPanel } from "./components/ClientPanel/ClientPanel";
 
 
 
@@ -46,6 +47,7 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, user => {
       console.log('auth user', user)
+      console.log('auth user uid', user.uid)
       if (user) {
         setIsAuth(true)
         setUser(user)
@@ -64,6 +66,7 @@ function App() {
       <Routes>
 
         <Route path="/" element={<Slider setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} flatsFromDb={flatsFromDb}/>} />
+      {/* <Route path="/" element={<Home />} /> */}
         <Route path="/o-nas" element={<AboutUs />} />
         <Route path="/kontakt" element={<Contact />} />
         <Route path="/details/:id" element={<OfferDetails />} />
@@ -73,7 +76,8 @@ function App() {
           <Route path="login" element={isAuth ? <Navigate to="/offer" /> : <Login />} />
           <Route path="forgot-password" element={isAuth ? <Navigate to="/auth/login" /> : <ForgotPassword />} />
         </Route>
-        <Route path="offer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
+        <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
+        <Route path="mypanel" element={!isAuth ? <Navigate to="/auth/login" /> : <ClientPanel userId={user.uid}/>} />
         <Route path="admin" element={!isAuth ? <Navigate to="/admin" /> : <Admin />} />
       </Routes>
     </BrowserRouter>

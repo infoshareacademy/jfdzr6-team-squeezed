@@ -1,12 +1,14 @@
-.slider {
+import styled from "styled-components";
+
+export const MegaSlider = styled.div`
+  .slider {
     width: 100%;
     height: 80vh;
     position: relative;
     overflow: hidden;
-}
+  }
 
-
-.slide {
+  .slide {
     position: absolute;
     top: 0;
     left: 0;
@@ -14,21 +16,19 @@
     height: 100%;
     opacity: 0;
     transition: all 5s ease;
+  }
 
-}
-
-.slide img {
+  .slide img {
     width: 100%;
     height: 100%;
-}
+  }
 
-.current {
+  .current {
     opacity: 1;
     transform: translateX(0);
-}
+  }
 
-
-.content {
+  .content {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -42,4 +42,5 @@
     padding: 3rem;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 20px;
-}
+  }
+`;
