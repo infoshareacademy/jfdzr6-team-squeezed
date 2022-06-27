@@ -35,28 +35,27 @@ import { async } from "@firebase/util";
 
 export const SearchResults = ({ flats, favourites, userId }) => {
   const [currentPhotoInfo, setCurrentPhoto] = useState([]);
+  const [flatsToRender, setFlatsToRender] = useState([]);
 
   // const addFlatToFavorite = (flat) => {};
   const caruselInterval = 36000000;
 
   console.log(flats);
 
-  let flatsToRender = [];
-  if (favourites === true) {
-    flatsToRender = JSON.parse(localStorage.getItem("favourites"));
-  } else {
-    flatsToRender = flats;
-  }
-  
   useEffect(() => {
-    favourites ? (flatsToRender = favourites) : (flatsToRender = flats);
+    // favourites ? (flatsToRender = favourites) : (flatsToRender = flats);
     console.log(flatsToRender);
+
+    if (favourites === true) {
+      setFlatsToRender(JSON.parse(localStorage.getItem("favourites")));
+    } else {
+      setFlatsToRender(flats);
+    }
   }, [favourites, flats]);
 
   const handleDeleteFlat = async (flatId) => {
     await deleteDoc(doc(db, "flats", flatId));
-
-    
+    setFlatsToRender((prevFlats) => prevFlats.filter((f) => f.id !== flatId));
   };
   return (
     <OfferList>
@@ -97,7 +96,10 @@ export const SearchResults = ({ flats, favourites, userId }) => {
                   {flat.city}
                 </p>
                 <p>
-                  <b><img className="icon" src={streetSVG} alt="" /> Ulica:</b> {flat.street}
+                  <b>
+                    <img className="icon" src={streetSVG} alt="" /> Ulica:
+                  </b>{" "}
+                  {flat.street}
                 </p>
                 <p>
                   <b>
@@ -107,10 +109,17 @@ export const SearchResults = ({ flats, favourites, userId }) => {
                   {flat.rooms}
                 </p>
                 <p>
-                  <b><img className="icon" src={flatsizeSVG} alt="" /> m2:</b> {flat.size} m2
+                  <b>
+                    <img className="icon" src={flatsizeSVG} alt="" /> m2:
+                  </b>{" "}
+                  {flat.size} m2
                 </p>
-               
-                <PriceBox> <img className="icon" src={priceSVG} alt="" />  Cena: {flat.price} zł/msc</PriceBox>
+
+                <PriceBox>
+                  {" "}
+                  <img className="icon" src={priceSVG} alt="" /> Cena:{" "}
+                  {flat.price} zł/msc
+                </PriceBox>
               </div>
 
               <div className="btnContainer">
