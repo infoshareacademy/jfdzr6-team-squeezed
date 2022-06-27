@@ -70,21 +70,16 @@ export const InfoBox = styled.div`
   .btnContainer {
     display: flex;
     justify-content: flex-end;
-    a,
-    .likeIcon {
+    a, button {
       text-decoration: none;
       width: auto;
-
       border-radius: 20px;
       text-align: center;
       padding: 10px 20px;
-
       background-color: #0975c3;
       color: #fff;
       font-size: 14px;
       font-weight: 900;
-      margin-left: auto;
-      margin-top: 5px;
       margin: 5px 5px;
       box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.13);
       border: none;
@@ -100,10 +95,6 @@ export const InfoBox = styled.div`
       }
     }
   }
-  /* 
-  .likeIcon {
-    margin: 0px 10px;
-  } */
 `;
 
 export const Arrow = styled.div`
