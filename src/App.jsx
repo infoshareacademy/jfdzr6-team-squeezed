@@ -46,7 +46,7 @@ function App() {
     <BrowserRouter>
       <Navigation isAuth={isAuth} email={user?.email} />
       <Routes>
-
+      {/* <Route path="/" element={<Home />} /> */}
         <Route path="/" element={<Slider />} />
         <Route path="/o-nas" element={<AboutUs />} />
         <Route path="/kontakt" element={<Contact />} />
