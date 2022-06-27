@@ -45,7 +45,7 @@ export const FooterContainer = styled.div`
   }
 
   a {
-    color: white;
+    color: white !important;
     text-decoration: none;
   }
 `;

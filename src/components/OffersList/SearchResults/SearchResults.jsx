@@ -60,7 +60,9 @@ export const SearchResults = ({ flats, favourites }) => {
                   <Carousel interval={caruselInterval}>
                     {flat.photos.map((photoSrc) => (
                       <Carousel.Item>
-                        <img src={photoSrc} alt="First slide" />
+                        <div className="carouselItemImg">
+                          <img src={photoSrc} alt="First slide" />
+                        </div>
                       </Carousel.Item>
                     ))}
                   </Carousel>
@@ -133,15 +135,7 @@ export const SearchResults = ({ flats, favourites }) => {
             <Carousel interval={caruselInterval}>
               {currentPhotoInfo.map((photoSrc) => (
                 <Carousel.Item>
-                  <img
-                    style={{
-                      width: "fit-contnet",
-                      height: "600px",
-                      wrap: false,
-                    }}
-                    src={photoSrc}
-                    alt="First slide"
-                  />
+                  <img src={photoSrc} alt="First slide" />
                 </Carousel.Item>
               ))}
             </Carousel>
