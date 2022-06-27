@@ -22,7 +22,8 @@ export const SearchBar = ({
   flatsFromDb,
   setFilters,
   setFavourites,
-  flats
+  flats,
+  isLanding,
 }) => {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [suggestionsToPrint, setSuggestionsToPrint] = useState([]);
@@ -91,23 +92,22 @@ export const SearchBar = ({
     } = e.target;
 
     let flatsResults = [];
-console.log(flatsFromDb)
+    console.log(flatsFromDb);
     flatsResults = flatsFromDb.filter(
-      (flat) =>
-        flat.city === searchCity.value 
-        // (sizeMin.value === "" || sizeMin.value <= flat.size) &&
-        // (sizeMax.value === "" || sizeMax.value >= flat.size) &&
-        // (priceMin.value === "" || priceMin.value <= flat.price) &&
-        // (priceMax.value === "" || priceMax.value >= flat.price) &&
-        // (roomsMin.value === "" || roomsMin.value <= flat.rooms) &&
-        // (roomsMax.value === "" || roomsMax.value >= flat.rooms)
+      (flat) => flat.city === searchCity.value
+      // (sizeMin.value === "" || sizeMin.value <= flat.size) &&
+      // (sizeMax.value === "" || sizeMax.value >= flat.size) &&
+      // (priceMin.value === "" || priceMin.value <= flat.price) &&
+      // (priceMax.value === "" || priceMax.value >= flat.price) &&
+      // (roomsMin.value === "" || roomsMin.value <= flat.rooms) &&
+      // (roomsMax.value === "" || roomsMax.value >= flat.rooms)
       // (floorMin.value === "" || floorMin.value <= flat.floor) &&
       // (floorMax.value === "" || floorMax.value >= flat.floor)
     );
 
     //continue with filtering results
     setFlats(flatsResults);
-    navigate('/search-results');
+    navigate("/search-results");
     setSuggestionsToPrint([]);
   };
   const handleFilters = (e) => {
@@ -140,12 +140,13 @@ console.log(flatsFromDb)
           name='searchCity'
           id='searchCity'
           value={pickedSuggestion ? pickedSuggestion : null}
-          defaultValue={flats != undefined && flats.length > 0 ? flats[0].city : ''}
+          defaultValue={
+            flats != undefined && flats.length > 0 ? flats[0].city : ""
+          }
           placeholder='Wpisz miasto...'
         />
         <StyledShowMoreFilters>
           <button type='submit'>Szukaj</button>
-          <button onClick={handleShowMoreFilters}>Więcej filtrów</button>
         </StyledShowMoreFilters>
         {suggestionsToPrint.length > 0 && (
           <StyledSearchSuggestionsWrapper>
@@ -158,6 +159,9 @@ console.log(flatsFromDb)
           </StyledSearchSuggestionsWrapper>
         )}
       </StyledSearchWrapper>
+      {!isLanding && (
+        <button onClick={handleShowMoreFilters}>Więcej filtrów</button>
+      )}
       {/* przerzucone */}
 
       {showMoreFilters && (

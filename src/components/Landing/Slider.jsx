@@ -56,6 +56,7 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites }) => {
             flatsFromDb={flatsFromDb}
             setFlats={setFlats}
             setFavourites={setFavourites}
+            isLanding={true}
           />
         </div>
       </div>

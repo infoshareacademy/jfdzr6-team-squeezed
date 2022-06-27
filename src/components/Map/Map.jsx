@@ -12,7 +12,7 @@ const Map = ({ flats, isLoaded }) => {
   const [activeMarker, setActiveMarker] = useState(null);
 
 
-
+console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
@@ -48,8 +48,8 @@ const Map = ({ flats, isLoaded }) => {
   // };
 
   console.log(flats);
-  
-  let mapMarkers = flats.map(
+  let mapMarkers = []
+  mapMarkers = flats.map(
     ({ id, photos, cords, price, title, size, rooms }) =>
       cords ? (
         <Marker
@@ -121,6 +121,7 @@ const Map = ({ flats, isLoaded }) => {
   useEffect(() => {
     setTimeout(()=> {
       flats.length > 0 && changeMapPosition(flats);
+      mapMarkers;
     }, 100)
   }, [flats]);
 
@@ -144,12 +145,9 @@ const Map = ({ flats, isLoaded }) => {
           mapContainerStyle={mapContainerStyle}
           zoom={6.6}
           options={options}
-          center={mapRef.current?.panTo({
-            lat: flats[0].cords._lat,
-            lng: flats[0].cords._long,
-          })}
+          center={center}
           >
-          {mapMarkers}
+          {isLoaded && mapMarkers}
 
         </GoogleMap>
       </div>
