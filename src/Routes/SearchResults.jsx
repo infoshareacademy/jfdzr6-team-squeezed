@@ -10,6 +10,7 @@ const libraries = ["places"];
 export const SearchResults = ({flats, flatsFromDb, setFlats, setFavourites}) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyBS9ENJtnxhEwwTw5YcFb8Ml57rjHZbxuA",
+    language: 'pl',
     libraries,
   });
 
@@ -23,10 +24,11 @@ export const SearchResults = ({flats, flatsFromDb, setFlats, setFavourites}) => 
           flatsFromDb={flatsFromDb}
           setFlats={setFlats}
           setFavourites={setFavourites}
+          flats={flats}
         />
       </SearchWrapper>
     <div style={{ width: "100vw", heigth: '100vh', display: 'flex' }}>
-      {isLoaded ? <Map flats={flats} /> : null}
+      {isLoaded && flats ? <Map isLoaded={isLoaded} flats={flats} /> : null}
       <div style={{ width: "40%" }}><SearchResultsList flats={flats} /></div>
     </div></div>
   );

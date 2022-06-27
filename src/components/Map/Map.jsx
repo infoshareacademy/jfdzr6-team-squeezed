@@ -8,7 +8,7 @@ import markerSVG from "./NicePng_home-icon-png_233447.png";
 import { MapCarousel } from "./MapCarousel/MapCarousel";
 
 
-const Map = ({ flats }) => {
+const Map = ({ flats, isLoaded }) => {
   const [activeMarker, setActiveMarker] = useState(null);
 
 
@@ -48,7 +48,8 @@ const Map = ({ flats }) => {
   // };
 
   console.log(flats);
-  const mapMarkers = flats.map(
+  
+  let mapMarkers = flats.map(
     ({ id, photos, cords, price, title, size, rooms }) =>
       cords ? (
         <Marker
@@ -75,7 +76,7 @@ const Map = ({ flats }) => {
                   alignItems: "flex-start",
                 }}>
                 {/* <img style={{objectFit: 'cover'}} src={photos[0]} width='100%' height='200' /> */}
-                <MapCarousel photos={photos}/>
+                <MapCarousel key={id} photos={photos}/>
                 {/* <img style={{objectFit: 'cover'}} src={photos[0]} width='100%' height='200' /> */}
                 <div
                   style={{
@@ -107,7 +108,7 @@ const Map = ({ flats }) => {
         </Marker>
       ) : null
   );
-  console.log(flats);
+  console.log();
   const changeMapPosition = (flats) => {
     flats
       ? mapRef.current?.panTo({
@@ -116,9 +117,11 @@ const Map = ({ flats }) => {
         })
       : mapRef.current?.panTo({ lat: 52.234982, lng: 21.00849 });
     mapRef.current.setZoom(12);
-  };
+  };  
   useEffect(() => {
-    flats.length > 0 && changeMapPosition(flats);
+    setTimeout(()=> {
+      flats.length > 0 && changeMapPosition(flats);
+    }, 100)
   }, [flats]);
 
   return (
@@ -140,9 +143,14 @@ const Map = ({ flats }) => {
           onClick={() => setActiveMarker(null)}
           mapContainerStyle={mapContainerStyle}
           zoom={6.6}
-          center={center}
-          options={options}>
+          options={options}
+          center={mapRef.current?.panTo({
+            lat: flats[0].cords._lat,
+            lng: flats[0].cords._long,
+          })}
+          >
           {mapMarkers}
+
         </GoogleMap>
       </div>
     </div>

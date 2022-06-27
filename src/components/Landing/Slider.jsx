@@ -49,7 +49,7 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites }) => {
         })}
 
         <div className='content'>
-          <h2>Zobacz ofertę mieszkań</h2>
+          <h2>WYMARZONE MIESZKANIE NA WYCIĄGNIĘCIE RĘKI</h2>
           <p>Wpisz nazwę miasta, które Cię interesuję</p>
           <hr />
           <SearchBar
