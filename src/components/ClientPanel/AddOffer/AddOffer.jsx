@@ -9,9 +9,9 @@ import {
   PhotoSpan,
   PhotoInput,
   MainDiv,
-  ElementListTitle,
-  ContactForm,
-  CityStreet,
+  // ElementListTitle,
+  // ContactForm,
+  // CityStreet,
   Container
 } from "../AddOffer/AddOffer.Styled";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
@@ -144,53 +144,64 @@ const AddOffer1 = ({ flats }) => {
               <textarea id="description" name="description" />
             </div>
             <div className="box2">
-              <label className="Street" htmlFor="street"><b>Ulica i numer</b></label>
-              <br />
-              <input type="text" name="street" id="street" placeholder="Wpisz nazwę ulicy i numer budynku" />
-              <br />
-              <label htmlFor="city"><b>Miasto</b></label>
-              <br />
-              <input type="text" name="city" id="city" required />
-              <br />
-              <label htmlFor="size"><b>Powierzchnia</b></label>
-              <br />
-              <input type="number" name="flatSize" id="size" required placeholder="m&sup2;" />
-              <br />
-              <label htmlFor="price"><b>Cena</b></label>
-              <br />
-              <input type="number" name="price" id="price" required placeholder="PLN" />
-              <br />
-              <label htmlFor="rooms"><b>Liczba pokoi</b></label>
-              <br />
-              <input type="number" name="rooms" id="rooms" />
-              <br />
-              <label htmlFor="floor"><b>Piętro</b></label>
-              <br />
-              <input type="number" name="floor" id="floor" />
-              <br />
-              <label htmlFor="available"><b>Dostępność</b></label>
-              <br />
-              <input type="date" name="available" id="available" required />
+              <div className="labelStyle"><label className="Street" htmlFor="street"><b>Ulica i numer</b></label>
+                <br />
+                <input type="text" name="street" id="street" placeholder="Wpisz nazwę ulicy i numer budynku" /></div>
+
+              <div className="labelStyle"><label htmlFor="city"><b>Miasto</b></label>
+                <br />
+                <input type="text" name="city" id="city" required /></div>
+
+              <div className="labelStyle"><label htmlFor="size"><b>Powierzchnia</b></label>
+                <br />
+                <input type="number" name="flatSize" id="size" required placeholder="m&sup2;" /></div>
+
+              <div className="labelStyle"><label htmlFor="price"><b>Cena</b></label>
+                <br />
+                <input type="number" name="price" id="price" required placeholder="PLN" /></div>
+
+              <div className="labelStyle"><label htmlFor="rooms"><b>Liczba pokoi</b></label>
+                <br />
+                <input type="number" name="rooms" id="rooms" /></div>
+
+              <div className="labelStyle"><label htmlFor="floor"><b>Piętro</b></label>
+                <br />
+                <input type="number" name="floor" id="floor" /></div>
+
+              <div className="labelStyle"><label htmlFor="available"><b>Dostępność</b></label>
+                <br />
+                <input type="date" name="available" id="available" required /></div>
 
             </div>
 
             <div className="box3">
-              <br />
-              <input name="isElevator" type="checkbox" />
-              <label htmlFor="isElevator">Winda</label>
-              <br />
-              <input name="isFurnished" type="checkbox" />
-              <label htmlFor="isFurnished">Umeblowanie</label>
-              <br />
-              <input name="isAC" type="checkbox" />
-              <label htmlFor="isAC">Klimatyzacja</label>
-              <br />
-              <input name="isLoggia" type="checkbox" />
-              <label htmlFor="isLoggia">Balkon</label>
-              <br />
-              <input name="isParking" type="checkbox" />
-              <label htmlFor="isParking">Parking</label>
-              <br />
+
+              <div className="checkboxStyles">
+                <input name="isElevator" type="checkbox" />
+                <label htmlFor="isElevator">Winda</label>
+              </div>
+
+              <div className="checkboxStyles">
+                <input name="isFurnished" type="checkbox" />
+                <label htmlFor="isFurnished">Umeblowanie</label>
+              </div>
+
+              <div className="checkboxStyles">
+                <input name="isAC" type="checkbox" />
+                <label htmlFor="isAC">Klimatyzacja</label>
+              </div>
+
+              <div className="checkboxStyles">
+                <input name="isLoggia" type="checkbox" />
+                <label htmlFor="isLoggia">Balkon</label>
+              </div>
+
+              <div className="checkboxStyles">
+                <input name="isParking" type="checkbox" />
+                <label htmlFor="isParking">Parking</label>
+              </div>
+
+
               <br />
               <label htmlFor="mobileNumber"><b>Numer telefonu</b></label>
               <br />
@@ -204,10 +215,10 @@ const AddOffer1 = ({ flats }) => {
 
             <div className="box4">
               <div className="photosLabel">
-                <span>
+                <div className="box4styles">
                   <PhotoLabel htmlFor="photos">
-                    Dodaj Zdjęcie:
-                    <br />
+                    <b>Dodaj zdjęcia:</b>
+
                     <PhotoSpan>Nie więcej niż 10 zdjęć</PhotoSpan>
                     <PhotoInput
                       type="file"
@@ -219,9 +230,11 @@ const AddOffer1 = ({ flats }) => {
                       required
                     />
                   </PhotoLabel>
-                  <button type="submit">Dodaj ogłoszenie</button>
-                </span>
+                  <button className="submitButton" type="submit">Dodaj ogłoszenie</button>
+                </div>
+
                 <br />
+
                 {selectedPhotos.length > 0 &&
                   (selectedPhotos.length > 10 ? (
                     <p className="error">
