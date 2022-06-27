@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { SearchResults } from "../OffersList/SearchResults/SearchResults";
+import { SearchResultsList } from "../OffersList/SearchResults/SearchResults";
 
 import { db } from "../../utils/firebase";
 

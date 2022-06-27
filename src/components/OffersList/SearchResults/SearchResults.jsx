@@ -33,7 +33,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../../utils/firebase";
 import { async } from "@firebase/util";
 
-export const SearchResults = ({ flats, favourites, userId }) => {
+export const SearchResultsList  = ({ flats, favourites, userId }) => {
   const [currentPhotoInfo, setCurrentPhoto] = useState([]);
   const [flatsToRender, setFlatsToRender] = useState([]);
 

@@ -1,4 +1,4 @@
-import { SearchResults } from "../components/OffersList/SearchResults/SearchResults";
+import { SearchResultsList } from "../components/OffersList/SearchResults/SearchResults";
 import { SearchBar } from "../components/SearchOffers/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
 import { useLoadScript } from "@react-google-maps/api";
@@ -12,12 +12,11 @@ import { SearchFilters } from "../components/SearchOffers/SearchFilters/SearchFi
 import { Spinner } from "../utils/Spinner";
 
 const libraries = ["places"];
-export const Home = () => {
+export const Home = ({setFlats, flatsFromDb}) => {
 
-  const [flats, setFlats] = useState([]);
   const [filters, setFilters] = useState([]);
-  const [flatsFromDb, setFlatsFromDb] = useState([]);
   const [favourites, setFavourites] = useState(null)
+  
 
   const getFlats = () => {
     const flatsCollection = collection(db, "flats");
@@ -34,7 +33,7 @@ export const Home = () => {
     getFlats();
   }, []);
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "",
+    googleMapsApiKey: "AIzaSyBS9ENJtnxhEwwTw5YcFb8Ml57rjHZbxuA",
     libraries,
   });
 
@@ -60,7 +59,7 @@ export const Home = () => {
         />
       </SearchWrapper>
       {/* <SearchFilters /> */}
-      <SearchResults flats={flats} favourites={favourites} />
+      <SearchResultsList flats={flats} favourites={favourites} />
       <Footer />
     </div>
   );

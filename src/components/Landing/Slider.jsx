@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { sliderData } from "./slider-data";
-
+import { SearchBar } from "../SearchOffers/SearchBar/SearchBar";
 import { MegaSlider } from "./Slider.Styled";
 
-export const Slider = () => {
+export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites }) => {
+
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideLength = sliderData.length;
 
@@ -49,11 +51,17 @@ export const Slider = () => {
           );
         })}
 
+
         <div className="content">
           <h2>Zobacz ofertę mieszkań</h2>
           <p>Wpisz nazwę miasta, które Cię interesuję</p>
           <hr />
-          <button>Tu ma być input</button>
+          <SearchBar
+            flatsFromDb={flatsFromDb}
+            setFlats={setFlats}
+            setFavourites={setFavourites}
+            isLanding={true}
+          />
         </div>
       </div>
     </MegaSlider>

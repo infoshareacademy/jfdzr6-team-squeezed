@@ -66,7 +66,7 @@ const AddOffer1 = ({ flats }) => {
       }
     }
 
-    Geocode.setApiKey("");
+    Geocode.setApiKey("AIzaSyBS9ENJtnxhEwwTw5YcFb8Ml57rjHZbxuA");
     Geocode.setLanguage("pl");
     Geocode.setRegion("pl");
     Geocode.setLocationType("ROOFTOP");
