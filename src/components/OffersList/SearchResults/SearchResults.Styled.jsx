@@ -5,13 +5,13 @@ export const OfferList = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: fit-content;
+  width: 100%;
   /* background-color: yellow; */
 
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     /* background-color: red; */
     display: grid;
-    width: 75%;
+    width: fit-content;
     margin: 0px auto;
   }
 `;
@@ -26,7 +26,7 @@ export const OfferBackground = styled.div`
   justify-content: center;
   box-shadow: 5px 5px 5px gray;
   flex-wrap: wrap;
-  @media (min-width: 768px) {
+  @media (min-width: 1200px) {
     flex-wrap: nowrap;
   }
 `;
