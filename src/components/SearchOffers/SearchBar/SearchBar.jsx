@@ -159,6 +159,8 @@ export const SearchBar = ({
             ))}
           </StyledSearchSuggestionsWrapper>
         )}
+        {flats != undefined && flats.length > 0 &&
+ <button className="filters-Btn" onClick={handleShowMoreFilters}>Filtry</button>}
  </StyledShowMoreFilters>
         </StyledSearchWrapper>
 

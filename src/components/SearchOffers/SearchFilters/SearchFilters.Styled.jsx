@@ -38,9 +38,14 @@ export const StyledSearchFiltersWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: 20px;
   justify-content: center;
   gap: 10px;
+  position: absolute;
+  left: 0;
+  top: 113px;
+  z-index: 100;
+  background-color: #0976c337;
+
 `;
 export const StyledShowMoreFilters = styled.div`
   display: flex;
@@ -70,6 +75,13 @@ export const StyledShowMoreFilters = styled.div`
     width: 100px;
     position: absolute;
     right: 0;
+  }
+  .filters-Btn {
+    padding: 13px;
+    margin: 20px;
+    width: 100px;
+    position: absolute;
+right: 100px;
   }
 `;
 

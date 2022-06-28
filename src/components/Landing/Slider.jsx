@@ -57,6 +57,7 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites }) => {
           <h1>ZAMIESZKAJ W WYMARZONYM MIEJSCU</h1>
           <SearchBar
             flatsFromDb={flatsFromDb}
+            flats={flats}
             setFlats={setFlats}
             setFavourites={setFavourites}
           />

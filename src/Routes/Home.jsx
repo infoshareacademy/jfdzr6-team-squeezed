@@ -33,7 +33,7 @@ export const Home = ({setFlats, flatsFromDb}) => {
     getFlats();
   }, []);
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBS9ENJtnxhEwwTw5YcFb8Ml57rjHZbxuA",
+    googleMapsApiKey: "AIzaSyC3c4CaCP3DhnxgU1SaNW7lm8oiCbxrN0Y",
     libraries,
   });
 
