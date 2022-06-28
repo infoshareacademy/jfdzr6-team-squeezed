@@ -14,6 +14,7 @@ import {
   StyledSearchSuggestionsWrapper,
   StyledSearchInput,
   StyledSearchWrapper,
+  SearchForm,
 } from "./SearchBar.Styled";
 import { useNavigate } from "react-router-dom";
 
@@ -23,7 +24,6 @@ export const SearchBar = ({
   setFilters,
   setFavourites,
   flats,
-  isLanding,
 }) => {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [suggestionsToPrint, setSuggestionsToPrint] = useState([]);
@@ -124,15 +124,18 @@ export const SearchBar = ({
   };
 
   useEffect(() => {
-    setSearchSuggestions([...new Set(flatsFromDb.map(({ city }) => city))]);
+    setSearchSuggestions([...new Set(flatsFromDb?.map(({ city }) => city))]);
   }, [flatsFromDb, pickedSuggestion, selectedFilters]);
 
   return (
-    <form
+    <SearchForm
       style={{ width: "40%" }}
       onSubmit={handleCitySearch}
       autoComplete='off'>
       <StyledSearchWrapper>
+        
+      <StyledShowMoreFilters>
+        
         <label htmlFor='searchCity' />
         <StyledSearchInput
           onChange={handleCitySuggestions}
@@ -143,11 +146,9 @@ export const SearchBar = ({
           defaultValue={
             flats != undefined && flats.length > 0 ? flats[0].city : ""
           }
-          placeholder='Wpisz miasto...'
+          placeholder='Wpisz miasto i znajdź swoje mieszkanie...'
         />
-        <StyledShowMoreFilters>
-          <button type='submit'>Szukaj</button>
-        </StyledShowMoreFilters>
+          <button className="search-submit-Btn" type='submit'>Szukaj</button>
         {suggestionsToPrint.length > 0 && (
           <StyledSearchSuggestionsWrapper>
             {/* render matching suggestions under input field */}
@@ -158,10 +159,10 @@ export const SearchBar = ({
             ))}
           </StyledSearchSuggestionsWrapper>
         )}
-      </StyledSearchWrapper>
-      {!isLanding && (
-        <button onClick={handleShowMoreFilters}>Więcej filtrów</button>
-      )}
+ </StyledShowMoreFilters>
+        </StyledSearchWrapper>
+
+       
       {/* przerzucone */}
 
       {showMoreFilters && (
@@ -287,6 +288,6 @@ export const SearchBar = ({
           </StyledSearchFiltersWrapper>
         </>
       )}
-    </form>
+    </SearchForm>
   );
 };

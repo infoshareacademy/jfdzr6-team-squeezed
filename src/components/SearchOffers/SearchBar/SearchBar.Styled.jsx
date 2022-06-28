@@ -6,9 +6,13 @@ export const StyledSearchSuggestion = styled.div`
   background-color: #ffffff9d;
   border-radius: 0;
   transition: background-color 0.5s;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 
   &:hover {
-    background-color: #fff;
+    color: #eeeaea;
+    background-color: #0975c3;
     cursor: pointer;
     transition: background-color 0.2s;
   }
@@ -16,21 +20,33 @@ export const StyledSearchSuggestion = styled.div`
 
 export const StyledSearchSuggestionsWrapper = styled.div`
   position: absolute;
-  top: 75px;
-  width: 300px;
+  top: 95px;
+  left: 45px;
+  width: 540px;
   border-radius: 20px;
   z-index: 1;
   border: 1px solid black;
-  border-radius: 5px;
-  padding: 1px;
-  background-color: #ffffffbc;
+  border-radius: 20px;
+  background-color: #eeeaea;
+  color: #0975c3;
+  overflow: hidden;
+  text-align: left;
+
   transition: background-color 0.5s;
+
+  @media (max-width: 1000px) {
+    width: 340px;
+  }
+
+  @media (max-width: 700px) {
+    width: 240px;
+    font-size: 15px;
+  }
 `;
 
 export const StyledSearchInput = styled.input`
-  font-size: 26px;
-  width: 300px;
-  height: 50px;
+  font-size: 22px;
+  width: 100%;
   margin-bottom: 10px;
   padding: 10px 10px 10px 10px;
   border: none;
@@ -41,6 +57,11 @@ export const StyledSearchInput = styled.input`
     outline: none;
     background-color: #fff;
     transition: background-color 0.5s;
+  }
+  &::placeholder {
+    @media (max-width: 1000px) {
+      color: rgba(0, 0, 0, 0);
+    }
   }
 `;
 
@@ -56,7 +77,7 @@ export const StyledSearchWrapper = styled.div`
   button {
     border-radius: 20px;
     text-align: center;
-    padding: 10px 30px;
+    padding: 11px 30px;
     margin-top: 5px;
     background-color: white;
     color: #0975c3;
@@ -70,10 +91,15 @@ export const StyledSearchWrapper = styled.div`
   }
   button:hover {
     background-color: #0975c3;
-    color: white; 
+    color: white;
   }
   button:active {
     background-color: white;
-    color: #0975c3; 
+    color: #0975c3;
   }
+`;
+
+export const SearchForm = styled.form`
+  top: 0;
+  margin: 0 auto;
 `;

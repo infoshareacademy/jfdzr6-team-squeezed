@@ -142,7 +142,8 @@ console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
         <GoogleMap
           onLoad={onMapLoad}
           onClick={() => setActiveMarker(null)}
-          mapContainerStyle={mapContainerStyle}
+          // mapContainerStyle={mapContainerStyle}
+          mapContainerClassName='map-container'
           zoom={6.6}
           options={options}
           center={center}

@@ -78,3 +78,14 @@ input[type=number] {
 .labels {
   background-color: #5a5656ac;
 }
+
+.map-container {
+  height: 50vw;
+  width: 55vw;
+}
+@media (max-width: 800px) {
+  .map-container {
+  width: 100vw;
+  height: 60vh;
+  }
+}

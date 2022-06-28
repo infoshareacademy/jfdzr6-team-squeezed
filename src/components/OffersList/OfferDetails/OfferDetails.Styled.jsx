@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
+
 export const ContainerDivStyled = styled.div`
-background-color: #e7e7e7;
 display: flex;
 flex-direction: column;
 max-width: 1440px;
-height: auto;
-margin: 0 auto;
-box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+height: 100%;
+margin: 20px auto;
 
 
-background: linear-gradient(-45deg,  #e7e7e7, #fff, #e7e7e7);
+
+/* background: linear-gradient(-45deg,  #e7e7e7, #fff, #e7e7e7);
 	background-size: 400% 400%;
 	animation: gradient 30s ease infinite;
 @keyframes gradient {
@@ -23,21 +23,25 @@ background: linear-gradient(-45deg,  #e7e7e7, #fff, #e7e7e7);
 	100% {
 		background-position: 0% 50%;
 	}
-}
+} */
 	
 
 
 .title {
   margin: 0px auto 20px;
-  width: 1370px;
+  width: 1358px;
   background-color: white;
   box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+  text-transform: uppercase;
+  border-radius:  20px;
 }
 
 .title h2 {
  font-size: 20px;
   color: #0975C3;
   padding: 10px;
+  text-align: center;
+  padding: 20px;
 }
 
 
@@ -45,12 +49,14 @@ background: linear-gradient(-45deg,  #e7e7e7, #fff, #e7e7e7);
    display: flex;
    flex-direction: row;
    justify-content: space-around;
+   
 }
 
 
 .picture {
    width: 900px;
-   height: 500px;
+   height: fit-content;
+   border-radius:  20px; 
    background-color: white;
    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
    &:hover {
@@ -60,12 +66,14 @@ background: linear-gradient(-45deg,  #e7e7e7, #fff, #e7e7e7);
       transform:  scale(.99);
     }
   }
+  
 }
 
 .picture img {
    width: 100%;
    height: 100%;
-   background-color: white;;
+   background-color: white;
+   border-radius:  20px; 
    
 }
 
@@ -75,24 +83,56 @@ background: linear-gradient(-45deg,  #e7e7e7, #fff, #e7e7e7);
     flex-direction: column;
     align-items: center;
     width: 400px;
-    height: 500px;
+    height: 600px;
     background-color: white;
     box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+    border-radius:  20px; 
     
 }
 
 .contact {
     padding: 20px;
+  
 
 }
 
-.contact h3 {
+.contact-email {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-left: 25px;
+
+}
+
+
+.contact-number {
+  display: flex;
+  flex-direction: row;
+  margin-left: 25px;
+
+ 
+}
+
+
+.first {
+  color: #0975C3;
+  margin-left: 5px;
+}
+
+.firstChild {
+  color:  #000; 
+  opacity: 70%;
+}
+
+
+
+
+ .contact h3 {
     color: #0975C3;
+    margin-left: 25px;
 }
 
-.contact p {
-    padding-top: 10px;
-}
+
 
 
 
@@ -111,8 +151,8 @@ font-size:  16px;
 textarea {
 font-size:  16px; 
   padding:  20px 0px; 
-  height:  100px;
-  max-height: 200px ;
+  height:  200px;
+  max-height: 200px;
     max-width: 280px;
     min-width: 280px;
   border:  none; 
@@ -129,7 +169,7 @@ button {
   border-radius:  20px; 
   text-align:  center; 
   padding:  10px 30px;
-  margin-top:  5px; 
+  margin-top:  15px; 
   background-color:#0975C3;
   color:  #fff; 
   font-size:  14px;
@@ -161,7 +201,8 @@ button {
     width: 900px;
     height: 200px;
     background-color: white;
-    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13);
+    border-radius:  20px;  
 }
 
 .render-div2 {
@@ -170,6 +211,7 @@ button {
     justify-content: space-around; 
     width: 900px;
     height: 200px;
+    
 }
 
   .render-list {
@@ -199,23 +241,26 @@ button {
     background-color: white;
     box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
     background-color:#0975C3 ;
+    border-radius:  20px; 
 }
 
   .description {
     display: flex;
     flex-direction: column;
-    width: 1370px;
     height: auto;
     background-color: white;
     box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
     margin: 20px auto 0;
     padding: 20px;
+    width: 1358px;
+    border-radius:  20px; 
     
 }
 
 .description h3 {
   color: #0975C3;
   margin-bottom: 20px;
+
 }
 
 .render-list div {
