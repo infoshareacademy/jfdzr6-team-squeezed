@@ -19,7 +19,8 @@ import { SearchResults } from "./Routes/SearchResults";
 import { db } from "./utils/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { Slider } from "./components/Landing/Slider";
-import { ClientPanel } from "./components/ClientPanel/ClientPanel";
+import { Footer } from "./components/Footer/Footer";
+
 
 
 
@@ -64,21 +65,20 @@ function App() {
       <Navigation isAuth={isAuth} email={user?.email} flatsFromDb={flatsFromDb} setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} setFavourites={setFavourites} flats={flats}/>
       <Routes>
 
-        <Route path="/" element={<Slider setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} flatsFromDb={flatsFromDb}/>} />
-      {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<Slider setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} flatsFromDb={flatsFromDb} />} />
         <Route path="/o-nas" element={<AboutUs />} />
         <Route path="/kontakt" element={<Contact />} />
         <Route path="/details/:id" element={<OfferDetails />} />
-        <Route path="/search-results" element={<SearchResults flats={flats} setFlats={setFlats} flatsFromDb={flatsFromDb} setFavourites={setFavourites}/>} />
-        <Route path="auth" element={isAuth ? <Navigate to="/offer" /> : <Auth />} >
-          <Route path="register" element={isAuth ? <Navigate to="/offer" /> : <Register />} />
-          <Route path="login" element={isAuth ? <Navigate to="/offer" /> : <Login />} />
+        <Route path="/search-results" element={<SearchResults flats={flats} setFlats={setFlats} flatsFromDb={flatsFromDb} setFavourites={setFavourites} />} />
+
+        <Route path="auth" element={isAuth ? <Navigate to="/addoffer" /> : <Auth />} >
+          <Route path="register" element={isAuth ? <Navigate to="/addoffer" /> : <Register />} />
+          <Route path="login" element={isAuth ? <Navigate to="/addoffer" /> : <Login />} />
           <Route path="forgot-password" element={isAuth ? <Navigate to="/auth/login" /> : <ForgotPassword />} />
         </Route>
         <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
-        <Route path="mypanel" element={!isAuth ? <Navigate to="/auth/login" /> : <ClientPanel userId={user.uid}/>} />
-        <Route path="admin" element={!isAuth ? <Navigate to="/admin" /> : <Admin />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

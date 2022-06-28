@@ -18,9 +18,10 @@ export const Footer = () => {
         Link do GitHub
       </a>
 
-      <p>Znajdź nas w social media:</p>
 
+      <p>Znajdź nas w social media:</p>
       <div>
+
         <SocialMedia>
           <div>
             <FontAwesomeIcon icon={faFacebook} />
