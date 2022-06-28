@@ -24,6 +24,7 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites }) => {
 
   useEffect(() => {
     setCurrentSlide(0);
+    setFlats([]);
   }, []);
 
   useEffect(() => {
@@ -58,7 +59,6 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites }) => {
             flatsFromDb={flatsFromDb}
             setFlats={setFlats}
             setFavourites={setFavourites}
-            isLanding={true}
           />
         </div>
       </div>

@@ -24,7 +24,6 @@ export const SearchBar = ({
   setFilters,
   setFavourites,
   flats,
-  isLanding,
 }) => {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [suggestionsToPrint, setSuggestionsToPrint] = useState([]);
@@ -125,7 +124,7 @@ export const SearchBar = ({
   };
 
   useEffect(() => {
-    setSearchSuggestions([...new Set(flatsFromDb.map(({ city }) => city))]);
+    setSearchSuggestions([...new Set(flatsFromDb?.map(({ city }) => city))]);
   }, [flatsFromDb, pickedSuggestion, selectedFilters]);
 
   return (
@@ -147,7 +146,7 @@ export const SearchBar = ({
           defaultValue={
             flats != undefined && flats.length > 0 ? flats[0].city : ""
           }
-          placeholder='Wpisz miasto i znajdź swoje mieszkanie..'
+          placeholder='Wpisz miasto i znajdź swoje mieszkanie...'
         />
           <button className="search-submit-Btn" type='submit'>Szukaj</button>
         {suggestionsToPrint.length > 0 && (

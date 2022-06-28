@@ -11,7 +11,7 @@ export const OfferList = styled.div`
   @media (min-width: 1200px) {
     /* background-color: red; */
     display: grid;
-    width: fit-content;
+    width: auto;
     margin: 0px auto;
   }
 `;

@@ -10,10 +10,9 @@ export const StyledSearchSuggestion = styled.div`
   height: 100%;
   overflow: hidden;
 
-  
-    &:hover {
-  color: #eeeaea;
-  background-color: #0975c3;
+  &:hover {
+    color: #eeeaea;
+    background-color: #0975c3;
     cursor: pointer;
     transition: background-color 0.2s;
   }
@@ -23,7 +22,7 @@ export const StyledSearchSuggestionsWrapper = styled.div`
   position: absolute;
   top: 95px;
   left: 45px;
-  width: 640px;
+  width: 540px;
   border-radius: 20px;
   z-index: 1;
   border: 1px solid black;
@@ -31,14 +30,22 @@ export const StyledSearchSuggestionsWrapper = styled.div`
   background-color: #eeeaea;
   color: #0975c3;
   overflow: hidden;
+  text-align: left;
 
   transition: background-color 0.5s;
 
+  @media (max-width: 1000px) {
+    width: 340px;
+  }
+
+  @media (max-width: 700px) {
+    width: 240px;
+    font-size: 15px;
+  }
 `;
 
 export const StyledSearchInput = styled.input`
-  font-size: 25px;
-  /* width: ${({isLanding}) => isLanding === true ? '600px' : '300px'}; */
+  font-size: 22px;
   width: 100%;
   margin-bottom: 10px;
   padding: 10px 10px 10px 10px;
@@ -50,6 +57,11 @@ export const StyledSearchInput = styled.input`
     outline: none;
     background-color: #fff;
     transition: background-color 0.5s;
+  }
+  &::placeholder {
+    @media (max-width: 1000px) {
+      color: rgba(0, 0, 0, 0);
+    }
   }
 `;
 
@@ -79,15 +91,15 @@ export const StyledSearchWrapper = styled.div`
   }
   button:hover {
     background-color: #0975c3;
-    color: white; 
+    color: white;
   }
   button:active {
     background-color: white;
-    color: #0975c3; 
+    color: #0975c3;
   }
 `;
 
 export const SearchForm = styled.form`
-  /* position: ${({isLanding}) => !isLanding ? 'static' : 'absolute'};   */
   top: 0;
-`
+  margin: 0 auto;
+`;

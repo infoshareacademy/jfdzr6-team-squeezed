@@ -29,7 +29,6 @@ export const StyledInputWrapper = styled.div`
     &:hover {
       box-shadow: 0 2px 6px -1px rgba(0.65);
     }
-
   }
   .checkbox {
     box-shadow: none;
@@ -48,9 +47,16 @@ export const StyledShowMoreFilters = styled.div`
   justify-content: center;
   padding: 10px;
   gap: 20px;
-  width: 700px;
+  width: 600px;
   position: relative;
 
+  @media (max-width: 1000px) {
+    width: 400px;
+  }
+
+  @media (max-width: 700px) {
+    width: 300px;
+  }
   img {
     width: 30px;
   }
@@ -59,8 +65,8 @@ export const StyledShowMoreFilters = styled.div`
   }
 
   .search-submit-Btn {
-    padding: 15px;
-    margin: 20.5px;
+    padding: 13px;
+    margin: 20px;
     width: 100px;
     position: absolute;
     right: 0;

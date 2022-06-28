@@ -5,6 +5,7 @@ import { Spinner } from "react-bootstrap";
 import { SearchResultsList } from "../components/OffersList/SearchResults/SearchResults";
 import { SearchBar } from "../components/SearchOffers/SearchBar/SearchBar";
 import { SearchWrapper } from "../components/SearchOffers/SearchWrapper/SearchWrapper";
+import { ResultsWrapper, SearchResultsContainer } from "./SearchResults.Styled";
 
 const libraries = ["places"];
 export const SearchResults = ({flats, flatsFromDb, setFlats, setFavourites}) => {
@@ -18,21 +19,18 @@ export const SearchResults = ({flats, flatsFromDb, setFlats, setFavourites}) => 
   if (!isLoaded) return <Spinner />;
 
   return (
-      <div style={{height: "100%", width: '100%'}}>
-        <div style={{position: 'absolute', zIndex: '1', top: '0', left: '50%'}}>
+      <SearchResultsContainer>
       <SearchWrapper >
-            <SearchBar
+            {/* <SearchBar
           flatsFromDb={flatsFromDb}
           setFlats={setFlats}
           setFavourites={setFavourites}
           flats={flats}
-          isLanding={false}
-        />
+        /> */}
       </SearchWrapper>
-      </div>
-    <div style={{ width: "60%", heigth: '100vh', display: 'flex' }}>
+    <ResultsWrapper>
       {isLoaded && flats ? <Map isLoaded={isLoaded} flats={flats} /> : null}
-      <div style={{ width: '100%', heigth: "100%"}}><SearchResultsList flats={flats} /></div>
-    </div></div>
+      <SearchResultsContainer><SearchResultsList flats={flats} /></SearchResultsContainer>
+    </ResultsWrapper></SearchResultsContainer>
   );
 };
