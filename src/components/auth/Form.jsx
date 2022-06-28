@@ -1,14 +1,14 @@
 import emailSVG from "../auth/email.png"
 import passwordSVG from "../auth/password.png"
 import { ContainerStyled } from "./FormStyled"
-
+import { Wrapper } from "./FormStyled"
 
 
 export const Form = ({ submitText, isPasswordHidden = false, onSubmit, headerText, paragraphText, image }) => {
 
   return (
     <>
-      <div>
+      <Wrapper>
         <ContainerStyled>
 
           <img className="left" src={image} />
@@ -32,7 +32,7 @@ export const Form = ({ submitText, isPasswordHidden = false, onSubmit, headerTex
           </form>
 
         </ContainerStyled>
-      </div>
+      </Wrapper>
     </>
 
   )
