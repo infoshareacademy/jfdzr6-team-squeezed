@@ -13,43 +13,13 @@ import {
   CarouselContainerInMsgBox,
 } from "./SearchResults.Styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import citySVG from "../Images/city.svg";
+import sizeSVG from "../Images/size.svg";
+import roomsSVG from "../Images/pokoje.svg";
+import streetSVG from "../Images/street.svg";
+import flatsizeSVG from "../Images/flatsize.svg";
+import priceSVG from "../Images/price.svg";
 
-// export const SearchResults = ({flats}) => {
-//   const currentLoginUserId = "bJNNHzx9bmIilhl0jEIJ";
-//   // const [flats, setFlats] = useState([]);
-//   // const flatsRef = collection(db, "flats");
-
-//   const OfferList = styled.div`
-//     background-color: #e3dddd;
-//     margin-top: 150px;
-//     display: flex;
-//     flex-direction: column;
-//     width: fit-content;
-//     justify-content: center;
-//     width: 100%;
-//     /* background-color: yellow; */
-
-//     @media (min-width: 768px) {
-//       /* background-color: red; */
-//       display: grid;
-//     }
-//   `;
-
-//   const OfferBackground = styled.div`
-//     background-color: white;
-//     margin: 15px;
-//     padding: 0;
-//     box-sizing: border-box;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     box-shadow: 5px 5px 5px gray;
-//     flex-wrap: wrap;
-//     @media (min-width: 768px) {
-//       flex-wrap: nowrap;
-//     }
-//   `;
 import {
   faMagnifyingGlassPlus,
   faXmark,
@@ -59,26 +29,34 @@ import {
 import { Carousel, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { FavouriteBtn } from "./FavouriteBtn/FavouriteBtn";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "../../../utils/firebase";
+import { async } from "@firebase/util";
 
-export const SearchResults = ({ flats, favourites }) => {
+export const SearchResultsList  = ({ flats, favourites, userId }) => {
   const [currentPhotoInfo, setCurrentPhoto] = useState([]);
+  const [flatsToRender, setFlatsToRender] = useState([]);
 
   // const addFlatToFavorite = (flat) => {};
   const caruselInterval = 36000000;
 
   console.log(flats);
 
-  let flatsToRender = [];
-  if (favourites === true) {
-    flatsToRender = JSON.parse(localStorage.getItem("favourites"));
-  } else {
-    flatsToRender = flats;
-  }
   useEffect(() => {
-    favourites ? (flatsToRender = favourites) : (flatsToRender = flats);
+    // favourites ? (flatsToRender = favourites) : (flatsToRender = flats);
     console.log(flatsToRender);
+
+    if (favourites === true) {
+      setFlatsToRender(JSON.parse(localStorage.getItem("favourites")));
+    } else {
+      setFlatsToRender(flats);
+    }
   }, [favourites, flats]);
 
+  const handleDeleteFlat = async (flatId) => {
+    await deleteDoc(doc(db, "flats", flatId));
+    setFlatsToRender((prevFlats) => prevFlats.filter((f) => f.id !== flatId));
+  };
   return (
     <OfferList>
       {flatsToRender?.map((flat) => {
@@ -112,34 +90,52 @@ export const SearchResults = ({ flats, favourites }) => {
               <h3> {flat.title}</h3>
               <div>
                 <p>
-                  <b>Miasto: </b>
+                  <b>
+                    <img className="icon" src={citySVG} alt="" /> Miasto :{" "}
+                  </b>
                   {flat.city}
                 </p>
                 <p>
-                  <b>Ulica:</b> {flat.street}
+                  <b>
+                    <img className="icon" src={streetSVG} alt="" /> Ulica:
+                  </b>{" "}
+                  {flat.street}
                 </p>
                 <p>
-                  <b>Ilość pokoi:</b> {flat.rooms}
+                  <b>
+                    {" "}
+                    <img className="icon" src={roomsSVG} alt="" /> ilość pokoi:
+                  </b>{" "}
+                  {flat.rooms}
                 </p>
                 <p>
-                  <b>m2:</b> {flat.size} m2
+                  <b>
+                    <img className="icon" src={flatsizeSVG} alt="" /> m2:
+                  </b>{" "}
+                  {flat.size} m2
                 </p>
-                <PriceBox> Cena: {flat.price} zł/msc</PriceBox>
+
+                <PriceBox>
+                  {" "}
+                  <img className="icon" src={priceSVG} alt="" /> Cena:{" "}
+                  {flat.price} zł/msc
+                </PriceBox>
               </div>
 
               <div className="btnContainer">
-                <NavLink to={`/details/${flat.id}`}>
-                  <Button> Więcej</Button>
-                </NavLink>
+                <NavLink to={`/details/${flat.id}`}>Więcej</NavLink>
 
-                {/* <Button
-                  className="likeIcon"
-                  onClick={() => addFlatToFavorite(flat)}
-                >
-                  <FontAwesomeIcon c icon={faThumbsUp}></FontAwesomeIcon>
-                </Button> */}
+                {userId && (
+                  <>
+                    <Button onClick={() => handleDeleteFlat(flat.id)}>
+                      Usuń
+                    </Button>
 
-                <FavouriteBtn flat={flat} key={flat.id} />
+                    <Button>Edytuj</Button>
+                  </>
+                )}
+
+                {!userId && <FavouriteBtn flat={flat} key={flat.id} />}
               </div>
             </InfoBox>
           </OfferBackground>

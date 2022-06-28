@@ -11,7 +11,25 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: white
+  background-color: white;
+  /* background-color: #E3DDDD; */
+  /* background: linear-gradient(-45deg, #646464, rgb(21, 16, 68), #ffffff); */
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
 }
 
@@ -21,23 +39,24 @@ code {
 }
 
 .gm-style-iw-d {
-    overflow: hidden !important;
+  overflow: hidden !important;
 }
+
 .gm-style .gm-style-iw-c {
   padding-right: 10px !important;
-   padding: 0px !important;
-   max-width: 500px !important;
-   max-height: 326px !important;
-   min-width: 0px !important;
-   position: absolute;
-   box-sizing: border-box;
-   overflow: hidden;
-   top: 0;
-   left: 0;
-   transform: translate(-50%,-100%);
-   background-color: #ffffff;
-   border-radius: 8px;
-   box-shadow: 0 2px 7px 1px rgba(0,0,0,0.3);
+  padding: 0px !important;
+  max-width: 500px !important;
+  max-height: 326px !important;
+  min-width: 0px !important;
+  position: absolute;
+  box-sizing: border-box;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -100%);
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 7px 1px rgba(0, 0, 0, 0.3);
 }
 
 .label {

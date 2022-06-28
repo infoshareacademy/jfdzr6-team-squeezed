@@ -117,6 +117,20 @@ const AddOffer1 = ({ flats }) => {
 
   const [selectedPhotos, setSelectedPhotos] = useState([]);
 
+  const [selectedFilters, setSelectedFilters] = useState({});
+  const handleFilters = (e) => {
+    e.target.type === "checkbox"
+      ? setSelectedFilters({
+        ...selectedFilters,
+        [e.target.name]: e.target.checked,
+      })
+      : setSelectedFilters({
+        ...selectedFilters,
+        [e.target.name]: e.target.value,
+      });
+    console.log(selectedFilters);
+  };
+
   const onSelectFile = (e) => {
     const selectedFiles = e.target.files;
     const selectedFilesArray = Array.from(selectedFiles);
@@ -137,7 +151,7 @@ const AddOffer1 = ({ flats }) => {
 
               <label className="title" htmlFor="title"><b>Tytuł ogłoszenia</b></label>
               <br />
-              <input type="text" name="title" id="title" required placeholder="Wpisz tytuł ogłoszenia" />
+              <input type="text" name="title" id="title" required placeholder="Wpisz tytuł ogłoszenia" onChange={handleFilters} />
               <br />
               <label className="description" htmlFor="description"><b>Opis</b></label>
               <br />
@@ -146,58 +160,58 @@ const AddOffer1 = ({ flats }) => {
             <div className="box2">
               <div className="labelStyle"><label className="Street" htmlFor="street"><b>Ulica i numer</b></label>
                 <br />
-                <input type="text" name="street" id="street" placeholder="Wpisz nazwę ulicy i numer budynku" /></div>
+                <input type="text" name="street" id="street" placeholder="Wpisz nazwę ulicy i numer budynku" onChange={handleFilters} /></div>
 
               <div className="labelStyle"><label htmlFor="city"><b>Miasto</b></label>
                 <br />
-                <input type="text" name="city" id="city" required /></div>
+                <input type="text" name="city" id="city" required onChange={handleFilters} /></div>
 
               <div className="labelStyle"><label htmlFor="size"><b>Powierzchnia</b></label>
                 <br />
-                <input type="number" name="flatSize" id="size" required placeholder="m&sup2;" /></div>
+                <input type="number" name="flatSize" id="size" required placeholder="m&sup2;" onChange={handleFilters} /></div>
 
               <div className="labelStyle"><label htmlFor="price"><b>Cena</b></label>
                 <br />
-                <input type="number" name="price" id="price" required placeholder="PLN" /></div>
+                <input type="number" name="price" id="price" required placeholder="PLN" onChange={handleFilters} /></div>
 
               <div className="labelStyle"><label htmlFor="rooms"><b>Liczba pokoi</b></label>
                 <br />
-                <input type="number" name="rooms" id="rooms" /></div>
+                <input type="number" name="rooms" id="rooms" onChange={handleFilters} /></div>
 
               <div className="labelStyle"><label htmlFor="floor"><b>Piętro</b></label>
                 <br />
-                <input type="number" name="floor" id="floor" /></div>
+                <input type="number" name="floor" id="floor" onChange={handleFilters} /></div>
 
               <div className="labelStyle"><label htmlFor="available"><b>Dostępność</b></label>
                 <br />
-                <input type="date" name="available" id="available" required /></div>
+                <input type="date" name="available" id="available" required onChange={handleFilters} /></div>
 
             </div>
 
             <div className="box3">
 
               <div className="checkboxStyles">
-                <input name="isElevator" type="checkbox" />
+                <input name="isElevator" type="checkbox" onChange={handleFilters} />
                 <label htmlFor="isElevator">Winda</label>
               </div>
 
               <div className="checkboxStyles">
-                <input name="isFurnished" type="checkbox" />
+                <input name="isFurnished" type="checkbox" onChange={handleFilters} />
                 <label htmlFor="isFurnished">Umeblowanie</label>
               </div>
 
               <div className="checkboxStyles">
-                <input name="isAC" type="checkbox" />
+                <input name="isAC" type="checkbox" onChange={handleFilters} />
                 <label htmlFor="isAC">Klimatyzacja</label>
               </div>
 
               <div className="checkboxStyles">
-                <input name="isLoggia" type="checkbox" />
+                <input name="isLoggia" type="checkbox" onChange={handleFilters} />
                 <label htmlFor="isLoggia">Balkon</label>
               </div>
 
               <div className="checkboxStyles">
-                <input name="isParking" type="checkbox" />
+                <input name="isParking" type="checkbox" onChange={handleFilters} />
                 <label htmlFor="isParking">Parking</label>
               </div>
 
@@ -205,12 +219,12 @@ const AddOffer1 = ({ flats }) => {
               <br />
               <label htmlFor="mobileNumber"><b>Numer telefonu</b></label>
               <br />
-              <input className="userData" type="text" name="mobileNumber" id="mobileNumber" required />
+              <input className="userData" type="text" name="mobileNumber" id="mobileNumber" required onChange={handleFilters} />
               <br />
               <br />
               <label htmlFor="mailAddress"><b>Mail</b></label>
               <br />
-              <input className="userData" type="text" name="mailAddress" id="mailAddress" required />
+              <input className="userData" type="text" name="mailAddress" id="mailAddress" required onChange={handleFilters} />
             </div>
 
             <div className="box4">

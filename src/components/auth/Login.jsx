@@ -4,16 +4,17 @@ import { getFormData } from "../../utils/getFormData";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseErrors } from "../../utils/firebaseErrors";
 import { ForgotPassword } from "./ForgotPassword";
+import loginIMG from "../auth/login.avif"
 
 import styled from "styled-components";
 
 export const ContainerRenderStyled = styled.div`
 display:flex;
-flex-direction: row;
-justify-content: space-between;
-width: 1440px;
-margin: 0 auto;
-column-gap: 0.5px;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+width: 100%;
+
 
 `
 
@@ -34,7 +35,7 @@ export const Login = () => {
 
     return (
         <ContainerRenderStyled>
-            <Form submitText="Zaloguj się" headerText="Zaloguj się, aby kontynuować" paragraphText="Przed podaniem danych logowania, zawsze upewniaj się, czy jesteś na właściwej stronie." onSubmit={handleLogin} />
+            <Form submitText="Zaloguj się" image={loginIMG} headerText="Zaloguj się, aby kontynuować" paragraphText="Przed podaniem danych logowania, zawsze upewniaj się, czy jesteś na właściwej stronie." onSubmit={handleLogin} />
             <ForgotPassword />
         </ContainerRenderStyled>
 

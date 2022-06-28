@@ -3,15 +3,14 @@ import { useState } from "react";
 import { CarouselContainer } from "../../OffersList/SearchResults/SearchResults.Styled";
 
 
-export const MapCarousel = ({photos}) => {
-  const [currentPhotoInfo, setCurrentPhoto] = useState([]);
+export const MapCarousel = ({photos, id}) => {
 
     const caruselInterval = 36000000;
     return (
         <>
         {!!photos && photos.length > 0 ? (
             <>
-              <div style={{width: '100%'}}>
+              <div id={id} style={{width: '100%'}}>
                 <Carousel interval={caruselInterval}>
                   {photos.map((photoSrc) => (
                     <Carousel.Item>

@@ -62,7 +62,7 @@ export const NavBarClientPanel = () => {
             <NavLink
               className="navbar-item"
               // activeClassName="is-active"
-              to="/newoffer"
+              to="/addoffer"
             >
               <button type="button" value="Dodaj ogłoszenie">
                 Dodaj ogłoszenie

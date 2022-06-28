@@ -1,5 +1,4 @@
 import { SearchBar } from "./components/SearchOffers/SearchBar/SearchBar";
-import { SearchResults } from "./components/OffersList/SearchResults/SearchResults";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { AddOffer } from "./components/ClientPanel/AddOffer/AddOffer";
 import { Home } from "./Routes/Home";
@@ -16,7 +15,11 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./utils/firebase";
 import { ForgotPassword } from "./components/auth/ForgotPassword";
+import { SearchResults } from "./Routes/SearchResults";
+import { db } from "./utils/firebase";
+import { collection, getDocs } from "firebase/firestore";
 import { Slider } from "./components/Landing/Slider";
+import { ClientPanel } from "./components/ClientPanel/ClientPanel";
 
 
 
@@ -25,10 +28,26 @@ function App() {
 
   const [user, setUser] = useState(null)
   const [isAuth, setIsAuth] = useState(false)
+  const [flats, setFlats] = useState([]);
+  const [flatsFromDb, setFlatsFromDb] = useState([]);
+  const [favourites, setFavourites] = useState(null)
+
+
+  const getFlats = () => {
+    const flatsCollection = collection(db, "flats");
+    getDocs(flatsCollection).then((querySnapshot) => {
+      const result = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setFlatsFromDb(result);
+    });
+  };
 
   useEffect(() => {
     onAuthStateChanged(auth, user => {
       console.log('auth user', user)
+      console.log('auth user uid', user.uid)
       if (user) {
         setIsAuth(true)
         setUser(user)
@@ -37,6 +56,7 @@ function App() {
         setUser(null)
       }
     })
+    getFlats();
   }, [])
 
 
@@ -45,17 +65,19 @@ function App() {
       <Navigation isAuth={isAuth} email={user?.email} />
       <Routes>
 
-        <Route path="/" element={<Slider />} />
+        <Route path="/" element={<Slider setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} flatsFromDb={flatsFromDb}/>} />
+      {/* <Route path="/" element={<Home />} /> */}
         <Route path="/o-nas" element={<AboutUs />} />
         <Route path="/kontakt" element={<Contact />} />
         <Route path="/details/:id" element={<OfferDetails />} />
-
+        <Route path="/search-results" element={<SearchResults flats={flats} setFlats={setFlats} flatsFromDb={flatsFromDb} setFavourites={setFavourites}/>} />
         <Route path="auth" element={isAuth ? <Navigate to="/offer" /> : <Auth />} >
           <Route path="register" element={isAuth ? <Navigate to="/offer" /> : <Register />} />
           <Route path="login" element={isAuth ? <Navigate to="/offer" /> : <Login />} />
           <Route path="forgot-password" element={isAuth ? <Navigate to="/auth/login" /> : <ForgotPassword />} />
         </Route>
-        <Route path="offer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
+        <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
+        <Route path="mypanel" element={!isAuth ? <Navigate to="/auth/login" /> : <ClientPanel userId={user.uid}/>} />
         <Route path="admin" element={!isAuth ? <Navigate to="/admin" /> : <Admin />} />
       </Routes>
     </BrowserRouter>
