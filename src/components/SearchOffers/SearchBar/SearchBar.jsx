@@ -113,13 +113,13 @@ export const SearchBar = ({
   const handleFilters = (e) => {
     e.target.type === "checkbox"
       ? setSelectedFilters({
-          ...selectedFilters,
-          [e.target.name]: e.target.checked,
-        })
+        ...selectedFilters,
+        [e.target.name]: e.target.checked,
+      })
       : setSelectedFilters({
-          ...selectedFilters,
-          [e.target.name]: e.target.value,
-        });
+        ...selectedFilters,
+        [e.target.name]: e.target.value,
+      });
     console.log(selectedFilters);
   };
 

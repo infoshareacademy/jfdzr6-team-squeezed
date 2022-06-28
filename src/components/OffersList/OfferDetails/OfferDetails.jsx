@@ -11,13 +11,19 @@ import roomsSVG from "../Images/pokoje.svg"
 import parkSVG from "../Images/parking.svg"
 import logiaSVG from "../Images/logia.svg"
 import floorSVG from "../Images/pietro.svg"
+import furnishedSVG from "../Images/umeblowanie.svg"
+import priceSVG from "../Images/price.svg"
+import availableSVG from "../Images/available.svg"
 import { useParams } from "react-router-dom";
+import { Carousel, Button } from "react-bootstrap";
+
+
 
 export const OfferDetails = () => {
     const { id: idFlat } = useParams("id")
 
     const [flat, setFlat] = useState(null);
-
+    const caruselInterval = 36000000;
     const getFlats = () => {
         const flatsCollection = doc(db, 'flats', idFlat);
         getDoc(flatsCollection).then(querySnapshot => {
@@ -50,7 +56,6 @@ export const OfferDetails = () => {
 
     return (
         <>
-
             <ContainerDivStyled className="container">
                 <div className="title">
                     <h2>{title}</h2>
@@ -58,14 +63,32 @@ export const OfferDetails = () => {
                 <section className="section-1">
 
                     <div className="picture">
-                        <img src={photos} />
+                        <Carousel interval={caruselInterval}>
+                            {flat.photos.map((photoSrc) => (
+                                <Carousel.Item>
+                                    <div className="carouselItemImg">
+                                        <img src={photoSrc} alt="First slide" />
+                                    </div>
+                                </Carousel.Item>
+                            ))}
+                        </Carousel>
                     </div>
+
+                    {/* <div className="picture">
+                        <img src={photos} />
+                    </div> */}
 
                     <div className="form">
                         <div className="contact">
                             <h3>Dane kontaktowe właściciela</h3>
-                            <p>Adres e-mail: {mailAddress}</p>
-                            <p>numer telefonu: {mobileNumber}</p>
+                            <div className="contact-email">
+                                <p className="firstChild">Adres e-mail:</p>
+                                <p className="first">{mailAddress}</p>
+                            </div>
+                            <div className="contact-number">
+                                <p className="firstChild">Numer telefonu: </p>
+                                <p className="first">{mobileNumber}</p>
+                            </div>
                         </div>
                         <form >
                             <div className="formDiv">
@@ -104,7 +127,7 @@ export const OfferDetails = () => {
                                     <li>metraż: </li>
                                 </div>
                                 <div>
-                                    <img className="icon" src={citySVG} alt="" />
+                                    <img className="icon" src={priceSVG} alt="" />
                                     <li>cena: </li>
                                 </div>
                                 <div>
@@ -127,7 +150,7 @@ export const OfferDetails = () => {
                                     <li>piętro: </li>
                                 </div>
                                 <div>
-                                    <img className="icon" src={parkSVG} alt="" />
+                                    <img className="icon" src={furnishedSVG} alt="" />
                                     <li>umeblowanie: </li>
                                 </div>
                                 <div>
@@ -138,7 +161,10 @@ export const OfferDetails = () => {
                                     <img className="icon" src={logiaSVG} alt="" />
                                     <li>balkon: </li>
                                 </div>
-                                <li>dostępne od: </li>
+                                <div>
+                                    <img className="icon" src={availableSVG} alt="" />
+                                    <li>dostępne od: </li>
+                                </div>
                             </ul>
                             <ul className="render-list fetch">
                                 <li>{floor}</li>
