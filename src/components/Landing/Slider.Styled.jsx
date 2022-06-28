@@ -33,14 +33,13 @@ export const MegaSlider = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 30%;
-    height: 30vh;
+    width: 40%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     color: rgb(255, 255, 255);
     padding: 3rem;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 20px;
   }
 `;

@@ -18,18 +18,21 @@ export const SearchResults = ({flats, flatsFromDb, setFlats, setFavourites}) => 
   if (!isLoaded) return <Spinner />;
 
   return (
-      <div>
+      <div style={{height: "100%"}}>
+        <div style={{position: 'absolute', zIndex: '1', top: '0', left: '50%'}}>
       <SearchWrapper >
             <SearchBar
           flatsFromDb={flatsFromDb}
           setFlats={setFlats}
           setFavourites={setFavourites}
           flats={flats}
+          isLanding={false}
         />
       </SearchWrapper>
-    <div style={{ width: "100vw", heigth: '100vh', display: 'flex' }}>
+      </div>
+    <div style={{ width: "60%", heigth: '100vh', display: 'flex' }}>
       {isLoaded && flats ? <Map isLoaded={isLoaded} flats={flats} /> : null}
-      <div style={{ width: "40%" }}><SearchResultsList flats={flats} /></div>
+      <div style={{ width: "40%", heigth: "100%"}}><SearchResultsList flats={flats} /></div>
     </div></div>
   );
 };
