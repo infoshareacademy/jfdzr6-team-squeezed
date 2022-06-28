@@ -3,9 +3,14 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import { NavBar } from "./NavBar.Styled";
 import { AuthStyled } from "./isAuth.Styled";
+import { SearchBar } from "../SearchOffers/SearchBar/SearchBar";
+import { useEffect } from "react";
 import logo from "./logo/logo.ico";
 
-export const Navigation = ({ isAuth, email }) => {
+export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats  }) => {
+  useEffect(()=> {
+
+  },[])
   return (
     <>
       <NavBar className="navbar is-primary">
@@ -24,6 +29,15 @@ export const Navigation = ({ isAuth, email }) => {
               <NavLink to="kontakt">Kontakt</NavLink>
             </li>
           </ul>
+        </div>
+        <div>
+          {flats.length > 0 &&
+        <SearchBar
+          flatsFromDb={flatsFromDb}
+          setFlats={setFlats}
+          setFavourites={setFavourites}
+          flats={flats}
+        /> }
         </div>
 
         <div className="logBar">

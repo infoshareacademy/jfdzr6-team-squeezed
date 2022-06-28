@@ -24,6 +24,7 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites }) => {
 
   useEffect(() => {
     setCurrentSlide(0);
+    setFlats([]);
   }, []);
 
   useEffect(() => {
@@ -53,14 +54,11 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites }) => {
 
 
         <div className="content">
-          <h2>Zobacz ofertę mieszkań</h2>
-          <p>Wpisz nazwę miasta, które Cię interesuję</p>
-          <hr />
+          <h1>ZAMIESZKAJ W WYMARZONYM MIEJSCU</h1>
           <SearchBar
             flatsFromDb={flatsFromDb}
             setFlats={setFlats}
             setFavourites={setFavourites}
-            isLanding={true}
           />
         </div>
       </div>

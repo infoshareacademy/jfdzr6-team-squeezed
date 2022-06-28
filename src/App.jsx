@@ -33,7 +33,6 @@ function App() {
   const [flatsFromDb, setFlatsFromDb] = useState([]);
   const [favourites, setFavourites] = useState(null)
 
-
   const getFlats = () => {
     const flatsCollection = collection(db, "flats");
     getDocs(flatsCollection).then((querySnapshot) => {
@@ -63,7 +62,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navigation isAuth={isAuth} email={user?.email} />
+      <Navigation isAuth={isAuth} email={user?.email} flatsFromDb={flatsFromDb} setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} setFavourites={setFavourites} flats={flats}/>
       <Routes>
 
         <Route path="/" element={<Slider setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} flatsFromDb={flatsFromDb} />} />
