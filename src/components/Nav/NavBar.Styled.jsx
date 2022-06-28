@@ -10,7 +10,9 @@ margin: 0 auto;
 padding: 20px;
 font-family: 'Montserrat', sans-serif;
 
+@media (max-width: 800px) {
 
+}
 
 .logo {
     height: 40px;
@@ -21,7 +23,7 @@ font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: row;
     align-items: center;
-  
+
 }
 
 .logBar {
@@ -44,7 +46,9 @@ ul {
     flex-direction: row;
     align-items: center;
     list-style: none;
-   
+    @media (max-width: 800px) {
+    display: none;
+}
 }
 
 li {
