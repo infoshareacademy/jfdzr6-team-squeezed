@@ -93,18 +93,23 @@ const AddOffer1 = ({ flats }) => {
           rooms: rooms.value,
           floor: floor.value,
           available: available.value,
-          isAC: isAC.value,
-          isElevator: isElevator.value,
-          isFurnished: isFurnished.value,
-          isLoggia: isLoggia.value,
-          isParking: isParking.value,
+          isAC: (selectedFilters.isAC ? selectedFilters.isAC : false),
+          isElevator: (selectedFilters.isElevator ? selectedFilters.isElevator : false),
+          isFurnished: (selectedFilters.isFurnished ? selectedFilters.isFurnished : false),
+          isLoggia: (selectedFilters.isLoggia ? selectedFilters.isLoggia : false),
+          isParking: (selectedFilters.isParking ? selectedFilters.isParking : false),
           mobileNumber: mobileNumber.value,
           mailAddress: mailAddress.value,
           createAt: serverTimestamp(),
         };
 
         addDoc(flatsRef, {
-          ...flat, cords: newGeo
+          ...flat, cords: newGeo,
+          isAC: (selectedFilters.isAC ? selectedFilters.isAC : false),
+          isElevator: (selectedFilters.isElevator ? selectedFilters.isElevator : false),
+          isFurnished: (selectedFilters.isFurnished ? selectedFilters.isFurnished : false),
+          isLoggia: (selectedFilters.isLoggia ? selectedFilters.isLoggia : false),
+          isParking: (selectedFilters.isParking ? selectedFilters.isParking : false),
         });
 
       },
@@ -118,6 +123,7 @@ const AddOffer1 = ({ flats }) => {
   const [selectedPhotos, setSelectedPhotos] = useState([]);
 
   const [selectedFilters, setSelectedFilters] = useState({});
+
   const handleFilters = (e) => {
     e.target.type === "checkbox"
       ? setSelectedFilters({
