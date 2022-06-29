@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const SocialMedia = styled.div`
-  padding: 20px;
-  margin: 10px 10px;
-  color: black;
-  font-size: 30px;
+  padding: 5px;
+  font-size: 20px;
   display: flex;
 
-  flex-direction: row;
+  flex-direction: column;
+
+  margin: 0px auto 10px auto;
+
   div {
     margin: 0 20px;
   }
@@ -16,7 +17,7 @@ export const SocialMedia = styled.div`
   }
 
   @media (min-width: 768px) {
-    flex-direction: row;
+    flex-direction: column;
   }
 `;
 
@@ -25,23 +26,25 @@ export const FooterContainer = styled.div`
   background-color: #0975c3;
   align-items: center;
   justify-content: space-between;
-  padding-left: 20px;
+  padding-left: 10px;
   flex-wrap: wrap;
+  position: sticky;
 
   @media (min-width: 768px) {
     flex-wrap: nowrap;
   }
 
-  p {
-    display: flex;
-    justify-content: flex-end;
+  p,
+  a {
     color: white;
     font-family: "Open Sans", sans-serif;
     font-weight: bolder;
+    text-decoration: none;
   }
 
-  a {
-    color: white;
-    text-decoration: none;
+  .fontsAwesomContainer {
+    display: flex;
+    margin: 10px;
+    justify-content: space-between;
   }
 `;

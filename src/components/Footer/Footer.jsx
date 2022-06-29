@@ -10,7 +10,6 @@ import { SocialMedia, FooterContainer } from "./Footer.styled";
 export const Footer = () => {
   return (
     <FooterContainer>
-      <a>Kontakt</a>
       <a>Regulamin</a>
       <a>Polityka Prywatności</a>
 
@@ -18,18 +17,20 @@ export const Footer = () => {
         Link do GitHub
       </a>
 
-      <p>Znajdź nas w social media:</p>
-
       <div>
         <SocialMedia>
-          <div>
-            <FontAwesomeIcon icon={faFacebook} />
-          </div>
-          <div>
-            <FontAwesomeIcon icon={faInstagram} />
-          </div>
-          <div>
-            <FontAwesomeIcon icon={faYoutube} />
+          <p>Znajdź nas w social media:</p>
+
+          <div className="fontsAwesomContainer">
+            <div>
+              <FontAwesomeIcon icon={faFacebook} />
+            </div>
+            <div>
+              <FontAwesomeIcon icon={faInstagram} />
+            </div>
+            <div>
+              <FontAwesomeIcon icon={faYoutube} />
+            </div>
           </div>
         </SocialMedia>
       </div>
