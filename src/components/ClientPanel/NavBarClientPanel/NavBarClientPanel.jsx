@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styledComponents from "styled-components";
 import { NavBar } from "./NavBarClientPanel.Styled";
 
@@ -31,37 +31,48 @@ export const NavBarClientPanel = () => {
             <NavLink
               className="navbar-item"
               // activeClassName="is-active"
-              to="/messages"
+              to="/"
             >
-              <button type="button" value="Wiadomości" styles={{fontSize: "12px", border:"1px, solid, black"}}>Wiadomości</button>
+              <button type="button" value="Home">
+                Home
+              </button>
             </NavLink>
             <NavLink
               className="navbar-item"
               // activeClassName="is-active"
-              to="/favorites"
+              to="/messages"
             >
-              <button type="button" value="Ulubione">Ulubione</button>
+              <button
+                type="button"
+                value="Wiadomości"
+                styles={{ fontSize: "12px", border: "1px, solid, black" }}
+              >
+                Wiadomości
+              </button>
             </NavLink>
-
             <NavLink
               className="navbar-item"
               // activeClassName="is-active"
               to="/mypanel"
             >
-              <button type="button" value="Mój Panel">Mój Panel</button>
+              <button type="button" value="Mój Panel">
+                Mój Panel
+              </button>
             </NavLink>
             <NavLink
               className="navbar-item"
               // activeClassName="is-active"
-              to="/newoffer"
+              to="/addoffer"
             >
-              <button type="button" value="Dodaj ogłoszenie" >Dodaj ogłoszenie</button>
+              <button type="button" value="Dodaj ogłoszenie">
+                Dodaj ogłoszenie
+              </button>
             </NavLink>
             {/* <div className="navbar-end">
               <div className="navbar-item">
                 <div className="buttons"> */}
-                  <a className="button is-white">Wyloguj</a>
-                {/* </div>
+            {/* <a className="button is-white">Wyloguj</a> */}
+            {/* </div>
               </div>
             </div> */}
           </div>

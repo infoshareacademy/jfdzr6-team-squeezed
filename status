@@ -1,0 +1,156 @@
+[33mcommit e6919e5baf97ab2c2c706da9287e032b70077b89[m[33m ([m[1;36mHEAD -> [m[1;32mlidia-dalecka[m[33m, [m[1;32mmain[m[33m)[m
+Merge: d9785b6 c98f1bd
+Author: Lidia Dalecka <lidia.dalecka@op.pl>
+Date:   Sat Jun 11 20:46:01 2022 +0200
+
+    Merge branch 'main' of https://github.com/infoshareacademy/jfdzr6-team-squeezed
+
+[33mcommit c98f1bd7a34c253c5ca5750985b1dbb3416baacb[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: ec82f7f f27d585
+Author: Michal Tkaczuk <92314463+mchltkczk@users.noreply.github.com>
+Date:   Sat Jun 11 19:19:48 2022 +0200
+
+    Merge pull request #4 from infoshareacademy/mchltkcz
+    
+    SQU-2
+
+[33mcommit d9785b6b3a0c5da78e89610fe97d9687963ebac8[m
+Author: Lidia Dalecka <lidia.dalecka@op.pl>
+Date:   Sat Jun 11 19:03:28 2022 +0200
+
+    formated files
+
+[33mcommit f27d58509b8a19e5ff7d6db3888bff9cf6ef5cae[m[33m ([m[1;31morigin/mchltkcz[m[33m)[m
+Merge: c5c540c ec82f7f
+Author: Michal Tkaczuk <mchltkczk@gmail.com>
+Date:   Sat Jun 11 18:57:56 2022 +0200
+
+    Merge search bar, resolved conficts
+
+[33mcommit ec82f7fb1b8190ad1ed0128a81353a1b49c924d7[m
+Merge: 01980e7 06d8abe
+Author: Sylwia Łaboszczak <94493414+sylwia-laboszczak@users.noreply.github.com>
+Date:   Sat Jun 11 17:39:25 2022 +0200
+
+    Merge pull request #3 from infoshareacademy/SQU-37
+    
+    Squ 37
+
+[33mcommit 06d8abe1d908e24e037cfe744f16754daafd6070[m[33m ([m[1;31morigin/SQU-37[m[33m)[m
+Merge: 02b85e8 01980e7
+Author: Rafał Skiba <rr.skiba92@gmail.com>
+Date:   Sat Jun 11 17:34:38 2022 +0200
+
+    Merge branch 'main' into rafal-skiba
+
+[33mcommit c5c540c87ab2f0875deba3d052ede55d86ea436e[m
+Author: Michal Tkaczuk <mchltkczk@gmail.com>
+Date:   Sat Jun 11 17:34:36 2022 +0200
+
+    minor fix
+
+[33mcommit 01980e7f588576cfa30007dddf408343a81b2838[m
+Author: sylwia-laboszczak <sylwiajurczyk91@gmail.com>
+Date:   Sat Jun 11 17:10:30 2022 +0200
+
+    added changes
+
+[33mcommit 02b85e865521ef914310243ccc50a568678e2231[m
+Author: Rafał Skiba <rr.skiba92@gmail.com>
+Date:   Sat Jun 11 16:32:43 2022 +0200
+
+    changes in OfferDetails.Styled
+
+[33mcommit 16a5b06538d54cc4391839a48e84b7c453d1c348[m
+Merge: a12e2b2 7256c04
+Author: sylwia-laboszczak <sylwiajurczyk91@gmail.com>
+Date:   Sat Jun 11 16:28:20 2022 +0200
+
+    Merge branch 'main' into sylwia-laboszczak/offerlist
+
+[33mcommit 7024f031377a77b004f032dadad67357e8ae0740[m
+Author: Michal Tkaczuk <mchltkczk@gmail.com>
+Date:   Sat Jun 11 15:54:47 2022 +0200
+
+    Latest version
+
+[33mcommit 284d8dc01ed6a7c0567b7418a299c4314facad1b[m
+Author: Rafał Skiba <rr.skiba92@gmail.com>
+Date:   Sat Jun 11 15:52:17 2022 +0200
+
+    OfferDetails and OfferDetails.Styled added
+
+[33mcommit 7256c049b61675a13a0da7d21a6aa9de35e7be5f[m
+Merge: 043c4a7 338dc98
+Author: Lidia Dalecka <94653898+lidia-dalecka@users.noreply.github.com>
+Date:   Sat Jun 11 15:46:33 2022 +0200
+
+    Merge pull request #1 from infoshareacademy/SQU-39
+    
+    Squ 39
+
+[33mcommit 338dc98f1f6abef0d98e93231d011c989f9064c4[m[33m ([m[1;31morigin/SQU-39[m[33m)[m
+Author: Lidia Dalecka <lidia.dalecka@op.pl>
+Date:   Sat Jun 11 15:41:48 2022 +0200
+
+    Create form to adding offer
+
+[33mcommit 3df54a6e752a6f51fba5046fb4cb1e66b92efa1a[m
+Author: Michal Tkaczuk <mchltkczk@gmail.com>
+Date:   Sat Jun 11 01:27:30 2022 +0200
+
+    Fetching data, searching for flats, rendering suggestions
+
+[33mcommit a12e2b2c7150b0c255b009fb145c08ad4bc6cc3e[m[33m ([m[1;31morigin/sylwia-laboszczak/offerlist[m[33m)[m
+Author: sylwia-laboszczak <sylwiajurczyk91@gmail.com>
+Date:   Fri Jun 10 19:06:06 2022 +0200
+
+    changes
+
+[33mcommit 3f0adb51cf311fb51219530f71c7ce9dc8cf9785[m
+Author: sylwia-laboszczak <sylwiajurczyk91@gmail.com>
+Date:   Fri Jun 10 19:05:06 2022 +0200
+
+    added rwd , icons change
+
+[33mcommit bdbe6e0140c7e9f7d526a7e537a98f69717a815d[m
+Author: sylwia-laboszczak <sylwiajurczyk91@gmail.com>
+Date:   Fri Jun 10 17:22:45 2022 +0200
+
+    added style to SearchResults
+
+[33mcommit 454781b65378b230ada9c1d1a93a4d6571e45a24[m
+Author: sylwia-laboszczak <sylwiajurczyk91@gmail.com>
+Date:   Sun Jun 5 21:09:00 2022 +0200
+
+    added fetch , photo, basic information to Search Result
+
+[33mcommit ecd8511b7266c999e6f0f88511ab3c50573f9be8[m
+Author: Rafał Skiba <rr.skiba92@gmail.com>
+Date:   Sun Jun 5 21:07:48 2022 +0200
+
+    initial commit, OfferDetails components skeleton with render feature added
+
+[33mcommit 5bddb6d66b4170af5837f89b73bdde5af71b4f5f[m
+Author: Lidia Dalecka <lidia.dalecka@op.pl>
+Date:   Sun Jun 5 21:03:11 2022 +0200
+
+    Create form for adding an advertisement which sends data to the firebase
+
+[33mcommit 043c4a70be8a0f0a739c13a5d5aa941e42bca647[m
+Author: Michal Tkaczuk <mchltkczk@gmail.com>
+Date:   Sun Jun 5 15:48:49 2022 +0200
+
+    Missing files added
+
+[33mcommit 0d351ce20f0c3aca53b72cd8c3685935151e5f3b[m
+Author: Michal Tkaczuk <mchltkczk@gmail.com>
+Date:   Sun Jun 5 15:46:25 2022 +0200
+
+    Folder strucutre ready
+
+[33mcommit 64d25824090457ff91e365a31018b3f0eeb8d805[m
+Author: Dominik Młynarczyk <hello@dominikmlynarczyk.com>
+Date:   Mon May 23 17:04:02 2022 +0200
+
+    Initial commit

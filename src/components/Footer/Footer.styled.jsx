@@ -28,7 +28,8 @@ export const FooterContainer = styled.div`
   justify-content: space-between;
   padding-left: 10px;
   flex-wrap: wrap;
-  position: sticky;
+  width: 100%;
+  margin: 0 auto;
 
   @media (min-width: 768px) {
     flex-wrap: nowrap;
