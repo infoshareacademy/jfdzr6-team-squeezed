@@ -20,6 +20,7 @@ import { db } from "./utils/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { Slider } from "./components/Landing/Slider";
 import { Footer } from "./components/Footer/Footer";
+import{Privacy} from"./components/Privacy/Privacy";
 
 
 
@@ -77,6 +78,10 @@ function App() {
           <Route path="forgot-password" element={isAuth ? <Navigate to="/auth/login" /> : <ForgotPassword />} />
         </Route>
         <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
+
+
+        <Route path="/privacy" element={<Privacy />} />
+
       </Routes>
       <Footer />
     </BrowserRouter>

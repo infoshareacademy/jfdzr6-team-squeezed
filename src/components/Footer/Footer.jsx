@@ -6,20 +6,22 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 import { SocialMedia, FooterContainer } from "./Footer.styled";
+import { NavLink } from "react-router-dom";
 
 export const Footer = () => {
   return (
     <FooterContainer>
-      <a>Regulamin</a>
-      <a>Polityka Prywatności</a>
+      <NavLink to="/reg">REGULAMIN</NavLink>
+
+      <NavLink to="/privacy">POLITYKA PRYWATNOŚCI</NavLink>
 
       <a href="https://github.com/infoshareacademy/jfdzr6-team-squeezed">
-        Link do GitHub
+        LINK DO GITHUBA
       </a>
 
       <div>
         <SocialMedia>
-          <p>Znajdź nas w social media:</p>
+          <p>ZNAJDŹ NAS W SOCIAL MEDIA:</p>
 
           <div className="fontsAwesomContainer">
             <div>

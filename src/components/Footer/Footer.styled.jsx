@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
 export const SocialMedia = styled.div`
-  padding: 5px;
+  padding: 20px;
   font-size: 20px;
   display: flex;
-
   flex-direction: column;
-
-  margin: 0px auto 10px auto;
+  margin: 10px auto 10px auto;
 
   div {
     margin: 0 20px;
@@ -25,7 +23,7 @@ export const FooterContainer = styled.div`
   display: flex;
   background-color: #0975c3;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   padding-left: 10px;
   flex-wrap: wrap;
   width: 100%;
@@ -37,15 +35,19 @@ export const FooterContainer = styled.div`
 
   p,
   a {
-    color: white;
-    font-family: "Open Sans", sans-serif;
-    font-weight: bolder;
+    color: white !important;
+    font-family: "Montserrata ", sans-serif;
     text-decoration: none;
+    font-size: 16px;
+    margin: 0;
+  }
+
+  a {
+    padding: 20px;
   }
 
   .fontsAwesomContainer {
     display: flex;
-    margin: 10px;
     justify-content: space-between;
   }
 `;
