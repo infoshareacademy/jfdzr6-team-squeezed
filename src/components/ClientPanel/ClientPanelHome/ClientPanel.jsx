@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import { SearchResultsList } from "../OffersList/SearchResults/SearchResults";
+import { SearchResultsList } from "../../OffersList/SearchResults/SearchResults";
 
-import { db } from "../../utils/firebase";
+import { db } from "../../../utils/firebase";
 
 import {
   collection,
@@ -38,7 +38,7 @@ export const ClientPanel = (props) => {
 
   return (
     <div>
-      <SearchResults flats={flatsFromDb} userId={props.userId}/>
+      <SearchResults flats={flatsFromDb} userId={props.userId} />
     </div>
   );
 };

@@ -18,6 +18,12 @@ export const Container = styled.div`
   -moz-osx-font-smoothing: grayscale;
   /* background-color:#e3dddd; */
 
+.colorStar{
+  color:red;
+  font-weight: bold;
+}
+
+
 p{
   margin-top:5%;
 }
@@ -60,6 +66,7 @@ p{
     min-height:350px;
     max-height:350px;
     border-radius: 20px;
+    padding: 1px 10px;
   }
 }
 
@@ -130,6 +137,7 @@ p{
     font-size:12px;
     height:41px;
     border-radius: 20px;
+    padding: 1px 10px;
   }
 }
 
@@ -159,7 +167,7 @@ p{
 .box4styles {
  
 display:flex;
-  flex-direction: row;
+  flex-direction: column;
   align-self: flex-end;
   align-items: center;
   justify-content: center;
@@ -170,6 +178,7 @@ display:flex;
 
 .photosLabel {
   background-color: white;
+
 }
 
 .upload-btn {
@@ -177,8 +186,7 @@ display:flex;
   display:block;
   margin: 0 auto;
   border: none;
-  border-radius:10px;
-  width: 10rem;
+  width: 12rem;
   height:3rem;
   color: white;
   background-color:#0975C3;
@@ -222,6 +230,7 @@ img {
   border-radius: 20px;
   padding: 1px 4px;
   
+  
 }
 .photo button:hover {
   background-color:#0975C3;
@@ -262,7 +271,7 @@ export const PhotoLabel = styled.label`
   align-items: center;
   background-color: #0975C3;
   cursor: pointer;
-  width: 8rem;
+  width: 12rem;
   height: 3rem;
   font-size: 14px;
   color: white;
@@ -275,6 +284,7 @@ export const PhotoSpan = styled.span`
   font-weight:lighter;
   font-size:10px;
   padding-top: 0.5rem;
+  margin: 0 auto;
 `
 
 export const PhotoInput = styled.input`

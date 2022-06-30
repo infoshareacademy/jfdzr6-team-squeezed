@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { addDoc, collection, GeoPoint, serverTimestamp } from "firebase/firestore";
 // import { useNavigate } from "react-router-dom";
 import { db, storage } from "../../../utils/firebase";
@@ -22,7 +23,7 @@ export const AddOffer = () => {
 };
 
 const AddOffer1 = ({ flats }) => {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,7 +63,7 @@ const AddOffer1 = ({ flats }) => {
       }
     }
 
-    Geocode.setApiKey("");
+    Geocode.setApiKey("AIzaSyB9znA1OBO8ASzhNi_-M3SKRVwjdA04pyE");
     Geocode.setLanguage("pl");
     Geocode.setRegion("pl");
     Geocode.setLocationType("ROOFTOP");
@@ -111,12 +112,21 @@ const AddOffer1 = ({ flats }) => {
         console.error(error);
       }
     );
+    navigate("/mypanel");
 
   };
 
   const [selectedPhotos, setSelectedPhotos] = useState([]);
-
   const [selectedFilters, setSelectedFilters] = useState({});
+  const [error, setError] = useState(null);
+
+
+  const handleDate = (e) => {
+    if (e.target.type === "submit") {
+      if (selectedPhotos.length == 0) { setError(true) }
+      else return;
+    }
+  };
 
   const handleFilters = (e) => {
     e.target.type === "checkbox"
@@ -133,12 +143,15 @@ const AddOffer1 = ({ flats }) => {
   const onSelectFile = (e) => {
     const selectedFiles = e.target.files;
     const selectedFilesArray = Array.from(selectedFiles);
-
+    if (selectedFiles.length > 0) { setError(false) };
     const photosArray = selectedFilesArray.map((file) => {
       return URL.createObjectURL(file);
     });
     setSelectedPhotos((previousPhotos) => previousPhotos.concat(photosArray));
+
   };
+
+
 
   return (
     <>
@@ -146,9 +159,7 @@ const AddOffer1 = ({ flats }) => {
         <form onSubmit={handleSubmit}>
           <Container>
             <div className="box1">
-              <p>Im więcej szczegółów tym lepiej!</p>
-
-              <label className="title" htmlFor="title"><b>Tytuł ogłoszenia</b></label>
+              <label className="title" htmlFor="title"><b>Tytuł ogłoszenia</b><span className="colorStar">*</span></label>
               <br />
               <input type="text" name="title" id="title" required placeholder="Wpisz tytuł ogłoszenia" onChange={handleFilters} />
               <br />
@@ -157,19 +168,19 @@ const AddOffer1 = ({ flats }) => {
               <textarea id="description" name="description" />
             </div>
             <div className="box2">
-              <div className="labelStyle"><label className="Street" htmlFor="street"><b>Ulica i numer</b></label>
+              <div className="labelStyle"><label className="Street" htmlFor="street"><b>Ulica i numer</b><span className="colorStar">*</span></label>
                 <br />
                 <input type="text" name="street" id="street" placeholder="Wpisz ulicę i numer budynku" onChange={handleFilters} /></div>
 
-              <div className="labelStyle"><label htmlFor="city"><b>Miasto</b></label>
+              <div className="labelStyle"><label htmlFor="city"><b>Miasto</b><span className="colorStar">*</span></label>
                 <br />
                 <input type="text" name="city" id="city" required onChange={handleFilters} /></div>
 
-              <div className="labelStyle"><label htmlFor="size"><b>Powierzchnia</b></label>
+              <div className="labelStyle"><label htmlFor="size"><b>Powierzchnia</b><span className="colorStar">*</span></label>
                 <br />
                 <input className="labelStyle__left" type="number" name="flatSize" id="size" required placeholder="m&sup2;" onChange={handleFilters} /></div>
 
-              <div className="labelStyle"><label htmlFor="price"><b>Cena</b></label>
+              <div className="labelStyle"><label htmlFor="price"><b>Cena</b><span className="colorStar">*</span></label>
                 <br />
                 <input className="labelStyle__left" type="number" name="price" id="price" required placeholder="PLN" onChange={handleFilters} /></div>
 
@@ -181,7 +192,7 @@ const AddOffer1 = ({ flats }) => {
                 <br />
                 <input type="number" name="floor" id="floor" onChange={handleFilters} /></div>
 
-              <div className="labelStyle"><label htmlFor="available"><b>Dostępność</b></label>
+              <div className="labelStyle"><label htmlFor="available"><b>Dostępność</b><span className="colorStar">*</span></label>
                 <br />
                 <input type="date" name="available" id="available" required onChange={handleFilters} /></div>
 
@@ -189,14 +200,14 @@ const AddOffer1 = ({ flats }) => {
 
             <div className="box3">
               <div className="checkboxStyles">
-                <label htmlFor="mobileNumber"><b>Numer telefonu</b></label>
+                <label htmlFor="mobileNumber"><b>Numer telefonu</b><span className="colorStar">*</span></label>
                 <br />
                 <input className="userData" type="text" name="mobileNumber" id="mobileNumber" required onChange={handleFilters} />
               </div>
               <div className="checkboxStyles">
-                <label htmlFor="mailAddress"><b>Mail</b></label>
+                <label htmlFor="mailAddress"><b>Mail do kontaktu</b><span className="colorStar">*</span></label>
                 <br />
-                <input className="userData" type="text" name="mailAddress" id="mailAddress" required onChange={handleFilters} />
+                <input className="userData" type="email" name="mailAddress" id="mailAddress" required onChange={handleFilters} />
               </div>
               <div className="checkboxStyles__checkbox">
                 <input className="checkboxInput" name="isElevator" type="checkbox" onChange={handleFilters} />
@@ -243,6 +254,9 @@ const AddOffer1 = ({ flats }) => {
                       required
                     />
                   </PhotoLabel>
+                  <div>
+                    {error === true ? "Dodaj zdjęcia" : null}
+                  </div>
                 </div>
                 <br />
                 {selectedPhotos.length > 0 &&
@@ -288,9 +302,10 @@ const AddOffer1 = ({ flats }) => {
 
               </div>
               <div className="photosLabel">
-                <button className="submitButton" type="submit">Dodaj ogłoszenie</button>
+                <button onClick={handleDate} className="submitButton" type="submit">Dodaj ogłoszenie</button>
               </div>
             </div>
+            {error && <h2 style={{ color: 'red' }}>{error}</h2>}
           </Container>
           <br />
         </form>
