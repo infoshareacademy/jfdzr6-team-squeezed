@@ -22,6 +22,7 @@ import { Slider } from "./components/Landing/Slider";
 import { Footer } from "./components/Footer/Footer";
 import{Privacy} from"./components/Privacy/Privacy";
 import { Statute } from "./components/Statute/Statute";
+import { ClientPanel } from "./components/ClientPanel/ClientPanel";
 
 
 
@@ -83,7 +84,7 @@ function App() {
         </Route>
         <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
 
-
+        <Route path="mypanel" element={!isAuth ? <Navigate to="/auth/login" /> : <ClientPanel userId={user.uid}/>} />
 
       </Routes>
       <Footer />

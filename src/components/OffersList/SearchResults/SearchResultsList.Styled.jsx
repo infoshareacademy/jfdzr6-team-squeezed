@@ -4,8 +4,9 @@ export const OfferList = styled.div`
   display: flex;
   flex-direction: column;
   padding: 15px 15px 0 15px;
-  height: 85vh;
-  overflow-y: scroll;
+ 
+ 
+  background-color: #e3dddd;
 
   @media (max-width: 800px) {
     width: 100%;
@@ -133,7 +134,7 @@ export const MoreInfoBtn = styled.button`
 `;
 
 export const MoreInfoBox = styled.div`
-  background-color: #a50a0a;
+  background-color:white;
   box-shadow: 5px 5px 5px gray;
   position: fixed;
   top: 50%;

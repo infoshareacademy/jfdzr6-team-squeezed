@@ -5,7 +5,11 @@ import { Spinner } from "react-bootstrap";
 import { SearchResultsList } from "../components/OffersList/SearchResults/SearchResultsList";
 import { SearchBar } from "../components/SearchOffers/SearchBar/SearchBar";
 import { SearchWrapper } from "../components/SearchOffers/SearchWrapper/SearchWrapper";
-import { ResultsWrapper, SearchResultsContainer } from "./SearchResults.Styled";
+import {
+  ResultsWrapper,
+  SearchResultsContainer,
+  SearchResultListParent,
+} from "./SearchResults.Styled";
 
 const libraries = ["places"];
 export const SearchResults = ({
@@ -36,8 +40,9 @@ export const SearchResults = ({
 
       <ResultsWrapper>
         {isLoaded && flats ? <Map isLoaded={isLoaded} flats={flats} /> : null}
-
-        <SearchResultsList flats={flats} />
+        <SearchResultListParent>
+          <SearchResultsList flats={flats} />
+        </SearchResultListParent>
       </ResultsWrapper>
     </SearchResultsContainer>
   );
