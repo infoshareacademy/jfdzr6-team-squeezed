@@ -1,15 +1,19 @@
 import styled from "styled-components";
 
 export const OfferList = styled.div`
-  background-color: #e3dddd;
   display: flex;
   flex-direction: column;
+  padding: 15px 15px 0 15px;
+  height: 85vh;
+  overflow-y: scroll;
 
-  width: 100%;
-  /* background-color: yellow; */
+  @media (max-width: 800px) {
+    width: 100%;
+    height: auto;
+    overflow-y: hidden;
+  }
 
   @media (min-width: 1200px) {
-    /* background-color: red; */
     display: grid;
     width: auto;
     margin: 0px auto;
@@ -18,14 +22,14 @@ export const OfferList = styled.div`
 
 export const OfferBackground = styled.div`
   background-color: white;
-  margin: 15px;
-  padding: 0;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 5px gray;
   flex-wrap: wrap;
+  margin-bottom: 15px;
+
   @media (min-width: 1200px) {
     flex-wrap: nowrap;
   }
@@ -54,23 +58,19 @@ export const InfoBox = styled.div`
   width: 100%;
   padding: 25px;
   @media (min-width: 768px) {
-    width: 75% !important;
+    /* width: 75% !important; */
   }
 
-  
   .icon {
-  height: 20px;
-  align-self: center;
-}
-
-
-
-
+    height: 20px;
+    align-self: center;
+  }
 
   .btnContainer {
     display: flex;
     justify-content: flex-end;
-    a, button {
+    a,
+    button {
       text-decoration: none;
       width: auto;
       border-radius: 20px;
@@ -133,11 +133,9 @@ export const MoreInfoBtn = styled.button`
 `;
 
 export const MoreInfoBox = styled.div`
-  background-color: white;
+  background-color: #a50a0a;
   box-shadow: 5px 5px 5px gray;
-
   position: fixed;
-  margin: 0 20px;
   top: 50%;
   transform: translateY(-50%);
 
@@ -174,6 +172,7 @@ export const CarouselContainer = styled.div`
   flex-wrap: false;
   position: relative;
   padding: 15px;
+
   .zoomIcon {
     cursor: pointer;
     font-size: 100px;
@@ -187,7 +186,7 @@ export const CarouselContainer = styled.div`
     color: rgba(255, 255, 255, 0.834);
   }
   @media (min-width: 768px) {
-    width: 800px;
+    width: 100%;
     height: 330px;
   }
 
@@ -198,21 +197,19 @@ export const CarouselContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
     @media (min-width: 768px) {
       height: 300px;
     }
   }
-
-  img {
-    width: 100%;
-    height: auto;
-  }
 `;
 
 export const CarouselContainerInMsgBox = styled.div`
-  display: flex;
-  justify-content: center;
-  background-color: lightgray;
+  width: 100%;
   img {
     object-fit: cover;
     width: 700px;
