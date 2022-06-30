@@ -7,6 +7,7 @@ export const SocialMedia = styled.div`
   flex-direction: column;
   margin: 10px auto 10px auto;
 
+
   div {
     margin: 0 20px;
   }

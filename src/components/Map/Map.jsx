@@ -132,7 +132,6 @@ console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
         justifyContent: "center",
         position: "relative",
         height: '85vh',
-        backgroundColor: 'red'
       }}>
       <div style={{ position: "relative", height: '100%' }}>
         <StyledMapHeader>

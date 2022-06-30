@@ -4,17 +4,17 @@ export const OfferList = styled.div`
   display: flex;
   flex-direction: column;
   padding: 15px 15px 0 15px;
-  background-color: cyan;
-  width: 50vw;
   height: 85vh;
   overflow: scroll;
 
   @media (max-width: 800px) {
     width: 100%;
+    height: auto;
+    overflow: hidden;
   }
 
   @media (min-width: 1200px) {
-    /* background-color: red; */
+
     display: grid;
     width: auto;
     margin: 0px auto;
@@ -22,7 +22,6 @@ export const OfferList = styled.div`
 `;
 
 export const OfferBackground = styled.div`
-  background-color: #05ef0d;
   box-sizing: border-box;
   display: flex;
   align-items: center;

@@ -2,10 +2,8 @@ import styled from "styled-components";
 export const SearchResultsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: yellow;
   margin-top: 15px;
-
-  /* background-color: #e3dddd; */
+  background-color: lightgray;
 `;
 
 export const ResultsWrapper = styled.div`
