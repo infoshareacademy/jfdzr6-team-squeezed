@@ -13,7 +13,3 @@ export const ResultsWrapper = styled.div`
     flex-direction: column;
   }
 `;
-
-export const ResultsListWrapper = styled.div`
-
-`;
