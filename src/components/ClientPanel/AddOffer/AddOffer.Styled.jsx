@@ -5,11 +5,12 @@ import styled, { withTheme } from "styled-components";
 
 export const Container = styled.div`
   display:grid;
-  grid-template-columns: repeat(5, 1fr);
+  margin: 0 auto;
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: minmax(300px, auto) auto;
   font-size:14px;
   box-shadow:  2px 2px 6px 4px rgba(0,0,0,0.13);
-   
+  max-width: 1240px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -22,18 +23,21 @@ p{
 }
 
 .box1{
-  grid-column: 1 / 4;
+  grid-column: 1 / 3;
   grid-row: 1 / 2;
   margin: 0 10px 0 10px;
- 
+
   input {
     border:0;
+    min-width: 330px;
     width:100%;
     box-shadow:  2px 2px 6px 4px rgba(0,0,0,.13);
     margin-bottom:auto;
-    justify-content:left;
-    height:24px;
-    font-size: 10px;
+    height:41px;
+    font-size: 12px;
+    border-radius: 20px;
+    padding: 1px 10px;
+    
   }
   
 
@@ -49,95 +53,123 @@ p{
   textarea {
     border:0;
     width:100%;
-    justify-content:left;
+    min-width: 340px;
     box-shadow:  2px 2px 6px 4px rgba(0,0,0,.13);
     height:500px;
     margin-bottom:2px;
-    min-height:200px;
-    max-height:200px;
+    min-height:350px;
+    max-height:350px;
+    border-radius: 20px;
   }
 }
 
 .box2 {
-  grid-column: 4 / 5;
-  grid-row: 1 / 3;
+  display:grid;
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  grid-template-columns: 1fr;
   margin: 0 10px 0 10px;
   padding-top:11%;
 
   .labelStyle {
-   margin:0 auto;
+    width:100%;
+    margin: 0 auto;
+    padding-bottom: 0px;
+    height: auto;
   }
 
-  label.street{
-  
-  padding: 10px 10px 0 0;
-  }
-
-    input {
+  input {
     border:0;
+    min-width: 160px;
     width:100%;
     box-shadow:  2px 2px 6px 4px rgba(0,0,0,.13);
-    margin-bottom:auto;
-    justify-content:left;
+    margin-bottom:7px;
     height:auto;
-    font-size:10px;
-    height:24px;
+    font-size:12px;
+    height:41px;
+    border-radius: 20px;
+    padding: 1px 10px;
   }
 
-
+  .labelStyle__left {
+    display:flex;
+    text-align:left;
+  }
 
 }
 .box3 {
-  grid-column: 5 / 6;
-  grid-row: 1 / 3;
+  display:grid;
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
+  grid-template-columns: 1fr;
   margin: 0 10px 0 10px;
-  padding-top:30%;
+  padding-top:11%;
   
   .checkboxStyles {
+    width:100%;
     margin: 0 auto;
+    height: 24px;
   }
+  .checkboxStyles__checkbox {
+    display:flex;
+    justify-content:left;
+    align-items: center;
+    margin-left: 80px;
 
+    .checkboxInput {
+      margin-right: 10px;
+    }
+  }
   input.userData {
     border:0;
     width:100%;
+    min-width: 160px;
     box-shadow:  2px 2px 6px 4px rgba(0,0,0,.13);
-    margin-bottom:auto;
-    justify-content:left;
+    margin-bottom:7px;
     height:auto;
-    
+    font-size:12px;
+    height:41px;
+    border-radius: 20px;
   }
 }
 
-
 .box4 {
-  
-  grid-column: 1 / 6;
+  display:grid;
+  grid-column: 1 / 5;
   grid-row: 2 / 3;
   background-color:white;
   margin: 0 10px 0 10px;
- 
+
+  .submitButton {
+
+  display:flex;
+  flex-direction:right;
+  align-items:right;
+  margin: 0 auto;
+  border: none;
+  border-radius:20px;
+  background-color: #0975C3;
+  color: white;
+  height:41px;
+  padding: 10px 30px;
+  cursor: pointer;
+}
+
 
 .box4styles {
-  display: flex;
+ 
+display:flex;
   flex-direction: row;
   align-self: flex-end;
-  align-items: right;
-  justify-content: right;
- 
+  align-items: center;
+  justify-content: center;
+
 }
 
-.submitButton {
-  margin: auto 30px;
-  border: none;
-  border-radius:5px;
-  padding: 3px;
-  
-  
-}
+
 
 .photosLabel {
   background-color: white;
- 
 }
 
 .upload-btn {
@@ -148,9 +180,9 @@ p{
   border-radius:10px;
   width: 10rem;
   height:3rem;
-  color: black;
-  background-color:#e7e7e7;
-  
+  color: white;
+  background-color:#0975C3;
+  border-radius: 20px;
 }
 
 label.hover,
@@ -159,6 +191,7 @@ label.hover,
 }
 
 .error {
+  margin-top:0;
   text-align:center;
 }
 
@@ -183,16 +216,17 @@ img {
   right:0;
   cursor:pointer;
   border:none;
-  color: #9E9E9E;
+  color: white;
   font-size: 12px;
-  background-color: #e7e7e7;
-  border-radius: 5px;
-  padding: 2px;
+  background-color: #0975C3;
+  border-radius: 20px;
+  padding: 1px 4px;
   
 }
 .photo button:hover {
   background-color:#0975C3;
   color: white;
+  border-radius: 20px;
 }
 
 .photo p {
@@ -209,139 +243,33 @@ img {
   justify-content: center;
   align-items:center;
 }
-
-
 }
-
 `
-
-// export const ElementListTitle = styled.ul`
-// background-color:white;
-
-// .photosLabel {
-//   background-color: white;
-// }
-
-// .upload-btn {
-//   cursor: pointer;
-//   display:block;
-//   margin: 0 auto;
-//   border: none;
-//   border-radius:10px;
-//   width: 10rem;
-//   height:3rem;
-//   color: black;
-//   background-color:#e7e7e7;
-// }
-
-// label.hover,
-// .upload-btn:hover {
-//   box-shadow:rgba(0,0,0,0.1) 0px 10px 15px 3px, rgba(0,0,0,0.05) 0px 4px 6px -2px;
-// }
-
-// .error {
-//   text-align:center;
-// }
-
-// .error span {
-//   color: red;
-// }
-
-// li {
-// list-style:none;
-// padding:10px;
-// margin: 10px auto 10px auto;
-// background-color:#e7e7e7;
-// font-size: 14px;
-
-// input {
-// border:0;
-// width:100%;
-// justify-content:left;
-// }
-
-// textarea {
-// border:0;
-// width:100%;
-// justify-content:left;
-// }
-
-// img {
-//   padding:0;
-//   margin:0;
-// }
-
-// .photo {
-//   margin: 1rem 0.5rem;
-//   position: relative;
-//   box-shadow: rgba(0,0,0,0.05) 0px 1px 2px 0px;
-// }
-
-// .photo button {
-//   position:absolute;
-//   bottom:0;
-//   right:0;
-//   cursor:pointer;
-//   border:none;
-//   color: #9E9E9E;
-//   font-size: 12px;
-//   background-color: #e7e7e7;
-//   border-radius: 5px;
-//   padding: 2px;
-// }
-// .photo button:hover {
-//   background-color:#0975C3;
-//   color: white;
-// }
-
-// .photo p {
-//   padding: 0 0.5rem;
-//   margin: 0;
-//   color: white;
-//   height: 25px;
-//   /* color: #9E9E9E; */
-// }
-// .photos {
-//   display: flex;
-//   flex-direction:row;
-//   flex-wrap: wrap;
-//   justify-content: center;
-//   align-items:center;
-// }}
-// `
-
-// export const CityStreet = styled.div`
-//   background-color: #e7e7e7;
-//   display:block;
-// `
 
 export const MainDiv = styled.div`
 background-color:white;
 margin:0px 100px;
 padding:20px;
-
-`;
-
-export const Sections = styled.section`
-  margin: 2px 100px auto 100px;
-  padding: 15px;
-  justify-content: center;
-  background-color: white;
 `;
 
 
 export const PhotoLabel = styled.label`
+ 
   margin: 10px 0px 0px 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
-  background-color: #e7e7e7;
+  background-color: #0975C3;
   cursor: pointer;
   width: 8rem;
-  height: 5rem;
+  height: 3rem;
   font-size: 14px;
+  color: white;
+  text-align: center;
+  border-radius:20px;
+  
+  
 `
 export const PhotoSpan = styled.span`
   font-weight:lighter;
@@ -353,18 +281,3 @@ export const PhotoInput = styled.input`
   display:none;
 `
 
-// export const ContactForm = styled.div`
-//   display:flex;
-//   position:relative;
-//   padding: 10px;
-//   margin:0 30px auto 30px;
-//   background-color:#e7e7e7;
-//   display:inline;
-
-//   input {
-//     border:none;
-//     margin:10px;
-
-//   }
-  
-// `
