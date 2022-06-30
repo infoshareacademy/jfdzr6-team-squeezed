@@ -61,8 +61,9 @@ function App() {
 
 
   return (
+
     <BrowserRouter>
-      <Navigation isAuth={isAuth} email={user?.email} flatsFromDb={flatsFromDb} setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} setFavourites={setFavourites} flats={flats}/>
+      <Navigation isAuth={isAuth} email={user?.email} flatsFromDb={flatsFromDb} setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} setFavourites={setFavourites} flats={flats} />
       <Routes>
 
         <Route path="/" element={<Slider setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} flatsFromDb={flatsFromDb} />} />
@@ -77,6 +78,7 @@ function App() {
           <Route path="forgot-password" element={isAuth ? <Navigate to="/auth/login" /> : <ForgotPassword />} />
         </Route>
         <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
+
       </Routes>
       <Footer />
     </BrowserRouter>
