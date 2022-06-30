@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 import { useEffect, useRef, useCallback } from "react";
-import { StyledMapHeader } from "./Map.Styled";
+import { InfoWindowBackground, InfoWindowBottomBackground, StyledMapHeader } from "./Map.Styled";
 import { mapContainerStyle, center, options } from "../../utils/mapConfig";
 import logo from "./logo-icon-only-blue.svg";
 import markerSVG from "./NicePng_home-icon-png_233447.png";
 import { MapCarousel } from "./MapCarousel/MapCarousel";
-
+import { NavLink } from "react-router-dom";
 
 const Map = ({ flats, isLoaded }) => {
   const [activeMarker, setActiveMarker] = useState(null);
@@ -68,13 +68,7 @@ console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
               onCloseClick={() => {
                 setActiveMarker(null);
               }}>
-              <div
-                style={{
-                  width: "240px",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                }}>
+              <InfoWindowBackground>
                 {/* <img style={{objectFit: 'cover'}} src={photos[0]} width='100%' height='200' /> */}
                 <MapCarousel key={id} photos={photos}/>
                 {/* <img style={{objectFit: 'cover'}} src={photos[0]} width='100%' height='200' /> */}
@@ -82,27 +76,25 @@ console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
                   style={{
                     display: "flex",
                     flexDirection: "column",
-                    paddingLeft: "5px",
+                    padding: "5px 5px 10px 5px",
                     alignContent: "flex-start",
-                    paddingBottom: "10px",
-                    paddingTop: "5px",
+                    width: '100%',
                   }}>
-                  <a
-                    href='https:/www.google.pl'
-                    style={{ textDecoration: "none", color: "black" }}>
-                    {title}
+                                  <NavLink to={`/details/${id}`} style={{textDecoration: 'none', color: 'black'}}>
+
                     <div style={{position: 'absolute', top: '5px', padding: '2px', color: '#FFF', background: '#5a5656ac', zIndex: '10', fontWeight: 'bold', fontSize: '20px' }}>
                       {size} m<sup>2</sup>{" "}
                     </div>
+                   <InfoWindowBottomBackground>
                     {/* <div>pokoje: {rooms}</div> */}
                     <div style={{fontSize: '24px'}}>
                       <b>{price} zł</b>
-                    </div>
-                  </a>
+                    </div></InfoWindowBottomBackground>
+                    </NavLink>
 
                   <div></div>
                 </div>
-              </div>
+              </InfoWindowBackground>
             </InfoWindow>
           ) : null}
         </Marker>

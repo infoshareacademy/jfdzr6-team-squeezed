@@ -45,13 +45,13 @@ export const StyledSearchSuggestionsWrapper = styled.div`
 `;
 
 export const StyledSearchInput = styled.input`
-  font-size: 22px;
+  font-size: ${({isLanding}) => !isLanding ? "22px" : "6px"};
   width: 100%;
-  margin-bottom: 10px;
-  padding: 10px 10px 10px 10px;
+  padding: ${({isLanding}) => isLanding ? "0px 10px" : "10px 10px 10px 10px"};
   border: none;
   background-color: #eeeaea;
   border-radius: 20px;
+  margin: ${({isLanding}) => !isLanding ? "20px" : "50px"};
   margin: 20px;
   &:focus {
     outline: none;

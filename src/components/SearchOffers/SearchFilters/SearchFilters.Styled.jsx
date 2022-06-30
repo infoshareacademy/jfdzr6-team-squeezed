@@ -5,18 +5,23 @@ export const StyledSearchFilters = styled.div`
 `;
 export const StyledInputWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding: 5px;
+  align-items: center;
+  padding: 10px;
   background-color: #eeeaea;
   border-radius: 20px;
-  margin-bottom: 20px;
+  z-index: 3;
+  -webkit-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
+-moz-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
+box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
 
   input {
     width: auto;
-    min-width: 100px;
+    width: 70px;
     border-radius: 20px;
     text-align: center;
-    padding: 10px 30px;
+    padding: 10px 10px;
     background-color: white;
     color: #000;
     font-size: 14px;
@@ -30,30 +35,35 @@ export const StyledInputWrapper = styled.div`
       box-shadow: 0 2px 6px -1px rgba(0.65);
     }
   }
-  .checkbox {
-    box-shadow: none;
-  }
+
 `;
 export const StyledSearchFiltersWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  width: 500px;
+  height: 450px;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 10px;
   position: absolute;
-  left: 0;
-  top: 113px;
-  z-index: 100;
-  background-color: #0976c337;
+  top: 75px;
+  border-radius: 20px;
+  z-index: 1;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 65px -34px rgba(246, 246, 255, 1);
+-moz-box-shadow: 0px 0px 65px -34px rgba(246, 246, 255, 1);
+box-shadow: 0px 0px 65px -34px rgba(246, 246, 255, 1);
 
 `;
 export const StyledShowMoreFilters = styled.div`
   display: flex;
   justify-content: center;
-  padding: 10px;
+  /* padding: 10px; */
   gap: 20px;
   width: 600px;
   position: relative;
+
 
   @media (max-width: 1000px) {
     width: 400px;
@@ -70,8 +80,8 @@ export const StyledShowMoreFilters = styled.div`
   }
 
   .search-submit-Btn {
-    padding: 13px;
-    margin: 20px;
+    padding: ${({isLanding}) => isLanding ? "0px" : "13px"};
+    margin: ${({isLanding}) => isLanding ? "0px" : "20px"};
     width: 100px;
     position: absolute;
     right: 0;
@@ -89,3 +99,47 @@ export const StyledMoreFiltersWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
+export const StyledInputCheckboxWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 410px;
+  padding: 5px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  
+
+`
+
+export const SingleCheckboxContainer = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  background-color: #eeeaea;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  border-radius: 20px;
+  padding-left: 10px;
+  -webkit-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
+-moz-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
+box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
+  .checkbox {
+    box-shadow: none;
+    height: 25px;
+    width: 25px;
+
+  }
+`
+
+export const StyledInputTitle = styled.div`
+  text-align: center;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  -webkit-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
+-moz-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
+box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
+`

@@ -68,7 +68,7 @@ const AddOffer1 = ({ flats }) => {
       }
     }
 
-    Geocode.setApiKey("AIzaSyC3c4CaCP3DhnxgU1SaNW7lm8oiCbxrN0Y");
+    Geocode.setApiKey("AIzaSyBS9ENJtnxhEwwTw5YcFb8Ml57rjHZbxuA");
     Geocode.setLanguage("pl");
     Geocode.setRegion("pl");
     Geocode.setLocationType("ROOFTOP");
@@ -95,7 +95,7 @@ const AddOffer1 = ({ flats }) => {
           available: available.value,
           isAC: isAC.value,
           isElevator: isElevator.value,
-          isFurnished: selectedFilters.isFurnished ? selectedFilters.isFurnished : false,
+          isFurnished: isFurnished.value,
           isLoggia: isLoggia.value,
           isParking: isParking.value,
           mobileNumber: mobileNumber.value,

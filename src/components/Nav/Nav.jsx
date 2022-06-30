@@ -7,9 +7,9 @@ import { SearchBar } from "../SearchOffers/SearchBar/SearchBar";
 import { useEffect } from "react";
 import logo from "./logo/logo.ico";
 
-export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats  }) => {
+export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats, setIsLanding, isLanding  }) => {
   useEffect(()=> {
-
+    setIsLanding(false)
   },[])
   return (
     <>
@@ -31,12 +31,13 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
           </ul>
         </div>
         <div>
-          {flats.length > 0 &&
+          {!isLanding &&
         <SearchBar
           flatsFromDb={flatsFromDb}
           setFlats={setFlats}
           setFavourites={setFavourites}
           flats={flats}
+          isLanding={isLanding}
         /> }
         </div>
 

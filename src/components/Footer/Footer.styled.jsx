@@ -24,6 +24,8 @@ export const SocialMedia = styled.div`
 
 export const FooterContainer = styled.div`
   display: flex;
+  position: fixed;
+  bottom: 0;
   background-color: #0975c3;
   align-items: center;
   justify-content: space-between;
@@ -31,6 +33,7 @@ export const FooterContainer = styled.div`
   flex-wrap: wrap;
   width: 100%;
   margin: 0 auto;
+  z-index: 100;
 
   @media (min-width: 768px) {
     flex-wrap: nowrap;

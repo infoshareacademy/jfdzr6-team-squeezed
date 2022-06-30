@@ -89,3 +89,7 @@ input[type=number] {
   height: 60vh;
   }
 }
+
+.info-window:hover {
+  background-color: black ;
+}

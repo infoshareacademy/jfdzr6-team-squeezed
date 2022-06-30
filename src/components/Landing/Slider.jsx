@@ -3,7 +3,7 @@ import { sliderData } from "./slider-data";
 import { SearchBar } from "../SearchOffers/SearchBar/SearchBar";
 import { MegaSlider } from "./Slider.Styled";
 
-export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites }) => {
+export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites, setIsLanding }) => {
 
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -25,6 +25,7 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites }) => {
   useEffect(() => {
     setCurrentSlide(0);
     setFlats([]);
+    setIsLanding(true)
   }, []);
 
   useEffect(() => {
@@ -60,6 +61,7 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites }) => {
             flats={flats}
             setFlats={setFlats}
             setFavourites={setFavourites}
+            setIsLanding={setIsLanding}
           />
         </div>
       </div>

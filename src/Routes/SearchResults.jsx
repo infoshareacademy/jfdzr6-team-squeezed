@@ -10,13 +10,14 @@ import { ResultsWrapper, SearchResultsContainer } from "./SearchResults.Styled";
 const libraries = ["places"];
 export const SearchResults = ({flats, flatsFromDb, setFlats, setFavourites}) => {
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBS9ENJtnxhEwwTw5YcFb8Ml57rjHZbxuA",
+    googleMapsApiKey: "AIzaSyB9znA1OBO8ASzhNi_-M3SKRVwjdA04pyE",
     language: 'pl',
     libraries,
   });
 
   if (loadError) return "Błąd ładowania mapy";
   if (!isLoaded) return <Spinner />;
+
 
   return (
       <SearchResultsContainer>

@@ -19,7 +19,7 @@ import { Carousel, Button } from "react-bootstrap";
 
 
 
-export const OfferDetails = () => {
+export const OfferDetails = ({setIsLanding}) => {
     const { id: idFlat } = useParams("id")
 
     const [flat, setFlat] = useState(null);
@@ -40,9 +40,10 @@ export const OfferDetails = () => {
 
     }
 
-
     useEffect(() => {
         getFlats();
+        setIsLanding(true)
+
     }, [])
 
     if (flat === null) {

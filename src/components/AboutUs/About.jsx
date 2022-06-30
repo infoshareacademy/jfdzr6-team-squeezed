@@ -1,6 +1,9 @@
 import { AboutPhoto } from "./AboutUs.Styled";
-
-export const AboutUs = () => {
+import { useEffect } from "react";
+export const AboutUs = ({setIsLanding}) => {
+  useEffect(()=>{
+    setIsLanding(true)
+  },[])
   return (
     <>
       <AboutPhoto>
