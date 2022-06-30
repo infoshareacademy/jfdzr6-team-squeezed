@@ -5,16 +5,15 @@ export const OfferList = styled.div`
   flex-direction: column;
   padding: 15px 15px 0 15px;
   height: 85vh;
-  overflow: scroll;
+  overflow-y: scroll;
 
   @media (max-width: 800px) {
     width: 100%;
     height: auto;
-    overflow: hidden;
+    overflow-y: hidden;
   }
 
   @media (min-width: 1200px) {
-
     display: grid;
     width: auto;
     margin: 0px auto;
@@ -22,6 +21,7 @@ export const OfferList = styled.div`
 `;
 
 export const OfferBackground = styled.div`
+  background-color: white;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -29,6 +29,7 @@ export const OfferBackground = styled.div`
   box-shadow: 5px 5px 5px gray;
   flex-wrap: wrap;
   margin-bottom: 15px;
+
   @media (min-width: 1200px) {
     flex-wrap: nowrap;
   }

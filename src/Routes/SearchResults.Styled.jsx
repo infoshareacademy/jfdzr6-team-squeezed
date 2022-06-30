@@ -2,8 +2,7 @@ import styled from "styled-components";
 export const SearchResultsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 15px;
-  background-color: lightgray;
+  background-color: #e3dddd;
 `;
 
 export const ResultsWrapper = styled.div`
