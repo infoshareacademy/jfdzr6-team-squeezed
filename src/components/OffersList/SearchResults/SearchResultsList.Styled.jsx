@@ -27,6 +27,7 @@ export const OfferBackground = styled.div`
   justify-content: center;
   box-shadow: 5px 5px 5px gray;
   flex-wrap: wrap;
+  margin-bottom: 15px;
   @media (min-width: 1200px) {
     flex-wrap: nowrap;
   }
