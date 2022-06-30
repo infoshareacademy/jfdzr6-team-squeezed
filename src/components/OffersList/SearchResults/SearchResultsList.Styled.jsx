@@ -6,6 +6,8 @@ export const OfferList = styled.div`
   padding: 15px 15px 0 15px;
   background-color: cyan;
   width: 50vw;
+  height: 85vh;
+  overflow: scroll;
 
   @media (max-width: 800px) {
     width: 100%;
