@@ -16,7 +16,7 @@ export const Privacy = () => {
       </p>
       <h2>W naszej Polityce Prywatności:</h2>
       <p>
-        <b>Usługi</b>oznaczają każdy produkt, usługę, treść, funkcjonalność,
+        <b>Usługi</b> oznaczają każdy produkt, usługę, treść, funkcjonalność,
         technologię lub funkcję, wszystkie powiązane strony internetowe oraz
         aplikacje, które Ci oferujemy.
         <b>Serwis</b>oznacza strony internetowe, aplikacje i strony mobilne lub
@@ -26,12 +26,12 @@ export const Privacy = () => {
 
       <p>
         Głównym administratorem Twoich danych w zakresie świadczenia naszych
-        międzynarodowych usług jest Squeezed Team z siedzibą w Świat, adres: ul.
-        Nieznana 100, 00-000 Świat, Polska. Squeezed Team jest spółką, która
+        międzynarodowych usług jest Najemnicy z siedzibą w Świat, adres: ul.
+        Nieznana 100, 00-000 Świat, Polska. Najemnicy jest spółką, która
         świadczą usługi na Twoją rzecz zgodnie z naszym Regulaminem, (zwane
         dalej łącznie „Squeezed”, „my”, „nas” lub „nasze). Administratorem
         danych Twoich danych osobowych przetwarzanych w związku z usługami
-        świadczonymi za pośrednictwem polskiego Serwisu jest: Squeezed Team z
+        świadczonymi za pośrednictwem polskiego Serwisu jest: Najemnicy z
         siedzibą w Świat, adres: ul. Nieznana 100, 00-000 Świat, Polska.
         Squeezed. jest wpisana do rejestru przedsiębiorców prowadzonego przez
         Sąd Rejonowy Świat, XX Gospodarczy KRS pod numerem KRS 00000000001 oraz

@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 export const Footer = () => {
   return (
     <FooterContainer>
-      <NavLink to="/reg">REGULAMIN</NavLink>
+      <NavLink to="/statute">REGULAMIN</NavLink>
 
       <NavLink to="/privacy">POLITYKA PRYWATNOŚCI</NavLink>
 

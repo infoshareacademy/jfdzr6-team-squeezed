@@ -6,7 +6,7 @@ import { NewOffer } from "./Routes/NewOffer";
 import { OfferDetails } from "./components/OffersList/OfferDetails/OfferDetails";
 import { Navigation } from "./components/Nav/Nav";
 import { Contact } from "./components/Contact/Contact";
-import { AboutUs } from "./components/AboutUs/About";
+import { AboutUs } from "./components/AboutUs/AboutUs";
 import { Auth } from "./components/auth/Auth";
 import { Register } from "./components/auth/Register";
 import { Login } from "./components/auth/Login";
@@ -21,6 +21,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { Slider } from "./components/Landing/Slider";
 import { Footer } from "./components/Footer/Footer";
 import{Privacy} from"./components/Privacy/Privacy";
+import { Statute } from "./components/Statute/Statute";
 
 
 
@@ -69,6 +70,9 @@ function App() {
         <Route path="/" element={<Slider setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} flatsFromDb={flatsFromDb} />} />
         <Route path="/o-nas" element={<AboutUs />} />
         <Route path="/kontakt" element={<Contact />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/statute" element={<Statute />} />
+
         <Route path="/details/:id" element={<OfferDetails />} />
         <Route path="/search-results" element={<SearchResults flats={flats} setFlats={setFlats} flatsFromDb={flatsFromDb} setFavourites={setFavourites} />} />
 
@@ -80,7 +84,6 @@ function App() {
         <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
 
 
-        <Route path="/privacy" element={<Privacy />} />
 
       </Routes>
       <Footer />
