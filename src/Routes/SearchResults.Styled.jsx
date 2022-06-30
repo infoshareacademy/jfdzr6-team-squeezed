@@ -1,18 +1,16 @@
-import styled from "styled-components"
+import styled from "styled-components";
 export const SearchResultsContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 0%;
-    width: 100%;
-`
+  display: flex;
+  flex-direction: column;
+  /* background-color: yellow; */
+  /* background-color: #e3dddd; */
+`;
 
 export const ResultsWrapper = styled.div`
-    display: flex;
-     flex-direction: row;
-
-     @media (max-width: 800px) {
-        flex-direction: column;
-     }
-`
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+`;

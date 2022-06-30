@@ -1,6 +1,6 @@
 import { Carousel } from "react-bootstrap";
 import { useState } from "react";
-import { CarouselContainer } from "../../OffersList/SearchResults/SearchResults.Styled";
+import { CarouselContainer } from "../../OffersList/SearchResults/SearchResultsList.Styled";
 
 
 export const MapCarousel = ({photos, id}) => {

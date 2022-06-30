@@ -131,7 +131,8 @@ console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
         display: "flex",
         justifyContent: "center",
         position: "relative",
-        height: '85vh'
+        height: '85vh',
+        backgroundColor: 'red'
       }}>
       <div style={{ position: "relative", height: '100%' }}>
         <StyledMapHeader>
