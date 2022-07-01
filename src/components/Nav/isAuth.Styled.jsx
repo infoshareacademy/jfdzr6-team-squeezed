@@ -8,10 +8,14 @@ margin: 5px auto;
 
 
 p {
+    display: flex;
+justify-content: center;
 font-size: 12px;
 color: #0975C3;
 text-align: right;
-padding: 5px;
+padding: 5px auto;
+margin: 0 auto;
+
 }
 
 a {

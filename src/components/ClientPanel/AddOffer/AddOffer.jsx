@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { addDoc, collection, GeoPoint, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection, doc, GeoPoint, serverTimestamp } from "firebase/firestore";
 // import { useNavigate } from "react-router-dom";
 import { db, storage } from "../../../utils/firebase";
 import Geocode from "react-geocode";
@@ -14,15 +14,15 @@ import {
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
 
-export const AddOffer = () => {
+export const AddOffer = ({id}) => {
   return (
     <>
-      <AddOffer1 />
+      <AddOffer1 userId={id} />
     </>
   )
 };
 
-const AddOffer1 = ({ flats }) => {
+const AddOffer1 = ({ flats, userId}) => {
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
@@ -63,7 +63,7 @@ const AddOffer1 = ({ flats }) => {
       }
     }
 
-    Geocode.setApiKey("AIzaSyB9znA1OBO8ASzhNi_-M3SKRVwjdA04pyE");
+    Geocode.setApiKey("");
     Geocode.setLanguage("pl");
     Geocode.setRegion("pl");
     Geocode.setLocationType("ROOFTOP");
@@ -97,7 +97,7 @@ const AddOffer1 = ({ flats }) => {
           mailAddress: mailAddress.value,
           createAt: serverTimestamp(),
         };
-
+        const userDocRef = doc(db, 'users', userId)
         addDoc(flatsRef, {
           ...flat, cords: newGeo,
           isAC: (selectedFilters.isAC ? selectedFilters.isAC : false),
@@ -105,7 +105,9 @@ const AddOffer1 = ({ flats }) => {
           isFurnished: (selectedFilters.isFurnished ? selectedFilters.isFurnished : false),
           isLoggia: (selectedFilters.isLoggia ? selectedFilters.isLoggia : false),
           isParking: (selectedFilters.isParking ? selectedFilters.isParking : false),
-        });
+          userId: userDocRef
+
+        }).then((data) => console.log("test", data.id));
 
       },
       (error) => {
