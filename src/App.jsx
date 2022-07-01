@@ -85,7 +85,7 @@ function App() {
 
         </Route>
 
-        <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
+        <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer id={user.uid} />} />
         <Route path="mypanel" element={!isAuth ? <Navigate to="/auth/login" /> : <ClientPanel userId={user.uid} />} />
 
       </Routes>

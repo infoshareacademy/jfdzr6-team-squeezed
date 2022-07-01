@@ -26,6 +26,7 @@ export const ClientPanel = (props) => {
         id: doc.id,
         ...doc.data(),
       }));
+      console.log(result);
       setFlatsFromDb(result);
     });
   };
