@@ -209,6 +209,7 @@ const AddOffer1 = ({ flats }) => {
                 <br />
                 <input className="userData" type="email" name="mailAddress" id="mailAddress" required onChange={handleFilters} />
               </div>
+              <div className="box3.1"></div>
               <div className="checkboxStyles__checkbox">
                 <input className="checkboxInput" name="isElevator" type="checkbox" onChange={handleFilters} />
                 <label htmlFor="isElevator">Winda</label>
@@ -216,14 +217,14 @@ const AddOffer1 = ({ flats }) => {
 
               <div className="checkboxStyles__checkbox">
                 <input className="checkboxInput" name="isFurnished" type="checkbox" onChange={handleFilters} />
-                <label htmlFor="isFurnished">Umeblowanie</label>
+              <label htmlFor="isFurnished">Umeblowanie</label>
+
               </div>
 
               <div className="checkboxStyles__checkbox">
                 <input className="checkboxInput" name="isAC" type="checkbox" onChange={handleFilters} />
                 <label htmlFor="isAC">Klimatyzacja</label>
               </div>
-
               <div className="checkboxStyles__checkbox">
                 <input className="checkboxInput" name="isLoggia" type="checkbox" onChange={handleFilters} />
                 <label htmlFor="isLoggia">Balkon</label>

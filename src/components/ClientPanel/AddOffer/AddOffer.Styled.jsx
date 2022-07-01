@@ -4,6 +4,11 @@ import styled, { withTheme } from "styled-components";
 
 
 export const Container = styled.div`
+
+* {
+  box-sizing: border-box;
+}
+
   display:grid;
   margin: 0 auto;
   grid-template-columns: repeat(4, 1fr);
@@ -17,6 +22,8 @@ export const Container = styled.div`
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background-color:#e3dddd; */
+
+
 
 .colorStar{
   color:red;
@@ -59,7 +66,6 @@ export const Container = styled.div`
     width:100%;
     min-width: 340px;
     box-shadow:  2px 2px 6px 4px rgba(0,0,0,.13);
-    height:500px;
     margin-bottom:2px;
     min-height:385px;
     max-height:385px;
@@ -132,7 +138,6 @@ export const Container = styled.div`
     min-width: 160px;
     box-shadow:  2px 2px 6px 4px rgba(0,0,0,.13);
     margin-bottom:7px;
-    height:auto;
     font-size:12px;
     height:41px;
     border-radius: 20px;
@@ -263,12 +268,81 @@ img {
   align-items:center;
 }
 }
+
+  @media (max-width: 768px) {
+
+  * {
+  box-sizing: border-box;
+}
+  display:grid;
+  margin: 0 auto;
+  grid-template-columns: 1fr;
+  grid-template-rows: 5fr;
+  max-width: 768px;
+
+.box1{
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+.box2 {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  grid-template-columns: 1fr;
+  margin: 0 10px 0 10px;
+  padding-top:11px;
+}
+.box3 {
+  display:grid;
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+  padding-top:11px;
+  
+  .checkboxStyles {
+    width:100%;
+    margin: 0 auto;
+    height: auto;
+    display:grid;
+  }
+  .checkboxStyles_checkbox {
+
+    display:flex;
+    justify-content:left;
+    align-items: center;
+    margin: 0 auto;
+
+  }
+
+
+  input.userData {
+    margin-bottom:7px;
+    margin-top:-7px;
+  }
+
+}
+.box4 {
+  grid-column: 1 / 2;
+  grid-row: 5 / 6;
+  margin: 0 10px 0 10px;
+  padding-top:22px;
+}
+
+
+
+  }
+
+
 `
 
 export const MainDiv = styled.div`
 background-color:white;
 margin:0px 100px;
 padding:20px;
+
+ @media (max-width: 768px) {
+margin:0px 50px;
+padding:10px;
+ }
+
 `;
 
 
