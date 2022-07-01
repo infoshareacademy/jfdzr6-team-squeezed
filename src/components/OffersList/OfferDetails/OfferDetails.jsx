@@ -16,10 +16,12 @@ import priceSVG from "../Images/price.svg"
 import availableSVG from "../Images/available.svg"
 import { useParams } from "react-router-dom";
 import { Carousel, Button } from "react-bootstrap";
+import { useLoadScript } from "@react-google-maps/api";
+const libraries = ["places"];
 
 
 
-export const OfferDetails = () => {
+export const OfferDetails = ({setIsLanding}) => {
     const { id: idFlat } = useParams("id")
     const [flat, setFlat] = useState(null);
 
@@ -29,6 +31,14 @@ export const OfferDetails = () => {
     const [loader, setLoader] = useState(false);
 
 
+    // const { isLoaded, loadError } = useLoadScript({
+    //     googleMapsApiKey: "AIzaSyB9znA1OBO8ASzhNi_-M3SKRVwjdA04pyE",
+    //     language: 'pl',
+    //     libraries,
+    //   });
+    
+    //   if (loadError) return "Błąd ładowania mapy";
+    
     const userCollectionRef = collection(db, "contacts")
 
     const handleSubmit = (e) => {
@@ -65,9 +75,10 @@ export const OfferDetails = () => {
 
     }
 
-
     useEffect(() => {
         getFlats();
+        setIsLanding(true)
+
     }, [])
 
     if (flat === null) {
@@ -77,7 +88,6 @@ export const OfferDetails = () => {
     }
 
     const { title, city, size, price, street, rooms, userId, photos, mailAddress, mobileNumber, description, cords, floor, isFurnished, isElevator, isLoggia, isParking, isAC } = flat;
-
 
     return (
         <>
@@ -204,7 +214,8 @@ export const OfferDetails = () => {
                     </div>
 
                     <div className="map">
-                        <h3>Tutaj ma być mapa</h3>
+                    {/* {isLoaded ? <Map isLoaded={isLoaded} flats={flat} /> : null} */}
+
                     </div>
 
                 </section>

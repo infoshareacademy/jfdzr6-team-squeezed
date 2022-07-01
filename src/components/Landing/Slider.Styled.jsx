@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MegaSlider = styled.div`
   .slider {
     width: 100%;
-    height: 83vh;
+    height: 90vh;
     position: relative;
     overflow: hidden;
   }
@@ -16,19 +16,16 @@ export const MegaSlider = styled.div`
     height: 100%;
     opacity: 0;
     transition: all 5s ease;
-    
   }
 
   .slide img {
     object-fit: fill;
 
     @media (min-width: 650px) {
-
       width: 100%;
-    height: 100%;
+      height: 100%;
     }
   }
-
 
   .current {
     opacity: 1;
@@ -60,5 +57,4 @@ export const MegaSlider = styled.div`
       top: 25%;
     }
   }
-
 `;
