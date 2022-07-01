@@ -30,7 +30,7 @@ export const ContactPhoto = styled.div`
   }
 
   .aboutLink {
-    background-color: #0975c3;
+    background-color: #0975C3;
     color: white;
     text-decoration: none;
     font-weight: 900px;

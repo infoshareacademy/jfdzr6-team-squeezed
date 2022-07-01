@@ -12,7 +12,7 @@ export const StyledSearchSuggestion = styled.div`
 
   &:hover {
     color: #eeeaea;
-    background-color: #0975c3;
+    background-color: #0975C3;
     cursor: pointer;
     transition: background-color 0.2s;
   }
@@ -28,7 +28,7 @@ export const StyledSearchSuggestionsWrapper = styled.div`
   border: 1px solid black;
   border-radius: 20px;
   background-color: #eeeaea;
-  color: #0975c3;
+  color: #0975C3;
   overflow: hidden;
   text-align: left;
   z-index: 100;
@@ -91,12 +91,12 @@ export const StyledSearchWrapper = styled.div`
     font-family: "Montserrat", sans-serif;
   }
   button:hover {
-    background-color: #0975c3;
+    background-color: #0975C3;
     color: white;
   }
   button:active {
     background-color: white;
-    color: #0975c3;
+    color: #0975C3;
   }
 `;
 

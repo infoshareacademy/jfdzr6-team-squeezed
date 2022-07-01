@@ -78,7 +78,7 @@ export const InfoBox = styled.div`
       border-radius: 20px;
       text-align: center;
       padding: 10px 20px;
-      background-color: #0975c3;
+      background-color: #0975C3;
       color: #fff;
       font-size: 14px;
       font-weight: 900;
@@ -127,7 +127,7 @@ export const PriceBox = styled.div`
 
 export const MoreInfoBtn = styled.button`
   width: 100px;
-  background-color: #0975c3;
+  background-color: #0975C3;
   color: white;
   padding: 5px;
   font-size: 20px;
