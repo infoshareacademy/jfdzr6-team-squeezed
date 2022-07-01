@@ -49,11 +49,11 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, user => {
       console.log('auth user', user)
-      console.log('auth user uid', user.uid)
       if (user) {
         setIsAuth(true)
         setUser(user)
       } else {
+        console.log("ustawiam isAuth na false")
         setIsAuth(false)
         setUser(null)
       }
@@ -61,7 +61,7 @@ function App() {
     getFlats();
   }, [])
 
-
+  console.log("status auth", isAuth)
   return (
 
     <BrowserRouter>
