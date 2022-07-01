@@ -254,8 +254,8 @@ const AddOffer1 = ({ flats }) => {
                       required
                     />
                   </PhotoLabel>
-                  <div>
-                    {error === true ? "Dodaj zdjęcia" : null}
+                  <div className="infoAboutAddingPictures">
+                    <b>{error === true ? "Dodaj zdjęcia" : null}</b>
                   </div>
                 </div>
                 <br />
@@ -275,7 +275,7 @@ const AddOffer1 = ({ flats }) => {
                         console.log("Wgrane zdjęcia");
                       }}
                     >
-                      Wgrano {selectedPhotos.length} zdjęć
+                      Ilość zdjęć: {selectedPhotos.length}
                       {selectedPhotos.length === 1 ? "" : ""}
                     </button>
                   ))}

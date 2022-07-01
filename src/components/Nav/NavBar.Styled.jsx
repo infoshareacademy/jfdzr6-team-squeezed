@@ -10,6 +10,7 @@ margin: 0 auto;
 padding: 20px;
 font-family: 'Montserrat', sans-serif;
 
+
 @media (max-width: 800px) {
 
 }

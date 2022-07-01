@@ -11,7 +11,7 @@ import {
   MoreInfoBox,
   CarouselContainer,
   CarouselContainerInMsgBox,
-} from "./SearchResults.Styled";
+} from "./SearchResultsList.Styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import citySVG from "../Images/city.svg";
 import sizeSVG from "../Images/size.svg";

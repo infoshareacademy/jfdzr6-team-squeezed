@@ -24,14 +24,12 @@ export const Container = styled.div`
 }
 
 
-p{
-  margin-top:5%;
-}
 
 .box1{
   grid-column: 1 / 3;
   grid-row: 1 / 2;
   margin: 0 10px 0 10px;
+  padding-top:22px;
 
   input {
     border:0;
@@ -53,7 +51,7 @@ p{
 
   label.description {
     margin-bottom:2px;
-    margin-top:10px;
+    margin-top:5px;
   }
 
   textarea {
@@ -63,10 +61,11 @@ p{
     box-shadow:  2px 2px 6px 4px rgba(0,0,0,.13);
     height:500px;
     margin-bottom:2px;
-    min-height:350px;
-    max-height:350px;
+    min-height:385px;
+    max-height:385px;
     border-radius: 20px;
-    padding: 1px 10px;
+    padding: 6px 10px;
+    font-size: 12px;
   }
 }
 
@@ -76,7 +75,7 @@ p{
   grid-row: 1 / 2;
   grid-template-columns: 1fr;
   margin: 0 10px 0 10px;
-  padding-top:11%;
+  padding-top:22px;
 
   .labelStyle {
     width:100%;
@@ -110,7 +109,7 @@ p{
   grid-row: 1 / 2;
   grid-template-columns: 1fr;
   margin: 0 10px 0 10px;
-  padding-top:11%;
+  padding-top:22px;
   
   .checkboxStyles {
     width:100%;
@@ -174,10 +173,16 @@ display:flex;
 
 }
 
-
+.infoAboutAddingPictures {
+  color:red;
+  margin: 5px auto 0px auto;
+  
+}
 
 .photosLabel {
   background-color: white;
+  margin: 0 auto;
+  
 
 }
 
@@ -229,6 +234,11 @@ img {
   background-color: #0975C3;
   border-radius: 20px;
   padding: 1px 4px;
+   &:hover {
+        background-color: white;
+        color: #0975C3;
+        
+      }
   
   
 }
