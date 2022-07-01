@@ -1,5 +1,5 @@
 import { db } from "../../../utils/firebase";
-import { collection, doc, getDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { ContainerDivStyled } from "./OfferDetails.Styled"
 import emailSVG from "../../auth/email.png"
@@ -16,13 +16,48 @@ import priceSVG from "../Images/price.svg"
 import availableSVG from "../Images/available.svg"
 import { useParams } from "react-router-dom";
 import { Carousel, Button } from "react-bootstrap";
+import { useLoadScript } from "@react-google-maps/api";
+const libraries = ["places"];
 
 
 
 export const OfferDetails = ({setIsLanding}) => {
     const { id: idFlat } = useParams("id")
-
     const [flat, setFlat] = useState(null);
+
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+    const [loader, setLoader] = useState(false);
+
+
+    // const { isLoaded, loadError } = useLoadScript({
+    //     googleMapsApiKey: "AIzaSyB9znA1OBO8ASzhNi_-M3SKRVwjdA04pyE",
+    //     language: 'pl',
+    //     libraries,
+    //   });
+    
+    //   if (loadError) return "Błąd ładowania mapy";
+    
+    const userCollectionRef = collection(db, "contacts")
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setLoader(true)
+        addDoc(userCollectionRef, {
+            name: name,
+            email: email,
+            message: message
+        }).then(() => {
+            if (!alert("wiadomość została wysłana 💬"));
+            setLoader(false)
+        }).catch((error) => {
+            alert(error.message);
+            setLoader(false)
+        })
+    }
+
+
     const caruselInterval = 36000000;
     const getFlats = () => {
         const flatsCollection = doc(db, 'flats', idFlat);
@@ -53,7 +88,6 @@ export const OfferDetails = ({setIsLanding}) => {
     }
 
     const { title, city, size, price, street, rooms, userId, photos, mailAddress, mobileNumber, description, cords, floor, isFurnished, isElevator, isLoggia, isParking, isAC } = flat;
-
 
     return (
         <>
@@ -91,21 +125,23 @@ export const OfferDetails = ({setIsLanding}) => {
                                 <p className="first">{mobileNumber}</p>
                             </div>
                         </div>
-                        <form >
+
+                        <form>
                             <div className="formDiv">
                                 <img className="iconInput" src={userPNG} alt="" />
-                                <input name="name" type="text" placeholder="Wpisz swoję imię"></input>
+                                <input name="name" type="text" placeholder="Wpisz swoję imię" onChange={(e) => setName(e.target.value)} ></input>
                             </div>
                             <div className="formDiv">
                                 <img className="iconInput" src={emailSVG} alt="" />
-                                <input name="email" type="email" placeholder="Wpisz swój email"></input>
+                                <input name="email" type="email" placeholder="Wpisz swój email" onChange={(e) => setEmail(e.target.value)}  ></input>
                             </div>
                             <div className="formArea">
                                 <img className="iconInput" src={textAreaPNG} alt="" />
-                                <textarea name="textarea" id="" cols="35" rows="10" placeholder=""></textarea>
+                                <textarea name="textarea" id="" cols="35" rows="10" placeholder="Zostaw tutaj wiadomość" onChange={(e) => setMessage(e.target.value)}  ></textarea>
                             </div>
-                            <button>Wyślij wiadomość</button>
+                            <button onClick={handleSubmit} style={{ background: loader ? "#0cb482" : "#0975C3" }}>Wyślij wiadomość</button>
                         </form>
+
                     </div>
 
                 </section>
@@ -178,7 +214,8 @@ export const OfferDetails = ({setIsLanding}) => {
                     </div>
 
                     <div className="map">
-                        <h3>Tutaj ma być mapa</h3>
+                    {/* {isLoaded ? <Map isLoaded={isLoaded} flats={flat} /> : null} */}
+
                     </div>
 
                 </section>

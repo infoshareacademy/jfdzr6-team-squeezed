@@ -62,7 +62,7 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
                 </li>
                 <li>
                   <NavLink to="addoffer">Dodaj ogłoszenie</NavLink>
-                </li>{" "}
+                </li>
                 <li onClick={() => signOut(auth)}>
                   <NavLink to="/">Wyloguj się</NavLink>
                 </li>
@@ -75,12 +75,11 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
       {email && (
         <AuthStyled>
           <p className="auth">
-            Jesteś zalogowany pod adresem:{" "}
+            Jesteś zalogowany pod adresem:
             <a href="mailto:" target="_blank">
-              {" "}
               {email}
             </a>
-          </p>{" "}
+          </p>
         </AuthStyled>
       )}
     </>

@@ -31,6 +31,7 @@ export const StyledSearchSuggestionsWrapper = styled.div`
   color: #0975c3;
   overflow: hidden;
   text-align: left;
+  z-index: 100;
 
   transition: background-color 0.5s;
 

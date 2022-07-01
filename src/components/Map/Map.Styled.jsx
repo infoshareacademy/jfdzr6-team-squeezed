@@ -13,14 +13,9 @@ display: flex;
  justify-content: 'space-between';
  align-items: center;
  font-weight: bold;
-&:hover {
-    color: #fff;
-    background-color: #0975C3;
-
-    transition: all .3s;
 
 
-}
+
 `
 
 export const InfoWindowBackground = styled.div`
@@ -28,12 +23,8 @@ export const InfoWindowBackground = styled.div`
                   display: flex;
                   flex-direction: column;
                   align-items: flex-start;
-        &:hover {
-        background-color: #0975C3;
-    color: #fff;
 
-        transition: all .3s;
-    }
+
 `
 // position: absolute;
 // top: 2rem;

@@ -6,7 +6,7 @@ import { mapContainerStyle, center, options } from "../../utils/mapConfig";
 import logo from "./logo-icon-only-blue.svg";
 import markerSVG from "./ts-map-pin.svg";
 import { MapCarousel } from "./MapCarousel/MapCarousel";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Map = ({ flats, isLoaded }) => {
   const [activeMarker, setActiveMarker] = useState(null);
@@ -54,6 +54,7 @@ console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
       cords ? (
         <Marker
           key={id}
+          animation={window.google.maps.Animation.DROP}
           position={{ lat: cords._lat, lng: cords._long }}
           onClick={() => handleActiveMarker(id)}
           label={{ text: `${price}zł`, color: "darkred", fontWeight: "bold", TextOutline: "4px solid #f0f0f0"}}
@@ -61,7 +62,10 @@ console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
           icon={{
             url: markerSVG,
             scaledSize: new window.google.maps.Size(50, 50),
-            labelOrigin: new google.maps.Point(20, 40),
+            labelOrigin: new google.maps.Point(20, 55),
+            strokeWeight: 2,
+            fillColor: '#009933',
+            fillOpacity: 1,
           }}>
           {activeMarker === id ? (
             <InfoWindow
@@ -80,7 +84,7 @@ console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
                     alignContent: "flex-start",
                     width: '100%',
                   }}>
-                                  <NavLink to={`/details/${id}`} style={{textDecoration: 'none', color: 'black'}}>
+                                  <Link to={`/details/${id}`} style={{textDecoration: 'none', color: 'black'}} target="_blank">
 
                     <div style={{position: 'absolute', top: '5px', padding: '2px', color: '#FFF', background: '#5a5656ac', zIndex: '10', fontWeight: 'bold', fontSize: '20px' }}>
                       {size} m<sup>2</sup>{" "}
@@ -90,7 +94,7 @@ console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
                     <div style={{fontSize: '24px'}}>
                       <b>{price} zł</b>
                     </div></InfoWindowBottomBackground>
-                    </NavLink>
+                    </Link>
 
                   <div></div>
                 </div>
