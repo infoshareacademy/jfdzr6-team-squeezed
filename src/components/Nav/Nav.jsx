@@ -8,9 +8,7 @@ import { useEffect } from "react";
 import logo from "./logo/logo.ico";
 
 export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats, setIsLanding, isLanding  }) => {
-  useEffect(()=> {
-    setIsLanding(false)
-  },[])
+
   return (
     <>
       <NavBar className="navbar is-primary">

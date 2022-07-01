@@ -4,7 +4,7 @@ import { useEffect, useRef, useCallback } from "react";
 import { InfoWindowBackground, InfoWindowBottomBackground, StyledMapHeader } from "./Map.Styled";
 import { mapContainerStyle, center, options } from "../../utils/mapConfig";
 import logo from "./logo-icon-only-blue.svg";
-import markerSVG from "./NicePng_home-icon-png_233447.png";
+import markerSVG from "./ts-map-pin.svg";
 import { MapCarousel } from "./MapCarousel/MapCarousel";
 import { NavLink } from "react-router-dom";
 
@@ -56,11 +56,11 @@ console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
           key={id}
           position={{ lat: cords._lat, lng: cords._long }}
           onClick={() => handleActiveMarker(id)}
-          label={{ text: `${price}zł`, color: "#ffffff", fontWeight: "bold", TextOutline: "4px solid #f0f0f0"}}
+          label={{ text: `${price}zł`, color: "darkred", fontWeight: "bold", TextOutline: "4px solid #f0f0f0"}}
           labelStyle={{backgroundColor: 'black'}}
           icon={{
             url: markerSVG,
-            scaledSize: new window.google.maps.Size(30, 30),
+            scaledSize: new window.google.maps.Size(50, 50),
             labelOrigin: new google.maps.Point(20, 40),
           }}>
           {activeMarker === id ? (
@@ -123,7 +123,7 @@ console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
         display: "flex",
         justifyContent: "center",
         position: "relative",
-        height: '85vh'
+        height: '85vh',
       }}>
       <div style={{ position: "relative", height: '100%' }}>
         <StyledMapHeader>

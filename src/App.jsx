@@ -6,7 +6,7 @@ import { NewOffer } from "./Routes/NewOffer";
 import { OfferDetails } from "./components/OffersList/OfferDetails/OfferDetails";
 import { Navigation } from "./components/Nav/Nav";
 import { Contact } from "./components/Contact/Contact";
-import { AboutUs } from "./components/AboutUs/About";
+import { AboutUs } from "./components/AboutUs/AboutUs";
 import { Auth } from "./components/auth/Auth";
 import { Register } from "./components/auth/Register";
 import { Login } from "./components/auth/Login";
@@ -20,6 +20,9 @@ import { db } from "./utils/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { Slider } from "./components/Landing/Slider";
 import { Footer } from "./components/Footer/Footer";
+import{Privacy} from"./components/Privacy/Privacy";
+import { Statute } from "./components/Statute/Statute";
+import { ClientPanel } from "./components/ClientPanel/ClientPanel";
 
 
 
@@ -70,6 +73,9 @@ function App() {
         <Route path="/o-nas" element={<AboutUs setIsLanding={setIsLanding}/>} />
         <Route path="/kontakt" element={<Contact setIsLanding={setIsLanding}/>} />
         <Route path="/details/:id" element={<OfferDetails setIsLanding={setIsLanding}/>} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/statute" element={<Statute />} />
+
         <Route path="/search-results" element={<SearchResults flats={flats} setFlats={setFlats} flatsFromDb={flatsFromDb} setFavourites={setFavourites} />} />
 
         <Route path="auth" element={isAuth ? <Navigate to="/addoffer" /> : <Auth />} >
@@ -78,6 +84,9 @@ function App() {
           <Route path="forgot-password" element={isAuth ? <Navigate to="/auth/login" /> : <ForgotPassword />} />
         </Route>
         <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
+
+        <Route path="mypanel" element={!isAuth ? <Navigate to="/auth/login" /> : <ClientPanel userId={user.uid}/>} />
+
       </Routes>
       <Footer />
     </BrowserRouter>

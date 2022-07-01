@@ -2,7 +2,7 @@ import { Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
-import { StyledFavouriteBtn } from "../SearchResults.Styled";
+import { StyledFavouriteBtn } from "../SearchResultsList.Styled";
 
 export const FavouriteBtn = ({ flat }) => {
   const [newFavourite, setNewFavourite] = useState(true);

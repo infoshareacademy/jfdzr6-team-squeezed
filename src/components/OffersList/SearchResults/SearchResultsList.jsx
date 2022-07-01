@@ -11,7 +11,7 @@ import {
   MoreInfoBox,
   CarouselContainer,
   CarouselContainerInMsgBox,
-} from "./SearchResults.Styled";
+} from "./SearchResultsList.Styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import citySVG from "../Images/city.svg";
 import sizeSVG from "../Images/size.svg";
@@ -19,7 +19,6 @@ import roomsSVG from "../Images/pokoje.svg";
 import streetSVG from "../Images/street.svg";
 import flatsizeSVG from "../Images/flatsize.svg";
 import priceSVG from "../Images/price.svg";
-
 import {
   faMagnifyingGlassPlus,
   faXmark,
@@ -87,7 +86,7 @@ export const SearchResultsList  = ({ flats, favourites, userId }) => {
             )}
 
             <InfoBox>
-              <h3> {flat.title}</h3>
+              <h3> <b>{flat.title}</b></h3>
               <div>
                 <p>
                   <b>

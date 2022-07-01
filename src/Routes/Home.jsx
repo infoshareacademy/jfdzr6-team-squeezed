@@ -1,4 +1,4 @@
-import { SearchResultsList } from "../components/OffersList/SearchResults/SearchResults";
+import { SearchResultsList } from "../components/OffersList/SearchResults/SearchResultsList";
 import { SearchBar } from "../components/SearchOffers/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
 import { useLoadScript } from "@react-google-maps/api";

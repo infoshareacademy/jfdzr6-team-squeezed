@@ -4,6 +4,7 @@ import { InputFilter } from "../SearchFilters/InputFilter/InputFilter";
 import { StyledInputFilterPrice } from "../SearchFilters/InputFilter/InputFilter.Styled";
 import { StyledLabel } from "../SearchFilters/Label.Styled";
 import { SearchFilters } from "../SearchFilters/SearchFilters";
+import markerSVG from "../../Map/ts-map-pin.svg"
 import {
   SingleCheckboxContainer,
   StyledInputCheckboxWrapper,
@@ -21,6 +22,16 @@ import {
 } from "./SearchBar.Styled";
 import { useNavigate } from "react-router-dom";
 
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  getDoc,
+  doc,
+} from "firebase/firestore";
+
+import { db } from "../../../utils/firebase";
 export const SearchBar = ({
   setFlats,
   flatsFromDb,
@@ -74,9 +85,26 @@ export const SearchBar = ({
   const handleSuggestionPick = (e) => {
     setPickedSuggestion(e.target.innerText.slice(3));
     setSuggestionsToPrint([]);
-    handleCitySearch();
   };
-
+  const getFlats = (flatsResults) => {
+    const flatsCollection = collection(db, "flats");
+    // const userDoc = doc(db, "users");
+    let sizeQuery, priceQuery, roomsQuery ;
+    if (selectedFilters.sizeMin) { sizeQuery = query(flatsCollection, where("size", ">=", selectedFilters.sizeMin)) }
+    // if (selectedFilters.sizeMin) { sizeQuery = query(flatsCollection, where("size", "<=", selectedFilters.sizeMax)) }
+    
+    // selectedFilters.priceMin && selectedFilters.priceMax != undefined ? priceQuery = query(flatsCollection, where("price", ">=", selectedFilters.priceMin), where("price", "<=", selectedFilters.priceMax));
+    // selectedFilters.roomsMin && selectedFilters.roomsMax != undefined ? priceQuery = query(flatsCollection, where("price", ">=", selectedFilters.priceMin), where("price", "<=", selectedFilters.priceMax));
+    getDocs(sizeQuery).then((querySnapshot) => {
+      const result = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      let filteredRes = flatsResults.filter(flat => result.filter(result => result == flat) )
+      setFlats(filteredRes)
+      // setFlatsFromDb(result);
+    });
+  };
   //filter and return flats IDs from input
   const handleCitySearch = (e) => {
     e.preventDefault();
@@ -90,29 +118,43 @@ export const SearchBar = ({
       roomsMax,
       floorMin,
       floorMax,
-      isAC,
-      isElevator,
-      isFurnished,
-      isLoggia,
-      isParking,
+      // isAC,
+      // isElevator,
+      // isFurnished,
+      // isLoggia,
+      // isParking,
     } = e.target;
 
-    let flatsResults = [];
     console.log(flatsFromDb);
-    flatsResults = flatsFromDb.filter(
-      (flat) => flat.city === searchCity.value
-      (sizeMin.value === "" || sizeMin.value <= flat.size) &&
-      (sizeMax.value === undefined || sizeMax.value >= flat.size) 
+    console.log(searchCity.value);
+
+    console.log(selectedFilters.sizeMin)
+
+
+    let flatsResults = flatsFromDb.filter(
+      (flat) =>
+        flat.city === searchCity.value 
+
+      // (selectedFilters.sizeMin != undefined ? selectedFilters.sizeMax >= flat.size : flat.size) &&
+      // (selectedFilters.priceMin != undefined ? selectedFilters.priceMin <= flat.price : flat.price) &&
+      // (selectedFilters.priceMax != undefined ? selectedFilters.priceMax >= flat.price : flat.price)
       // (priceMin.value === "" || priceMin.value <= flat.price) &&
       // (priceMax.value === "" || priceMax.value >= flat.price) &&
       // (roomsMin.value === "" || roomsMin.value <= flat.rooms) &&
-      // (roomsMax.value === "" || roomsMax.value >= flat.rooms)
+      // (roomsMax.value === "" || roomsMax.value >= flat.rooms) &&
       // (floorMin.value === "" || floorMin.value <= flat.floor) &&
-      // (floorMax.value === "" || floorMax.value >= flat.floor)
+      // (floorMax.value === "" || floorMax.value >= flat.floor) &&
+      // (isAC && isAC === flat.isAC)
     );
-
+    // selectedFilters.sizeMin != undefined ? (flatsResults = flatsResults.filter((flat) => selectedFilters.sizeMin <= flat.size)) : flatsResults
+    // selectedFilters.sizeMax != undefined ? flatsResults = flatsResults.filter((flat) => selectedFilters.sizeMax >= flat.size) : flatsResults
+    // selectedFilters.priceMin != undefined ? flatsResults = flatsResults.filter((flat) => selectedFilters.priceMin <= flat.price) : flatsResults
+    // selectedFilters.priceMax != undefined ? flatsResults = flatsResults.filter((flat) => selectedFilters.priceMax >= flat.price) : flatsResults
+    //   // Object.keys(selectedFilters).length > 0 ? getFlats() : null
     //continue with filtering results
-    setFlats(flatsResults);
+    console.log(flatsResults)
+    getFlats(flatsResults);
+    // setFlats(flatsResults);
     setSuggestionsToPrint([]);
     setIsLanding(false);
     navigate("/search-results");
@@ -132,7 +174,7 @@ export const SearchBar = ({
 
   useEffect(() => {
     setSearchSuggestions([...new Set(flatsFromDb?.map(({ city }) => city))]);
-  }, [flatsFromDb, pickedSuggestion, selectedFilters]);
+  }, [flatsFromDb, pickedSuggestion]);
 
   return (
     <SearchForm onSubmit={handleCitySearch} autoComplete='off'>
@@ -187,6 +229,7 @@ export const SearchBar = ({
                     <input
                       placeholder='min'
                       name='sizeMin'
+                      value={selectedFilters.sizeMin}
                       onChange={handleFilters}
                       type='number'
                     />
@@ -196,6 +239,7 @@ export const SearchBar = ({
                     <input
                       type='number'
                       placeholder='max'
+                      value={selectedFilters.sizeMax}
                       name='sizeMax'
                       onChange={handleFilters}
                     />
@@ -212,6 +256,7 @@ export const SearchBar = ({
                 <StyledInputTitle>
                   <input
                     placeholder='min'
+                    value={selectedFilters.priceMin}
                     name='priceMin'
                     onChange={handleFilters}
                   />
@@ -219,6 +264,7 @@ export const SearchBar = ({
                   <StyledLabel htmlFor='text'></StyledLabel>
                   <input
                     placeholder='max'
+                    value={selectedFilters.priceMax}
                     name='priceMax'
                     onChange={handleFilters}
                   />
@@ -237,11 +283,15 @@ export const SearchBar = ({
                   <input
                     placeholder='min'
                     name='roomsMin'
+                    value={selectedFilters.roomsMin}
+
                     onChange={handleFilters}
                   />
                   <StyledLabel htmlFor='text'></StyledLabel>
                   <input
                     placeholder='max'
+                    value={selectedFilters.roomsMax}
+
                     name='roomsMax'
                     onChange={handleFilters}
                   />
@@ -260,12 +310,16 @@ export const SearchBar = ({
                   <input
                     placeholder='min'
                     name='floorMin'
+                    value={selectedFilters.floorMin}
+
                     onChange={handleFilters}
                   />
                   <StyledLabel htmlFor='text'></StyledLabel>
 
                   <input
                     placeholder='max'
+                    value={selectedFilters.floorMax}
+
                     name='floorMax'
                     onChange={handleFilters}
                   />

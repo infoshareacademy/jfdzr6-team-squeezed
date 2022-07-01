@@ -2,13 +2,22 @@ import { useState, useEffect } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 import Map from "../components/Map/Map";
 import { Spinner } from "react-bootstrap";
-import { SearchResultsList } from "../components/OffersList/SearchResults/SearchResults";
+import { SearchResultsList } from "../components/OffersList/SearchResults/SearchResultsList";
 import { SearchBar } from "../components/SearchOffers/SearchBar/SearchBar";
 import { SearchWrapper } from "../components/SearchOffers/SearchWrapper/SearchWrapper";
-import { ResultsWrapper, SearchResultsContainer } from "./SearchResults.Styled";
+import {
+  ResultsWrapper,
+  SearchResultsContainer,
+  SearchResultListParent,
+} from "./SearchResults.Styled";
 
 const libraries = ["places"];
-export const SearchResults = ({flats, flatsFromDb, setFlats, setFavourites}) => {
+export const SearchResults = ({
+  flats,
+  flatsFromDb,
+  setFlats,
+  setFavourites,
+}) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyB9znA1OBO8ASzhNi_-M3SKRVwjdA04pyE",
     language: 'pl',
@@ -20,18 +29,22 @@ export const SearchResults = ({flats, flatsFromDb, setFlats, setFavourites}) => 
 
 
   return (
-      <SearchResultsContainer>
-      <SearchWrapper >
-            {/* <SearchBar
+    <SearchResultsContainer>
+      <SearchWrapper>
+        {/* <SearchBar
           flatsFromDb={flatsFromDb}
           setFlats={setFlats}
           setFavourites={setFavourites}
           flats={flats}
         /> */}
       </SearchWrapper>
-    <ResultsWrapper>
-      {isLoaded && flats ? <Map isLoaded={isLoaded} flats={flats} /> : null}
-      <SearchResultsContainer><SearchResultsList flats={flats} /></SearchResultsContainer>
-    </ResultsWrapper></SearchResultsContainer>
+
+      <ResultsWrapper>
+        {isLoaded && flats ? <Map isLoaded={isLoaded} flats={flats} /> : null}
+        <SearchResultListParent>
+          <SearchResultsList flats={flats} />
+        </SearchResultListParent>
+      </ResultsWrapper>
+    </SearchResultsContainer>
   );
 };
