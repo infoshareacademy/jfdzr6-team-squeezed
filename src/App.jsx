@@ -20,7 +20,7 @@ import { db } from "./utils/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { Slider } from "./components/Landing/Slider";
 import { Footer } from "./components/Footer/Footer";
-import{Privacy} from"./components/Privacy/Privacy";
+import { Privacy } from "./components/Privacy/Privacy";
 import { Statute } from "./components/Statute/Statute";
 import { ClientPanel } from "./components/ClientPanel/ClientPanel";
 
@@ -64,8 +64,9 @@ function App() {
 
 
   return (
+
     <BrowserRouter>
-      <Navigation isAuth={isAuth} email={user?.email} flatsFromDb={flatsFromDb} setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} setFavourites={setFavourites} flats={flats}/>
+      <Navigation isAuth={isAuth} email={user?.email} flatsFromDb={flatsFromDb} setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} setFavourites={setFavourites} flats={flats} />
       <Routes>
 
         <Route path="/" element={<Slider setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} flatsFromDb={flatsFromDb} />} />
@@ -83,8 +84,7 @@ function App() {
           <Route path="forgot-password" element={isAuth ? <Navigate to="/auth/login" /> : <ForgotPassword />} />
         </Route>
         <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
-
-        <Route path="mypanel" element={!isAuth ? <Navigate to="/auth/login" /> : <ClientPanel userId={user.uid}/>} />
+        <Route path="mypanel" element={!isAuth ? <Navigate to="/auth/login" /> : <ClientPanel userId={user.uid} />} />
 
       </Routes>
       <Footer />

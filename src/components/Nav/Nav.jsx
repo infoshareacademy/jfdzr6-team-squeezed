@@ -7,10 +7,10 @@ import { SearchBar } from "../SearchOffers/SearchBar/SearchBar";
 import { useEffect } from "react";
 import logo from "./logo/logo.ico";
 
-export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats  }) => {
-  useEffect(()=> {
+export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats }) => {
+  useEffect(() => {
 
-  },[])
+  }, [])
   return (
     <>
       <NavBar className="navbar is-primary">
@@ -32,12 +32,12 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
         </div>
         <div>
           {flats.length > 0 &&
-        <SearchBar
-          flatsFromDb={flatsFromDb}
-          setFlats={setFlats}
-          setFavourites={setFavourites}
-          flats={flats}
-        /> }
+            <SearchBar
+              flatsFromDb={flatsFromDb}
+              setFlats={setFlats}
+              setFavourites={setFavourites}
+              flats={flats}
+            />}
         </div>
 
         <div className="logBar">
@@ -63,7 +63,7 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
                 </li>
                 <li>
                   <NavLink to="addoffer">Dodaj ogłoszenie</NavLink>
-                </li>{" "}
+                </li>
                 <li onClick={() => signOut(auth)}>
                   <NavLink to="/">Wyloguj się</NavLink>
                 </li>
@@ -76,12 +76,11 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
       {email && (
         <AuthStyled>
           <p className="auth">
-            Jesteś zalogowany pod adresem:{" "}
+            Jesteś zalogowany pod adresem:
             <a href="mailto:" target="_blank">
-              {" "}
               {email}
             </a>
-          </p>{" "}
+          </p>
         </AuthStyled>
       )}
     </>
