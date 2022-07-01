@@ -22,15 +22,6 @@ import {
 } from "./SearchBar.Styled";
 import { useNavigate } from "react-router-dom";
 
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  getDoc,
-  doc,
-} from "firebase/firestore";
-
 import { db } from "../../../utils/firebase";
 export const SearchBar = ({
   setFlats,
@@ -86,27 +77,11 @@ export const SearchBar = ({
     setPickedSuggestion(e.target.innerText.slice(3));
     setSuggestionsToPrint([]);
   };
-  // const getFlats = () => {
-  //   const flatsCollection = collection(db, "flats");
-  //   // const userDoc = doc(db, "users");
-  //   let sizeQuery, priceQuery, roomsQuery ;
-  //   if (selectedFilters.sizeMin) { sizeQuery = query(flatsCollection, where("size", ">=", selectedFilters.sizeMin)) }
-  //   // if (selectedFilters.sizeMin) { sizeQuery = query(flatsCollection, where("size", "<=", selectedFilters.sizeMax)) }
 
-  //   // selectedFilters.priceMin && selectedFilters.priceMax != undefined ? priceQuery = query(flatsCollection, where("price", ">=", selectedFilters.priceMin), where("price", "<=", selectedFilters.priceMax));
-  //   // selectedFilters.roomsMin && selectedFilters.roomsMax != undefined ? priceQuery = query(flatsCollection, where("price", ">=", selectedFilters.priceMin), where("price", "<=", selectedFilters.priceMax));
-  //   getDocs(sizeQuery).then((querySnapshot) => {
-  //     const result = querySnapshot.docs.map((doc) => ({
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     }));
-  //     setFlats(result)
-  //     // setFlatsFromDb(result);
-  //   });
-  // };
   //filter and return flats IDs from input
   const handleCitySearch = (e) => {
     e.preventDefault();
+    showMoreFilters === true ? setShowMoreFilters(!showMoreFilters) : null;
     const {
       searchCity,
       // sizeMin,
@@ -124,18 +99,22 @@ export const SearchBar = ({
       // isParking,
     } = e.target;
 
-    console.log(flatsFromDb);
-    console.log(searchCity.value);
-
-    console.log(selectedFilters.sizeMin);
-
+    //create filters object and delete positions with empty strings values
     let selectedFilersWithoutBlank = selectedFilters;
     for (const key in selectedFilersWithoutBlank) {
       if (selectedFilersWithoutBlank[key] === "") {
         delete selectedFilersWithoutBlank[key];
       }
     }
-    console.log(selectedFilersWithoutBlank);
+    //filter checkbox filters from all filters
+    let checkboxFilters = selectedFilters;
+    for (const key in checkboxFilters) {
+      if (typeof checkboxFilters[key] !== "boolean") {
+        delete checkboxFilters[key];
+      }
+    }
+
+    //filter flats
     let flatsResults = flatsFromDb
       .filter((flat) => flat.city === searchCity.value)
       .filter((flat) =>
@@ -169,15 +148,20 @@ export const SearchBar = ({
           : flat
       )
       .filter((flat) =>
-      selectedFilersWithoutBlank.floorMin != undefined
-        ? selectedFilersWithoutBlank.floorMin <= flat.floor
-        : flat
-    )
-    .filter((flat) =>
-    selectedFilersWithoutBlank.floorMax != undefined
-      ? selectedFilersWithoutBlank.floorMax >= flat.floor
-      : flat
-  );
+        selectedFilersWithoutBlank.floorMin != undefined
+          ? selectedFilersWithoutBlank.floorMin <= flat.floor
+          : flat
+      )
+      .filter((flat) =>
+        selectedFilersWithoutBlank.floorMax != undefined
+          ? selectedFilersWithoutBlank.floorMax >= flat.floor
+          : flat
+      )
+    //   .filter((flat) =>
+    //   Object.keys(checkboxFilters).map((key) =>
+    //     flat[key] && flat[key] === checkboxFilters[key] ? flat : null
+    //   ) 
+    // );
 
     // (selectedFilters.sizeMin != undefined ? selectedFilters.sizeMax >= flat.size : flat.size) &&
     // (selectedFilters.priceMin != undefined ? selectedFilters.priceMin <= flat.price : flat.price) &&
@@ -203,6 +187,7 @@ export const SearchBar = ({
     setIsLanding(false);
     navigate("/search-results");
   };
+  //handle all filters
   const handleFilters = (e) => {
     e.target.type === "checkbox"
       ? setSelectedFilters({
@@ -259,7 +244,10 @@ export const SearchBar = ({
             </StyledSearchSuggestionsWrapper>
           )}
           {flats != undefined && (
-            <button type="button" className='filters-Btn' onClick={handleShowMoreFilters}>
+            <button
+              type='button'
+              className='filters-Btn'
+              onClick={handleShowMoreFilters}>
               Filtry
             </button>
           )}
