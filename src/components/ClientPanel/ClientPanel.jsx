@@ -38,7 +38,7 @@ export const ClientPanel = (props) => {
 
   return (
     <div>
-      <SearchResultsList flats={flatsFromDb} userId={props.userId}/>
+      <SearchResultsList flats={flatsFromDb} userId={props.userId} />
     </div>
   );
 };

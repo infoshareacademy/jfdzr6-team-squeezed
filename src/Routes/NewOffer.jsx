@@ -1,5 +1,5 @@
 
-import { NavBarClientPanel } from "../components/ClientPanel/NavBarClientPanel/NavBarClientPanel";
+
 import { AddOffer } from "../components/ClientPanel/AddOffer/AddOffer";
 import { Footer } from '../components/Footer/Footer';
 

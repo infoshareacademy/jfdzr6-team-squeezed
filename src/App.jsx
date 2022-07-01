@@ -2,7 +2,6 @@ import { SearchBar } from "./components/SearchOffers/SearchBar/SearchBar";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { AddOffer } from "./components/ClientPanel/AddOffer/AddOffer";
 import { Home } from "./Routes/Home";
-import { NewOffer } from "./Routes/NewOffer";
 import { OfferDetails } from "./components/OffersList/OfferDetails/OfferDetails";
 import { Navigation } from "./components/Nav/Nav";
 import { Contact } from "./components/Contact/Contact";
@@ -78,11 +77,14 @@ function App() {
         <Route path="/details/:id" element={<OfferDetails />} />
         <Route path="/search-results" element={<SearchResults flats={flats} setFlats={setFlats} flatsFromDb={flatsFromDb} setFavourites={setFavourites} />} />
 
-        <Route path="auth" element={isAuth ? <Navigate to="/addoffer" /> : <Auth />} >
-          <Route path="register" element={isAuth ? <Navigate to="/addoffer" /> : <Register />} />
-          <Route path="login" element={isAuth ? <Navigate to="/addoffer" /> : <Login />} />
+
+        <Route path="auth" element={isAuth ? <Navigate to="/mypanel" /> : <Auth />} >
+          <Route path="register" element={isAuth ? <Navigate to="/mypanel" /> : <Register />} />
+          <Route path="login" element={isAuth ? <Navigate to="/mypanel" /> : <Login />} />
           <Route path="forgot-password" element={isAuth ? <Navigate to="/auth/login" /> : <ForgotPassword />} />
+
         </Route>
+
         <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
         <Route path="mypanel" element={!isAuth ? <Navigate to="/auth/login" /> : <ClientPanel userId={user.uid} />} />
 
