@@ -63,6 +63,7 @@ function App() {
 
 
   return (
+
     <BrowserRouter>
       <Navigation isAuth={isAuth} email={user?.email} flatsFromDb={flatsFromDb} setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} setFavourites={setFavourites} flats={flats} />
       <Routes>
@@ -85,7 +86,6 @@ function App() {
         </Route>
 
         <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
-
         <Route path="mypanel" element={!isAuth ? <Navigate to="/auth/login" /> : <ClientPanel userId={user.uid} />} />
 
       </Routes>
