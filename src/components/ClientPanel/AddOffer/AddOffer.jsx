@@ -202,7 +202,7 @@ const AddOffer1 = ({ flats }) => {
               <div className="checkboxStyles">
                 <label htmlFor="mobileNumber"><b>Numer telefonu</b><span className="colorStar">*</span></label>
                 <br />
-                <input className="userData" type="text" name="mobileNumber" id="mobileNumber" required onChange={handleFilters} />
+                <input className="userData" type="tel" name="mobileNumber" id="mobileNumber" required placeholder="123-456-789" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" onChange={handleFilters} />
               </div>
               <div className="checkboxStyles">
                 <label htmlFor="mailAddress"><b>Mail do kontaktu</b><span className="colorStar">*</span></label>
