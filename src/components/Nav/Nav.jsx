@@ -6,8 +6,9 @@ import { AuthStyled } from "./isAuth.Styled";
 import { SearchBar } from "../SearchOffers/SearchBar/SearchBar";
 import { useEffect } from "react";
 import logo from "./logo/logo.ico";
+import Burger from "./Burger";
 
-export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats, setIsLanding, isLanding  }) => {
+export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats, setIsLanding, isLanding }) => {
 
 
   return (
@@ -20,7 +21,7 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
           <div className="headerContainer">
             <h2>Najemnicy</h2>
           </div>
-          <ul>
+          <ul className="homeLink">
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
@@ -32,19 +33,20 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
             </li>
           </ul>
         </div>
+        <Burger />
         <div>
           {!isLanding &&
-        <SearchBar
-          flatsFromDb={flatsFromDb}
-          setFlats={setFlats}
-          setFavourites={setFavourites}
-          flats={flats}
-          isLanding={isLanding}
-        /> }
+            <SearchBar
+              flatsFromDb={flatsFromDb}
+              setFlats={setFlats}
+              setFavourites={setFavourites}
+              flats={flats}
+              isLanding={isLanding}
+            />}
         </div>
 
         <div className="logBar">
-          <ul>
+          <ul className="logLink">
             {!isAuth && (
               <>
                 <li>

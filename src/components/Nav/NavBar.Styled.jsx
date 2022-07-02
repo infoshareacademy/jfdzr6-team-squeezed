@@ -51,6 +51,7 @@ padding-top: 5px;
     @media (max-width: 775px) {
 align-self: flex-start;
 padding-top: 15px;
+
     }
 }
 
@@ -64,9 +65,6 @@ padding-top: 15px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-
-
 }
 }
 
@@ -92,16 +90,39 @@ ul {
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: flex-end;
-    /* transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'}; */
+    position: fixed;
+    top: 80px;
+    right: 0px;
+    background-color: #0975C3;
+    width: 150px;
+    display: none;
+    z-index: 100;
+    
     }
-  
+}
+
+.homeLink {
+    @media (max-width: 775px) {
+  margin-top: 40px;
+   
+    }
+
+}
+
+.logLink {
+    @media (max-width: 775px) {
+  margin-top: 200px;
+   
+    }
+
 }
 
 li {
     margin-right: 20px;
     @media (max-width: 775px) {
     padding: 10px;
-    width: 150px;
+    width: 130px;
+    margin-top: 10px
    
     
     }
@@ -129,6 +150,14 @@ li {
     color:  #0975C3; 
     margin-left:  auto; 
     box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+
+    @media (max-width: 775px) {
+    padding: 10px;
+    background-color:#0975C3;
+    box-shadow:  none; 
+    color: #fff;
+    
+    }
    
 }
 
@@ -140,7 +169,8 @@ li {
 
 .logBar a.active {
     background-color: #a1afdb;
-    color: #fff
+    color: #fff;
+ 
    
 }
 
