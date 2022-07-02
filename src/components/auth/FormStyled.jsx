@@ -16,7 +16,7 @@ export const ContainerStyled = styled.div`
   margin-top: 10px;
   background:  #ffffff; 
   border-radius:  20px; 
-  box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+  box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
 
   @media (max-width: 775px) {
     width: 90%;
