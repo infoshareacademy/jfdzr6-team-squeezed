@@ -109,7 +109,7 @@ const Map = ({ flats, isLoaded }) => {
           {activeMarker === id ? (
             <InfoWindow
               onCloseClick={() => {
-                setActiveMarker(null);
+                setActiveMarker(null)
               }}>
               <InfoWindowBackground>
                 <MapCarousel key={id} photos={photos}/>
