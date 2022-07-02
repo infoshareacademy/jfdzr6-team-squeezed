@@ -34,7 +34,7 @@ export const SearchBar = ({
 }) => {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [suggestionsToPrint, setSuggestionsToPrint] = useState([]);
-  const [pickedSuggestion, setPickedSuggestion] = useState('');
+  const [pickedSuggestion, setPickedSuggestion] = useState("");
   const [showMoreFilters, setShowMoreFilters] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState({
     sizeMin: "",
@@ -44,7 +44,7 @@ export const SearchBar = ({
     roomsMin: "",
     roomsMax: "",
     floorMin: "",
-    floorMax: ""
+    floorMax: "",
   });
   const navigate = useNavigate();
   let suggestions = [];
@@ -67,8 +67,8 @@ export const SearchBar = ({
         (e.target.value = e.target.value.slice(0, e.target.value.length - 1))
       );
     } else {
-    setPickedSuggestion(e.target.value);
-  }
+      setPickedSuggestion(e.target.value);
+    }
     //compare input with cities
     suggestions = searchSuggestions.filter((city) => {
       if (
@@ -109,7 +109,6 @@ export const SearchBar = ({
     } = e.target;
 
     //create filters object and delete positions with empty strings values
-<<<<<<< HEAD
     // let selectedFilersWithoutBlank = selectedFilters;
     // for (const key in selectedFilersWithoutBlank) {
     //   if (selectedFilersWithoutBlank[key] === "") {
@@ -123,27 +122,14 @@ export const SearchBar = ({
     //     delete checkboxFilters[key];
     //   }
     // }
-  
-=======
-    let selectedFilersWithoutBlank = selectedFilters;
-    for (const key in selectedFilersWithoutBlank) {
-      if (selectedFilersWithoutBlank[key] === "") {
-        delete selectedFilersWithoutBlank[key];
-      }
-    }
-    //filter checkbox filters from all filters
-    let checkboxFilters = selectedFilters;
-    for (const key in checkboxFilters) {
-      if (typeof checkboxFilters[key] !== "boolean") {
-        delete checkboxFilters[key];
-      }
-    }
-
->>>>>>> main
     //filter flats
     let flatsResults = flatsFromDb
       .filter((flat) => flat.city === searchCity.value)
-      .filter((flat) => selectedFilters.sizeMin  === "" || parseInt(selectedFilters.sizeMin) <= parseInt(flat.size))
+      .filter(
+        (flat) =>
+          selectedFilters.sizeMin === "" ||
+          parseInt(selectedFilters.sizeMin) <= parseInt(flat.size)
+      )
       .filter(
         (flat) =>
           selectedFilters.sizeMax === "" || selectedFilters.sizeMax >= flat.size
@@ -174,7 +160,6 @@ export const SearchBar = ({
           selectedFilters.floorMin === "" ||
           selectedFilters.floorMin <= flat.floor
       )
-<<<<<<< HEAD
       .filter(
         (flat) =>
           selectedFilters.floorMax === "" ||
@@ -184,22 +169,6 @@ export const SearchBar = ({
     //   Object.keys(checkboxFilters).map((key) =>
     //     flat[key] && flat[key] === checkboxFilters[key] ? flat : null
     //   )
-=======
-      .filter((flat) =>
-        selectedFilersWithoutBlank.floorMin != undefined
-          ? selectedFilersWithoutBlank.floorMin <= flat.floor
-          : flat
-      )
-      .filter((flat) =>
-        selectedFilersWithoutBlank.floorMax != undefined
-          ? selectedFilersWithoutBlank.floorMax >= flat.floor
-          : flat
-      )
-    //   .filter((flat) =>
-    //   Object.keys(checkboxFilters).map((key) =>
-    //     flat[key] && flat[key] === checkboxFilters[key] ? flat : null
-    //   ) 
->>>>>>> main
     // );
 
     // (selectedFilters.sizeMin != undefined ? selectedFilters.sizeMax >= flat.size : flat.size) &&
@@ -243,15 +212,14 @@ export const SearchBar = ({
 
   useEffect(() => {
     setSearchSuggestions([...new Set(flatsFromDb?.map(({ city }) => city))]);
-    if (flats?.[0]){
-    setPickedSuggestion(flats[0].city)
+    if (flats?.[0]) {
+      setPickedSuggestion(flats[0].city);
     }
   }, [flatsFromDb]);
 
   return (
     <SearchForm onSubmit={handleCitySearch} autoComplete='off'>
       <StyledSearchWrapper>
-
         <StyledShowMoreFilters>
           <label htmlFor='searchCity' />
           <StyledSearchInput
@@ -265,15 +233,7 @@ export const SearchBar = ({
             name='searchCity'
             id='searchCity'
             flats={flats}
-<<<<<<< HEAD
             value={pickedSuggestion}
-          
-=======
-            value={pickedSuggestion ? pickedSuggestion : ""}
-            defaultValue={
-              flats != undefined && flats.length > 0 ? flats[0].city : ""
-            }
->>>>>>> main
             placeholder='Wpisz miasto i znajdź swoje mieszkanie...'
           />
           <button className='search-submit-Btn' type='submit'>

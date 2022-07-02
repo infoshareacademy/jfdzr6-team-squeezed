@@ -36,7 +36,7 @@ margin-bottom: 200px;
   margin: 0px auto 20px;
   width: 100%;
   background-color: white;
-  box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
+  /* box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1); */
   text-transform: uppercase;
   border-radius:  20px;
 }
