@@ -15,7 +15,7 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
 
   return (
     <>
-      <NavBar className="navbar is-primary">
+      <NavBar isOpen={open} className="navbar is-primary">
         <div className="mainBar" >
           <div className="logoContainer">
             <img className="logo" src={logo}></img>
@@ -23,7 +23,7 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
           <div className="headerContainer">
             <h2>Najemnicy</h2>
           </div>
-          <ul className="homeLink" style={{ display: open ? "flex" : "none" }}>
+          <ul className="homeLink">
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
@@ -48,7 +48,7 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
         </div>
 
         <div className="logBar">
-          <ul className="logLink" style={{ display: open ? "flex" : "none" }}>
+          <ul className="logLink">
             {!isAuth && (
               <>
                 <li>
