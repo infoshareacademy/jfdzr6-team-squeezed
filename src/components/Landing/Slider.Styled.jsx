@@ -15,7 +15,7 @@ export const MegaSlider = styled.div`
     width: 100%;
     height: 100%;
     opacity: 0;
-    transition: all 5s ease;
+    transition: all 1s linear;
   }
 
   .slide img {

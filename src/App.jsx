@@ -1,6 +1,7 @@
 import { SearchBar } from "./components/SearchOffers/SearchBar/SearchBar";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { AddOffer } from "./components/ClientPanel/AddOffer/AddOffer";
+import { EditOffer } from "./components/ClientPanel/EditOffer/EditOffer";
 import { Home } from "./Routes/Home";
 import { OfferDetails } from "./components/OffersList/OfferDetails/OfferDetails";
 import { Navigation } from "./components/Nav/Nav";
@@ -50,7 +51,7 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, user => {
       console.log('auth user', user)
-      console.log('auth user uid', user.uid)
+      // console.log('auth user uid', user.uid)
       if (user) {
         setIsAuth(true)
         setUser(user)
@@ -87,6 +88,7 @@ function App() {
         </Route>
 
         <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer id={user.uid} />} />
+        <Route path="editoffer/:id" element={!isAuth ? <Navigate to="/auth/login" /> : <EditOffer userId={user.uid} />} />
         <Route path="mypanel" element={!isAuth ? <Navigate to="/auth/login" /> : <ClientPanel userId={user.uid} />} />
 
       </Routes>

@@ -10,6 +10,8 @@ margin: 20px auto;
 
 
 
+
+
 /* background: linear-gradient(-45deg,  #e7e7e7, #fff, #e7e7e7);
 	background-size: 400% 400%;
 	animation: gradient 30s ease infinite;
@@ -29,9 +31,9 @@ margin: 20px auto;
 
 .title {
   margin: 0px auto 20px;
-  width: 1358px;
+  width: 100%;
   background-color: white;
-  box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+  box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
   text-transform: uppercase;
   border-radius:  20px;
 }
@@ -49,6 +51,10 @@ margin: 20px auto;
    display: flex;
    flex-direction: row;
    justify-content: space-around;
+
+   @media (max-width: 1335px) {
+   flex-wrap: wrap;
+  }
    
 }
 
@@ -58,23 +64,24 @@ margin: 20px auto;
    height: fit-content;
    border-radius:  20px; 
    background-color: white;
-   box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+   box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
    &:hover {
-    transform:  translateY(-3px);
     box-shadow:  0 2px 6px -1px rgba($primary, .65);
     &:active {
       transform:  scale(.99);
     }
   }
+ 
   
 }
 
 .picture img {
    width: 100%;
-   height: 100%;
+   height: 600px;
+   object-fit: cover;
    background-color: white;
    border-radius:  20px; 
-   
+
 }
 
 .form {
@@ -85,8 +92,11 @@ margin: 20px auto;
     width: 400px;
     height: 600px;
     background-color: white;
-    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+    box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
     border-radius:  20px; 
+    @media (max-width: 1335px) {
+   margin-top: 20px;
+  }
     
 }
 
@@ -191,6 +201,12 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+
+    @media (max-width: 1335px) {
+   flex-wrap: wrap;
+  }
+
+ 
   }
 
 .render-div {
@@ -201,8 +217,25 @@ button {
     width: 900px;
     height: 200px;
     background-color: white;
-    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13);
+    box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
     border-radius:  20px;  
+    @media (max-width: 1335px) {
+width: 100%;
+  }
+  @media (max-width: 575px) {
+width: 100%;
+height: 250px;
+  }
+
+  @media (max-width: 574px) {
+width: 100%;
+display: flex;
+flex-direction: column;
+height: 100%;
+padding: 20px;
+  }
+  
+  
 }
 
 .render-div2 {
@@ -211,11 +244,24 @@ button {
     justify-content: space-around; 
     width: 900px;
     height: 200px;
+    @media (max-width: 1335px) {
+width: 100%;
+  }
+
+  @media (max-width: 574px) {
+width: 100%;
+height: 100%;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+  }
+
     
 }
 
   .render-list {
     list-style: none;
+  
     
 }
 
@@ -226,12 +272,20 @@ button {
   width:  150px; 
   color:  #000; 
   opacity: 70%;
+  @media (max-width: 1335px) {
+width: 100%;
+  }
+  
   
 }
 
 .fetch li {
   color: #0975C3;
   opacity: 100%;
+  @media (max-width: 1335px) {
+width: 100%;
+  }
+
 }
 
   .map {
@@ -239,7 +293,7 @@ button {
     width: 400px;
     height: 200px;
     background-color: white;
-    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+    box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
     background-color:#0975C3 ;
     border-radius:  20px; 
 }
@@ -249,11 +303,14 @@ button {
     flex-direction: column;
     height: auto;
     background-color: white;
-    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+    box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
     margin: 20px auto 0;
     padding: 20px;
     width: 1358px;
     border-radius:  20px; 
+    @media (max-width: 1335px) {
+width: 100%;
+  }
     
 }
 

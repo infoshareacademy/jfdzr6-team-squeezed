@@ -16,7 +16,7 @@ export const Footer = () => {
       <NavLink to="/privacy">POLITYKA PRYWATNOŚCI</NavLink>
 
       <a href="https://github.com/infoshareacademy/jfdzr6-team-squeezed">
-        LINK DO GITHUBA
+        LINK DO GITHUB
       </a>
 
       <div>

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { ContactPhoto } from "./Contact.Styled";
 
 export const Contact = ({setIsLanding}) => {
     useEffect(()=>{

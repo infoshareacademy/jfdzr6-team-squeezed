@@ -11,6 +11,7 @@ import {
   MainDiv,
   Container
 } from "../AddOffer/AddOffer.Styled";
+
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
 
@@ -63,7 +64,7 @@ const AddOffer1 = ({ flats, userId}) => {
       }
     }
 
-    Geocode.setApiKey("");
+    Geocode.setApiKey("AIzaSyBie1ZhkycpbUQPNsfdG76nzaxfWtJPmXU");
     Geocode.setLanguage("pl");
     Geocode.setRegion("pl");
     Geocode.setLocationType("ROOFTOP");
