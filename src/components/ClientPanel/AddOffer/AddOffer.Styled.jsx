@@ -4,6 +4,11 @@ import styled, { withTheme } from "styled-components";
 
 
 export const Container = styled.div`
+
+* {
+  box-sizing: border-box;
+}
+
   display:grid;
   margin: 0 auto;
   grid-template-columns: repeat(4, 1fr);
@@ -18,14 +23,20 @@ export const Container = styled.div`
   -moz-osx-font-smoothing: grayscale;
   /* background-color:#e3dddd; */
 
-p{
-  margin-top:5%;
+
+
+.colorStar{
+  color:red;
+  font-weight: bold;
 }
+
+
 
 .box1{
   grid-column: 1 / 3;
   grid-row: 1 / 2;
   margin: 0 10px 0 10px;
+  padding-top:22px;
 
   input {
     border:0;
@@ -47,7 +58,7 @@ p{
 
   label.description {
     margin-bottom:2px;
-    margin-top:10px;
+    margin-top:5px;
   }
 
   textarea {
@@ -55,11 +66,12 @@ p{
     width:100%;
     min-width: 340px;
     box-shadow:  2px 2px 6px 4px rgba(0,0,0,.13);
-    height:500px;
     margin-bottom:2px;
-    min-height:350px;
-    max-height:350px;
+    min-height:385px;
+    max-height:385px;
     border-radius: 20px;
+    padding: 6px 10px;
+    font-size: 12px;
   }
 }
 
@@ -69,7 +81,7 @@ p{
   grid-row: 1 / 2;
   grid-template-columns: 1fr;
   margin: 0 10px 0 10px;
-  padding-top:11%;
+  padding-top:22px;
 
   .labelStyle {
     width:100%;
@@ -103,7 +115,7 @@ p{
   grid-row: 1 / 2;
   grid-template-columns: 1fr;
   margin: 0 10px 0 10px;
-  padding-top:11%;
+  padding-top:22px;
   
   .checkboxStyles {
     width:100%;
@@ -126,10 +138,10 @@ p{
     min-width: 160px;
     box-shadow:  2px 2px 6px 4px rgba(0,0,0,.13);
     margin-bottom:7px;
-    height:auto;
     font-size:12px;
     height:41px;
     border-radius: 20px;
+    padding: 1px 10px;
   }
 }
 
@@ -159,17 +171,24 @@ p{
 .box4styles {
  
 display:flex;
-  flex-direction: row;
+  flex-direction: column;
   align-self: flex-end;
   align-items: center;
   justify-content: center;
 
 }
 
-
+.infoAboutAddingPictures {
+  color:red;
+  margin: 5px auto 0px auto;
+  
+}
 
 .photosLabel {
   background-color: white;
+  margin: 0 auto;
+  
+
 }
 
 .upload-btn {
@@ -177,8 +196,7 @@ display:flex;
   display:block;
   margin: 0 auto;
   border: none;
-  border-radius:10px;
-  width: 10rem;
+  width: 12rem;
   height:3rem;
   color: white;
   background-color:#0975C3;
@@ -221,6 +239,12 @@ img {
   background-color: #0975C3;
   border-radius: 20px;
   padding: 1px 4px;
+   &:hover {
+        background-color: white;
+        color: #0975C3;
+        
+      }
+  
   
 }
 .photo button:hover {
@@ -244,12 +268,133 @@ img {
   align-items:center;
 }
 }
+
+  @media (max-width: 768px) {
+
+  * {
+  box-sizing: border-box;
+}
+  display:grid;
+  margin: 0 auto;
+  grid-template-columns: 1fr;
+  grid-template-rows: 5fr;
+  max-width: 768px;
+
+.box1{
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+.box2 {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  grid-template-columns: 1fr;
+  margin: 0 10px 0 10px;
+  padding-top:11px;
+}
+.box3 {
+  display:grid;
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+  padding-top:11px;
+  
+  .checkboxStyles {
+    width:100%;
+    margin: 0 auto;
+    height: auto;
+    display:grid;
+  }
+  .checkboxStyles_checkbox {
+
+    display:flex;
+    justify-content:left;
+    align-items: center;
+    margin: 0 auto;
+
+  }
+
+  input.userData {
+    margin-bottom:7px;
+    margin-top:-7px;
+  }
+
+}
+.box4 {
+  grid-column: 1 / 2;
+  grid-row: 5 / 6;
+  margin: 0 10px 0 10px;
+  padding-top:22px;
+}
+  }
+
+  @media (max-width: 1000px) {
+
+  * {
+  box-sizing: border-box;
+}
+  display:grid;
+  margin: 0 auto;
+  grid-template-columns: 1fr;
+  grid-template-rows: 5fr;
+  max-width: 1000px;
+
+.box1{
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+.box2 {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  grid-template-columns: 1fr;
+  margin: 0 10px 0 10px;
+  padding-top:11px;
+}
+.box3 {
+  display:grid;
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+  padding-top:11px;
+  
+  .checkboxStyles {
+    width:100%;
+    margin: 0 auto;
+    height: auto;
+    display:grid;
+  }
+  .checkboxStyles_checkbox {
+
+    display:flex;
+    justify-content:left;
+    align-items: center;
+    margin: 0 auto;
+
+  }
+
+  input.userData {
+    margin-bottom:7px;
+    margin-top:-7px;
+  }
+
+}
+.box4 {
+  grid-column: 1 / 2;
+  grid-row: 5 / 6;
+  margin: 0 10px 0 10px;
+  padding-top:22px;
+}
+  }
+
 `
 
 export const MainDiv = styled.div`
 background-color:white;
 margin:0px 100px;
 padding:20px;
+
+ @media (max-width: 1000px) {
+margin:0px 50px;
+padding:10px;
+ }
+
 `;
 
 
@@ -262,7 +407,7 @@ export const PhotoLabel = styled.label`
   align-items: center;
   background-color: #0975C3;
   cursor: pointer;
-  width: 8rem;
+  width: 12rem;
   height: 3rem;
   font-size: 14px;
   color: white;
@@ -275,6 +420,7 @@ export const PhotoSpan = styled.span`
   font-weight:lighter;
   font-size:10px;
   padding-top: 0.5rem;
+  margin: 0 auto;
 `
 
 export const PhotoInput = styled.input`

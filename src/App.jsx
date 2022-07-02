@@ -1,8 +1,8 @@
 import { SearchBar } from "./components/SearchOffers/SearchBar/SearchBar";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { AddOffer } from "./components/ClientPanel/AddOffer/AddOffer";
+import { EditOffer } from "./components/ClientPanel/EditOffer/EditOffer";
 import { Home } from "./Routes/Home";
-import { NewOffer } from "./Routes/NewOffer";
 import { OfferDetails } from "./components/OffersList/OfferDetails/OfferDetails";
 import { Navigation } from "./components/Nav/Nav";
 import { Contact } from "./components/Contact/Contact";
@@ -23,6 +23,8 @@ import { Footer } from "./components/Footer/Footer";
 import { Privacy } from "./components/Privacy/Privacy";
 import { Statute } from "./components/Statute/Statute";
 import { ClientPanel } from "./components/ClientPanel/ClientPanel";
+import { Messages } from "./components/ClientPanel/Messages/Messages";
+
 
 
 
@@ -51,7 +53,6 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, user => {
       console.log('auth user', user)
-      console.log('auth user uid', user.uid)
       if (user) {
         setIsAuth(true)
         setUser(user)
@@ -79,13 +80,18 @@ function App() {
 
         <Route path="/search-results" element={<SearchResults flats={flats} setFlats={setFlats} flatsFromDb={flatsFromDb} setFavourites={setFavourites} />} />
 
-        <Route path="auth" element={isAuth ? <Navigate to="/addoffer" /> : <Auth />} >
-          <Route path="register" element={isAuth ? <Navigate to="/addoffer" /> : <Register />} />
-          <Route path="login" element={isAuth ? <Navigate to="/addoffer" /> : <Login />} />
+
+        <Route path="auth" element={isAuth ? <Navigate to="/mypanel" /> : <Auth />} >
+          <Route path="register" element={isAuth ? <Navigate to="/mypanel" /> : <Register />} />
+          <Route path="login" element={isAuth ? <Navigate to="/mypanel" /> : <Login />} />
           <Route path="forgot-password" element={isAuth ? <Navigate to="/auth/login" /> : <ForgotPassword />} />
+
         </Route>
-        <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
+
+        <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer id={user.uid} />} />
+        <Route path="editoffer/:id" element={!isAuth ? <Navigate to="/auth/login" /> : <EditOffer userId={user.uid} />} />
         <Route path="mypanel" element={!isAuth ? <Navigate to="/auth/login" /> : <ClientPanel userId={user.uid} />} />
+        <Route path="messages" element={!isAuth ? <Navigate to="/auth/login" /> : <Messages userId={user.uid} />} />
 
       </Routes>
       <Footer />

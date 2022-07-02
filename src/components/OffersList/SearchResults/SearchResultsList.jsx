@@ -11,6 +11,7 @@ import {
   MoreInfoBox,
   CarouselContainer,
   CarouselContainerInMsgBox,
+  StyledNoResultsError,
 } from "./SearchResultsList.Styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import citySVG from "../Images/city.svg";
@@ -58,7 +59,7 @@ export const SearchResultsList  = ({ flats, favourites, userId }) => {
   return (
  
     <OfferList>
-      {flatsToRender?.map((flat) => {
+      {flats.length > 0 && flatsToRender?.map((flat) => {
         return (
           <OfferBackground key={flat.id}>
             {!!flat.photos && flat.photos.length > 0 ? (
@@ -130,7 +131,8 @@ export const SearchResultsList  = ({ flats, favourites, userId }) => {
                       Usuń
                     </Button>
 
-                    <Button>Edytuj</Button>
+                    <Link to={`/editoffer/${flat.id}`}>Edytuj</Link>
+
                   </>
                 )}
 
@@ -140,7 +142,7 @@ export const SearchResultsList  = ({ flats, favourites, userId }) => {
           </OfferBackground>
         );
       })}
-
+  {flats.length === 0 && <InfoBox>Brak wyników do wyświetlenia</InfoBox> }
       {currentPhotoInfo.length > 0 ? (
         <MoreInfoBox>
           <div className="closeIcon">

@@ -80,7 +80,7 @@ input[type=number] {
 }
 
 .map-container {
-  height: 59vw;
+  min-height: 59vw;
   width: 55vw;
 }
 @media (max-width: 800px) {

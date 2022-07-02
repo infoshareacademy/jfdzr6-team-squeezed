@@ -2,14 +2,23 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 import { mapContainerStyle, center, options } from "../../../../utils/mapConfig";
+import markerSVG from "../../../Map/ts-map-pin.svg";
+
+
 export const Minimap = ({flat}) => {
   const [activeMarker, setActiveMarker] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
 const flats = [flat]
 console.log(flats)
-  const mapRef = useRef();
-  const onMapLoad = useCallback((map) => {
-    mapRef.current = map;
-  }, []);
+const mapRef = useRef();
+const onMapLoad = useCallback((map) => {
+  mapRef.current = map;
+  changeMapPosition(flats);
+  setTimeout(() => {
+    setIsLoading(false);
+  });
+}, []);
 
   const changeMapPosition = (flat) => {
     flat
@@ -21,50 +30,39 @@ console.log(flats)
     mapRef.current.setZoom(12);
   };  
   
-  const handleActiveMarker = (marker) => {
-    if (marker === activeMarker) {
-      return;
-    }
-    setActiveMarker(marker);
-  };
-  const handleOnLoad = (map) => {
-    const bounds = new google.maps.LatLngBounds();
-    bounds.extend({ lat: flat.cords._lat, lng: flat.cords._long });
-    map.fitBounds(bounds);
-  };
 
-  let renderFlatMarker = flats.map(({ id, photos, cords, price, title, size, rooms}) => ( <Marker
+ let renderFlatMarker = flats.map(({ id, photos, cords, price, title, size, rooms}) => ( <Marker
     key={flat.id}
     position={{ lat: cords._lat, lng: cords._long }}
-    onClick={() => handleActiveMarker(id)}
-  //   label={label}
-  >
-    {activeMarker === flat.id ? (
-      <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-        <div>{name}</div>
-      </InfoWindow>
-    ) : null}
+    icon={{
+        url: markerSVG,
+        scaledSize: new window.google.maps.Size(50, 50),
+        labelOrigin: new google.maps.Point(20, 55),
+        strokeWeight: 2,
+        fillColor: '#009933',
+        fillOpacity: 1,
+      }}>
+  {/* //   label={label} */}
   </Marker>
  ))
 
 
  useEffect(() => {
-    setTimeout(()=> {
+    if (mapRef.current) {
       changeMapPosition(flats);
-    }, 100)
-  }, [flat]);
+    }
+  }, [flats]);
   return (
     <GoogleMap
       onLoad={onMapLoad}
       onClick={() => setActiveMarker(null)}
       position={{ lat: flat.cords._lat, lng: flat.cords._long }}
-      mapContainerClassName='map-container'
       zoom={6.6}
       options={options}
           center={center}
       mapContainerStyle={{ width: "400px", height: "200px" }}
     >
-      {renderFlatMarker}
+      {!isLoading && renderFlatMarker}
     
     </GoogleMap>
   );

@@ -1,20 +1,48 @@
 import { useState } from "react";
+import Geocode from "react-geocode";
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
+import { GeoPoint } from "firebase/firestore";
+
 import { useEffect, useRef, useCallback } from "react";
-import { InfoWindowBackground, InfoWindowBottomBackground, StyledMapHeader } from "./Map.Styled";
+import {
+  InfoWindowBackground,
+  InfoWindowBottomBackground,
+  StyledMapHeader,
+} from "./Map.Styled";
 import { mapContainerStyle, center, options } from "../../utils/mapConfig";
 import logo from "./logo-icon-only-blue.svg";
 import markerSVG from "./ts-map-pin.svg";
 import { MapCarousel } from "./MapCarousel/MapCarousel";
 import { Link } from "react-router-dom";
 
+
 const Map = ({ flats, isLoaded }) => {
   const [activeMarker, setActiveMarker] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+// const [searchedCity, setSearchedCity] = useState({})
 
+
+  // Geocode.setApiKey("AIzaSyBie1ZhkycpbUQPNsfdG76nzaxfWtJPmXU");
+  // Geocode.setLanguage("pl");
+  // Geocode.setRegion("pl");
+  // Geocode.setLocationType("ROOFTOP");
+  
+  // Geocode.fromAddress(flats[0].city).then(
+  //   (response) => {
+  //     const { lat, lng } = response.results[0].geometry.location;
+  //     const newGeo = new GeoPoint(lat, lng);
+  //     setSearchedCity(newGeo)
+      
+  //   })
+// console.log(searchedCity)
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
+    changeMapPosition(flats);
+    setTimeout(() => {
+      setIsLoading(false);
+    });
   }, []);
 
   const changeMapView = useCallback(
@@ -46,13 +74,17 @@ const Map = ({ flats, isLoaded }) => {
   //   map.fitBounds(bounds);
   // };
   const changeMapPosition = (flats) => {
-    flats
-      ? mapRef.current?.panTo({
-          lat: flats[0].cords._lat,
-          lng: flats[0].cords._long,
-        })
-      : mapRef.current?.panTo({ lat: 52.234982, lng: 21.00849 });
-    mapRef.current.setZoom(12);
+    if (flats.length > 0) {
+      mapRef.current?.panTo({
+        lat: flats[0].cords._lat,
+        lng: flats[0].cords._long,
+      });
+      mapRef.current.setZoom(12)
+    } else {
+      mapRef.current?.panTo({ lat: 51.919437, lng: 19.145136 });
+    mapRef.current.setZoom(6);
+
+    }
   };  
   console.log(flats);
   let mapMarkers = []
@@ -96,25 +128,24 @@ const Map = ({ flats, isLoaded }) => {
                     </div>
                    <InfoWindowBottomBackground>
                     {/* <div>pokoje: {rooms}</div> */}
-                    <div style={{fontSize: '24px'}}>
+                    <div style={{ fontSize: "24px" }}>
                       <b>{price} zł</b>
-                    </div></InfoWindowBottomBackground>
-                    </Link>
+                    </div>
+                  </InfoWindowBottomBackground>
+                </Link>
 
-                  <div></div>
-                </div>
-              </InfoWindowBackground>
-            </InfoWindow>
-          ) : null}
-        </Marker>
-      ) : null
+                <div></div>
+              </div>
+            </InfoWindowBackground>
+          </InfoWindow>
+        ) : null}
+      </Marker>
+    ) : null
   );
-
   useEffect(() => {
-    setTimeout(()=> {
-      flats.length > 0 && changeMapPosition(flats);
-      mapMarkers;
-    }, 100)
+    if (mapRef.current) {
+      changeMapPosition(flats);
+    }
   }, [flats]);
 
   return (
@@ -123,9 +154,9 @@ const Map = ({ flats, isLoaded }) => {
         display: "flex",
         justifyContent: "center",
         position: "relative",
-        height: '85vh',
+        height: "85vh",
       }}>
-      <div style={{ position: "relative", height: '100%' }}>
+      <div style={{ position: "relative", height: "100%" }}>
         <StyledMapHeader>
           <span>
             <img src={logo} width='80' />
@@ -138,10 +169,8 @@ const Map = ({ flats, isLoaded }) => {
           mapContainerClassName='map-container'
           zoom={6.6}
           options={options}
-          center={center}
-          >
-          {isLoaded && mapMarkers}
-
+          center={center}>
+          {!isLoading && mapMarkers}
         </GoogleMap>
       </div>
     </div>

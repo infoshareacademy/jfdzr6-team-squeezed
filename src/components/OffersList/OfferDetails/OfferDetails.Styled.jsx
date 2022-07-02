@@ -11,6 +11,8 @@ margin-bottom: 200px;
 
 
 
+
+
 /* background: linear-gradient(-45deg,  #e7e7e7, #fff, #e7e7e7);
 	background-size: 400% 400%;
 	animation: gradient 30s ease infinite;
@@ -30,7 +32,7 @@ margin-bottom: 200px;
 
 .title {
   margin: 0px auto 20px;
-  width: 1358px;
+  width: 100%;
   background-color: white;
   box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
   text-transform: uppercase;
@@ -50,6 +52,10 @@ margin-bottom: 200px;
    display: flex;
    flex-direction: row;
    justify-content: space-around;
+
+   @media (max-width: 1335px) {
+   flex-wrap: wrap;
+  }
    
 }
 
@@ -67,6 +73,7 @@ margin-bottom: 200px;
       transform:  scale(.99);
     }
   }
+ 
   
 }
 
@@ -75,7 +82,7 @@ margin-bottom: 200px;
    height: 100%;
    background-color: white;
    border-radius:  20px; 
-   
+
 }
 
 .form {
@@ -88,6 +95,9 @@ margin-bottom: 200px;
     background-color: white;
     box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
     border-radius:  20px; 
+    @media (max-width: 1335px) {
+   margin-top: 20px;
+  }
     
 }
 
@@ -192,6 +202,12 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+
+    @media (max-width: 1335px) {
+   flex-wrap: wrap;
+  }
+
+ 
   }
 
 .render-div {
@@ -204,6 +220,23 @@ button {
     background-color: white;
     box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13);
     border-radius:  20px;  
+    @media (max-width: 1335px) {
+width: 100%;
+  }
+  @media (max-width: 575px) {
+width: 100%;
+height: 250px;
+  }
+
+  @media (max-width: 574px) {
+width: 100%;
+display: flex;
+flex-direction: column;
+height: 100%;
+padding: 20px;
+  }
+  
+  
 }
 
 .render-div2 {
@@ -212,11 +245,24 @@ button {
     justify-content: space-around; 
     width: 900px;
     height: 200px;
+    @media (max-width: 1335px) {
+width: 100%;
+  }
+
+  @media (max-width: 574px) {
+width: 100%;
+height: 100%;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+  }
+
     
 }
 
   .render-list {
     list-style: none;
+  
     
 }
 
@@ -227,12 +273,20 @@ button {
   width:  150px; 
   color:  #000; 
   opacity: 70%;
+  @media (max-width: 1335px) {
+width: 100%;
+  }
+  
   
 }
 
 .fetch li {
   color: #0975C3;
   opacity: 100%;
+  @media (max-width: 1335px) {
+width: 100%;
+  }
+
 }
 
   .map {
@@ -255,6 +309,9 @@ button {
     padding: 20px;
     width: 1358px;
     border-radius:  20px; 
+    @media (max-width: 1335px) {
+width: 100%;
+  }
     
 }
 
