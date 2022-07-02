@@ -13,6 +13,8 @@ margin-bottom: 200px;
 
 
 
+
+
 /* background: linear-gradient(-45deg,  #e7e7e7, #fff, #e7e7e7);
 	background-size: 400% 400%;
 	animation: gradient 30s ease infinite;
@@ -34,7 +36,7 @@ margin-bottom: 200px;
   margin: 0px auto 20px;
   width: 100%;
   background-color: white;
-  box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+  box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
   text-transform: uppercase;
   border-radius:  20px;
 }
@@ -65,9 +67,8 @@ margin-bottom: 200px;
    height: fit-content;
    border-radius:  20px; 
    background-color: white;
-   box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+   box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
    &:hover {
-    transform:  translateY(-3px);
     box-shadow:  0 2px 6px -1px rgba($primary, .65);
     &:active {
       transform:  scale(.99);
@@ -79,7 +80,8 @@ margin-bottom: 200px;
 
 .picture img {
    width: 100%;
-   height: 100%;
+   height: 600px;
+   object-fit: cover;
    background-color: white;
    border-radius:  20px; 
 
@@ -93,7 +95,7 @@ margin-bottom: 200px;
     width: 400px;
     height: 600px;
     background-color: white;
-    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+    box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
     border-radius:  20px; 
     @media (max-width: 1335px) {
    margin-top: 20px;
@@ -218,7 +220,7 @@ button {
     width: 900px;
     height: 200px;
     background-color: white;
-    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13);
+    box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
     border-radius:  20px;  
     @media (max-width: 1335px) {
 width: 100%;
@@ -294,7 +296,7 @@ width: 100%;
     width: 400px;
     height: 200px;
     background-color: white;
-    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+    box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
     background-color:#0975C3 ;
     border-radius:  20px; 
 }
@@ -304,7 +306,7 @@ width: 100%;
     flex-direction: column;
     height: auto;
     background-color: white;
-    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+    box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
     margin: 20px auto 0;
     padding: 20px;
     width: 1358px;

@@ -109,6 +109,7 @@ export const SearchBar = ({
     } = e.target;
 
     //create filters object and delete positions with empty strings values
+<<<<<<< HEAD
     // let selectedFilersWithoutBlank = selectedFilters;
     // for (const key in selectedFilersWithoutBlank) {
     //   if (selectedFilersWithoutBlank[key] === "") {
@@ -123,6 +124,22 @@ export const SearchBar = ({
     //   }
     // }
   
+=======
+    let selectedFilersWithoutBlank = selectedFilters;
+    for (const key in selectedFilersWithoutBlank) {
+      if (selectedFilersWithoutBlank[key] === "") {
+        delete selectedFilersWithoutBlank[key];
+      }
+    }
+    //filter checkbox filters from all filters
+    let checkboxFilters = selectedFilters;
+    for (const key in checkboxFilters) {
+      if (typeof checkboxFilters[key] !== "boolean") {
+        delete checkboxFilters[key];
+      }
+    }
+
+>>>>>>> main
     //filter flats
     let flatsResults = flatsFromDb
       .filter((flat) => flat.city === searchCity.value)
@@ -157,6 +174,7 @@ export const SearchBar = ({
           selectedFilters.floorMin === "" ||
           selectedFilters.floorMin <= flat.floor
       )
+<<<<<<< HEAD
       .filter(
         (flat) =>
           selectedFilters.floorMax === "" ||
@@ -166,6 +184,22 @@ export const SearchBar = ({
     //   Object.keys(checkboxFilters).map((key) =>
     //     flat[key] && flat[key] === checkboxFilters[key] ? flat : null
     //   )
+=======
+      .filter((flat) =>
+        selectedFilersWithoutBlank.floorMin != undefined
+          ? selectedFilersWithoutBlank.floorMin <= flat.floor
+          : flat
+      )
+      .filter((flat) =>
+        selectedFilersWithoutBlank.floorMax != undefined
+          ? selectedFilersWithoutBlank.floorMax >= flat.floor
+          : flat
+      )
+    //   .filter((flat) =>
+    //   Object.keys(checkboxFilters).map((key) =>
+    //     flat[key] && flat[key] === checkboxFilters[key] ? flat : null
+    //   ) 
+>>>>>>> main
     // );
 
     // (selectedFilters.sizeMin != undefined ? selectedFilters.sizeMax >= flat.size : flat.size) &&
@@ -217,6 +251,7 @@ export const SearchBar = ({
   return (
     <SearchForm onSubmit={handleCitySearch} autoComplete='off'>
       <StyledSearchWrapper>
+
         <StyledShowMoreFilters>
           <label htmlFor='searchCity' />
           <StyledSearchInput
@@ -230,8 +265,15 @@ export const SearchBar = ({
             name='searchCity'
             id='searchCity'
             flats={flats}
+<<<<<<< HEAD
             value={pickedSuggestion}
           
+=======
+            value={pickedSuggestion ? pickedSuggestion : ""}
+            defaultValue={
+              flats != undefined && flats.length > 0 ? flats[0].city : ""
+            }
+>>>>>>> main
             placeholder='Wpisz miasto i znajdź swoje mieszkanie...'
           />
           <button className='search-submit-Btn' type='submit'>
