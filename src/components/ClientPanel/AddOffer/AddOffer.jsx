@@ -266,9 +266,9 @@ const AddOffer1 = ({ flats, userId}) => {
                 {selectedPhotos.length > 0 &&
                   (selectedPhotos.length > 10 ? (
                     <p className="error">
-                      Nie możesz dodać więcej niż 10 zdjęć. <br />
+                      Dodałeś za dużo zdjęć. <br />
                       <span>
-                        Ilość zdjęć do usunięcia:{" "}
+                        Usuń:{" "}
                         <b> {selectedPhotos.length - 10} </b>
                       </span>
                     </p>
