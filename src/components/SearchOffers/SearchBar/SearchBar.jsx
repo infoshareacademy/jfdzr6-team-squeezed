@@ -191,13 +191,13 @@ export const SearchBar = ({
   const handleFilters = (e) => {
     e.target.type === "checkbox"
       ? setSelectedFilters({
-          ...selectedFilters,
-          [e.target.name]: e.target.checked,
-        })
+        ...selectedFilters,
+        [e.target.name]: e.target.checked,
+      })
       : setSelectedFilters({
-          ...selectedFilters,
-          [e.target.name]: e.target.value,
-        });
+        ...selectedFilters,
+        [e.target.name]: e.target.value,
+      });
 
     // console.log(selectedFilters);
   };
@@ -222,7 +222,7 @@ export const SearchBar = ({
             name='searchCity'
             id='searchCity'
             flats={flats}
-            value={pickedSuggestion ? pickedSuggestion : null}
+            value={pickedSuggestion ? pickedSuggestion : ""}
             defaultValue={
               flats != undefined && flats.length > 0 ? flats[0].city : ""
             }

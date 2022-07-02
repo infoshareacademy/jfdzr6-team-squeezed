@@ -21,7 +21,7 @@ const libraries = ["places"];
 
 
 
-export const OfferDetails = ({setIsLanding}) => {
+export const OfferDetails = ({ setIsLanding }) => {
     const { id: idFlat } = useParams("id")
     const [flat, setFlat] = useState(null);
 
@@ -36,9 +36,9 @@ export const OfferDetails = ({setIsLanding}) => {
     //     language: 'pl',
     //     libraries,
     //   });
-    
+
     //   if (loadError) return "Błąd ładowania mapy";
-    
+
     const userCollectionRef = collection(db, "contacts")
 
     const handleSubmit = (e) => {
@@ -100,7 +100,7 @@ export const OfferDetails = ({setIsLanding}) => {
                     <div className="picture">
                         <Carousel interval={caruselInterval}>
                             {flat.photos.map((photoSrc) => (
-                                <Carousel.Item>
+                                <Carousel.Item key={photoSrc}>
                                     <div className="carouselItemImg">
                                         <img src={photoSrc} alt="First slide" />
                                     </div>
@@ -214,7 +214,7 @@ export const OfferDetails = ({setIsLanding}) => {
                     </div>
 
                     <div className="map">
-                    {/* {isLoaded ? <Map isLoaded={isLoaded} flats={flat} /> : null} */}
+                        {/* {isLoaded ? <Map isLoaded={isLoaded} flats={flat} /> : null} */}
 
                     </div>
 
