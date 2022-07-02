@@ -19,7 +19,6 @@ import roomsSVG from "../Images/pokoje.svg";
 import streetSVG from "../Images/street.svg";
 import flatsizeSVG from "../Images/flatsize.svg";
 import priceSVG from "../Images/price.svg";
-
 import {
   faMagnifyingGlassPlus,
   faXmark,
@@ -27,7 +26,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Carousel, Button } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FavouriteBtn } from "./FavouriteBtn/FavouriteBtn";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../../utils/firebase";
@@ -51,12 +50,12 @@ export const SearchResultsList  = ({ flats, favourites, userId }) => {
       setFlatsToRender(flats);
     }
   }, [favourites, flats]);
-
   const handleDeleteFlat = async (flatId) => {
     await deleteDoc(doc(db, "flats", flatId));
     setFlatsToRender((prevFlats) => prevFlats.filter((f) => f.id !== flatId));
   };
   return (
+ 
     <OfferList>
       {flatsToRender?.map((flat) => {
         return (
@@ -86,7 +85,7 @@ export const SearchResultsList  = ({ flats, favourites, userId }) => {
             )}
 
             <InfoBox>
-              <h3> {flat.title}</h3>
+              <h3> <b>{flat.title}</b></h3>
               <div>
                 <p>
                   <b>
@@ -122,7 +121,7 @@ export const SearchResultsList  = ({ flats, favourites, userId }) => {
               </div>
 
               <div className="btnContainer">
-                <NavLink to={`/details/${flat.id}`}>Więcej</NavLink>
+                <Link to={`/details/${flat.id}`} target="_blank">Więcej</Link>
 
                 {userId && (
                   <>
@@ -130,7 +129,8 @@ export const SearchResultsList  = ({ flats, favourites, userId }) => {
                       Usuń
                     </Button>
 
-                    <Button>Edytuj</Button>
+                    <Link to={`/editoffer/${flat.id}`}>Edytuj</Link>
+
                   </>
                 )}
 

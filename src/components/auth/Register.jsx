@@ -19,7 +19,7 @@ export const Register = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then(jwt => {
                 e.target.reset()
-                console.log(jwt)
+                console.log("przed wylogowywaniem", jwt)
                 signOut(auth)
             })
             .catch(e => {
@@ -28,6 +28,7 @@ export const Register = () => {
     }
 
     return (
-        <ContainerDivRegister><Form submitText="Zarejestruj się" image={registerIMG} headerText="Załóż konto już teraz!" paragraphText="Dzięki Rejstracji konta na naszej stronie możesz dodawać ogłoszenia wynajmu nieruchomości." onSubmit={handleRegister} />
+        <ContainerDivRegister>
+            <Form submitText="Zarejestruj się" image={registerIMG} headerText="Załóż konto już teraz!" paragraphText="Dzięki Rejstracji konta na naszej stronie możesz dodawać ogłoszenia wynajmu nieruchomości." onSubmit={handleRegister} />
         </ContainerDivRegister>)
 }

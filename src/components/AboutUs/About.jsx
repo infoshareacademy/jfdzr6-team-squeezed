@@ -1,14 +1,12 @@
+import { AboutPhoto } from "./AboutUs.Styled";
 import { useEffect } from "react";
-import { ContactPhoto } from "./Contact.Styled";
-
-export const Contact = ({setIsLanding}) => {
-    useEffect(()=>{
-        setIsLanding(true)
-      },[])
-
+export const AboutUs = ({setIsLanding}) => {
+  useEffect(()=>{
+    setIsLanding(true)
+  },[])
   return (
     <>
-      <ContactPhoto>
+      <AboutPhoto>
         <div className="photoIcons">
           <img
             src="https://avatars.githubusercontent.com/u/95885409?v=4"
@@ -17,7 +15,6 @@ export const Contact = ({setIsLanding}) => {
           <a href="https://github.com/rafal-skiba" className="aboutLink">
             Link do GitHub
           </a>
-        
         </div>
 
         <div className="photoIcons">
@@ -25,11 +22,9 @@ export const Contact = ({setIsLanding}) => {
             src="https://avatars.githubusercontent.com/u/94493414?v=4"
             alt="First slide"
           />
-           
           <a href="https://github.com/sylwia-laboszczak" className="aboutLink">
             Link do GitHub
           </a>
-       
         </div>
 
         <div className="photoIcons">
@@ -40,7 +35,6 @@ export const Contact = ({setIsLanding}) => {
           <a href="https://github.com/mchltkczk" className="aboutLink">
             Link do GitHub
           </a>
-      
         </div>
 
         <div className="photoIcons">
@@ -51,9 +45,8 @@ export const Contact = ({setIsLanding}) => {
           <a href="https://github.com/lidia-dalecka" className="aboutLink">
             Link do GitHub
           </a>
-         
         </div>
-      </ContactPhoto>
+      </AboutPhoto>
     </>
   );
 };
