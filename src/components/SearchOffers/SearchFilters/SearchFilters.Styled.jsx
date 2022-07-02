@@ -9,12 +9,12 @@ export const StyledInputWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background-color: #eeeaea;
+  background-color: #E3DDDD;
   border-radius: 20px;
   z-index: 3;
-  -webkit-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
+  /* -webkit-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
 -moz-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
+box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1); */
 
   input {
     width: auto;
@@ -50,7 +50,7 @@ export const StyledSearchFiltersWrapper = styled.div`
   top: 75px;
   border-radius: 20px;
   z-index: 1;
-  background-color: #fff;
+  background-color: #EEEAEA;
   -webkit-box-shadow: 0px 0px 65px -34px rgba(246, 246, 255, 1);
 -moz-box-shadow: 0px 0px 65px -34px rgba(246, 246, 255, 1);
 box-shadow: 0px 0px 65px -34px rgba(246, 246, 255, 1);
@@ -63,6 +63,7 @@ export const StyledShowMoreFilters = styled.div`
   gap: 20px;
   width: 600px;
   position: relative;
+  z-index: 100;
 
 
   @media (max-width: 1000px) {
@@ -109,6 +110,7 @@ export const StyledInputCheckboxWrapper = styled.div`
   padding: 5px;
   border-radius: 20px;
   margin-bottom: 20px;
+
   
 
 `
@@ -117,21 +119,25 @@ export const SingleCheckboxContainer = styled.div`
   display: flex;
   width: 100%;
   padding: 10px;
-  background-color: #eeeaea;
+  background-color: #E3DDDD;
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
   border-radius: 20px;
   padding-left: 10px;
-  -webkit-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
+  z-index: 3;
+
+  /* -webkit-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
 -moz-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
+box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1); */
   .checkbox {
     box-shadow: none;
     height: 25px;
     width: 25px;
+    cursor: pointer;
 
   }
+  
 `
 
 export const StyledInputTitle = styled.div`
@@ -139,7 +145,7 @@ export const StyledInputTitle = styled.div`
   display: flex;
   align-items: center;
   z-index: 2;
-  -webkit-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
+  /* -webkit-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
 -moz-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
-box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1);
+box-shadow: 0px 0px 65px -34px rgba(0, 0, 0, 1); */
 `
