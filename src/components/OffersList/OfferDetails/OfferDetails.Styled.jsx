@@ -66,7 +66,6 @@ margin: 20px auto;
    background-color: white;
    box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
    &:hover {
-    transform:  translateY(-3px);
     box-shadow:  0 2px 6px -1px rgba($primary, .65);
     &:active {
       transform:  scale(.99);
@@ -78,7 +77,8 @@ margin: 20px auto;
 
 .picture img {
    width: 100%;
-   height: 100%;
+   height: 600px;
+   object-fit: cover;
    background-color: white;
    border-radius:  20px; 
 
