@@ -17,6 +17,17 @@ export const ContainerStyled = styled.div`
   background:  #ffffff; 
   border-radius:  20px; 
   box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+
+  @media (max-width: 775px) {
+    width: 90%;
+  }
+
+  @media (max-width: 700px) {
+    width: 80%;
+    display:  flex; 
+    flex-direction:  column; 
+    align-items: center;
+  }
   
   
 
@@ -28,7 +39,9 @@ export const ContainerStyled = styled.div`
   background-size:  cover;
   border-top-left-radius:  20px; 
   border-bottom-left-radius:  20px; 
-
+  @media (max-width: 700px) {
+   border-radius: 20px;
+  }
 
   }
 
