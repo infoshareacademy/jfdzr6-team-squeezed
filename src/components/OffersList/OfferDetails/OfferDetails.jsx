@@ -16,6 +16,8 @@ import priceSVG from "../Images/price.svg"
 import availableSVG from "../Images/available.svg"
 import { useParams } from "react-router-dom";
 import { Carousel, Button } from "react-bootstrap";
+import { faRefresh } from "@fortawesome/free-solid-svg-icons";
+import { uploadString } from "@firebase/storage";
 
 
 
@@ -40,13 +42,17 @@ export const OfferDetails = () => {
             message: message
         }).then(() => {
             if (!alert("wiadomość została wysłana 💬"));
-            setLoader(false)
+            setLoader(false);
+            setMessage("");
+            setName("");
+            setEmail("");
         }).catch((error) => {
             alert(error.message);
             setLoader(false)
         })
+       
     }
-
+    
 
     const caruselInterval = 36000000;
     const getFlats = () => {
@@ -119,15 +125,15 @@ export const OfferDetails = () => {
                         <form>
                             <div className="formDiv">
                                 <img className="iconInput" src={userPNG} alt="" />
-                                <input name="name" type="text" placeholder="Wpisz swoję imię" onChange={(e) => setName(e.target.value)} ></input>
+                                <input name="name" type="text" placeholder="Wpisz swoję imię" onChange={(e) => setName(e.target.value)} value={name}></input>
                             </div>
                             <div className="formDiv">
                                 <img className="iconInput" src={emailSVG} alt="" />
-                                <input name="email" type="email" placeholder="Wpisz swój email" onChange={(e) => setEmail(e.target.value)}  ></input>
+                                <input name="email" type="email" placeholder="Wpisz swój email" onChange={(e) => setEmail(e.target.value)} value={email}></input>
                             </div>
                             <div className="formArea">
                                 <img className="iconInput" src={textAreaPNG} alt="" />
-                                <textarea name="textarea" id="" cols="35" rows="10" placeholder="Zostaw tutaj wiadomość" onChange={(e) => setMessage(e.target.value)}  ></textarea>
+                                <textarea name="textarea" id="" cols="35" rows="10" placeholder="Zostaw tutaj wiadomość" onChange={(e) => setMessage(e.target.value)} value={message} ></textarea>
                             </div>
                             <button onClick={handleSubmit} style={{ background: loader ? "#0cb482" : "#0975C3" }}>Wyślij wiadomość</button>
                         </form>
