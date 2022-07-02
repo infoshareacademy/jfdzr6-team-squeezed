@@ -10,20 +10,28 @@ import {
   PhotoInput,
   MainDiv,
   Container
-} from "../AddOffer/AddOffer.Styled";
-
+} from "./EditOffer.Styled";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
+import { useParams } from "react-router-dom";
 
-export const AddOffer = ({id}) => {
+export const EditOffer = ({id}) => {
+
+  const { id: idFlat } = useParams("idFlat")
+  console.log(idFlat)
+
+  // fetch flat by id from db
+  // fill input forms from record
+  
+
   return (
     <>
-      <AddOffer1 userId={id} />
+      <EditOffer1 userId={id} />
     </>
   )
 };
 
-const AddOffer1 = ({ flats, userId}) => {
+const EditOffer1 = ({ flats, userId}) => {
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {

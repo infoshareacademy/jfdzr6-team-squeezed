@@ -130,7 +130,8 @@ export const SearchResultsList  = ({ flats, favourites, userId }) => {
                       Usuń
                     </Button>
 
-                    <Button>Edytuj</Button>
+                    <Link to={`/editoffer/${flat.id}`}>Edytuj</Link>
+
                   </>
                 )}
 
