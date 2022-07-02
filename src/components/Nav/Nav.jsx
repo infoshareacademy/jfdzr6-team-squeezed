@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import { NavBar } from "./NavBar.Styled";
-import { AuthStyled } from "./isAuth.Styled";
 import { SearchBar } from "../SearchOffers/SearchBar/SearchBar";
 import { useEffect } from "react";
 import logo from "./logo/logo.ico";
@@ -79,17 +78,6 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
           </ul>
         </div>
       </NavBar>
-
-      {email && (
-        <AuthStyled>
-          <p className="auth">
-            Jesteś zalogowany pod adresem:
-            <a href="mailto:" target="_blank">
-              {email}
-            </a>
-          </p>
-        </AuthStyled>
-      )}
     </>
   );
 };
