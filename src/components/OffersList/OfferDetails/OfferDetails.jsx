@@ -18,6 +18,7 @@ import { useParams } from "react-router-dom";
 import { Carousel, Button } from "react-bootstrap";
 import { useLoadScript } from "@react-google-maps/api";
 const libraries = ["places"];
+import { Minimap } from "./Minimap/Minimap";
 
 
 
@@ -38,7 +39,9 @@ export const OfferDetails = ({setIsLanding}) => {
     //   });
     
     //   if (loadError) return "Błąd ładowania mapy";
-    
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: "AIzaSyBie1ZhkycpbUQPNsfdG76nzaxfWtJPmXU" // Add your API key
+      });
     const userCollectionRef = collection(db, "contacts")
 
     const handleSubmit = (e) => {
@@ -200,22 +203,21 @@ export const OfferDetails = ({setIsLanding}) => {
                                 </div>
                                 <div>
                                     <img className="icon" src={availableSVG} alt="" />
-                                    <li>dostępne od: </li>
+                                    <li>Klimatyzacja: </li>
                                 </div>
                             </ul>
                             <ul className="render-list fetch">
                                 <li>{floor}</li>
-                                <li>{isFurnished}</li>
-                                <li>{isParking}</li>
-                                <li>{isLoggia}</li>
-                                <li>{isAC}</li>
+                                <li>{isFurnished === true ? 'TAK' : "NIE"}</li>
+                                <li>{isParking === true ? 'TAK' : "NIE"}</li>
+                                <li>{isLoggia === true ? 'TAK' : "NIE"}</li>
+                                <li>{isAC === true ? 'TAK' : "NIE"}</li>
                             </ul>
                         </div>
                     </div>
 
                     <div className="map">
-                    {/* {isLoaded ? <Map isLoaded={isLoaded} flats={flat} /> : null} */}
-
+                    {isLoaded ? <Minimap flat={flat} /> : null}
                     </div>
 
                 </section>

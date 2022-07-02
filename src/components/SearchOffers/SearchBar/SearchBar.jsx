@@ -145,7 +145,7 @@ export const SearchBar = ({
       )
       .filter((flat) =>
         selectedFilersWithoutBlank.sizeMax != undefined
-          ? selectedFilersWithoutBlank.sizeMax >= flat.size
+          ? selectedFilersWithoutBlank.sizeMax >= parseInt(flat.size)
           : flat
       )
       .filter((flat) =>

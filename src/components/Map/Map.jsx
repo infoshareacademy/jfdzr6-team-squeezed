@@ -12,7 +12,6 @@ const Map = ({ flats, isLoaded }) => {
   const [activeMarker, setActiveMarker] = useState(null);
 
 
-console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
@@ -46,7 +45,15 @@ console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
   //   );
   //   map.fitBounds(bounds);
   // };
-
+  const changeMapPosition = (flats) => {
+    flats
+      ? mapRef.current?.panTo({
+          lat: flats[0].cords._lat,
+          lng: flats[0].cords._long,
+        })
+      : mapRef.current?.panTo({ lat: 52.234982, lng: 21.00849 });
+    mapRef.current.setZoom(12);
+  };  
   console.log(flats);
   let mapMarkers = []
   mapMarkers = flats.map(
@@ -73,9 +80,7 @@ console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
                 setActiveMarker(null);
               }}>
               <InfoWindowBackground>
-                {/* <img style={{objectFit: 'cover'}} src={photos[0]} width='100%' height='200' /> */}
                 <MapCarousel key={id} photos={photos}/>
-                {/* <img style={{objectFit: 'cover'}} src={photos[0]} width='100%' height='200' /> */}
                 <div
                   style={{
                     display: "flex",
@@ -104,16 +109,7 @@ console.log(flats.length > 0 ? flats[0].photos : console.log('nie ma'))
         </Marker>
       ) : null
   );
-  console.log();
-  const changeMapPosition = (flats) => {
-    flats
-      ? mapRef.current?.panTo({
-          lat: flats[0].cords._lat,
-          lng: flats[0].cords._long,
-        })
-      : mapRef.current?.panTo({ lat: 52.234982, lng: 21.00849 });
-    mapRef.current.setZoom(12);
-  };  
+
   useEffect(() => {
     setTimeout(()=> {
       flats.length > 0 && changeMapPosition(flats);
