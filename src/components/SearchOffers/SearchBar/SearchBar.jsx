@@ -50,8 +50,10 @@ export const SearchBar = ({
       setPickedSuggestion(
         (e.target.value = e.target.value.slice(0, e.target.value.length - 1))
       );
-    }
-    setPickedSuggestion(null);
+    } else {
+      setPickedSuggestion(e.target.value);
+    };
+    
 
     //compare input with cities
     suggestions = searchSuggestions.filter((city) => {
@@ -125,7 +127,7 @@ export const SearchBar = ({
 
   useEffect(() => {
     setSearchSuggestions([...new Set(flatsFromDb?.map(({ city }) => city))]);
-  }, [flatsFromDb, pickedSuggestion, selectedFilters]);
+  }, [flatsFromDb, pickedSuggestion]);
 
   return (
     <SearchForm
@@ -142,10 +144,8 @@ export const SearchBar = ({
           type='text'
           name='searchCity'
           id='searchCity'
-          // value={pickedSuggestion ? pickedSuggestion : ""}
-          defaultValue={
-            flats != undefined && flats.length > 0 ? flats[0].city : ""
-          }
+          value={pickedSuggestion}
+        
           placeholder='Wpisz miasto i znajdź swoje mieszkanie...'
         />
           <button className="search-submit-Btn" type='submit'>Szukaj</button>
@@ -162,7 +162,7 @@ export const SearchBar = ({
  </StyledShowMoreFilters>
         </StyledSearchWrapper>
 
-       
+
       {/* przerzucone */}
 
       {showMoreFilters && (
