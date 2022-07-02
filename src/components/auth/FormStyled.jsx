@@ -40,7 +40,10 @@ export const ContainerStyled = styled.div`
   border-top-left-radius:  20px; 
   border-bottom-left-radius:  20px; 
   @media (max-width: 700px) {
-   border-radius: 20px;
+    border-top-left-radius:  20px; 
+    border-top-right-radius:  20px; 
+    border-bottom-left-radius:  0px; 
+   width:  100%; 
   }
 
   }
