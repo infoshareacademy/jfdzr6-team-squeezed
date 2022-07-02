@@ -1,7 +1,8 @@
+
 import styled from "styled-components";
 
 export const StyledLabel = styled.label`
-  background-color: #eeeaea;
+  background-color: #E3DDDD;
   color: black;
   font-size: 18px;
   padding: 5px;
