@@ -10,7 +10,13 @@ margin: 0 auto;
 padding: 20px;
 font-family: 'Montserrat', sans-serif;
 
-@media (max-width: 800px) {
+
+@media (max-width: 950px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -24,12 +30,44 @@ font-family: 'Montserrat', sans-serif;
     flex-direction: row;
     align-items: center;
 
+    @media (max-width: 950px) {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+ 
 }
+    
+}
+
+.logoContainer {
+    @media (max-width: 775px) {
+align-self: flex-start;
+padding-top: 5px;
+    }
+}
+
+.headerContainer {
+    @media (max-width: 775px) {
+align-self: flex-start;
+padding-top: 15px;
+    }
+}
+
 
 .logBar {
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    @media (max-width: 950px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+
+}
 }
 
 h2 {
@@ -46,13 +84,28 @@ ul {
     flex-direction: row;
     align-items: center;
     list-style: none;
-    @media (max-width: 800px) {
-    display: none;
-}
+    margin: 0px;
+    
+    @media (max-width: 775px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    /* transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'}; */
+    }
+  
 }
 
 li {
     margin-right: 20px;
+    @media (max-width: 775px) {
+    padding: 10px;
+    width: 150px;
+   
+    
+    }
+  
 }
 
 .mainBar a {

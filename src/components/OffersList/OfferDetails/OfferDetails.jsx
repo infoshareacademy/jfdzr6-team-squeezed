@@ -109,10 +109,6 @@ export const OfferDetails = ({setIsLanding}) => {
                         </Carousel>
                     </div>
 
-                    {/* <div className="picture">
-                        <img src={photos} />
-                    </div> */}
-
                     <div className="form">
                         <div className="contact">
                             <h3>Dane kontaktowe właściciela</h3>
