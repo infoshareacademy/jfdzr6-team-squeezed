@@ -1,6 +1,14 @@
-import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import { addDoc, collection, doc, GeoPoint, serverTimestamp } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  addDoc,
+  collection,
+  doc,
+  updateDoc,
+  getDoc,
+  GeoPoint,
+  serverTimestamp,
+} from "firebase/firestore";
 // import { useNavigate } from "react-router-dom";
 import { db, storage } from "../../../utils/firebase";
 import Geocode from "react-geocode";
@@ -9,40 +17,75 @@ import {
   PhotoSpan,
   PhotoInput,
   MainDiv,
-  Container
+  Container,
 } from "./EditOffer.Styled";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
 import { useParams } from "react-router-dom";
 
-export const EditOffer = ({id}) => {
+export const EditOffer = ({ userId }) => {
+  const navigate = useNavigate();
 
-  const { id: idFlat } = useParams("idFlat")
-  console.log(idFlat)
+  const [selectedPhotos, setSelectedPhotos] = useState([]);
+  const [error, setError] = useState(null);
+  const [flatToEdit, setFlatToEdit] = useState({});
+  const { id: idFlat } = useParams("idFlat");
 
-  // fetch flat by id from db
-  // fill input forms from record
-  
-
-  return (
-    <>
-      <EditOffer1 userId={id} />
-    </>
-  )
-};
-
-const EditOffer1 = ({ flats, userId}) => {
-  const navigate = useNavigate()
+  useEffect(() => {
+    const singleFlat = doc(db, "flats", idFlat);
+    getDoc(singleFlat).then((querySnapshot) => {
+      console.log(querySnapshot);
+      const flat = {
+        id: querySnapshot.id,
+        ...querySnapshot.data(),
+      };
+      console.log(flat);
+      setFlatToEdit(flat);
+      setSelectedPhotos(flat.photos);
+    });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
+
+    const imagesUrl = selectedPhotos.map((photoSrc) => photoSrc);
+    console.log(imagesUrl);
+
+    // updateFlatInDB(form, imagesUrl, flatToEdit.cords);
+
+    updateFlatInDBWithGeoData(form, imagesUrl);
+
+    navigate("/mypanel");
+  };
+
+  const updateFlatInDBWithGeoData = (form, imagesUrl) => {
+    Geocode.setApiKey("");
+    Geocode.setLanguage("pl");
+    Geocode.setRegion("pl");
+    Geocode.setLocationType("ROOFTOP");
+
+    const address = `${street.value}, ${city.value}`;
+
+    Geocode.fromAddress(address).then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        const newGeo = new GeoPoint(lat, lng);
+        updateFlatInDB(form, imagesUrl, newGeo);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  };
+
+  const updateFlatInDB = (form, imagesUrl, newGeo) => {
     const {
       title,
       description,
       street,
       city,
-      photos,
+      // photos,
       size,
       price,
       rooms,
@@ -57,112 +100,75 @@ const EditOffer1 = ({ flats, userId}) => {
       mailAddress,
     } = form;
 
-    const imagesUrl = [];
+    const updatedFlat = {
+      title: title.value,
+      cords: newGeo,
+      description: description.value,
+      street: street.value,
+      city: city.value,
+      photos: imagesUrl,
+      size: size.value,
+      price: price.value,
+      rooms: rooms.value,
+      floor: floor.value,
+      available: available.value,
+      isAC: isAC.checked,
+      isElevator: isElevator.checked,
+      isFurnished: isFurnished.checked,
+      isLoggia: isLoggia.checked,
+      isParking: isParking.checked,
+      mobileNumber: mobileNumber.value,
+      mailAddress: mailAddress.value,
+      createAt: serverTimestamp(),
+    };
+    const userDocRef = doc(db, "users", userId);
 
-    for (let prop in photos.files) {
-      //lokalny obiekt photos z inputu, w którym jest obiekt files
-      if (typeof photos.files[prop] === 'object') {
-        //pobieramy nazwę pliku i przekazujemy referencje do zmiennej storage
-        const storageRef = ref(storage, `flat/${photos.files[prop].name} + ${v4()}`);
-        //wysyłamy plik do storage
-        const snapshot = await uploadBytes(storageRef, photos.files[prop]);
-        //wyciągamy URL poprzez snapshot i ref
-        const downloadUrl = await getDownloadURL(snapshot.ref);
-        imagesUrl.push(downloadUrl);
-      }
-    }
+    const flatRequest = {
+      ...updatedFlat,
+      cords: newGeo,
+      userId: userDocRef,
+    };
 
-    Geocode.setApiKey("");
-    Geocode.setLanguage("pl");
-    Geocode.setRegion("pl");
-    Geocode.setLocationType("ROOFTOP");
+    console.log(updatedFlat);
 
-    const address = (`${street.value}, ${city.value}`);
-
-    Geocode.fromAddress(address).then(
-      (response) => {
-        const { lat, lng } = response.results[0].geometry.location;
-        const newGeo = new GeoPoint(lat, lng);
-        const flatsRef = collection(db, "flats");
-
-        const flat = {
-          title: title.value,
-          cords: newGeo,
-          description: description.value,
-          street: street.value,
-          city: city.value,
-          photos: imagesUrl,
-          size: size.value,
-          price: price.value,
-          rooms: rooms.value,
-          floor: floor.value,
-          available: available.value,
-          isAC: (selectedFilters.isAC ? selectedFilters.isAC : false),
-          isElevator: (selectedFilters.isElevator ? selectedFilters.isElevator : false),
-          isFurnished: (selectedFilters.isFurnished ? selectedFilters.isFurnished : false),
-          isLoggia: (selectedFilters.isLoggia ? selectedFilters.isLoggia : false),
-          isParking: (selectedFilters.isParking ? selectedFilters.isParking : false),
-          mobileNumber: mobileNumber.value,
-          mailAddress: mailAddress.value,
-          createAt: serverTimestamp(),
-        };
-        const userDocRef = doc(db, 'users', userId)
-        addDoc(flatsRef, {
-          ...flat, cords: newGeo,
-          isAC: (selectedFilters.isAC ? selectedFilters.isAC : false),
-          isElevator: (selectedFilters.isElevator ? selectedFilters.isElevator : false),
-          isFurnished: (selectedFilters.isFurnished ? selectedFilters.isFurnished : false),
-          isLoggia: (selectedFilters.isLoggia ? selectedFilters.isLoggia : false),
-          isParking: (selectedFilters.isParking ? selectedFilters.isParking : false),
-          userId: userDocRef
-
-        }).then((data) => console.log("test", data.id));
-
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-    navigate("/mypanel");
-
+    const flatRef = doc(db, "flats", idFlat);
+    updateDoc(flatRef, flatRequest).then((data) => console.log("Updated with Success!", data));
   };
-
-  const [selectedPhotos, setSelectedPhotos] = useState([]);
-  const [selectedFilters, setSelectedFilters] = useState({});
-  const [error, setError] = useState(null);
-
 
   const handleDate = (e) => {
     if (e.target.type === "submit") {
-      if (selectedPhotos.length == 0) { setError(true) }
-      else return;
+      if (selectedPhotos.length == 0) {
+        setError(true);
+      } else return;
     }
   };
 
   const handleFilters = (e) => {
-    e.target.type === "checkbox"
-      ? setSelectedFilters({
-        ...selectedFilters,
-        [e.target.name]: e.target.checked,
-      })
-      : setSelectedFilters({
-        ...selectedFilters,
-        [e.target.name]: e.target.value,
-      });
+    const fieldToUpdate = {};
+
+    if (e.target.type === "checkbox") {
+      fieldToUpdate[e.target.name] = e.target.checked;
+    } else {
+      fieldToUpdate[e.target.name] = e.target.value;
+    }
+
+    console.log(fieldToUpdate);
+    console.log(flatToEdit);
+
+    setFlatToEdit({ ...flatToEdit, ...fieldToUpdate });
   };
 
   const onSelectFile = (e) => {
     const selectedFiles = e.target.files;
     const selectedFilesArray = Array.from(selectedFiles);
-    if (selectedFiles.length > 0) { setError(false) };
+    if (selectedFiles.length > 0) {
+      setError(false);
+    }
     const photosArray = selectedFilesArray.map((file) => {
       return URL.createObjectURL(file);
     });
     setSelectedPhotos((previousPhotos) => previousPhotos.concat(photosArray));
-
   };
-
-
 
   return (
     <>
@@ -170,89 +176,240 @@ const EditOffer1 = ({ flats, userId}) => {
         <form onSubmit={handleSubmit}>
           <Container>
             <div className="box1">
-              <label className="title" htmlFor="title"><b>Tytuł ogłoszenia</b><span className="colorStar">*</span></label>
+              <label className="title" htmlFor="title">
+                <b>Tytuł ogłoszenia</b>
+                <span className="colorStar">*</span>
+              </label>
               <br />
-              <input type="text" name="title" id="title" required placeholder="Wpisz tytuł ogłoszenia" onChange={handleFilters} />
+              <input
+                type="text"
+                name="title"
+                id="title"
+                required
+                placeholder="Wpisz tytuł ogłoszenia"
+                onChange={handleFilters}
+                value={flatToEdit.title}
+              />
               <br />
-              <label className="description" htmlFor="description"><b>Opis</b></label>
+              <label className="description" htmlFor="description">
+                <b>Opis</b>
+              </label>
               <br />
-              <textarea id="description" name="description" />
+              <textarea
+                id="description"
+                name="description"
+                onChange={handleFilters}
+                value={flatToEdit.description}
+              />
             </div>
             <div className="box2">
-              <div className="labelStyle"><label className="Street" htmlFor="street"><b>Ulica i numer</b><span className="colorStar">*</span></label>
+              <div className="labelStyle">
+                <label className="Street" htmlFor="street">
+                  <b>Ulica i numer</b>
+                  <span className="colorStar">*</span>
+                </label>
                 <br />
-                <input type="text" name="street" id="street" placeholder="Wpisz ulicę i numer budynku" onChange={handleFilters} /></div>
+                <input
+                  type="text"
+                  name="street"
+                  id="street"
+                  placeholder="Wpisz ulicę i numer budynku"
+                  onChange={handleFilters}
+                  value={flatToEdit.street}
+                />
+              </div>
 
-              <div className="labelStyle"><label htmlFor="city"><b>Miasto</b><span className="colorStar">*</span></label>
+              <div className="labelStyle">
+                <label htmlFor="city">
+                  <b>Miasto</b>
+                  <span className="colorStar">*</span>
+                </label>
                 <br />
-                <input type="text" name="city" id="city" required onChange={handleFilters} /></div>
+                <input
+                  type="text"
+                  name="city"
+                  id="city"
+                  required
+                  onChange={handleFilters}
+                  value={flatToEdit.city}
+                />
+              </div>
 
-              <div className="labelStyle"><label htmlFor="size"><b>Powierzchnia</b><span className="colorStar">*</span></label>
+              <div className="labelStyle">
+                <label htmlFor="size">
+                  <b>Powierzchnia</b>
+                  <span className="colorStar">*</span>
+                </label>
                 <br />
-                <input className="labelStyle__left" type="number" name="flatSize" id="size" required placeholder="m&sup2;" onChange={handleFilters} /></div>
+                <input
+                  className="labelStyle__left"
+                  type="number"
+                  name="size"
+                  id="size"
+                  required
+                  placeholder="m&sup2;"
+                  onChange={handleFilters}
+                  value={flatToEdit.size}
+                />
+              </div>
 
-              <div className="labelStyle"><label htmlFor="price"><b>Cena</b><span className="colorStar">*</span></label>
+              <div className="labelStyle">
+                <label htmlFor="price">
+                  <b>Cena</b>
+                  <span className="colorStar">*</span>
+                </label>
                 <br />
-                <input className="labelStyle__left" type="number" name="price" id="price" required placeholder="PLN" onChange={handleFilters} /></div>
+                <input
+                  className="labelStyle__left"
+                  type="number"
+                  name="price"
+                  id="price"
+                  required
+                  placeholder="PLN"
+                  onChange={handleFilters}
+                  value={flatToEdit.price}
+                />
+              </div>
 
-              <div className="labelStyle"><label htmlFor="rooms"><b>Liczba pokoi</b></label>
+              <div className="labelStyle">
+                <label htmlFor="rooms">
+                  <b>Liczba pokoi</b>
+                </label>
                 <br />
-                <input type="number" name="rooms" id="rooms" onChange={handleFilters} /></div>
+                <input
+                  type="number"
+                  name="rooms"
+                  id="rooms"
+                  onChange={handleFilters}
+                  value={flatToEdit.rooms}
+                />
+              </div>
 
-              <div className="labelStyle"><label htmlFor="floor"><b>Piętro</b></label>
+              <div className="labelStyle">
+                <label htmlFor="floor">
+                  <b>Piętro</b>
+                </label>
                 <br />
-                <input type="number" name="floor" id="floor" onChange={handleFilters} /></div>
+                <input
+                  type="number"
+                  name="floor"
+                  id="floor"
+                  onChange={handleFilters}
+                  value={flatToEdit.floor}
+                />
+              </div>
 
-              <div className="labelStyle"><label htmlFor="available"><b>Dostępność</b><span className="colorStar">*</span></label>
+              <div className="labelStyle">
+                <label htmlFor="available">
+                  <b>Dostępność</b>
+                  <span className="colorStar">*</span>
+                </label>
                 <br />
-                <input type="date" name="available" id="available" required onChange={handleFilters} /></div>
-
+                <input
+                  type="date"
+                  name="available"
+                  id="available"
+                  required
+                  onChange={handleFilters}
+                  value={flatToEdit.available}
+                />
+              </div>
             </div>
 
             <div className="box3">
               <div className="checkboxStyles">
-                <label htmlFor="mobileNumber"><b>Numer telefonu</b><span className="colorStar">*</span></label>
+                <label htmlFor="mobileNumber">
+                  <b>Numer telefonu</b>
+                  <span className="colorStar">*</span>
+                </label>
                 <br />
-                <input className="userData" type="tel" name="mobileNumber" id="mobileNumber" required placeholder="123-456-789" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" onChange={handleFilters} />
+                <input
+                  className="userData"
+                  type="tel"
+                  name="mobileNumber"
+                  id="mobileNumber"
+                  required
+                  placeholder="123-456-789"
+                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"
+                  onChange={handleFilters}
+                  value={flatToEdit?.mobileNumber}
+                />
               </div>
               <div className="checkboxStyles">
-                <label htmlFor="mailAddress"><b>Mail do kontaktu</b><span className="colorStar">*</span></label>
+                <label htmlFor="mailAddress">
+                  <b>Mail do kontaktu</b>
+                  <span className="colorStar">*</span>
+                </label>
                 <br />
-                <input className="userData" type="email" name="mailAddress" id="mailAddress" required onChange={handleFilters} />
+                <input
+                  className="userData"
+                  type="email"
+                  name="mailAddress"
+                  id="mailAddress"
+                  required
+                  onChange={handleFilters}
+                  value={flatToEdit.mailAddress}
+                />
               </div>
               <div className="box3.1"></div>
               <div className="checkboxStyles__checkbox">
-                <input className="checkboxInput" name="isElevator" type="checkbox" onChange={handleFilters} />
+                <input
+                  className="checkboxInput"
+                  name="isElevator"
+                  type="checkbox"
+                  onChange={handleFilters}
+                  checked={flatToEdit.isElevator}
+                />
                 <label htmlFor="isElevator">Winda</label>
               </div>
 
               <div className="checkboxStyles__checkbox">
-                <input className="checkboxInput" name="isFurnished" type="checkbox" onChange={handleFilters} />
-              <label htmlFor="isFurnished">Umeblowanie</label>
-
+                <input
+                  className="checkboxInput"
+                  name="isFurnished"
+                  type="checkbox"
+                  onChange={handleFilters}
+                  checked={flatToEdit.isFurnished}
+                />
+                <label htmlFor="isFurnished">Umeblowanie</label>
               </div>
 
               <div className="checkboxStyles__checkbox">
-                <input className="checkboxInput" name="isAC" type="checkbox" onChange={handleFilters} />
+                <input
+                  className="checkboxInput"
+                  name="isAC"
+                  type="checkbox"
+                  onChange={handleFilters}
+                  checked={flatToEdit.isAC}
+                />
                 <label htmlFor="isAC">Klimatyzacja</label>
               </div>
               <div className="checkboxStyles__checkbox">
-                <input className="checkboxInput" name="isLoggia" type="checkbox" onChange={handleFilters} />
+                <input
+                  className="checkboxInput"
+                  name="isLoggia"
+                  type="checkbox"
+                  onChange={handleFilters}
+                  checked={flatToEdit.isLoggia}
+                />
                 <label htmlFor="isLoggia">Balkon</label>
               </div>
 
               <div className="checkboxStyles__checkbox">
-                <input className="checkboxInput" name="isParking" type="checkbox" onChange={handleFilters} />
+                <input
+                  className="checkboxInput"
+                  name="isParking"
+                  type="checkbox"
+                  onChange={handleFilters}
+                  checked={flatToEdit.isParking}
+                />
                 <label htmlFor="isParking">Parking</label>
               </div>
             </div>
 
             <div className="box4">
-
               <div className="photosLabel">
-
                 <div className="box4styles">
-
                   <PhotoLabel htmlFor="photos">
                     <b>Dodaj zdjęcia:</b>
                     <PhotoSpan>Nie więcej niż 10 zdjęć</PhotoSpan>
@@ -263,7 +420,6 @@ const EditOffer1 = ({ flats, userId}) => {
                       onChange={onSelectFile}
                       multiple
                       accept="photo/png , photo/jpeg , photo/webp , photo/svg , photo/gif"
-                      required
                     />
                   </PhotoLabel>
                   <div className="infoAboutAddingPictures">
@@ -271,6 +427,7 @@ const EditOffer1 = ({ flats, userId}) => {
                   </div>
                 </div>
                 <br />
+
                 {selectedPhotos.length > 0 &&
                   (selectedPhotos.length > 10 ? (
                     <p className="error">
@@ -291,6 +448,7 @@ const EditOffer1 = ({ flats, userId}) => {
                       {selectedPhotos.length === 1 ? "" : ""}
                     </button>
                   ))}
+
                 <div className="photos">
                   {selectedPhotos &&
                     selectedPhotos.map((photo, index) => {
@@ -311,13 +469,18 @@ const EditOffer1 = ({ flats, userId}) => {
                       );
                     })}
                 </div>
-
               </div>
               <div className="photosLabel">
-                <button onClick={handleDate} className="submitButton" type="submit">Dodaj ogłoszenie</button>
+                <button
+                  onClick={handleDate}
+                  className="submitButton"
+                  type="submit"
+                >
+                  Zaktualizuj ogłoszenie
+                </button>
               </div>
             </div>
-            {error && <h2 style={{ color: 'red' }}>{error}</h2>}
+            {error && <h2 style={{ color: "red" }}>{error}</h2>}
           </Container>
           <br />
         </form>
