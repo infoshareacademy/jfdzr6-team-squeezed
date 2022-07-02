@@ -49,7 +49,7 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, user => {
       console.log('auth user', user)
-      console.log('auth user uid', user.uid)
+      // console.log('auth user uid', user.uid)
       if (user) {
         setIsAuth(true)
         setUser(user)

@@ -142,7 +142,7 @@ export const SearchBar = ({
           type='text'
           name='searchCity'
           id='searchCity'
-          value={pickedSuggestion ? pickedSuggestion : null}
+          // value={pickedSuggestion ? pickedSuggestion : ""}
           defaultValue={
             flats != undefined && flats.length > 0 ? flats[0].city : ""
           }

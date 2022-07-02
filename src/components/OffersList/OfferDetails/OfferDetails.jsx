@@ -1,5 +1,5 @@
 import { db } from "../../../utils/firebase";
-import { addDoc, collection, doc, getDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, serverTimestamp } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { ContainerDivStyled } from "./OfferDetails.Styled"
 import emailSVG from "../../auth/email.png"
@@ -16,9 +16,6 @@ import priceSVG from "../Images/price.svg"
 import availableSVG from "../Images/available.svg"
 import { useParams } from "react-router-dom";
 import { Carousel, Button } from "react-bootstrap";
-import { faRefresh } from "@fortawesome/free-solid-svg-icons";
-import { uploadString } from "@firebase/storage";
-
 
 
 export const OfferDetails = () => {
@@ -39,7 +36,8 @@ export const OfferDetails = () => {
         addDoc(userCollectionRef, {
             name: name,
             email: email,
-            message: message
+            message: message,
+            createAt: serverTimestamp()
         }).then(() => {
             if (!alert("wiadomość została wysłana 💬"));
             setLoader(false);
@@ -49,8 +47,7 @@ export const OfferDetails = () => {
         }).catch((error) => {
             alert(error.message);
             setLoader(false)
-        })
-       
+        });
     }
     
 
@@ -96,7 +93,7 @@ export const OfferDetails = () => {
                     <div className="picture">
                         <Carousel interval={caruselInterval}>
                             {flat.photos.map((photoSrc) => (
-                                <Carousel.Item>
+                                <Carousel.Item key={photoSrc}>
                                     <div className="carouselItemImg">
                                         <img src={photoSrc} alt="First slide" />
                                     </div>
