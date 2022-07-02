@@ -19,7 +19,7 @@ export const SearchResults = ({
   setFavourites,
 }) => {
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyB9znA1OBO8ASzhNi_-M3SKRVwjdA04pyE",
+    googleMapsApiKey: "AIzaSyBie1ZhkycpbUQPNsfdG76nzaxfWtJPmXU",
     language: 'pl',
     libraries,
   });
