@@ -23,6 +23,8 @@ import { Footer } from "./components/Footer/Footer";
 import { Privacy } from "./components/Privacy/Privacy";
 import { Statute } from "./components/Statute/Statute";
 import { ClientPanel } from "./components/ClientPanel/ClientPanel";
+import { Messages } from "./components/ClientPanel/Messages/Messages";
+
 
 
 
@@ -51,6 +53,7 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, user => {
       console.log('auth user', user)
+      // console.log('auth user uid', user.uid)
       if (user) {
         setIsAuth(true)
         setUser(user)
@@ -89,6 +92,7 @@ function App() {
         <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer id={user.uid} />} />
         <Route path="editoffer/:id" element={!isAuth ? <Navigate to="/auth/login" /> : <EditOffer userId={user.uid} />} />
         <Route path="mypanel" element={!isAuth ? <Navigate to="/auth/login" /> : <ClientPanel userId={user.uid} />} />
+        <Route path="messages" element={!isAuth ? <Navigate to="/auth/login" /> : <Messages userId={user.uid} />} />
 
       </Routes>
       <Footer />

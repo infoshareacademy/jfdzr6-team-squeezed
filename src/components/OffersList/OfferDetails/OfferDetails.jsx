@@ -1,5 +1,5 @@
 import { db } from "../../../utils/firebase";
-import { addDoc, collection, doc, getDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, serverTimestamp } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { ContainerDivStyled } from "./OfferDetails.Styled"
 import emailSVG from "../../auth/email.png"
@@ -18,10 +18,11 @@ import { useParams } from "react-router-dom";
 import { Carousel, Button } from "react-bootstrap";
 import { useLoadScript } from "@react-google-maps/api";
 const libraries = ["places"];
-
+import { Minimap } from "./Minimap/Minimap";
 
 
 export const OfferDetails = ({setIsLanding}) => {
+
     const { id: idFlat } = useParams("id")
     const [flat, setFlat] = useState(null);
 
@@ -38,7 +39,9 @@ export const OfferDetails = ({setIsLanding}) => {
     //   });
     
     //   if (loadError) return "Błąd ładowania mapy";
-    
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: "AIzaSyBie1ZhkycpbUQPNsfdG76nzaxfWtJPmXU" // Add your API key
+      });
     const userCollectionRef = collection(db, "contacts")
 
     const handleSubmit = (e) => {
@@ -47,16 +50,20 @@ export const OfferDetails = ({setIsLanding}) => {
         addDoc(userCollectionRef, {
             name: name,
             email: email,
-            message: message
+            message: message,
+            createAt: serverTimestamp()
         }).then(() => {
             if (!alert("wiadomość została wysłana 💬"));
-            setLoader(false)
+            setLoader(false);
+            setMessage("");
+            setName("");
+            setEmail("");
         }).catch((error) => {
             alert(error.message);
             setLoader(false)
-        })
+        });
     }
-
+    
 
     const caruselInterval = 36000000;
     const getFlats = () => {
@@ -100,7 +107,7 @@ export const OfferDetails = ({setIsLanding}) => {
                     <div className="picture">
                         <Carousel interval={caruselInterval}>
                             {flat.photos.map((photoSrc) => (
-                                <Carousel.Item>
+                                <Carousel.Item key={photoSrc}>
                                     <div className="carouselItemImg">
                                         <img src={photoSrc} alt="First slide" />
                                     </div>
@@ -125,15 +132,15 @@ export const OfferDetails = ({setIsLanding}) => {
                         <form>
                             <div className="formDiv">
                                 <img className="iconInput" src={userPNG} alt="" />
-                                <input name="name" type="text" placeholder="Wpisz swoję imię" onChange={(e) => setName(e.target.value)} ></input>
+                                <input name="name" type="text" placeholder="Wpisz swoję imię" onChange={(e) => setName(e.target.value)} value={name}></input>
                             </div>
                             <div className="formDiv">
                                 <img className="iconInput" src={emailSVG} alt="" />
-                                <input name="email" type="email" placeholder="Wpisz swój email" onChange={(e) => setEmail(e.target.value)}  ></input>
+                                <input name="email" type="email" placeholder="Wpisz swój email" onChange={(e) => setEmail(e.target.value)} value={email}></input>
                             </div>
                             <div className="formArea">
                                 <img className="iconInput" src={textAreaPNG} alt="" />
-                                <textarea name="textarea" id="" cols="35" rows="10" placeholder="Zostaw tutaj wiadomość" onChange={(e) => setMessage(e.target.value)}  ></textarea>
+                                <textarea name="textarea" id="" cols="35" rows="10" placeholder="Zostaw tutaj wiadomość" onChange={(e) => setMessage(e.target.value)} value={message} ></textarea>
                             </div>
                             <button onClick={handleSubmit} style={{ background: loader ? "#0cb482" : "#0975C3" }}>Wyślij wiadomość</button>
                         </form>
@@ -196,22 +203,21 @@ export const OfferDetails = ({setIsLanding}) => {
                                 </div>
                                 <div>
                                     <img className="icon" src={availableSVG} alt="" />
-                                    <li>dostępne od: </li>
+                                    <li>Klimatyzacja: </li>
                                 </div>
                             </ul>
                             <ul className="render-list fetch">
                                 <li>{floor}</li>
-                                <li>{isFurnished}</li>
-                                <li>{isParking}</li>
-                                <li>{isLoggia}</li>
-                                <li>{isAC}</li>
+                                <li>{isFurnished === true ? 'TAK' : "NIE"}</li>
+                                <li>{isParking === true ? 'TAK' : "NIE"}</li>
+                                <li>{isLoggia === true ? 'TAK' : "NIE"}</li>
+                                <li>{isAC === true ? 'TAK' : "NIE"}</li>
                             </ul>
                         </div>
                     </div>
 
                     <div className="map">
-                    {/* {isLoaded ? <Map isLoaded={isLoaded} flats={flat} /> : null} */}
-
+                    {isLoaded ? <Minimap flat={flat} /> : null}
                     </div>
 
                 </section>

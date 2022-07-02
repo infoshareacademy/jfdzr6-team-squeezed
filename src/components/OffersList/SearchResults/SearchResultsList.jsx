@@ -11,6 +11,7 @@ import {
   MoreInfoBox,
   CarouselContainer,
   CarouselContainerInMsgBox,
+  StyledNoResultsError,
 } from "./SearchResultsList.Styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import citySVG from "../Images/city.svg";
@@ -30,7 +31,6 @@ import { Link } from "react-router-dom";
 import { FavouriteBtn } from "./FavouriteBtn/FavouriteBtn";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../../utils/firebase";
-import { async } from "@firebase/util";
 
 export const SearchResultsList  = ({ flats, favourites, userId }) => {
   const [currentPhotoInfo, setCurrentPhoto] = useState([]);
@@ -58,15 +58,15 @@ export const SearchResultsList  = ({ flats, favourites, userId }) => {
   return (
  
     <OfferList>
-      {flatsToRender?.map((flat) => {
+      {flats.length > 0 && flatsToRender?.map((flat) => {
         return (
           <OfferBackground key={flat.id}>
             {!!flat.photos && flat.photos.length > 0 ? (
               <>
-                <CarouselContainer>
+                <CarouselContainer key={flat.photos.id}>
                   <Carousel interval={caruselInterval}>
-                    {flat.photos.map((photoSrc) => (
-                      <Carousel.Item>
+                    {flat.photos.map((photoSrc, index) => (
+                      <Carousel.Item key={index}>
                         <div className="carouselItemImg">
                           <img src={photoSrc} alt="First slide" />
                         </div>
@@ -141,7 +141,7 @@ export const SearchResultsList  = ({ flats, favourites, userId }) => {
           </OfferBackground>
         );
       })}
-
+  {flats.length === 0 && <InfoBox>Brak wyników do wyświetlenia</InfoBox> }
       {currentPhotoInfo.length > 0 ? (
         <MoreInfoBox>
           <div className="closeIcon">

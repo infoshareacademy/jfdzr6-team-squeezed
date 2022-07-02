@@ -218,3 +218,11 @@ export const CarouselContainerInMsgBox = styled.div`
     height: 400px;
   }
 `;
+
+export const StyledNoResultsError = styled.div`
+display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: center;
+  margin-top: 20px;
+`
