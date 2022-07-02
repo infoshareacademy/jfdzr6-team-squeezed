@@ -1,5 +1,5 @@
 import { db } from "../../../utils/firebase";
-import { addDoc, collection, doc, getDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, serverTimestamp } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { ContainerDivStyled } from "./OfferDetails.Styled"
 import emailSVG from "../../auth/email.png"
@@ -20,8 +20,8 @@ import { useLoadScript } from "@react-google-maps/api";
 const libraries = ["places"];
 
 
-
 export const OfferDetails = ({setIsLanding}) => {
+
     const { id: idFlat } = useParams("id")
     const [flat, setFlat] = useState(null);
 
@@ -47,16 +47,20 @@ export const OfferDetails = ({setIsLanding}) => {
         addDoc(userCollectionRef, {
             name: name,
             email: email,
-            message: message
+            message: message,
+            createAt: serverTimestamp()
         }).then(() => {
             if (!alert("wiadomość została wysłana 💬"));
-            setLoader(false)
+            setLoader(false);
+            setMessage("");
+            setName("");
+            setEmail("");
         }).catch((error) => {
             alert(error.message);
             setLoader(false)
-        })
+        });
     }
-
+    
 
     const caruselInterval = 36000000;
     const getFlats = () => {
@@ -100,7 +104,7 @@ export const OfferDetails = ({setIsLanding}) => {
                     <div className="picture">
                         <Carousel interval={caruselInterval}>
                             {flat.photos.map((photoSrc) => (
-                                <Carousel.Item>
+                                <Carousel.Item key={photoSrc}>
                                     <div className="carouselItemImg">
                                         <img src={photoSrc} alt="First slide" />
                                     </div>
@@ -125,15 +129,15 @@ export const OfferDetails = ({setIsLanding}) => {
                         <form>
                             <div className="formDiv">
                                 <img className="iconInput" src={userPNG} alt="" />
-                                <input name="name" type="text" placeholder="Wpisz swoję imię" onChange={(e) => setName(e.target.value)} ></input>
+                                <input name="name" type="text" placeholder="Wpisz swoję imię" onChange={(e) => setName(e.target.value)} value={name}></input>
                             </div>
                             <div className="formDiv">
                                 <img className="iconInput" src={emailSVG} alt="" />
-                                <input name="email" type="email" placeholder="Wpisz swój email" onChange={(e) => setEmail(e.target.value)}  ></input>
+                                <input name="email" type="email" placeholder="Wpisz swój email" onChange={(e) => setEmail(e.target.value)} value={email}></input>
                             </div>
                             <div className="formArea">
                                 <img className="iconInput" src={textAreaPNG} alt="" />
-                                <textarea name="textarea" id="" cols="35" rows="10" placeholder="Zostaw tutaj wiadomość" onChange={(e) => setMessage(e.target.value)}  ></textarea>
+                                <textarea name="textarea" id="" cols="35" rows="10" placeholder="Zostaw tutaj wiadomość" onChange={(e) => setMessage(e.target.value)} value={message} ></textarea>
                             </div>
                             <button onClick={handleSubmit} style={{ background: loader ? "#0cb482" : "#0975C3" }}>Wyślij wiadomość</button>
                         </form>

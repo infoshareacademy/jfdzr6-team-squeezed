@@ -209,6 +209,7 @@ export const SearchBar = ({
   return (
     <SearchForm onSubmit={handleCitySearch} autoComplete='off'>
       <StyledSearchWrapper>
+
         <StyledShowMoreFilters>
           <label htmlFor='searchCity' />
           <StyledSearchInput
@@ -222,7 +223,7 @@ export const SearchBar = ({
             name='searchCity'
             id='searchCity'
             flats={flats}
-            value={pickedSuggestion ? pickedSuggestion : null}
+            value={pickedSuggestion ? pickedSuggestion : ""}
             defaultValue={
               flats != undefined && flats.length > 0 ? flats[0].city : ""
             }
