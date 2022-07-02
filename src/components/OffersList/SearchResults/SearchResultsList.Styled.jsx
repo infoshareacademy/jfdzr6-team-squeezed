@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const OfferList = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 15px 15px 0 15px;
+  padding: 0px 15px 0 15px;
  
  
   background-color: #e3dddd;
@@ -30,6 +30,7 @@ export const OfferBackground = styled.div`
   box-shadow: 5px 5px 5px gray;
   flex-wrap: wrap;
   margin-bottom: 15px;
+  border-radius: 20px;
 
   @media (min-width: 1200px) {
     flex-wrap: nowrap;

@@ -1,6 +1,7 @@
 import { SearchBar } from "./components/SearchOffers/SearchBar/SearchBar";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { AddOffer } from "./components/ClientPanel/AddOffer/AddOffer";
+import { EditOffer } from "./components/ClientPanel/EditOffer/EditOffer";
 import { Home } from "./Routes/Home";
 import { OfferDetails } from "./components/OffersList/OfferDetails/OfferDetails";
 import { Navigation } from "./components/Nav/Nav";
@@ -34,6 +35,7 @@ function App() {
   const [flats, setFlats] = useState([]);
   const [flatsFromDb, setFlatsFromDb] = useState([]);
   const [favourites, setFavourites] = useState(null)
+  const [isLanding, setIsLanding] = useState(true)
 
   const getFlats = () => {
     const flatsCollection = collection(db, "flats");
@@ -64,16 +66,16 @@ function App() {
   return (
 
     <BrowserRouter>
-      <Navigation isAuth={isAuth} email={user?.email} flatsFromDb={flatsFromDb} setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} setFavourites={setFavourites} flats={flats} />
+      <Navigation isAuth={isAuth} email={user?.email} flatsFromDb={flatsFromDb} setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} setFavourites={setFavourites} flats={flats} isLanding={isLanding} setIsLanding={setIsLanding}/>
       <Routes>
 
-        <Route path="/" element={<Slider setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} flatsFromDb={flatsFromDb} />} />
-        <Route path="/o-nas" element={<AboutUs />} />
-        <Route path="/kontakt" element={<Contact />} />
+        <Route path="/" element={<Slider setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} flatsFromDb={flatsFromDb} setIsLanding={setIsLanding} />} />
+        <Route path="/o-nas" element={<AboutUs setIsLanding={setIsLanding}/>} />
+        <Route path="/kontakt" element={<Contact setIsLanding={setIsLanding}/>} />
+        <Route path="/details/:id" element={<OfferDetails setIsLanding={setIsLanding}/>} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/statute" element={<Statute />} />
 
-        <Route path="/details/:id" element={<OfferDetails />} />
         <Route path="/search-results" element={<SearchResults flats={flats} setFlats={setFlats} flatsFromDb={flatsFromDb} setFavourites={setFavourites} />} />
 
 
@@ -84,7 +86,8 @@ function App() {
 
         </Route>
 
-        <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer />} />
+        <Route path="addoffer" element={!isAuth ? <Navigate to="/auth/login" /> : <AddOffer id={user.uid} />} />
+        <Route path="editoffer/:id" element={!isAuth ? <Navigate to="/auth/login" /> : <EditOffer userId={user.uid} />} />
         <Route path="mypanel" element={!isAuth ? <Navigate to="/auth/login" /> : <ClientPanel userId={user.uid} />} />
 
       </Routes>

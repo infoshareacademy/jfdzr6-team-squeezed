@@ -4,7 +4,11 @@ import { InputFilter } from "../SearchFilters/InputFilter/InputFilter";
 import { StyledInputFilterPrice } from "../SearchFilters/InputFilter/InputFilter.Styled";
 import { StyledLabel } from "../SearchFilters/Label.Styled";
 import { SearchFilters } from "../SearchFilters/SearchFilters";
+import markerSVG from "../../Map/ts-map-pin.svg";
 import {
+  SingleCheckboxContainer,
+  StyledInputCheckboxWrapper,
+  StyledInputTitle,
   StyledInputWrapper,
   StyledSearchFiltersWrapper,
   StyledShowMoreFilters,
@@ -18,12 +22,15 @@ import {
 } from "./SearchBar.Styled";
 import { useNavigate } from "react-router-dom";
 
+import { db } from "../../../utils/firebase";
 export const SearchBar = ({
   setFlats,
   flatsFromDb,
   setFilters,
   setFavourites,
   flats,
+  setIsLanding,
+  isLanding,
 }) => {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [suggestionsToPrint, setSuggestionsToPrint] = useState([]);
@@ -34,7 +41,7 @@ export const SearchBar = ({
   let suggestions = [];
 
   //show more filters handler
-  const handleShowMoreFilters = () => {
+  const handleShowMoreFilters = (e) => {
     setShowMoreFilters(!showMoreFilters);
   };
 
@@ -74,220 +81,341 @@ export const SearchBar = ({
   //filter and return flats IDs from input
   const handleCitySearch = (e) => {
     e.preventDefault();
+    showMoreFilters === true ? setShowMoreFilters(!showMoreFilters) : null;
     const {
       searchCity,
-      sizeMin,
-      sizeMax,
-      priceMin,
-      priceMax,
-      roomsMin,
-      roomsMax,
-      floorMin,
-      floorMax,
-      isAC,
-      isElevator,
-      isFurnished,
-      isLoggia,
-      isParking,
+      // sizeMin,
+      // sizeMax,
+      // priceMin,
+      // priceMax,
+      // roomsMin,
+      // roomsMax,
+      // floorMin,
+      // floorMax,
+      // isAC,
+      // isElevator,
+      // isFurnished,
+      // isLoggia,
+      // isParking,
     } = e.target;
 
-    let flatsResults = [];
-    console.log(flatsFromDb);
-    flatsResults = flatsFromDb.filter(
-      (flat) => flat.city === searchCity.value
-      // (sizeMin.value === "" || sizeMin.value <= flat.size) &&
-      // (sizeMax.value === "" || sizeMax.value >= flat.size) &&
-      // (priceMin.value === "" || priceMin.value <= flat.price) &&
-      // (priceMax.value === "" || priceMax.value >= flat.price) &&
-      // (roomsMin.value === "" || roomsMin.value <= flat.rooms) &&
-      // (roomsMax.value === "" || roomsMax.value >= flat.rooms)
-      // (floorMin.value === "" || floorMin.value <= flat.floor) &&
-      // (floorMax.value === "" || floorMax.value >= flat.floor)
-    );
+    //create filters object and delete positions with empty strings values
+    let selectedFilersWithoutBlank = selectedFilters;
+    for (const key in selectedFilersWithoutBlank) {
+      if (selectedFilersWithoutBlank[key] === "") {
+        delete selectedFilersWithoutBlank[key];
+      }
+    }
+    //filter checkbox filters from all filters
+    let checkboxFilters = selectedFilters;
+    for (const key in checkboxFilters) {
+      if (typeof checkboxFilters[key] !== "boolean") {
+        delete checkboxFilters[key];
+      }
+    }
 
+    //filter flats
+    let flatsResults = flatsFromDb
+      .filter((flat) => flat.city === searchCity.value)
+      .filter((flat) =>
+        selectedFilersWithoutBlank.sizeMin != undefined
+          ? selectedFilersWithoutBlank.sizeMin <= flat.size
+          : flat
+      )
+      .filter((flat) =>
+        selectedFilersWithoutBlank.sizeMax != undefined
+          ? selectedFilersWithoutBlank.sizeMax >= flat.size
+          : flat
+      )
+      .filter((flat) =>
+        selectedFilersWithoutBlank.priceMin != undefined
+          ? selectedFilersWithoutBlank.priceMin <= flat.price
+          : flat
+      )
+      .filter((flat) =>
+        selectedFilersWithoutBlank.priceMax != undefined
+          ? selectedFilersWithoutBlank.priceMax >= flat.price
+          : flat
+      )
+      .filter((flat) =>
+        selectedFilersWithoutBlank.roomsMin != undefined
+          ? selectedFilersWithoutBlank.roomsMin <= flat.rooms
+          : flat
+      )
+      .filter((flat) =>
+        selectedFilersWithoutBlank.roomsMax != undefined
+          ? selectedFilersWithoutBlank.roomsMax >= flat.rooms
+          : flat
+      )
+      .filter((flat) =>
+        selectedFilersWithoutBlank.floorMin != undefined
+          ? selectedFilersWithoutBlank.floorMin <= flat.floor
+          : flat
+      )
+      .filter((flat) =>
+        selectedFilersWithoutBlank.floorMax != undefined
+          ? selectedFilersWithoutBlank.floorMax >= flat.floor
+          : flat
+      )
+    //   .filter((flat) =>
+    //   Object.keys(checkboxFilters).map((key) =>
+    //     flat[key] && flat[key] === checkboxFilters[key] ? flat : null
+    //   ) 
+    // );
+
+    // (selectedFilters.sizeMin != undefined ? selectedFilters.sizeMax >= flat.size : flat.size) &&
+    // (selectedFilters.priceMin != undefined ? selectedFilters.priceMin <= flat.price : flat.price) &&
+    // (selectedFilters.priceMax != undefined ? selectedFilters.priceMax >= flat.price : flat.price)
+    // (priceMin.value === "" || priceMin.value <= flat.price) &&
+    // (priceMax.value === "" || priceMax.value >= flat.price) &&
+    // (roomsMin.value === "" || roomsMin.value <= flat.rooms) &&
+    // (roomsMax.value === "" || roomsMax.value >= flat.rooms) &&
+    // (floorMin.value === "" || floorMin.value <= flat.floor) &&
+    // (floorMax.value === "" || floorMax.value >= flat.floor) &&
+    // (isAC && isAC === flat.isAC)
+    // );
+    // selectedFilters.sizeMin != undefined ? (flatsResults = flatsResults.filter((flat) => selectedFilters.sizeMin <= flat.size)) : flatsResults
+    // selectedFilters.sizeMax != undefined ? flatsResults = flatsResults.filter((flat) => selectedFilters.sizeMax >= flat.size) : flatsResults
+    // selectedFilters.priceMin != undefined ? flatsResults = flatsResults.filter((flat) => selectedFilters.priceMin <= flat.price) : flatsResults
+    // selectedFilters.priceMax != undefined ? flatsResults = flatsResults.filter((flat) => selectedFilters.priceMax >= flat.price) : flatsResults
+    //   // Object.keys(selectedFilters).length > 0 ? getFlats() : null
     //continue with filtering results
+    console.log(flatsResults);
+    console.log(selectedFilters);
     setFlats(flatsResults);
-    navigate("/search-results");
     setSuggestionsToPrint([]);
+    setIsLanding(false);
+    navigate("/search-results");
   };
+  //handle all filters
   const handleFilters = (e) => {
     e.target.type === "checkbox"
       ? setSelectedFilters({
-        ...selectedFilters,
-        [e.target.name]: e.target.checked,
-      })
+          ...selectedFilters,
+          [e.target.name]: e.target.checked,
+        })
       : setSelectedFilters({
-        ...selectedFilters,
-        [e.target.name]: e.target.value,
-      });
-    console.log(selectedFilters);
+          ...selectedFilters,
+          [e.target.name]: e.target.value,
+        });
+
+    // console.log(selectedFilters);
   };
 
   useEffect(() => {
     setSearchSuggestions([...new Set(flatsFromDb?.map(({ city }) => city))]);
-  }, [flatsFromDb, pickedSuggestion, selectedFilters]);
+  }, [flatsFromDb, pickedSuggestion]);
 
   return (
-    <SearchForm
-      style={{ width: "40%" }}
-      onSubmit={handleCitySearch}
-      autoComplete='off'>
+    <SearchForm onSubmit={handleCitySearch} autoComplete='off'>
       <StyledSearchWrapper>
-        
-      <StyledShowMoreFilters>
-        
-        <label htmlFor='searchCity' />
-        <StyledSearchInput
-          onChange={handleCitySuggestions}
-          type='text'
-          name='searchCity'
-          id='searchCity'
-          value={pickedSuggestion ? pickedSuggestion : null}
-          defaultValue={
-            flats != undefined && flats.length > 0 ? flats[0].city : ""
-          }
-          placeholder='Wpisz miasto i znajdź swoje mieszkanie...'
-        />
-          <button className="search-submit-Btn" type='submit'>Szukaj</button>
-        {suggestionsToPrint.length > 0 && (
-          <StyledSearchSuggestionsWrapper>
-            {/* render matching suggestions under input field */}
-            {suggestionsToPrint?.map((city) => (
-              <StyledSearchSuggestion onClick={handleSuggestionPick} key={city}>
-                &#x1f4cd; {city}
-              </StyledSearchSuggestion>
-            ))}
-          </StyledSearchSuggestionsWrapper>
-        )}
- </StyledShowMoreFilters>
-        </StyledSearchWrapper>
+        <StyledShowMoreFilters>
+          <label htmlFor='searchCity' />
+          <StyledSearchInput
+            onChange={handleCitySuggestions}
+            onClick={() =>
+              showMoreFilters === true
+                ? setShowMoreFilters(!showMoreFilters)
+                : null
+            }
+            type='text'
+            name='searchCity'
+            id='searchCity'
+            flats={flats}
+            value={pickedSuggestion ? pickedSuggestion : null}
+            defaultValue={
+              flats != undefined && flats.length > 0 ? flats[0].city : ""
+            }
+            placeholder='Wpisz miasto i znajdź swoje mieszkanie...'
+          />
+          <button className='search-submit-Btn' type='submit'>
+            Szukaj
+          </button>
+          {suggestionsToPrint.length > 0 && (
+            <StyledSearchSuggestionsWrapper>
+              {/* render matching suggestions under input field */}
+              {suggestionsToPrint?.map((city) => (
+                <StyledSearchSuggestion
+                  onClick={handleSuggestionPick}
+                  key={city}>
+                  &#x1f4cd; {city}
+                </StyledSearchSuggestion>
+              ))}
+            </StyledSearchSuggestionsWrapper>
+          )}
+          {flats != undefined && (
+            <button
+              type='button'
+              className='filters-Btn'
+              onClick={handleShowMoreFilters}>
+              Filtry
+            </button>
+          )}
 
-       
-      {/* przerzucone */}
+          {/* przerzucone */}
 
-      {showMoreFilters && (
-        <>
-          <StyledSearchFiltersWrapper>
-            <label htmlFor='text'></label>
-            <StyledInputWrapper>
-              <input
-                placeholder='powierzchnia od'
-                name='sizeMin'
-                onChange={handleFilters}
-                type='number'
-              />
-              <StyledLabel htmlFor='text'>m2</StyledLabel>
-            </StyledInputWrapper>
-            <label htmlFor='text'></label>
-            <StyledInputWrapper>
-              <input
-                type='number'
-                placeholder='powierzchnia do'
-                name='sizeMax'
-                onChange={handleFilters}
-              />
-              <StyledLabel htmlFor='text'>m2</StyledLabel>
-            </StyledInputWrapper>
-            <label htmlFor='text'></label>
-            <StyledInputWrapper>
-              <input
-                placeholder='cena od'
-                name='priceMin'
-                onChange={handleFilters}
-              />
-              <StyledLabel htmlFor='text'>zł</StyledLabel>
-            </StyledInputWrapper>
-            <StyledInputWrapper>
-              <input
-                placeholder='cena do'
-                name='priceMax'
-                onChange={handleFilters}
-              />
-              <StyledLabel htmlFor='text'>zł</StyledLabel>
-            </StyledInputWrapper>
-            <label htmlFor='text' />
-            <StyledInputWrapper>
-              <input
-                placeholder='liczba pokoi od'
-                name='roomsMin'
-                onChange={handleFilters}
-              />
-              <StyledLabel htmlFor='text'></StyledLabel>
-            </StyledInputWrapper>
-            <StyledInputWrapper>
-              <input
-                placeholder='liczba pokoi do'
-                name='roomsMax'
-                onChange={handleFilters}
-              />
-              <StyledLabel htmlFor='text'></StyledLabel>
-            </StyledInputWrapper>
-          </StyledSearchFiltersWrapper>
-          <StyledSearchFiltersWrapper>
-            <StyledInputWrapper>
-              <input
-                placeholder='piętro od...'
-                name='floorMin'
-                onChange={handleFilters}
-              />
-              <StyledLabel htmlFor='text'>od</StyledLabel>
-            </StyledInputWrapper>
+          {showMoreFilters && (
+            <StyledSearchFiltersWrapper>
+              <StyledInputCheckboxWrapper>
+                <StyledInputWrapper>
+                  <StyledInputTitle>
+                    <label htmlFor='text'>Metraż</label>
+                  </StyledInputTitle>
+                  <StyledInputTitle>
+                    <input
+                      placeholder='min'
+                      name='sizeMin'
+                      value={selectedFilters.sizeMin}
+                      onChange={handleFilters}
+                      type='number'
+                    />
+                    <StyledLabel htmlFor='text'></StyledLabel>
+                    <label htmlFor='text'></label>
 
-            <StyledInputWrapper>
-              <input
-                placeholder='piętro do...'
-                name='floorMax'
-                onChange={handleFilters}
-              />
-              <StyledLabel htmlFor='text'>do</StyledLabel>
-            </StyledInputWrapper>
-            <StyledInputWrapper>
-              <StyledLabel>Klimatyzacja</StyledLabel>
-              <input
-                className='checkbox'
-                type='checkbox'
-                name='isAC'
-                onChange={handleFilters}
-              />
-              <StyledLabel>Winda</StyledLabel>
-              <input
-                className='checkbox'
-                onChange={handleFilters}
-                type='checkbox'
-                name='isElevator'
-              />
-              <StyledLabel>Meble / urządzone</StyledLabel>
-              <input
-                className='checkbox'
-                type='checkbox'
-                onChange={handleFilters}
-                name='isFurnished'
-              />
-              <StyledLabel>Loggia / balkon</StyledLabel>
-              <input
-                className='checkbox'
-                onChange={handleFilters}
-                type='checkbox'
-                name='isLoggia'
-              />
-              <StyledLabel>Parking</StyledLabel>
-              <input
-                className='checkbox'
-                onChange={handleFilters}
-                type='checkbox'
-                name='isParking'
-              />
-              <StyledLabel>Pokaż ulubione</StyledLabel>
-              <input
-                className='checkbox'
-                onChange={handleFilterFavourites}
-                type='checkbox'
-                name='favouriteFlats'
-              />
-            </StyledInputWrapper>
-          </StyledSearchFiltersWrapper>
-        </>
-      )}
+                    <input
+                      type='number'
+                      placeholder='max'
+                      value={selectedFilters.sizeMax}
+                      name='sizeMax'
+                      onChange={handleFilters}
+                    />
+                  </StyledInputTitle>
+
+                  <StyledLabel htmlFor='text'></StyledLabel>
+                </StyledInputWrapper>
+                <StyledInputWrapper>
+                  <StyledInputTitle>
+                    <label htmlFor='text'>Cena</label>
+                  </StyledInputTitle>
+                  <StyledInputTitle>
+                    <input
+                      placeholder='min'
+                      value={selectedFilters.priceMin}
+                      name='priceMin'
+                      onChange={handleFilters}
+                    />
+
+                    <StyledLabel htmlFor='text'></StyledLabel>
+                    <input
+                      placeholder='max'
+                      value={selectedFilters.priceMax}
+                      name='priceMax'
+                      onChange={handleFilters}
+                    />
+                  </StyledInputTitle>
+
+                  <StyledLabel htmlFor='text'></StyledLabel>
+                </StyledInputWrapper>
+                <StyledInputWrapper>
+                  <StyledInputTitle>
+                    <label htmlFor='text'>Liczba pokoi</label>
+                  </StyledInputTitle>
+
+                  <StyledInputTitle>
+                    <input
+                      placeholder='min'
+                      name='roomsMin'
+                      value={selectedFilters.roomsMin}
+                      onChange={handleFilters}
+                    />
+                    <StyledLabel htmlFor='text'></StyledLabel>
+                    <input
+                      placeholder='max'
+                      value={selectedFilters.roomsMax}
+                      name='roomsMax'
+                      onChange={handleFilters}
+                    />
+                  </StyledInputTitle>
+
+                  <StyledLabel htmlFor='text'></StyledLabel>
+                </StyledInputWrapper>
+                {/* </StyledSearchFiltersWrapper>
+          <StyledSearchFiltersWrapper> */}
+                <StyledInputWrapper>
+                  <StyledInputTitle>
+                    <label htmlFor='text'>Piętro</label>
+                  </StyledInputTitle>
+                  <StyledInputTitle>
+                    <input
+                      placeholder='min'
+                      name='floorMin'
+                      value={selectedFilters.floorMin}
+                      onChange={handleFilters}
+                    />
+                    <StyledLabel htmlFor='text'></StyledLabel>
+
+                    <input
+                      placeholder='max'
+                      value={selectedFilters.floorMax}
+                      name='floorMax'
+                      onChange={handleFilters}
+                    />
+                  </StyledInputTitle>
+
+                  <StyledLabel htmlFor='text'></StyledLabel>
+                </StyledInputWrapper>
+              </StyledInputCheckboxWrapper>
+
+              <StyledInputCheckboxWrapper>
+                <SingleCheckboxContainer>
+                  <input
+                    className='checkbox'
+                    type='checkbox'
+                    name='isAC'
+                    onChange={handleFilters}
+                  />
+                  <StyledLabel>Klimatyzacja</StyledLabel>
+                </SingleCheckboxContainer>
+                <SingleCheckboxContainer>
+                  <input
+                    className='checkbox'
+                    onChange={handleFilters}
+                    type='checkbox'
+                    name='isElevator'
+                  />
+                  <StyledLabel>Winda</StyledLabel>
+                </SingleCheckboxContainer>
+                <SingleCheckboxContainer>
+                  <input
+                    className='checkbox'
+                    type='checkbox'
+                    onChange={handleFilters}
+                    name='isFurnished'
+                  />
+                  <StyledLabel>Meble</StyledLabel>
+                </SingleCheckboxContainer>
+                <SingleCheckboxContainer>
+                  <input
+                    className='checkbox'
+                    onChange={handleFilters}
+                    type='checkbox'
+                    name='isLoggia'
+                  />
+                  <StyledLabel>Loggia</StyledLabel>
+                </SingleCheckboxContainer>
+                <SingleCheckboxContainer>
+                  <input
+                    className='checkbox'
+                    onChange={handleFilters}
+                    type='checkbox'
+                    name='isParking'
+                  />
+                  <StyledLabel>Parking</StyledLabel>
+                </SingleCheckboxContainer>
+                <SingleCheckboxContainer>
+                  <input
+                    className='checkbox'
+                    onChange={handleFilterFavourites}
+                    type='checkbox'
+                    name='favouriteFlats'
+                  />
+                  <StyledLabel>Pokaż ulubione</StyledLabel>
+                </SingleCheckboxContainer>
+              </StyledInputCheckboxWrapper>
+            </StyledSearchFiltersWrapper>
+          )}
+        </StyledShowMoreFilters>
+      </StyledSearchWrapper>
     </SearchForm>
   );
 };

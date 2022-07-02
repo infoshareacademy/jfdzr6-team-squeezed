@@ -10,13 +10,14 @@ margin: 0 auto;
 padding: 20px;
 font-family: 'Montserrat', sans-serif;
 
+
 @media (max-width: 950px) {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
- 
+
 }
 
 .logo {
