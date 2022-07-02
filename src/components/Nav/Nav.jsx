@@ -7,17 +7,19 @@ import { SearchBar } from "../SearchOffers/SearchBar/SearchBar";
 import { useEffect } from "react";
 import logo from "./logo/logo.ico";
 
-export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats }) => {
-  useEffect(() => {
+export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats, setIsLanding, isLanding  }) => {
 
-  }, [])
+
   return (
     <>
       <NavBar className="navbar is-primary">
-        <div className="mainBar">
-          <img className="logo" src={logo}></img>
-          <h2>Najemnicy</h2>
-
+        <div className="mainBar" >
+          <div className="logoContainer">
+            <img className="logo" src={logo}></img>
+          </div>
+          <div className="headerContainer">
+            <h2>Najemnicy</h2>
+          </div>
           <ul>
             <li>
               <NavLink to="/">Home</NavLink>
@@ -31,13 +33,14 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
           </ul>
         </div>
         <div>
-          {flats.length > 0 &&
-            <SearchBar
-              flatsFromDb={flatsFromDb}
-              setFlats={setFlats}
-              setFavourites={setFavourites}
-              flats={flats}
-            />}
+          {!isLanding &&
+        <SearchBar
+          flatsFromDb={flatsFromDb}
+          setFlats={setFlats}
+          setFavourites={setFavourites}
+          flats={flats}
+          isLanding={isLanding}
+        /> }
         </div>
 
         <div className="logBar">

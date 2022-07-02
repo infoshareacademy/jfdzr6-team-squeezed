@@ -8,7 +8,6 @@ export const SearchResultsContainer = styled.div`
 export const ResultsWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
   @media (max-width: 800px) {
     flex-direction: column;
   }

@@ -19,13 +19,14 @@ export const SearchResults = ({
   setFavourites,
 }) => {
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBS9ENJtnxhEwwTw5YcFb8Ml57rjHZbxuA",
-    language: "pl",
+    googleMapsApiKey: "AIzaSyB9znA1OBO8ASzhNi_-M3SKRVwjdA04pyE",
+    language: 'pl',
     libraries,
   });
 
   if (loadError) return "Błąd ładowania mapy";
   if (!isLoaded) return <Spinner />;
+
 
   return (
     <SearchResultsContainer>
