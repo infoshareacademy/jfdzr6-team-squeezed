@@ -91,12 +91,14 @@ ul {
     flex-wrap: nowrap;
     align-items: flex-end;
     position: fixed;
-    top: 80px;
-    right: 0px;
+    top: 55px;
+    right: 2px;
     background-color: #0975C3;
     width: 150px;
     display: none;
     z-index: 100;
+    border: 2px solid white;
+   
     
     }
 }
@@ -110,8 +112,17 @@ ul {
 }
 
 .logLink {
+    @media (max-width: 950px) {
+  margin-top: 20px;
+  border-top: none;
+  
+  
+
+}
+
+
     @media (max-width: 775px) {
-  margin-top: 200px;
+  margin-top: 203px;
    
     }
 

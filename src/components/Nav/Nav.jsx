@@ -7,9 +7,11 @@ import { SearchBar } from "../SearchOffers/SearchBar/SearchBar";
 import { useEffect } from "react";
 import logo from "./logo/logo.ico";
 import Burger from "./Burger";
+import { useState } from "react";
 
 export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats, setIsLanding, isLanding }) => {
 
+  const [open, setOpen] = useState(false)
 
   return (
     <>
@@ -21,7 +23,7 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
           <div className="headerContainer">
             <h2>Najemnicy</h2>
           </div>
-          <ul className="homeLink">
+          <ul className="homeLink" style={{ display: open ? "flex" : "none" }}>
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
@@ -33,7 +35,7 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
             </li>
           </ul>
         </div>
-        <Burger />
+        <Burger open={open} setOpen={setOpen} />
         <div>
           {!isLanding &&
             <SearchBar
@@ -46,7 +48,7 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
         </div>
 
         <div className="logBar">
-          <ul className="logLink">
+          <ul className="logLink" style={{ display: open ? "flex" : "none" }}>
             {!isAuth && (
               <>
                 <li>
