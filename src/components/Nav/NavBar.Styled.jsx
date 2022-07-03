@@ -37,14 +37,14 @@ export const NavBar = styled.nav`
   }
 
   .logoContainer {
-    @media (max-width: 775px) {
+    @media (max-width: 860px) {
       align-self: flex-start;
       padding-top: 5px;
     }
   }
 
   .headerContainer {
-    @media (max-width: 775px) {
+    @media (max-width: 860px) {
       align-self: flex-start;
       padding-top: 15px;
     }
@@ -78,7 +78,7 @@ export const NavBar = styled.nav`
     list-style: none;
     margin: 0px;
 
-    @media (max-width: 775px) {
+    @media (max-width: 860px) {
       width: 100%;
       flex-direction: column;
       flex-wrap: nowrap;
@@ -95,7 +95,7 @@ export const NavBar = styled.nav`
   }
 
   .homeLink {
-    @media (max-width: 775px) {
+    @media (max-width: 860px) {
       margin-top: 40px;
       border-top-left-radius: 20px;
     }
@@ -108,14 +108,14 @@ export const NavBar = styled.nav`
       border-bottom-left-radius: 20px;
     }
 
-    @media (max-width: 775px) {
+    @media (max-width: 860px) {
       margin-top: 203px;
     }
   }
 
   li {
     margin-right: 20px;
-    @media (max-width: 775px) {
+    @media (max-width: 860px) {
       padding: 10px;
       width: 130px;
       margin-top: 10px;
@@ -144,7 +144,7 @@ export const NavBar = styled.nav`
     margin-left: auto;
     box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.13);
 
-    @media (max-width: 775px) {
+    @media (max-width: 860px) {
       padding: 10px;
       background-color: #0975c3;
       box-shadow: none;
