@@ -68,7 +68,7 @@ export const Messages = ({ userId }) => {
 
   const header = true;
   const renderMessageList = messages.map((arr) => ( arr.map(({name, message, createAt}) =>
-    <MessageContainer>
+    <MessageContainer key={message}>
       <TimeContainer>{createAt.toDate().toDateString()}</TimeContainer>
 
       <AuthorContainer>
@@ -76,7 +76,7 @@ export const Messages = ({ userId }) => {
       </AuthorContainer>
       <Link className='message-header' to='/'>
         <MessageTitle>
-          <h5>{message?.slice(0, 60)} (...)</h5>
+          <h5>{message?.slice(0, 80)} (...)</h5>
         </MessageTitle>
       </Link>
     </MessageContainer>
@@ -100,9 +100,10 @@ export const Messages = ({ userId }) => {
   return (
     <>
       <MessagesWrapper>
-        <h1>wiadomości</h1>
+        <MessageContainer><h1 style={{padding: '0 15px'}}>WIADOMOŚCI</h1></MessageContainer>
+
         <StyledInboxContainer>
-          <MessageContainer header={header}>
+          {/* <MessageContainer header={header}>
             <TimeContainer>
               <p>Godzina</p>
             </TimeContainer>
@@ -112,9 +113,9 @@ export const Messages = ({ userId }) => {
             <MessageTitle>
               <h5>Wiadomość</h5>
             </MessageTitle>
-          </MessageContainer>
+          </MessageContainer> */}
+          {renderMessageList}
         </StyledInboxContainer>
-        <StyledInboxContainer>{renderMessageList}</StyledInboxContainer>
       </MessagesWrapper>
     </>
   );
