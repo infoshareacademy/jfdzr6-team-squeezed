@@ -24,7 +24,12 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites, setIsLandi
     setCurrentSlide(0);
     setFlats([]);
     setIsLanding(true)
-  }, []);
+    document.body.classList.add('overflow-hidden')
+
+    return () => {
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [])
 
   useEffect(() => {
     if (autoScroll) {

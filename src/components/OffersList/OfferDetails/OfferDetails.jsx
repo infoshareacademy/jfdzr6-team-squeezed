@@ -37,11 +37,11 @@ export const OfferDetails = ({setIsLanding}) => {
     //     language: 'pl',
     //     libraries,
     //   });
-    
+
     //   if (loadError) return "Błąd ładowania mapy";
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: "AIzaSyBie1ZhkycpbUQPNsfdG76nzaxfWtJPmXU" // Add your API key
-      });
+    });
     const userCollectionRef = collection(db, "contacts")
     const handleSubmit = (e) => {
         e.preventDefault();

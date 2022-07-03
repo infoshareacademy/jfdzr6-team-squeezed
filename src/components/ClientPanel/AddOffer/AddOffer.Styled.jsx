@@ -4,7 +4,8 @@ import styled, { withTheme } from "styled-components";
 
 
 export const Container = styled.div`
-
+border-radius: 20px;
+padding: 20px;
 * {
   box-sizing: border-box;
 }
@@ -186,7 +187,8 @@ display:flex;
 
 .photosLabel {
   background-color: white;
-  margin: 0 auto;
+  margin: 0 auto 10px auto;
+  
   
 
 }
