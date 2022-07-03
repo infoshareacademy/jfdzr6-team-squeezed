@@ -43,7 +43,6 @@ export const OfferDetails = ({setIsLanding}) => {
         googleMapsApiKey: "AIzaSyBie1ZhkycpbUQPNsfdG76nzaxfWtJPmXU" // Add your API key
       });
     const userCollectionRef = collection(db, "contacts")
-
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoader(true)
@@ -51,6 +50,7 @@ export const OfferDetails = ({setIsLanding}) => {
             name: name,
             email: email,
             message: message,
+            recipient: flat.userId,
             createAt: serverTimestamp()
         }).then(() => {
             if (!alert("wiadomość została wysłana 💬"));

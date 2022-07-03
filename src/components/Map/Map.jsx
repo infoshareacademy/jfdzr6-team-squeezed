@@ -14,6 +14,7 @@ import logo from "./logo-icon-only-blue.svg";
 import markerSVG from "./ts-map-pin.svg";
 import { MapCarousel } from "./MapCarousel/MapCarousel";
 import { Link } from "react-router-dom";
+import { Spinner } from "../../utils/Spinner";
 
 
 const Map = ({ flats, isLoaded }) => {
@@ -96,8 +97,8 @@ const Map = ({ flats, isLoaded }) => {
           animation={window.google.maps.Animation.DROP}
           position={{ lat: cords._lat, lng: cords._long }}
           onClick={() => handleActiveMarker(id)}
-          label={{ text: `${price}zł`, color: "darkred", fontWeight: "bold", TextOutline: "4px solid #f0f0f0"}}
-          labelStyle={{backgroundColor: 'black'}}
+          label={{ text: `${price}zł`, color: "darkred", fontWeight: "bold", fontSize: "16px", TextOutline: "4px solid #f0f0f0"}}
+          labelStyle={{backgroundColor: 'black', fontSize: "26px"}}
           icon={{
             url: markerSVG,
             scaledSize: new window.google.maps.Size(50, 50),
@@ -162,6 +163,7 @@ const Map = ({ flats, isLoaded }) => {
             <img src={logo} width='80' />
           </span>
         </StyledMapHeader>
+        {isLoading && <Spinner />}
         <GoogleMap
           onLoad={onMapLoad}
           onClick={() => setActiveMarker(null)}
