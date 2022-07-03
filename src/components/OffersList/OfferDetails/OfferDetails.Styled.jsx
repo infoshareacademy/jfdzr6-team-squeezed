@@ -134,7 +134,7 @@ width: 100%;
 
 input {
 font-size:  16px; 
-  padding:  20px 0px; 
+  padding:  20px 10px; 
   height:  56px; 
   border:  none; 
   border-bottom:  solid 1px rgba(0,0,0,.1); 
@@ -146,7 +146,7 @@ font-size:  16px;
 
 textarea {
 font-size:  16px; 
-  padding:  20px 0px; 
+padding:  20px 10px; 
   height:  200px;
   max-height: 200px;
     max-width: 280px;
@@ -181,6 +181,9 @@ button {
       transform:  scale(.99);
     }
   }
+  display: block;
+  margin: 10px auto;
+  
 }
 
 .section-2 {
