@@ -10,7 +10,6 @@ export const Minimap = ({flat}) => {
   const [isLoading, setIsLoading] = useState(true);
 
 const flats = [flat]
-console.log(flats)
 const mapRef = useRef();
 const onMapLoad = useCallback((map) => {
   mapRef.current = map;

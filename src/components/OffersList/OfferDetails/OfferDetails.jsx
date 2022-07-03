@@ -70,7 +70,6 @@ export const OfferDetails = ({setIsLanding}) => {
         const flatsCollection = doc(db, 'flats', idFlat);
         getDoc(flatsCollection).then(querySnapshot => {
 
-            console.log(querySnapshot)
             const flat = {
                 id: querySnapshot.id,
                 ...querySnapshot.data(),

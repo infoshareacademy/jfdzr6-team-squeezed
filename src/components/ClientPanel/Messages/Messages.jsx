@@ -53,18 +53,15 @@ export const Messages = ({ userId }) => {
           id: doc.id,
           ...doc.data(),
         }));
-        console.log('result', result)
         return result;
       })
       .catch((err) => console.log(err));
   };
-  console.log(userFlats);
   // console.log(flatsQueries)
 
   //   const querieAllFlatsMessages = () => {
   //     allQueries.forEach((q) => getMessages(q));
   //   };
-  console.log(messages);
 
   const header = true;
   const renderMessageList = messages.map((arr) => ( arr.map(({name, message, createAt}) =>
