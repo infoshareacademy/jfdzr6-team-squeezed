@@ -19,6 +19,8 @@ export const OfferListContainer = styled.div`
   }
 
   .singleColumnLayout {
+    flex-direction: column;
+    flex-wrap: nowrap;
   }
 
   .singleColumnLayoutBox {

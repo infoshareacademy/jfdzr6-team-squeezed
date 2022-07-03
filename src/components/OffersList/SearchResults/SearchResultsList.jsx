@@ -61,11 +61,18 @@ export const SearchResultsList = ({ flats, favourites, userId }) => {
   };
   return (
     <OfferListContainer>
-      <OfferList className={!!userId ? 'twoColumnLayout' : 'singleColumnLayout'}>
+      <OfferList
+        className={!!userId ? "twoColumnLayout" : "singleColumnLayout"}
+      >
         {flats.length > 0 &&
           flatsToRender?.map((flat) => {
             return (
-              <OfferBackground key={flat.id} className={!!userId ? 'twoColumnLayoutBox' : 'singleColumnLayoutBox'}>
+              <OfferBackground
+                key={flat.id}
+                className={
+                  !!userId ? "twoColumnLayoutBox" : "singleColumnLayoutBox"
+                }
+              >
                 {!!flat.photos && flat.photos.length > 0 ? (
                   <>
                     <CarouselContainer key={flat.photos.id}>
