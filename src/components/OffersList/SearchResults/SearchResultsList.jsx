@@ -26,7 +26,7 @@ import {
   faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Carousel, Button } from "react-bootstrap";
+import { Carousel, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FavouriteBtn } from "./FavouriteBtn/FavouriteBtn";
 import { doc, deleteDoc } from "firebase/firestore";
@@ -35,6 +35,9 @@ import { db } from "../../../utils/firebase";
 export const SearchResultsList  = ({ flats, favourites, userId }) => {
   const [currentPhotoInfo, setCurrentPhoto] = useState([]);
   const [flatsToRender, setFlatsToRender] = useState([]);
+  if (!flats) {
+    return <Spinner />
+  }
 
   // const addFlatToFavorite = (flat) => {};
   const caruselInterval = 36000000;
@@ -56,7 +59,7 @@ export const SearchResultsList  = ({ flats, favourites, userId }) => {
     setFlatsToRender((prevFlats) => prevFlats.filter((f) => f.id !== flatId));
   };
   return (
- 
+    
     <OfferList>
       {flats.length > 0 && flatsToRender?.map((flat) => {
         return (

@@ -17,6 +17,7 @@ export const SearchResults = ({
   flatsFromDb,
   setFlats,
   setFavourites,
+  favourites
 }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyBie1ZhkycpbUQPNsfdG76nzaxfWtJPmXU",
@@ -40,9 +41,9 @@ export const SearchResults = ({
       </SearchWrapper>
 
       <ResultsWrapper>
-        {isLoaded && flats ? <Map isLoaded={isLoaded} flats={flats} /> : null}
+        {isLoaded && flats ? <Map isLoaded={isLoaded} flats={flats} /> : <Spinner />}
         <SearchResultListParent>
-          <SearchResultsList flats={flats} />
+          <SearchResultsList flats={flats} favourites={favourites} />
         </SearchResultListParent>
       </ResultsWrapper>
     </SearchResultsContainer>

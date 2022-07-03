@@ -7,7 +7,7 @@ import { SearchBar } from "../SearchOffers/SearchBar/SearchBar";
 import { useEffect } from "react";
 import logo from "./logo/logo.ico";
 
-export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats, setIsLanding, isLanding  }) => {
+export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats, setIsLanding, isLanding, favourites  }) => {
 
 
   return (
@@ -40,6 +40,7 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
           setFavourites={setFavourites}
           flats={flats}
           isLanding={isLanding}
+          favourites={favourites}
         /> }
         </div>
 
