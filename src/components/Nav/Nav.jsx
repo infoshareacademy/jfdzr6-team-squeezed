@@ -8,7 +8,7 @@ import logo from "./logo/logo.ico";
 import Burger from "./Burger";
 import { useState } from "react";
 
-export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats, setIsLanding, isLanding }) => {
+export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats, setIsLanding, isLanding, favourites  }) => {
 
   const [open, setOpen] = useState(false)
 
@@ -37,13 +37,14 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
         <Burger open={open} setOpen={setOpen} />
         <div>
           {!isLanding &&
-            <SearchBar
-              flatsFromDb={flatsFromDb}
-              setFlats={setFlats}
-              setFavourites={setFavourites}
-              flats={flats}
-              isLanding={isLanding}
-            />}
+        <SearchBar
+          flatsFromDb={flatsFromDb}
+          setFlats={setFlats}
+          setFavourites={setFavourites}
+          flats={flats}
+          isLanding={isLanding}
+          favourites={favourites}
+        /> }
         </div>
 
         <div className="logBar">
