@@ -5,7 +5,6 @@ import { MegaSlider } from "./Slider.Styled";
 
 export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites, setIsLanding }) => {
 
-
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideLength = sliderData.length;
 
@@ -15,7 +14,6 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites, setIsLandi
 
   const nextSlide = () => {
     setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
-    console.log("next");
   };
 
   function auto() {
@@ -38,6 +36,7 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites, setIsLandi
   return (
     <MegaSlider>
       <div className="slider">
+        {flatsFromDb ? <>
         {sliderData.map((slide, index) => {
           return (
             <div
@@ -51,7 +50,7 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites, setIsLandi
               )}
             </div>
           );
-        })}
+        })}</> : <Spinner /> }
 
 
         <div className="content">

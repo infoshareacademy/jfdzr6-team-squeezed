@@ -32,3 +32,11 @@ export const InfoWindowBackground = styled.div`
 // color: white;
 // z-index: 10;
 // `;
+
+export const SpinnerContainer = styled.div`
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+`

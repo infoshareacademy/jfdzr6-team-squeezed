@@ -31,6 +31,7 @@ export const SearchBar = ({
   flats,
   setIsLanding,
   isLanding,
+  favourites
 }) => {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [suggestionsToPrint, setSuggestionsToPrint] = useState([]);
@@ -45,6 +46,11 @@ export const SearchBar = ({
     roomsMax: "",
     floorMin: "",
     floorMax: "",
+    isAC: false,
+    isElevator: false,
+    isFurnished: false,
+    isLoggia: false,
+    isParking: false,
   });
   const navigate = useNavigate();
   let suggestions = [];
@@ -166,7 +172,15 @@ export const SearchBar = ({
         (flat) =>
           selectedFilters.floorMax === "" ||
           selectedFilters.floorMax >= flat.floor
-      );
+      )
+      .filter((flat) => selectedFilters.isAC === false || flat.isAC === true)
+      .filter((flat) => selectedFilters.isElevator === false || flat.isElevator === true)
+      .filter((flat) => selectedFilters.isFurnished === false || flat.isFurnished === true)
+      .filter((flat) => selectedFilters.isLoggia === false || flat.isLoggia === true)
+      .filter((flat) => selectedFilters.isParking === false || flat.isParking === true);
+
+
+
     //   .filter((flat) =>
     //   Object.keys(checkboxFilters).map((key) =>
     //     flat[key] && flat[key] === checkboxFilters[key] ? flat : null
@@ -367,11 +381,23 @@ export const SearchBar = ({
               </StyledInputCheckboxWrapper>
 
               <StyledInputCheckboxWrapper>
+              <SingleCheckboxContainer>
+                  <input
+                    className='checkbox'
+                    onChange={handleFilterFavourites}
+                    type='checkbox'
+                    name='favouriteFlats'
+                    checked={favourites}
+
+                  />
+                  <StyledLabel>Pokaż ulubione</StyledLabel>
+                </SingleCheckboxContainer>
                 <SingleCheckboxContainer>
                   <input
                     className='checkbox'
                     type='checkbox'
                     name='isAC'
+                    checked={selectedFilters.isAC}
                     onChange={handleFilters}
                   />
                   <StyledLabel>Klimatyzacja</StyledLabel>
@@ -382,6 +408,8 @@ export const SearchBar = ({
                     onChange={handleFilters}
                     type='checkbox'
                     name='isElevator'
+                    checked={selectedFilters.isElevator}
+
                   />
                   <StyledLabel>Winda</StyledLabel>
                 </SingleCheckboxContainer>
@@ -391,6 +419,8 @@ export const SearchBar = ({
                     type='checkbox'
                     onChange={handleFilters}
                     name='isFurnished'
+                    checked={selectedFilters.isFurnished}
+
                   />
                   <StyledLabel>Meble</StyledLabel>
                 </SingleCheckboxContainer>
@@ -400,6 +430,8 @@ export const SearchBar = ({
                     onChange={handleFilters}
                     type='checkbox'
                     name='isLoggia'
+                    checked={selectedFilters.isLoggia}
+
                   />
                   <StyledLabel>Loggia</StyledLabel>
                 </SingleCheckboxContainer>
@@ -409,17 +441,10 @@ export const SearchBar = ({
                     onChange={handleFilters}
                     type='checkbox'
                     name='isParking'
+                    checked={selectedFilters.isParking}
+
                   />
                   <StyledLabel>Parking</StyledLabel>
-                </SingleCheckboxContainer>
-                <SingleCheckboxContainer>
-                  <input
-                    className='checkbox'
-                    onChange={handleFilterFavourites}
-                    type='checkbox'
-                    name='favouriteFlats'
-                  />
-                  <StyledLabel>Pokaż ulubione</StyledLabel>
                 </SingleCheckboxContainer>
               </StyledInputCheckboxWrapper>
             </StyledSearchFiltersWrapper>
