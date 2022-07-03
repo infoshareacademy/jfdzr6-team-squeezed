@@ -4,7 +4,7 @@ export const MegaSlider = styled.div`
 
   .slider {
     width: 100%;
-    height: 90vh;
+    height: 85vh;
     position: relative;
     overflow: hidden;
   }
