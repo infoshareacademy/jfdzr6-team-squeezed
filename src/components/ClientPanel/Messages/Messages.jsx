@@ -41,65 +41,69 @@ export const Messages = ({ userId }) => {
   //       messagesCollection,
   //       where("flatId", "==", "Df1XDvcqO6mlPKhQFOUp"),
   //   )
-//   const allQueries = userFlats.map((flat) =>
-//     query(messagesCollection, where("userId", "==", flat))
-//   );
+  //   const allQueries = userFlats.map((flat) =>
+  //     query(messagesCollection, where("userId", "==", flat))
+  //   );
 
-// let q = query(messagesCollection, where("flatId", "==", flatId))
-let q;
-const getMessages = (q) => {
-    getDocs(q)
+  // let q = query(messagesCollection, where("flatId", "==", flatId))
+  const getMessages = (q) => {
+    return getDocs(q)
       .then((querySnapshot) => {
         const result = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
+        console.log('result', result)
         return result;
       })
-      .then((result) => console.log(result))
       .catch((err) => console.log(err));
   };
   console.log(userFlats);
   // console.log(flatsQueries)
 
- 
-
-//   const querieAllFlatsMessages = () => {
-//     allQueries.forEach((q) => getMessages(q));
-//   };
+  //   const querieAllFlatsMessages = () => {
+  //     allQueries.forEach((q) => getMessages(q));
+  //   };
   console.log(messages);
 
   const header = true;
-  const renderMessageList = messages.map(({ name, message }) => (
-    <MessageContainer>
-      <TimeContainer>11:11:11</TimeContainer>
+  const renderMessageList = messages.map((arr) => ( arr.map(({name, message, createAt}) =>
+    <MessageContainer key={message}>
+      <TimeContainer>{createAt.toDate().toDateString()}</TimeContainer>
 
       <AuthorContainer>
         <h5>{name}</h5>
       </AuthorContainer>
       <Link className='message-header' to='/'>
         <MessageTitle>
-          <h5>{message?.slice(0, 60)} (...)</h5>
+          <h5>{message?.slice(0, 80)} (...)</h5>
         </MessageTitle>
       </Link>
     </MessageContainer>
-  ));
+  )));
   useEffect(() => {
     getUserFlats();
-    for (let flat of userFlats) {
-        console.log(typeof flat)
-        q = query(messagesCollection, where("flatId", "==", flat))
-        getMessages(q)
-  console.log(messages);
-
-    }
+  
   }, []);
+
+
+  useEffect(() => {
+    const promises = userFlats.map(id=>id.slice(1)).map((flatId) => {
+      const q = query(messagesCollection, where("flatId", "==", flatId));
+      return getMessages(q);
+    });
+    Promise.all(promises).then(data => {
+        setMessages(data)
+    })
+  }, [userFlats])
+
   return (
     <>
       <MessagesWrapper>
-        <h1>wiadomości</h1>
+        <MessageContainer><h1 style={{padding: '0 15px'}}>WIADOMOŚCI</h1></MessageContainer>
+
         <StyledInboxContainer>
-          <MessageContainer header={header}>
+          {/* <MessageContainer header={header}>
             <TimeContainer>
               <p>Godzina</p>
             </TimeContainer>
@@ -109,9 +113,9 @@ const getMessages = (q) => {
             <MessageTitle>
               <h5>Wiadomość</h5>
             </MessageTitle>
-          </MessageContainer>
+          </MessageContainer> */}
+          {renderMessageList}
         </StyledInboxContainer>
-        <StyledInboxContainer>{renderMessageList}</StyledInboxContainer>
       </MessagesWrapper>
     </>
   );
