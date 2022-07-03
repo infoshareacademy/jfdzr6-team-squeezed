@@ -84,8 +84,8 @@ export const NavBar = styled.nav`
       flex-wrap: nowrap;
       align-items: flex-end;
       position: fixed;
-      top: 55px;
-      right: 2px;
+      top: 110px;
+      right: 6px;
       background-color: #0975c3;
       width: 150px;
       display: ${({isOpen}) => isOpen ? "flex" : "none"};
@@ -97,6 +97,7 @@ export const NavBar = styled.nav`
   .homeLink {
     @media (max-width: 775px) {
       margin-top: 40px;
+      border-top-left-radius: 20px;
     }
   }
 
@@ -104,6 +105,7 @@ export const NavBar = styled.nav`
     @media (max-width: 950px) {
       margin-top: 20px;
       border-top: none;
+      border-bottom-left-radius: 20px;
     }
 
     @media (max-width: 775px) {

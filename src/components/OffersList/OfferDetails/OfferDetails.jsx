@@ -99,9 +99,6 @@ export const OfferDetails = ({setIsLanding}) => {
     return (
         <>
             <ContainerDivStyled className="container">
-                <div className="title">
-                    <h2>{title}</h2>
-                </div>
                 <section className="section-1">
 
                     <div className="picture">
@@ -223,7 +220,7 @@ export const OfferDetails = ({setIsLanding}) => {
                 </section>
 
                 <div className="description">
-                    <h3>Opis</h3>
+                    <h3>{title}</h3>
                     <p>{description}</p>
                 </div>
 
