@@ -187,7 +187,8 @@ display:flex;
 
 .photosLabel {
   background-color: white;
-  margin: 0 auto;
+  margin: 0 auto 10px auto;
+  
   
 
 }

@@ -74,7 +74,9 @@ export const SearchBar = ({
       );
     } else {
       setPickedSuggestion(e.target.value);
-    }
+    };
+    
+
     //compare input with cities
     suggestions = searchSuggestions.filter((city) => {
       if (
@@ -213,13 +215,13 @@ export const SearchBar = ({
   const handleFilters = (e) => {
     e.target.type === "checkbox"
       ? setSelectedFilters({
-          ...selectedFilters,
-          [e.target.name]: e.target.checked,
-        })
+        ...selectedFilters,
+        [e.target.name]: e.target.checked,
+      })
       : setSelectedFilters({
-          ...selectedFilters,
-          [e.target.name]: e.target.value,
-        });
+        ...selectedFilters,
+        [e.target.name]: e.target.value,
+      });
 
     // console.log(selectedFilters);
   };

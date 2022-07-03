@@ -142,7 +142,7 @@ export const Privacy = () => {
         towaru z ogłoszeniem, informacje dotyczące potencjalnych oszustw).
       </p>
 
-      <h2>4. Dlaczego przetwarzamy informacje na Twój temat?</h2>
+      <h2>3. Dlaczego przetwarzamy informacje na Twój temat?</h2>
       <p>
         Będziemy wykorzystywać Twoje dane osobowe tylko wtedy, gdy jest to
         zgodne z przepisami prawa. Najczęściej przetwarzamy Twoje dane osobowe,
