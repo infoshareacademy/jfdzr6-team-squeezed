@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import {
+  OfferListContainer,
   OfferList,
   OfferBackground,
   OfferImg,
@@ -32,11 +33,11 @@ import { FavouriteBtn } from "./FavouriteBtn/FavouriteBtn";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../../utils/firebase";
 
-export const SearchResultsList  = ({ flats, favourites, userId }) => {
+export const SearchResultsList = ({ flats, favourites, userId }) => {
   const [currentPhotoInfo, setCurrentPhoto] = useState([]);
   const [flatsToRender, setFlatsToRender] = useState([]);
   if (!flats) {
-    return <Spinner />
+    return <Spinner />;
   }
 
   // const addFlatToFavorite = (flat) => {};
@@ -59,113 +60,127 @@ export const SearchResultsList  = ({ flats, favourites, userId }) => {
     setFlatsToRender((prevFlats) => prevFlats.filter((f) => f.id !== flatId));
   };
   return (
-    
-    <OfferList>
-      {flats.length > 0 && flatsToRender?.map((flat) => {
-        return (
-          <OfferBackground key={flat.id}>
-            {!!flat.photos && flat.photos.length > 0 ? (
-              <>
-                <CarouselContainer key={flat.photos.id}>
-                  <Carousel interval={caruselInterval}>
-                    {flat.photos.map((photoSrc, index) => (
-                      <Carousel.Item key={index}>
-                        <div className="carouselItemImg">
-                          <img src={photoSrc} alt="First slide" />
-                        </div>
-                      </Carousel.Item>
-                    ))}
-                  </Carousel>
-
-                  <FontAwesomeIcon
-                    className="zoomIcon"
-                    icon={faMagnifyingGlassPlus}
-                    onClick={() => setCurrentPhoto(flat.photos)}
-                  ></FontAwesomeIcon>
-                </CarouselContainer>
-              </>
-            ) : (
-              <></>
-            )}
-
-            <InfoBox>
-              <h3> <b>{flat.title}</b></h3>
-              <div>
-                <p>
-                  <b>
-                    <img className="icon" src={citySVG} alt="" /> Miasto :{" "}
-                  </b>
-                  {flat.city}
-                </p>
-                <p>
-                  <b>
-                    <img className="icon" src={streetSVG} alt="" /> Ulica:
-                  </b>{" "}
-                  {flat.street}
-                </p>
-                <p>
-                  <b>
-                    {" "}
-                    <img className="icon" src={roomsSVG} alt="" /> ilość pokoi:
-                  </b>{" "}
-                  {flat.rooms}
-                </p>
-                <p>
-                  <b>
-                    <img className="icon" src={flatsizeSVG} alt="" /> m2:
-                  </b>{" "}
-                  {flat.size} m2
-                </p>
-
-                <PriceBox>
-                  {" "}
-                  <img className="icon" src={priceSVG} alt="" /> Cena:{" "}
-                  {flat.price} zł/msc
-                </PriceBox>
-              </div>
-
-              <div className="btnContainer">
-                <Link to={`/details/${flat.id}`} target="_blank">Więcej</Link>
-
-                {userId && (
+    <OfferListContainer>
+      <OfferList
+        className={!!userId ? "twoColumnLayout" : "singleColumnLayout"}
+      >
+        {flats.length > 0 &&
+          flatsToRender?.map((flat) => {
+            return (
+              <OfferBackground
+                key={flat.id}
+                className={
+                  !!userId ? "twoColumnLayoutBox" : "singleColumnLayoutBox"
+                }
+              >
+                {!!flat.photos && flat.photos.length > 0 ? (
                   <>
-                    <Button onClick={() => handleDeleteFlat(flat.id)}>
-                      Usuń
-                    </Button>
+                    <CarouselContainer key={flat.photos.id}>
+                      <Carousel interval={caruselInterval}>
+                        {flat.photos.map((photoSrc, index) => (
+                          <Carousel.Item key={index}>
+                            <div className="carouselItemImg">
+                              <img src={photoSrc} alt="First slide" />
+                            </div>
+                          </Carousel.Item>
+                        ))}
+                      </Carousel>
 
-                    <Link to={`/editoffer/${flat.id}`}>Edytuj</Link>
-
+                      <FontAwesomeIcon
+                        className="zoomIcon"
+                        icon={faMagnifyingGlassPlus}
+                        onClick={() => setCurrentPhoto(flat.photos)}
+                      ></FontAwesomeIcon>
+                    </CarouselContainer>
                   </>
+                ) : (
+                  <></>
                 )}
 
-                {!userId && <FavouriteBtn flat={flat} key={flat.id} />}
-              </div>
-            </InfoBox>
-          </OfferBackground>
-        );
-      })}
-  {flats.length === 0 && <InfoBox>Brak wyników do wyświetlenia</InfoBox> }
-      {currentPhotoInfo.length > 0 ? (
-        <MoreInfoBox>
-          <div className="closeIcon">
-            <FontAwesomeIcon
-              icon={faXmark}
-              onClick={() => setCurrentPhoto([])}
-            ></FontAwesomeIcon>
-          </div>
-          <CarouselContainerInMsgBox>
-            <Carousel interval={caruselInterval}>
-              {currentPhotoInfo.map((photoSrc) => (
-                <Carousel.Item>
-                  <img src={photoSrc} alt="First slide" />
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          </CarouselContainerInMsgBox>
-        </MoreInfoBox>
-      ) : (
-        ""
-      )}
-    </OfferList>
+                <InfoBox>
+                  <h3>
+                    {" "}
+                    <b>{flat.title}</b>
+                  </h3>
+                  <div>
+                    <p>
+                      <b>
+                        <img className="icon" src={citySVG} alt="" /> Miasto :{" "}
+                      </b>
+                      {flat.city}
+                    </p>
+                    <p>
+                      <b>
+                        <img className="icon" src={streetSVG} alt="" /> Ulica:
+                      </b>{" "}
+                      {flat.street}
+                    </p>
+                    <p>
+                      <b>
+                        {" "}
+                        <img className="icon" src={roomsSVG} alt="" /> ilość
+                        pokoi:
+                      </b>{" "}
+                      {flat.rooms}
+                    </p>
+                    <p>
+                      <b>
+                        <img className="icon" src={flatsizeSVG} alt="" /> m2:
+                      </b>{" "}
+                      {flat.size} m2
+                    </p>
+
+                    <PriceBox>
+                      {" "}
+                      <img className="icon" src={priceSVG} alt="" /> Cena:{" "}
+                      {flat.price} zł/msc
+                    </PriceBox>
+                  </div>
+
+                  <div className="btnContainer">
+                    <Link to={`/details/${flat.id}`} target="_blank">
+                      Więcej
+                    </Link>
+
+                    {userId && (
+                      <>
+                        <Button onClick={() => handleDeleteFlat(flat.id)}>
+                          Usuń
+                        </Button>
+
+                        <Link to={`/editoffer/${flat.id}`}>Edytuj</Link>
+                      </>
+                    )}
+
+                    {!userId && <FavouriteBtn flat={flat} key={flat.id} />}
+                  </div>
+                </InfoBox>
+              </OfferBackground>
+            );
+          })}
+        {flats.length === 0 && <InfoBox>Brak wyników do wyświetlenia</InfoBox>}
+        {currentPhotoInfo.length > 0 ? (
+          <MoreInfoBox>
+            <div className="closeIcon">
+              <FontAwesomeIcon
+                icon={faXmark}
+                onClick={() => setCurrentPhoto([])}
+              ></FontAwesomeIcon>
+            </div>
+            <CarouselContainerInMsgBox>
+              <Carousel interval={caruselInterval}>
+                {currentPhotoInfo.map((photoSrc) => (
+                  <Carousel.Item>
+                    <img src={photoSrc} alt="First slide" />
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            </CarouselContainerInMsgBox>
+          </MoreInfoBox>
+        ) : (
+          ""
+        )}
+      </OfferList>
+    </OfferListContainer>
   );
 };

@@ -1,11 +1,37 @@
 import styled from "styled-components";
 
+export const OfferListContainer = styled.div`
+  .twoColumnLayout {
+    background-color: #e3dddd;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 15px;
+  }
+
+  .twoColumnLayoutBox {
+    margin: 15px 7px 0px 7px;
+    width: calc(50% - 15px);
+
+    @media (max-width: 800px) {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .singleColumnLayout {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .singleColumnLayoutBox {
+    width: 100%;
+  }
+`;
+
 export const OfferList = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0px 15px 0 15px;
- 
- 
   background-color: #e3dddd;
 
   @media (max-width: 800px) {
@@ -15,7 +41,7 @@ export const OfferList = styled.div`
   }
 
   @media (min-width: 1200px) {
-    display: grid;
+    display: flex;
     width: auto;
     margin: 0px auto;
   }
@@ -78,7 +104,7 @@ export const InfoBox = styled.div`
       border-radius: 20px;
       text-align: center;
       padding: 10px 20px;
-      background-color: #0975C3;
+      background-color: #0975c3;
       color: #fff;
       font-size: 14px;
       font-weight: 900;
@@ -127,7 +153,7 @@ export const PriceBox = styled.div`
 
 export const MoreInfoBtn = styled.button`
   width: 100px;
-  background-color: #0975C3;
+  background-color: #0975c3;
   color: white;
   padding: 5px;
   font-size: 20px;
@@ -135,7 +161,7 @@ export const MoreInfoBtn = styled.button`
 `;
 
 export const MoreInfoBox = styled.div`
-  background-color:white;
+  background-color: white;
   box-shadow: 5px 5px 5px gray;
   position: fixed;
   top: 50%;
@@ -220,9 +246,9 @@ export const CarouselContainerInMsgBox = styled.div`
 `;
 
 export const StyledNoResultsError = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column;
   width: 50%;
   justify-content: center;
   margin-top: 20px;
-`
+`;
