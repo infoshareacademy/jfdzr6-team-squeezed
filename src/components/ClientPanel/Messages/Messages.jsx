@@ -45,14 +45,10 @@ export const Messages = ({ userId }) => {
 //     query(messagesCollection, where("userId", "==", flat))
 //   );
 
-const q = query(messagesCollection, where("recipient", "==", `users/BHjkSCacP5YrmF9n9qBR5X2GqyD3`))
-
-
-  console.log(userFlats);
-  // console.log(flatsQueries)
-
-  const getMessages = () => {
-    getDocs(messagesCollection)
+// let q = query(messagesCollection, where("flatId", "==", flatId))
+let q;
+const getMessages = (q) => {
+    getDocs(q)
       .then((querySnapshot) => {
         const result = querySnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -60,9 +56,13 @@ const q = query(messagesCollection, where("recipient", "==", `users/BHjkSCacP5Yr
         }));
         return result;
       })
-      .then((result) => setMessages(result))
+      .then((result) => console.log(result))
       .catch((err) => console.log(err));
   };
+  console.log(userFlats);
+  // console.log(flatsQueries)
+
+ 
 
 //   const querieAllFlatsMessages = () => {
 //     allQueries.forEach((q) => getMessages(q));
@@ -85,7 +85,14 @@ const q = query(messagesCollection, where("recipient", "==", `users/BHjkSCacP5Yr
     </MessageContainer>
   ));
   useEffect(() => {
-    getMessages();
+    getUserFlats();
+    for (let flat of userFlats) {
+        console.log(typeof flat)
+        q = query(messagesCollection, where("flatId", "==", flat))
+        getMessages(q)
+  console.log(messages);
+
+    }
   }, []);
   return (
     <>
