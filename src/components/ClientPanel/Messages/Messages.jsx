@@ -87,7 +87,8 @@ const getMessages = (q) => {
   useEffect(() => {
     getUserFlats();
     for (let flat of userFlats) {
-        q = query(messagesCollection, where("flatId", "==", `${flat}`))
+        console.log(typeof flat)
+        q = query(messagesCollection, where("flatId", "==", flat))
         getMessages(q)
   console.log(messages);
 
