@@ -15,7 +15,7 @@ const StyledBurger = styled.div`
     z-index: 20;
 
 div {
-    @media (max-width: 775px) {
+    @media (max-width: 860px) {
     width: 2rem;
     height:0.25rem;
    background-color: ${({ open }) => open ? "#fff" : "#ffffff"};

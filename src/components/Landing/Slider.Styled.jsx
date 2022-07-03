@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const MegaSlider = styled.div`
+
   .slider {
     width: 100%;
     height: 90vh;
@@ -16,6 +17,8 @@ export const MegaSlider = styled.div`
     height: 100%;
     opacity: 0;
     transition: all 1s linear;
+    
+    
   }
 
   .slide img {
@@ -30,6 +33,8 @@ export const MegaSlider = styled.div`
   .current {
     opacity: 1;
     transform: translateX(0);
+    
+    
   }
 
   .content {
@@ -46,6 +51,7 @@ export const MegaSlider = styled.div`
     padding: 3rem;
     background: rgba(0, 0, 0, 0.3);
     border-radius: 20px;
+    
 
     @media (max-width: 1200px) {
       top: 40%;
