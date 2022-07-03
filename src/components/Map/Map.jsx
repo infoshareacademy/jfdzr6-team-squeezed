@@ -36,7 +36,6 @@ const Map = ({ flats, isLoaded }) => {
   //     setSearchedCity(newGeo)
       
   //   })
-// console.log(searchedCity)
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
@@ -88,7 +87,6 @@ const Map = ({ flats, isLoaded }) => {
 
     }
   };  
-  console.log(flats);
   let mapMarkers = []
   mapMarkers = flats.map(
     ({ id, photos, cords, price, title, size, rooms }) =>

@@ -43,11 +43,9 @@ export const SearchResultsList = ({ flats, favourites, userId }) => {
   // const addFlatToFavorite = (flat) => {};
   const caruselInterval = 36000000;
 
-  console.log(flats);
 
   useEffect(() => {
     // favourites ? (flatsToRender = favourites) : (flatsToRender = flats);
-    console.log(flatsToRender);
 
     if (favourites === true) {
       setFlatsToRender(JSON.parse(localStorage.getItem("favourites")));

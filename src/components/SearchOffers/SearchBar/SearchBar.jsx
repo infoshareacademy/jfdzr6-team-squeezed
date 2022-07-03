@@ -202,8 +202,7 @@ export const SearchBar = ({
     // selectedFilters.priceMax != undefined ? flatsResults = flatsResults.filter((flat) => selectedFilters.priceMax >= flat.price) : flatsResults
     //   // Object.keys(selectedFilters).length > 0 ? getFlats() : null
     //continue with filtering results
-    console.log(flatsResults);
-    console.log(selectedFilters);
+
     setFlats(flatsResults);
     setSuggestionsToPrint([]);
     setIsLanding(false);
