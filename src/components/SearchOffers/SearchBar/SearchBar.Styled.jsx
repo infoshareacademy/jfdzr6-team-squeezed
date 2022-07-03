@@ -1,5 +1,3 @@
-
-
 import styled from "styled-components";
 
 export const StyledSearchSuggestion = styled.div`
@@ -65,6 +63,9 @@ export const StyledSearchInput = styled.input`
     @media (max-width: 1000px) {
       color: rgba(0, 0, 0, 0);
     }
+  }
+  @media (max-width: 475px) {
+    width: 30%;
   }
 `;
 

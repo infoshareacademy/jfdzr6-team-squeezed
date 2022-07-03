@@ -11,7 +11,7 @@ import {
 } from "./Map.Styled";
 import { mapContainerStyle, center, options } from "../../utils/mapConfig";
 import logo from "./logo-icon-only-blue.svg";
-import markerSVG from "./ts-map-pin.svg";
+import markerSVG from "./ts-map-pin1.svg";
 import { MapCarousel } from "./MapCarousel/MapCarousel";
 import { Link } from "react-router-dom";
 import { Spinner } from "../../utils/Spinner";
@@ -20,6 +20,7 @@ import { Spinner } from "../../utils/Spinner";
 const Map = ({ flats, isLoaded }) => {
   const [activeMarker, setActiveMarker] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [markerAnimation, setMarkerAnimation] = useState(null)
 // const [searchedCity, setSearchedCity] = useState({})
 
 
@@ -97,12 +98,12 @@ const Map = ({ flats, isLoaded }) => {
           animation={window.google.maps.Animation.DROP}
           position={{ lat: cords._lat, lng: cords._long }}
           onClick={() => handleActiveMarker(id)}
-          label={{ text: `${price}zł`, color: "darkred", fontWeight: "bold", fontSize: "16px", TextOutline: "4px solid #f0f0f0"}}
+          label={{ text: `${price}zł`, color: "darkred", fontWeight: "bold", fontSize: "14px", TextOutline: "4px solid #f0f0f0"}}
           labelStyle={{backgroundColor: 'black', fontSize: "26px"}}
           icon={{
             url: markerSVG,
-            scaledSize: new window.google.maps.Size(50, 50),
-            labelOrigin: new google.maps.Point(20, 55),
+            scaledSize: new window.google.maps.Size(70, 70),
+            labelOrigin: new google.maps.Point(35, 56),
             strokeWeight: 2,
             fillColor: '#009933',
             fillOpacity: 1,
