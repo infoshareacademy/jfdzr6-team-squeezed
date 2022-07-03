@@ -4,7 +4,8 @@ import styled, { withTheme } from "styled-components";
 
 
 export const Container = styled.div`
-
+border-radius: 20px;
+padding: 20px;
 * {
   box-sizing: border-box;
 }
