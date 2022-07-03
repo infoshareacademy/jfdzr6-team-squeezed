@@ -2,7 +2,7 @@ import { Rings } from "react-loader-spinner";
 
 export const Spinner = () => {
   return (
-    <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+    <div style={{width: '100%', display: 'flex', justifyContent: 'center', zIndex: '10'}}>
     <Rings
       color='#afe3f5'
       height={80}

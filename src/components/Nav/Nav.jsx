@@ -8,7 +8,7 @@ import logo from "./logo/logo.ico";
 import Burger from "./Burger";
 import { useState } from "react";
 
-export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats, setIsLanding, isLanding }) => {
+export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites, flats, setIsLanding, isLanding, favourites  }) => {
 
   const [open, setOpen] = useState(false)
 
@@ -24,26 +24,27 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
           </div>
           <ul className="homeLink">
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink onClick={()=>setOpen(!open)} to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink to="o-nas">O Nas</NavLink>
+              <NavLink onClick={()=>setOpen(!open)} to="o-nas">O Nas</NavLink>
             </li>
             <li>
-              <NavLink to="kontakt">Kontakt</NavLink>
+              <NavLink onClick={()=>setOpen(!open)} to="kontakt">Kontakt</NavLink>
             </li>
           </ul>
         </div>
         <Burger open={open} setOpen={setOpen} />
         <div>
           {!isLanding &&
-            <SearchBar
-              flatsFromDb={flatsFromDb}
-              setFlats={setFlats}
-              setFavourites={setFavourites}
-              flats={flats}
-              isLanding={isLanding}
-            />}
+        <SearchBar
+          flatsFromDb={flatsFromDb}
+          setFlats={setFlats}
+          setFavourites={setFavourites}
+          flats={flats}
+          isLanding={isLanding}
+          favourites={favourites}
+        /> }
         </div>
 
         <div className="logBar">
@@ -51,10 +52,10 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
             {!isAuth && (
               <>
                 <li>
-                  <NavLink to="auth/register">Rejestracja</NavLink>
+                  <NavLink onClick={()=>setOpen(!open)} to="auth/register">Rejestracja</NavLink>
                 </li>
                 <li>
-                  <NavLink to="auth/login">Logowanie</NavLink>
+                  <NavLink onClick={()=>setOpen(!open)} to="auth/login">Logowanie</NavLink>
                 </li>
               </>
             )}
@@ -62,16 +63,16 @@ export const Navigation = ({ isAuth, email, flatsFromDb, setFlats, setFavourites
             {isAuth && (
               <>
                 <li>
-                  <NavLink to="mypanel">Mój panel</NavLink>
+                  <NavLink onClick={()=>setOpen(!open)} to="mypanel">Mój panel</NavLink>
                 </li>
                 <li>
-                  <NavLink to="messages">Wiadomości</NavLink>
+                  <NavLink onClick={()=>setOpen(!open)} to="messages">Wiadomości</NavLink>
                 </li>
                 <li>
-                  <NavLink to="addoffer">Dodaj ogłoszenie</NavLink>
+                  <NavLink onClick={()=>setOpen(!open)} to="addoffer">Dodaj ogłoszenie</NavLink>
                 </li>
                 <li onClick={() => signOut(auth)}>
-                  <NavLink to="/">Wyloguj się</NavLink>
+                  <NavLink onClick={()=>setOpen(!open)} to="/">Wyloguj się</NavLink>
                 </li>
               </>
             )}

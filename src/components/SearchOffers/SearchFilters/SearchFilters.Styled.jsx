@@ -93,6 +93,9 @@ export const StyledShowMoreFilters = styled.div`
     width: 100px;
     position: absolute;
 right: 100px;
+@media (max-width: 700px) {
+  display: none;
+}
   }
 `;
 

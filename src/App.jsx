@@ -69,17 +69,17 @@ function App() {
   return (
 
     <BrowserRouter>
-      <Navigation isAuth={isAuth} email={user?.email} flatsFromDb={flatsFromDb} setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} setFavourites={setFavourites} flats={flats} isLanding={isLanding} setIsLanding={setIsLanding}/>
+      <Navigation isAuth={isAuth} email={user?.email} flatsFromDb={flatsFromDb} setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} setFavourites={setFavourites} flats={flats} isLanding={isLanding} setIsLanding={setIsLanding} favourites={favourites}/>
       <Routes>
 
         <Route path="/" element={<Slider setFlats={setFlats} setFlatsFromDb={setFlatsFromDb} flatsFromDb={flatsFromDb} setIsLanding={setIsLanding} />} />
         <Route path="/o-nas" element={<AboutUs setIsLanding={setIsLanding}/>} />
         <Route path="/kontakt" element={<Contact setIsLanding={setIsLanding}/>} />
-        <Route path="/details/:id" element={<OfferDetails setIsLanding={setIsLanding}/>} />
+        <Route path="/details/:id" element={<OfferDetails setIsLanding={setIsLanding} />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/statute" element={<Statute />} />
 
-        <Route path="/search-results" element={<SearchResults flats={flats} setFlats={setFlats} flatsFromDb={flatsFromDb} setFavourites={setFavourites} />} />
+        <Route path="/search-results" element={<SearchResults flats={flats} setFlats={setFlats} flatsFromDb={flatsFromDb} setFavourites={setFavourites} favourites={favourites} />} />
 
 
         <Route path="auth" element={isAuth ? <Navigate to="/mypanel" /> : <Auth />} >
