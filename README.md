@@ -1,7 +1,8 @@
 
 ![Najemnicy](./src/components/OffersList/Images/whitenlogh.svg)
 
-Najemnicy is a web application which helps you rent your dream flat. 
+Najemnicy is a web application which helps you rent your dream flat.   
+Our app is live and running, [check it!](https://najemnicy.netlify.app/)
 
 # Key Features:
 
