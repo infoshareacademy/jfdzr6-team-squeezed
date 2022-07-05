@@ -3,8 +3,15 @@ import { sliderData } from "./slider-data";
 import { SearchBar } from "../SearchOffers/SearchBar/SearchBar";
 import { MegaSlider } from "./Slider.Styled";
 
-export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites, setIsLanding }) => {
-
+export const Slider = ({
+  flats,
+  flatsFromDb,
+  setFlats,
+  setFavourites,
+  setIsLanding,
+  setActiveFlat,
+  activeFlat,
+}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideLength = sliderData.length;
 
@@ -23,13 +30,13 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites, setIsLandi
   useEffect(() => {
     setCurrentSlide(0);
     setFlats([]);
-    setIsLanding(true)
-    document.body.classList.add('overflow-hidden')
+    setIsLanding(true);
+    document.body.classList.add("overflow-hidden");
 
     return () => {
-      document.body.classList.remove('overflow-hidden')
-    }
-  }, [])
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, []);
 
   useEffect(() => {
     if (autoScroll) {
@@ -40,25 +47,28 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites, setIsLandi
 
   return (
     <MegaSlider>
-      <div className="slider">
-        {flatsFromDb ? <>
-        {sliderData.map((slide, index) => {
-          return (
-            <div
-              className={index === currentSlide ? "slide current" : "slide"}
-              key={index}
-            >
-              {index === currentSlide && (
-                <div>
-                  <img src={slide.image} alt="slide" className="image" />
+      <div className='slider'>
+        {flatsFromDb ? (
+          <>
+            {sliderData.map((slide, index) => {
+              return (
+                <div
+                  className={index === currentSlide ? "slide current" : "slide"}
+                  key={index}>
+                  {index === currentSlide && (
+                    <div>
+                      <img src={slide.image} alt='slide' className='image' />
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          );
-        })}</> : <Spinner /> }
+              );
+            })}
+          </>
+        ) : (
+          <Spinner />
+        )}
 
-
-        <div className="content">
+        <div className='content'>
           <h1>ZAMIESZKAJ W WYMARZONYM MIEJSCU</h1>
           <SearchBar
             flatsFromDb={flatsFromDb}
@@ -66,6 +76,8 @@ export const Slider = ({ flats, flatsFromDb, setFlats, setFavourites, setIsLandi
             setFlats={setFlats}
             setFavourites={setFavourites}
             setIsLanding={setIsLanding}
+            setActiveFlat={setActiveFlat}
+            activeFlat={activeFlat}
           />
         </div>
       </div>

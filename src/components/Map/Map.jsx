@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 import { Spinner } from "../../utils/Spinner";
 
 
-const Map = ({ flats, isLoaded }) => {
+const Map = ({ flats, isLoaded, setActiveFlat, activeFlat }) => {
   const [activeMarker, setActiveMarker] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [markerAnimation, setMarkerAnimation] = useState(null)
@@ -58,10 +58,14 @@ const Map = ({ flats, isLoaded }) => {
   );
 
   const handleActiveMarker = (marker) => {
-    if (marker === activeMarker) {
-      return marker;
+    if (marker === activeMarker) {      
+      // return marker;
+      setActiveMarker(null)
+    setActiveFlat("")
+
     }
     setActiveMarker(marker);
+    setActiveFlat(marker)
   };
   // const handleOnLoad = (map) => {
 
@@ -107,12 +111,12 @@ const Map = ({ flats, isLoaded }) => {
             fillOpacity: 1,
           }}>
           {activeMarker === id ? (
-            <InfoWindow
+            <InfoWindow 
               onCloseClick={() => {
-                setActiveMarker(null)
+                setActiveMarker(null) && setActiveFlat("")
               }}>
               <InfoWindowBackground>
-                <MapCarousel key={id} photos={photos}/>
+                <MapCarousel photos={photos}/>
                 <div
                   style={{
                     display: "flex",
@@ -146,7 +150,7 @@ const Map = ({ flats, isLoaded }) => {
     if (mapRef.current) {
       changeMapPosition(flats);
     }
-  }, [flats]);
+  }, [flats, activeFlat, activeMarker]);
 
   return (
     <div
@@ -165,7 +169,7 @@ const Map = ({ flats, isLoaded }) => {
         {isLoading && <Spinner />}
         <GoogleMap
           onLoad={onMapLoad}
-          onClick={() => setActiveMarker(null)}
+          onClick={() => setActiveMarker(null) && setActiveFlat("")}
           // mapContainerStyle={mapContainerStyle}
           mapContainerClassName='map-container'
           zoom={6.6}
