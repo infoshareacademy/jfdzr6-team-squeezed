@@ -121,7 +121,7 @@ const Map = ({ flats, isLoaded }) => {
                     alignContent: "flex-start",
                     width: '100%',
                   }}>
-                                  <Link to={`/details/${id}`} style={{textDecoration: 'none', color: 'black'}} target="_blank">
+                                  <a href={`/details/${id}`} style={{textDecoration: 'none', color: 'black'}} target="_blank">
 
                     <div style={{position: 'absolute', top: '5px', padding: '2px', color: '#FFF', background: '#5a5656ac', zIndex: '10', fontWeight: 'bold', fontSize: '20px' }}>
                       {size} m<sup>2</sup>{" "}
@@ -132,7 +132,7 @@ const Map = ({ flats, isLoaded }) => {
                       <b>{price} zł</b>
                     </div>
                   </InfoWindowBottomBackground>
-                </Link>
+                </a>
 
                 <div></div>
               </div>

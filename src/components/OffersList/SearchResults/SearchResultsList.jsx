@@ -136,7 +136,7 @@ export const SearchResultsList = ({ flats, favourites, userId }) => {
                   </div>
 
               <div className="btnContainer">
-                <Link target="_blank" to={`/details/${flat.id}`}>Więcej</Link>
+                <a href={`/details/${flat.id}`} target="_blank">Więcej</a>
 
                     {userId && (
                       <>
