@@ -17,18 +17,24 @@ export const SearchResults = ({
   flatsFromDb,
   setFlats,
   setFavourites,
-  favourites
+  favourites,
+  activeFlat,
+  setActiveFlat
 }) => {
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBie1ZhkycpbUQPNsfdG76nzaxfWtJPmXU",
+    googleMapsApiKey: "",
+    //AIzaSyBie1ZhkycpbUQPNsfdG76nzaxfWtJPmXU
     language: 'pl',
     libraries,
   });
 
+
   if (loadError) return "Błąd ładowania mapy";
   if (!isLoaded) return <Spinner />;
 
+// useEffect(()=>{
 
+// },[activeFlat])
   return (
     <SearchResultsContainer>
       <SearchWrapper>
@@ -41,9 +47,9 @@ export const SearchResults = ({
       </SearchWrapper>
 
       <ResultsWrapper>
-        {isLoaded && flats ? <Map isLoaded={isLoaded} flats={flats} /> : <Spinner />}
+        {isLoaded && flats ? <Map isLoaded={isLoaded} flats={flats} setActiveFlat={setActiveFlat} activeFlat={activeFlat} /> : <Spinner />}
         <SearchResultListParent>
-          <SearchResultsList flats={flats} favourites={favourites} />
+          <SearchResultsList flats={flats} favourites={favourites} activeFlat={activeFlat} />
         </SearchResultListParent>
       </ResultsWrapper>
     </SearchResultsContainer>

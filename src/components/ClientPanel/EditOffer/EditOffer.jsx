@@ -34,7 +34,6 @@ export const EditOffer = ({ userId }) => {
   useEffect(() => {
     const singleFlat = doc(db, "flats", idFlat);
     getDoc(singleFlat).then((querySnapshot) => {
-      console.log(querySnapshot);
       const flat = {
         id: querySnapshot.id,
         ...querySnapshot.data(),
@@ -50,7 +49,6 @@ export const EditOffer = ({ userId }) => {
     const form = e.target;
 
     const imagesUrl = selectedPhotos.map((photoSrc) => photoSrc);
-    console.log(imagesUrl);
 
     // updateFlatInDB(form, imagesUrl, flatToEdit.cords);
 
@@ -60,7 +58,7 @@ export const EditOffer = ({ userId }) => {
   };
 
   const updateFlatInDBWithGeoData = (form, imagesUrl) => {
-    Geocode.setApiKey("");
+    Geocode.setApiKey("AIzaSyBie1ZhkycpbUQPNsfdG76nzaxfWtJPmXU");
     Geocode.setLanguage("pl");
     Geocode.setRegion("pl");
     Geocode.setLocationType("ROOFTOP");
@@ -129,7 +127,6 @@ export const EditOffer = ({ userId }) => {
       userId: userDocRef,
     };
 
-    console.log(updatedFlat);
 
     const flatRef = doc(db, "flats", idFlat);
     updateDoc(flatRef, flatRequest).then((data) => console.log("Updated with Success!", data));
@@ -152,8 +149,7 @@ export const EditOffer = ({ userId }) => {
       fieldToUpdate[e.target.name] = e.target.value;
     }
 
-    console.log(fieldToUpdate);
-    console.log(flatToEdit);
+
 
     setFlatToEdit({ ...flatToEdit, ...fieldToUpdate });
   };
