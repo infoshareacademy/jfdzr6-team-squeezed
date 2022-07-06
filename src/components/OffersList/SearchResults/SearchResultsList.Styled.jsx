@@ -163,6 +163,12 @@ export const StyledFavouriteBtn = styled.div`
   .likeIcon {
     margin: 0px 10px;
   }
+  .like {
+    color: green;
+  }
+  .fa-user--liked {
+    color: #e40a0a;
+  }
 `;
 export const PriceBox = styled.div`
   font-weight: 900;
