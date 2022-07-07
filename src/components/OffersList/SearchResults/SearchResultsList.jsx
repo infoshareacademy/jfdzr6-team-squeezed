@@ -33,16 +33,21 @@ import { FavouriteBtn } from "./FavouriteBtn/FavouriteBtn";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../../utils/firebase";
 
-export const SearchResultsList = ({ flats, favourites, userId }) => {
+export const SearchResultsList = ({
+  flats,
+  favourites,
+  userId,
+  activeFlat,
+}) => {
   const [currentPhotoInfo, setCurrentPhoto] = useState([]);
   const [flatsToRender, setFlatsToRender] = useState([]);
+
   if (!flats) {
     return <Spinner />;
   }
 
   // const addFlatToFavorite = (flat) => {};
   const caruselInterval = 36000000;
-
 
   useEffect(() => {
     // favourites ? (flatsToRender = favourites) : (flatsToRender = flats);
@@ -52,43 +57,62 @@ export const SearchResultsList = ({ flats, favourites, userId }) => {
     } else {
       setFlatsToRender(flats);
     }
-  }, [favourites, flats]);
+    if (activeFlat != "") {
+      moveActiveFlatOnTop();
+    } 
+  }, [favourites, flats, activeFlat]);
   const handleDeleteFlat = async (flatId) => {
     await deleteDoc(doc(db, "flats", flatId));
     setFlatsToRender((prevFlats) => prevFlats.filter((f) => f.id !== flatId));
   };
+
+  const moveActiveFlatOnTop = () => {
+    let activeFlatIndex = flatsToRender.indexOf(
+      flatsToRender.find((flat) => flat.id === activeFlat)
+    );
+    let firstFlatOnTheList = flatsToRender.find(
+      (flat) => flat.id === activeFlat
+    );
+    flatsToRender.splice(activeFlatIndex, 1);
+    setFlatsToRender([firstFlatOnTheList, ...flatsToRender]);
+  };
+
   return (
     <OfferListContainer>
       <OfferList
-        className={!!userId ? "twoColumnLayout" : "singleColumnLayout"}
-      >
+        className={!!userId ? "twoColumnLayout" : "singleColumnLayout"}>
         {flats.length > 0 &&
           flatsToRender?.map((flat) => {
             return (
               <OfferBackground
                 key={flat.id}
                 className={
-                  !!userId ? "twoColumnLayoutBox" : "singleColumnLayoutBox"
-                }
-              >
+                  !!userId
+                    ? "twoColumnLayoutBox"
+                    : "singleColumnLayoutBox" &&
+                      (activeFlat !== "" && activeFlat === flat.id
+                        ? "activeFlat"
+                        : "inactiveFlat")
+                }>
                 {!!flat.photos && flat.photos.length > 0 ? (
                   <>
                     <CarouselContainer key={flat.photos.id}>
                       <Carousel interval={caruselInterval}>
                         {flat.photos.map((photoSrc, index) => (
                           <Carousel.Item key={index}>
-                            <div className="carouselItemImg">
-                              <img src={photoSrc} alt="First slide" />
+                            <div className='carouselItemImg'>
+                              <img src={photoSrc} alt='First slide' />
                             </div>
                           </Carousel.Item>
                         ))}
                       </Carousel>
 
                       <FontAwesomeIcon
-                        className="zoomIcon"
+                        className='zoomIcon'
                         icon={faMagnifyingGlassPlus}
-                        onClick={() => setCurrentPhoto(flat.photos)}
-                      ></FontAwesomeIcon>
+                        onClick={() =>
+                          setCurrentPhoto(flat.photos)
+                        }></FontAwesomeIcon>
                     </CarouselContainer>
                   </>
                 ) : (
@@ -103,40 +127,42 @@ export const SearchResultsList = ({ flats, favourites, userId }) => {
                   <div>
                     <p>
                       <b>
-                        <img className="icon" src={citySVG} alt="" /> Miasto :{" "}
+                        <img className='icon' src={citySVG} alt='' /> Miasto :{" "}
                       </b>
                       {flat.city}
                     </p>
                     <p>
                       <b>
-                        <img className="icon" src={streetSVG} alt="" /> Ulica:
+                        <img className='icon' src={streetSVG} alt='' /> Ulica:
                       </b>{" "}
                       {flat.street}
                     </p>
                     <p>
                       <b>
                         {" "}
-                        <img className="icon" src={roomsSVG} alt="" /> ilość
+                        <img className='icon' src={roomsSVG} alt='' /> ilość
                         pokoi:
                       </b>{" "}
                       {flat.rooms}
                     </p>
                     <p>
                       <b>
-                        <img className="icon" src={flatsizeSVG} alt="" /> m2:
+                        <img className='icon' src={flatsizeSVG} alt='' /> m2:
                       </b>{" "}
                       {flat.size} m2
                     </p>
 
                     <PriceBox>
                       {" "}
-                      <img className="icon" src={priceSVG} alt="" /> Cena:{" "}
+                      <img className='icon' src={priceSVG} alt='' /> Cena:{" "}
                       {flat.price} zł/msc
                     </PriceBox>
                   </div>
 
-              <div className="btnContainer">
-                <a href={`/details/${flat.id}`} target="_blank">Więcej</a>
+                  <div className='btnContainer'>
+                    <a href={`/details/${flat.id}`} target='_blank'>
+                      Więcej
+                    </a>
 
                     {userId && (
                       <>
@@ -154,20 +180,23 @@ export const SearchResultsList = ({ flats, favourites, userId }) => {
               </OfferBackground>
             );
           })}
-        {flats.length === 0 && <InfoBox>Brak wyników do wyświetlenia</InfoBox>}
+        {flats.length === 0 && (
+          <OfferBackground>
+            <InfoBox>Brak wyników do wyświetlenia</InfoBox>
+          </OfferBackground>
+        )}
         {currentPhotoInfo.length > 0 ? (
           <MoreInfoBox>
-            <div className="closeIcon">
+            <div className='closeIcon'>
               <FontAwesomeIcon
                 icon={faXmark}
-                onClick={() => setCurrentPhoto([])}
-              ></FontAwesomeIcon>
+                onClick={() => setCurrentPhoto([])}></FontAwesomeIcon>
             </div>
             <CarouselContainerInMsgBox>
               <Carousel interval={caruselInterval}>
                 {currentPhotoInfo.map((photoSrc) => (
                   <Carousel.Item>
-                    <img src={photoSrc} alt="First slide" />
+                    <img src={photoSrc} alt='First slide' />
                   </Carousel.Item>
                 ))}
               </Carousel>

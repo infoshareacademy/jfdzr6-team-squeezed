@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const OfferListContainer = styled.div`
   .twoColumnLayout {
@@ -12,6 +12,7 @@ export const OfferListContainer = styled.div`
     margin: 15px 7px 0px 7px;
     width: calc(50% - 15px);
 
+
     @media (max-width: 800px) {
       width: 100%;
       height: auto;
@@ -21,12 +22,16 @@ export const OfferListContainer = styled.div`
   .singleColumnLayout {
     flex-direction: column;
     flex-wrap: nowrap;
+    padding-top: 1px;
   }
 
   .singleColumnLayoutBox {
     width: 100%;
   }
 `;
+
+
+
 
 export const OfferList = styled.div`
   display: flex;
@@ -45,10 +50,20 @@ export const OfferList = styled.div`
     width: auto;
     margin: 0px auto;
   }
+  .activeFlat {
+    background-color: white;
+    box-shadow: 5px 5px 5px black;
+
+
+  }
+  .inactiveFlat {
+    background-color: white;
+  box-shadow: 5px 5px 5px gray;
+  }
 `;
 
 export const OfferBackground = styled.div`
-  background-color: white;
+  /* background-color: white; */
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -61,6 +76,8 @@ export const OfferBackground = styled.div`
   @media (min-width: 1200px) {
     flex-wrap: nowrap;
   }
+
+
 `;
 
 export const OfferImg = styled.div`
@@ -145,6 +162,12 @@ export const Arrow = styled.div`
 export const StyledFavouriteBtn = styled.div`
   .likeIcon {
     margin: 0px 10px;
+  }
+  .like {
+    color: green;
+  }
+  .fa-user--liked {
+    color: #e40a0a;
   }
 `;
 export const PriceBox = styled.div`

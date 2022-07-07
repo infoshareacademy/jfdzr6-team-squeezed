@@ -45,7 +45,7 @@ export const FavouriteBtn = ({ flat }) => {
       <button className="likeIcon" onClick={handleFavourite}>
         {/* zmiana koloru w zależnosci od stanu */}
         {/* {newFavourite ? "♡" : "❤"} */}
-        <FontAwesomeIcon icon={faThumbsUp} className="fal fa-user"></FontAwesomeIcon>
+        <FontAwesomeIcon icon={faThumbsUp} className={"fal" && newFavourite ? "fa-user" : "fa-user--liked"}></FontAwesomeIcon>
       </button>
     </StyledFavouriteBtn>
   );

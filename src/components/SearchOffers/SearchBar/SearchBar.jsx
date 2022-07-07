@@ -31,7 +31,9 @@ export const SearchBar = ({
   flats,
   setIsLanding,
   isLanding,
-  favourites
+  favourites,
+  setActiveFlat,
+  activeFlat
 }) => {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [suggestionsToPrint, setSuggestionsToPrint] = useState([]);
@@ -97,39 +99,14 @@ export const SearchBar = ({
 
   //filter and return flats IDs from input
   const handleCitySearch = (e) => {
+    setActiveFlat("")
     e.preventDefault();
     showMoreFilters === true ? setShowMoreFilters(!showMoreFilters) : null;
     const {
       searchCity,
-      // sizeMin,
-      // sizeMax,
-      // priceMin,
-      // priceMax,
-      // roomsMin,
-      // roomsMax,
-      // floorMin,
-      // floorMax,
-      // isAC,
-      // isElevator,
-      // isFurnished,
-      // isLoggia,
-      // isParking,
+
     } = e.target;
 
-    //create filters object and delete positions with empty strings values
-    // let selectedFilersWithoutBlank = selectedFilters;
-    // for (const key in selectedFilersWithoutBlank) {
-    //   if (selectedFilersWithoutBlank[key] === "") {
-    //     delete selectedFilersWithoutBlank[key];
-    //   }
-    // }
-    // //filter checkbox filters from all filters
-    // let checkboxFilters = selectedFilters;
-    // for (const key in checkboxFilters) {
-    //   if (typeof checkboxFilters[key] !== "boolean") {
-    //     delete checkboxFilters[key];
-    //   }
-    // }
     //filter flats
     let flatsResults = flatsFromDb
       .filter((flat) => flat.city === searchCity.value)
@@ -179,30 +156,6 @@ export const SearchBar = ({
       .filter((flat) => selectedFilters.isLoggia === false || flat.isLoggia === true)
       .filter((flat) => selectedFilters.isParking === false || flat.isParking === true);
 
-
-
-    //   .filter((flat) =>
-    //   Object.keys(checkboxFilters).map((key) =>
-    //     flat[key] && flat[key] === checkboxFilters[key] ? flat : null
-    //   )
-    // );
-
-    // (selectedFilters.sizeMin != undefined ? selectedFilters.sizeMax >= flat.size : flat.size) &&
-    // (selectedFilters.priceMin != undefined ? selectedFilters.priceMin <= flat.price : flat.price) &&
-    // (selectedFilters.priceMax != undefined ? selectedFilters.priceMax >= flat.price : flat.price)
-    // (priceMin.value === "" || priceMin.value <= flat.price) &&
-    // (priceMax.value === "" || priceMax.value >= flat.price) &&
-    // (roomsMin.value === "" || roomsMin.value <= flat.rooms) &&
-    // (roomsMax.value === "" || roomsMax.value >= flat.rooms) &&
-    // (floorMin.value === "" || floorMin.value <= flat.floor) &&
-    // (floorMax.value === "" || floorMax.value >= flat.floor) &&
-    // (isAC && isAC === flat.isAC)
-    // );
-    // selectedFilters.sizeMin != undefined ? (flatsResults = flatsResults.filter((flat) => selectedFilters.sizeMin <= flat.size)) : flatsResults
-    // selectedFilters.sizeMax != undefined ? flatsResults = flatsResults.filter((flat) => selectedFilters.sizeMax >= flat.size) : flatsResults
-    // selectedFilters.priceMin != undefined ? flatsResults = flatsResults.filter((flat) => selectedFilters.priceMin <= flat.price) : flatsResults
-    // selectedFilters.priceMax != undefined ? flatsResults = flatsResults.filter((flat) => selectedFilters.priceMax >= flat.price) : flatsResults
-    //   // Object.keys(selectedFilters).length > 0 ? getFlats() : null
     //continue with filtering results
 
     setFlats(flatsResults);
