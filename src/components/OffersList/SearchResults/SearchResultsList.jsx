@@ -27,12 +27,12 @@ import {
   faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Carousel, Button, Spinner } from "react-bootstrap";
+import { Carousel, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FavouriteBtn } from "./FavouriteBtn/FavouriteBtn";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../../utils/firebase";
-
+import { Spinner } from "../../../utils/Spinner";
 export const SearchResultsList = ({
   flats,
   favourites,
@@ -180,11 +180,12 @@ export const SearchResultsList = ({
               </OfferBackground>
             );
           })}
-        {flats.length === 0 && (
+        {!flats && (
           <OfferBackground>
             <InfoBox>Brak wyników do wyświetlenia</InfoBox>
           </OfferBackground>
         )}
+        {flats.length === 0 && <Spinner />}
         {currentPhotoInfo.length > 0 ? (
           <MoreInfoBox>
             <div className='closeIcon'>
