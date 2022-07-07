@@ -85,7 +85,7 @@ function App() {
 
         <Route path="auth" element={isAuth ? <Navigate to="/mypanel" /> : <Auth />} >
           <Route path="register" element={isAuth ? <Navigate to="/mypanel" /> : <Register />} />
-          <Route path="login" element={isAuth ? <Navigate to="/mypanel" /> : <Login />} />
+          <Route path="login" element={isAuth ? <Navigate to="/mypanel" /> : <Login setActiveFlat={setActiveFlat}/>} />
           <Route path="forgot-password" element={isAuth ? <Navigate to="/auth/login" /> : <ForgotPassword />} />
 
         </Route>

@@ -35,17 +35,17 @@ export const Navigation = ({
           </div>
           <ul className='homeLink'>
             <li>
-              <NavLink onClick={() => setOpen(!open)} to='/'>
+              <NavLink onClick={() => {setOpen(!open)}}  to='/'>
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink onClick={() => setOpen(!open)} to='o-nas'>
+              <NavLink onClick={() => {setOpen(!open)}} to='o-nas'>
                 O Nas
               </NavLink>
             </li>
             <li>
-              <NavLink onClick={() => setOpen(!open)} to='kontakt'>
+              <NavLink onClick={() => {setOpen(!open)}}  to='kontakt'>
                 Kontakt
               </NavLink>
             </li>
@@ -73,12 +73,12 @@ export const Navigation = ({
             {!isAuth && (
               <>
                 <li>
-                  <NavLink onClick={() => setOpen(!open)} to='auth/register'>
+                  <NavLink onClick={() => {setOpen(!open)}} to='auth/register'>
                     Rejestracja
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink onClick={() => setOpen(!open)} to='auth/login'>
+                  <NavLink onClick={() => {setOpen(!open)}} to='auth/login'>
                     Logowanie
                   </NavLink>
                 </li>
@@ -88,22 +88,22 @@ export const Navigation = ({
             {isAuth && (
               <>
                 <li>
-                  <NavLink onClick={() => setOpen(!open)} to='mypanel'>
+                  <NavLink onClick={() => {setOpen(!open); setActiveFlat("")}}  to='mypanel'>
                     Mój panel
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink onClick={() => setOpen(!open)} to='messages'>
+                  <NavLink onClick={() => {setOpen(!open)}}  to='messages'>
                     Wiadomości
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink onClick={() => setOpen(!open)} to='addoffer'>
+                  <NavLink onClick={() => {setOpen(!open)}}  to='addoffer'>
                     Dodaj ogłoszenie
                   </NavLink>
                 </li>
                 <li onClick={() => signOut(auth)}>
-                  <NavLink onClick={() => setOpen(!open)} to='/'>
+                  <NavLink onClick={() => {setOpen(!open)}}  to='/'>
                     Wyloguj się
                   </NavLink>
                 </li>

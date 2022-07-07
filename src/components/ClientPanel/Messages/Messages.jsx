@@ -21,6 +21,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../utils/firebase";
 import { Link } from "react-router-dom";
+import { Spinner } from "../../../utils/Spinner";
 
 export const Messages = ({ userId }) => {
   const [messages, setMessages] = useState([]);
@@ -95,15 +96,18 @@ export const Messages = ({ userId }) => {
   }, [isMessageOpen]);
 
   useEffect(() => {
-    const promises = userFlats.map((flatId) => {
+    const promises = userFlats?.map((flatId) => {
       const q = query(messagesCollection, where("recipient", "==", flatId));
       return getMessages(q);
     });
     Promise.all(promises).then((data) => {
       setMessages(data);
-      console.log(data);
     });
   }, [userFlats]);
+
+const Loading = () => {
+  if (messages.length === 0) return <Spinner />;
+}
 
   return (
     <>
@@ -111,7 +115,7 @@ export const Messages = ({ userId }) => {
         <MessageContainer header={header}>
           <h1 style={{ padding: "0 15px" }}>WIADOMOŚCI</h1>
         </MessageContainer>
-        <StyledInboxContainer>{renderMessageList}</StyledInboxContainer>
+        <StyledInboxContainer>{renderMessageList.length == 0 ? <Spinner /> : messages.length > 0 ? renderMessageList : "Skrzynka pusta"}</StyledInboxContainer>
       </MessagesWrapper>
     </>
   );

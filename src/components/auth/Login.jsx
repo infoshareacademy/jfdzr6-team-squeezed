@@ -18,14 +18,14 @@ margin-bottom: 13px;
 
 `
 
-export const Login = () => {
+export const Login = ({setActiveFlat}) => {
     const handleLogin = e => {
         e.preventDefault()
         const { email, password } = getFormData(e);
         signInWithEmailAndPassword(auth, email, password)
             .then(res => {
                 e.target.reset()
-                console.log(res)
+                setActiveFlat("")
             })
             .catch(e => {
                 console.log(e)

@@ -57,9 +57,9 @@ export const SearchResultsList = ({
     } else {
       setFlatsToRender(flats);
     }
-    if (activeFlat != "") {
-      moveActiveFlatOnTop();
-    } 
+    // if (activeFlat != "") {
+    //   moveActiveFlatOnTop();
+    // } 
   }, [favourites, flats, activeFlat]);
   const handleDeleteFlat = async (flatId) => {
     await deleteDoc(doc(db, "flats", flatId));
@@ -89,10 +89,10 @@ export const SearchResultsList = ({
                 className={
                   !!userId
                     ? "twoColumnLayoutBox"
-                    : "singleColumnLayoutBox" &&
-                      (activeFlat !== "" && activeFlat === flat.id
+                    : "singleColumnLayoutBox" +
+                      activeFlat !== "" && activeFlat === flat.id
                         ? "activeFlat"
-                        : "inactiveFlat")
+                        : "inactiveFlat"
                 }>
                 {!!flat.photos && flat.photos.length > 0 ? (
                   <>
