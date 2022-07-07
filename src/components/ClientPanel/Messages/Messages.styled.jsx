@@ -23,12 +23,14 @@ export const MessagesWrapper = styled.div`
 export const MessageContainer = styled.div`
     padding: 15px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: ${({header}) => header ? 'center' : 'flex-start'};
     background-color: #FFF;
     border-radius: 20px;
     gap: 10px;
     box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
-    min-width: 400px;
+    width: 700px;
+    
+  font-family: "Montserrat", sans-serif;
 
 
     &:hover {
@@ -44,6 +46,9 @@ export const MessageContainer = styled.div`
         }
         @media (max-width: 450px) {
             width: 375px;
+        }
+        .message-title {
+            font-weight: bold;
         }
 `
 export const AuthorContainer = styled.div`
@@ -64,6 +69,7 @@ export const MessageTitle = styled.div`
         text-decoration: none;
         color: black;
     padding: 3px;
+    
        
     }
 `
@@ -89,4 +95,6 @@ export const OpenMessageHeader = styled.span`
 `
 
 export const FullMessage = styled.div`
+  font-family: "Montserrat", sans-serif;
+
 `

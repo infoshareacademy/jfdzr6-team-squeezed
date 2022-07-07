@@ -62,30 +62,30 @@ export const Messages = ({ userId }) => {
       .catch((err) => console.log(err));
   };
 
-  const handleOpenMessage = (i) => {
-    i === isMessageOpen ? setIsMessageOpen(null) : setIsMessageOpen(i);
+  const handleOpenMessage = (message) => {
+    message === isMessageOpen ? setIsMessageOpen(null) : setIsMessageOpen(message);
   };
   const header = true;
   const renderMessageList = messages.map((arr) =>
     arr.map(
-      ({ name, email, message, createAt }, i) => (
-        <div key={i} style={{ borderRadius: "20px" }}>
-          <MessageContainer onClick={() => handleOpenMessage(i)}>
+      ({ name, email, message, createAt }) => (
+        <div key={message} style={{ borderRadius: "20px" }}>
+          <MessageContainer onClick={() => handleOpenMessage(message)}>
             <div style={{ borderRadius: "20px" }}>
               <div
                 className='przyciskrozwin'
-                >
+                style={{display: 'flex', gap: '20px'}}>
                 <DateContainer>
                   {createAt.toDate().toDateString()}{" "}
                 </DateContainer>
-                <span> {message?.slice(0, 50)} (...)</span>
+                <span className="message-title"> {message?.slice(0, 50)} {message.length > 50 ? "(...)" : null}</span>
               </div>
-              {isMessageOpen === i && (
+              {isMessageOpen === message && (
                 <FullMessage>
                   <OpenMessageHeader classname='naglowekotwartejwaidomosci'>
                     <DateContainer>Od: {email} </DateContainer>
                   </OpenMessageHeader>
-                  <div className='pelna wiadomosc'>{message}<br/>{name}</div>
+                  <div className='pelna wiadomosc' style={{marginTop: '10px', paddingLeft: '3px'}}>{message}<br/>{name}</div>
                 </FullMessage>
               )}
             </div>
