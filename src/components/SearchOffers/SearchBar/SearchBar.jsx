@@ -208,6 +208,8 @@ export const SearchBar = ({
     setFlats(flatsResults);
     setSuggestionsToPrint([]);
     setIsLanding(false);
+    // setFavourites(false)
+
     navigate("/search-results");
   };
   //handle all filters

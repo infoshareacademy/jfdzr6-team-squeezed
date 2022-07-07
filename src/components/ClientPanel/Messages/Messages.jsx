@@ -57,11 +57,6 @@ export const Messages = ({ userId }) => {
       })
       .catch((err) => console.log(err));
   };
-  // console.log(flatsQueries)
-
-  //   const querieAllFlatsMessages = () => {
-  //     allQueries.forEach((q) => getMessages(q));
-  //   };
 
   const header = true;
   const renderMessageList = messages.map((arr) => ( arr.map(({name, message, createAt}) =>
@@ -85,8 +80,8 @@ export const Messages = ({ userId }) => {
 
 
   useEffect(() => {
-    const promises = userFlats.map(id=>id.slice(1)).map((flatId) => {
-      const q = query(messagesCollection, where("flatId", "==", flatId));
+    const promises = userFlats.map((flatId) => {
+      const q = query(messagesCollection, where("recipient", "==", flatId));
       return getMessages(q);
     });
     Promise.all(promises).then(data => {
