@@ -50,7 +50,7 @@ export const OfferDetails = ({setIsLanding}) => {
             name: name,
             email: email,
             message: message,
-            recipient: flat.userId,
+            recipient: flat.id,
             createAt: serverTimestamp()
         }).then(() => {
             if (!alert("wiadomość została wysłana 💬"));

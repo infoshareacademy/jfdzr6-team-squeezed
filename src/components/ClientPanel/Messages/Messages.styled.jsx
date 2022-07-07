@@ -21,20 +21,34 @@ export const MessagesWrapper = styled.div`
 
 `
 export const MessageContainer = styled.div`
-    padding: 3px;
+    padding: 15px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: ${({header}) => header ? 'center' : 'flex-start'};
     background-color: #FFF;
     border-radius: 20px;
     gap: 10px;
     box-shadow: 0px 1px 11px -3px rgba(66, 68, 90, 1);
+    width: 700px;
+    
+  font-family: "Montserrat", sans-serif;
+
+
     &:hover {
-            background-color: ${({header}) => header ? 'none' : '#a1afdb'};
+            background-color: ${({header}) => header ? 'none' : '#0975c3'};
+            color: ${({header}) => header ? 'none' : '#FFF'};
             border-radius: 20px;
+            cursor: pointer;
+
         }
         .message-header {
             text-decoration: none;
             color: #0975c3;
+        }
+        @media (max-width: 450px) {
+            width: 375px;
+        }
+        .message-title {
+            font-weight: bold;
         }
 `
 export const AuthorContainer = styled.div`
@@ -55,6 +69,7 @@ export const MessageTitle = styled.div`
         text-decoration: none;
         color: black;
     padding: 3px;
+    
        
     }
 `
@@ -64,4 +79,22 @@ export const TimeContainer = styled.div`
     justify-content: center;
     align-items: center;
     padding: 0 15px;
+`
+
+export const DateContainer = styled.span`
+    border-radius: 20px;
+    background-color: #a1afdb;
+    color: #fff;
+    padding: 1px 6px;
+    margin-right: 5px;
+`
+
+export const OpenMessageHeader = styled.span`
+    display: flex;
+    margin-top: 5px;
+`
+
+export const FullMessage = styled.div`
+  font-family: "Montserrat", sans-serif;
+
 `
