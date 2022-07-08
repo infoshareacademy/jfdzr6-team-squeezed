@@ -55,7 +55,7 @@ export const Messages = ({ userId }) => {
 
   const handleOpenMessage = (id) => {
     id === isMessageOpen ? setIsMessageOpen(null) : setIsMessageOpen(id);
-    updateDoc(doc(db, "contacts", id), { isRead: true })
+    updateDoc(doc(db, "contacts", id), { isRead: true });
   };
   const header = true;
   const renderMessageList = messages.map((arr) =>
@@ -67,7 +67,7 @@ export const Messages = ({ userId }) => {
               className='przyciskrozwin'
               style={{ display: "flex", gap: "20px" }}>
               <DateContainer>{createAt.toDate().toDateString()} </DateContainer>
-              <span className={isRead ? '' : 'message-title'}>
+              <span className={isRead ? "" : "message-title"}>
                 {" "}
                 {message?.slice(0, 50)} {message.length > 50 ? "(...)" : null}
               </span>
@@ -105,9 +105,9 @@ export const Messages = ({ userId }) => {
     });
   }, [userFlats]);
 
-const Loading = () => {
-  if (messages.length === 0) return <Spinner />;
-}
+  const Loading = () => {
+    if (messages.length === 0) return <Spinner />;
+  };
 
   return (
     <>
@@ -115,7 +115,15 @@ const Loading = () => {
         <MessageContainer header={header}>
           <h1 style={{ padding: "0 15px" }}>WIADOMOŚCI</h1>
         </MessageContainer>
-        <StyledInboxContainer>{renderMessageList.length == 0 ? <Spinner /> : messages.length > 0 ? renderMessageList : "Skrzynka pusta"}</StyledInboxContainer>
+        <StyledInboxContainer>
+          {renderMessageList.length == 0 ? (
+            <Spinner />
+          ) : messages.length > 0 ? (
+            renderMessageList
+          ) : (
+            "Skrzynka pusta"
+          )}
+        </StyledInboxContainer>
       </MessagesWrapper>
     </>
   );

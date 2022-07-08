@@ -180,12 +180,12 @@ export const SearchResultsList = ({
               </OfferBackground>
             );
           })}
-        {!flats && (
+        {flats.length === 0 && (
           <OfferBackground>
             <InfoBox>Brak wyników do wyświetlenia</InfoBox>
           </OfferBackground>
         )}
-        {flats.length === 0 && <Spinner />}
+        {!flats && <Spinner />}
         {currentPhotoInfo.length > 0 ? (
           <MoreInfoBox>
             <div className='closeIcon'>
