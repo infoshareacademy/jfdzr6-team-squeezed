@@ -17,6 +17,7 @@ import {
   query,
   where,
   doc,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "../../../utils/firebase";
 import { Link } from "react-router-dom";
@@ -39,17 +40,6 @@ export const Messages = ({ userId }) => {
       .then((result) => setUserFlats(result.flats))
       .catch((err) => console.log(err));
   };
-
-  //   let flatsQueries = userFlats.map(flat => where("flatId", "==", flat))
-  //   let q = query(
-  //       messagesCollection,
-  //       where("flatId", "==", "Df1XDvcqO6mlPKhQFOUp"),
-  //   )
-  //   const allQueries = userFlats.map((flat) =>
-  //     query(messagesCollection, where("userId", "==", flat))
-  //   );
-
-  // let q = query(messagesCollection, where("flatId", "==", flatId))
   const getMessages = (q) => {
     return getDocs(q)
       .then((querySnapshot) => {
@@ -62,54 +52,47 @@ export const Messages = ({ userId }) => {
       .catch((err) => console.log(err));
   };
 
-  const handleOpenMessage = (message) => {
-    message === isMessageOpen ? setIsMessageOpen(null) : setIsMessageOpen(message);
+  const handleOpenMessage = (id) => {
+    id === isMessageOpen ? setIsMessageOpen(null) : setIsMessageOpen(id);
+    updateDoc(doc(db, "contacts", id), { isRead: true })
   };
   const header = true;
   const renderMessageList = messages.map((arr) =>
-    arr.map(
-      ({ name, email, message, createAt }) => (
-        <div key={message} style={{ borderRadius: "20px" }}>
-          <MessageContainer onClick={() => handleOpenMessage(message)}>
-            <div style={{ borderRadius: "20px" }}>
-              <div
-                className='przyciskrozwin'
-                style={{display: 'flex', gap: '20px'}}>
-                <DateContainer>
-                  {createAt.toDate().toDateString()}{" "}
-                </DateContainer>
-                <span className="message-title"> {message?.slice(0, 50)} {message.length > 50 ? "(...)" : null}</span>
-              </div>
-              {isMessageOpen === message && (
-                <FullMessage>
-                  <OpenMessageHeader classname='naglowekotwartejwaidomosci'>
-                    <DateContainer>Od: {email} </DateContainer>
-                  </OpenMessageHeader>
-                  <div className='pelna wiadomosc' style={{marginTop: '10px', paddingLeft: '3px'}}>{message}<br/>{name}</div>
-                </FullMessage>
-              )}
+    arr.map(({ name, email, message, createAt, id, isRead }) => (
+      <div key={id} style={{ borderRadius: "20px" }}>
+        <MessageContainer onClick={() => handleOpenMessage(id)}>
+          <div style={{ borderRadius: "20px" }}>
+            <div
+              className='przyciskrozwin'
+              style={{ display: "flex", gap: "20px" }}>
+              <DateContainer>{createAt.toDate().toDateString()} </DateContainer>
+              <span className={isRead ? '' : 'message-title'}>
+                {" "}
+                {message?.slice(0, 50)} {message.length > 50 ? "(...)" : null}
+              </span>
             </div>
-          </MessageContainer>
-        </div>
-      )
-
-      // <MessageContainer key={i}>
-      //   <TimeContainer>{createAt.toDate().toDateString()}</TimeContainer>
-
-      //   <AuthorContainer>
-      //     <h5>{name}</h5>
-      //   </AuthorContainer>
-      //   <Link className='message-header' to='/'>
-      //     <MessageTitle>
-      //       <h5>{message?.slice(0, 80)} (...)</h5>
-      //     </MessageTitle>
-      //   </Link>
-      // </MessageContainer>
-    )
+            {isMessageOpen === id && (
+              <FullMessage>
+                <OpenMessageHeader classname='naglowekotwartejwaidomosci'>
+                  <DateContainer>Od: {email} </DateContainer>
+                </OpenMessageHeader>
+                <div
+                  className='pelna wiadomosc'
+                  style={{ marginTop: "10px", paddingLeft: "3px" }}>
+                  {message}
+                  <br />
+                  {name}
+                </div>
+              </FullMessage>
+            )}
+          </div>
+        </MessageContainer>
+      </div>
+    ))
   );
   useEffect(() => {
     getUserFlats();
-  }, []);
+  }, [isMessageOpen]);
 
   useEffect(() => {
     const promises = userFlats.map((flatId) => {
@@ -128,21 +111,7 @@ export const Messages = ({ userId }) => {
         <MessageContainer header={header}>
           <h1 style={{ padding: "0 15px" }}>WIADOMOŚCI</h1>
         </MessageContainer>
-
-        <StyledInboxContainer>
-          {/* <MessageContainer header={header}>
-            <TimeContainer>
-              <p>Godzina</p>
-            </TimeContainer>
-            <AuthorContainer>
-              <h5>Nadawca</h5>
-            </AuthorContainer>
-            <MessageTitle>
-              <h5>Wiadomość</h5>
-            </MessageTitle>
-          </MessageContainer> */}
-          {renderMessageList}
-        </StyledInboxContainer>
+        <StyledInboxContainer>{renderMessageList}</StyledInboxContainer>
       </MessagesWrapper>
     </>
   );
