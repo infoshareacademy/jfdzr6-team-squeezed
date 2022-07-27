@@ -22,11 +22,12 @@ import {
 import { db } from "../../../utils/firebase";
 import { Link } from "react-router-dom";
 import { Spinner } from "../../../utils/Spinner";
+import React from "react";
 
 export const Messages = ({ userId }) => {
-  const [messages, setMessages] = useState([]);
-  const [userFlats, setUserFlats] = useState([]);
-  const [isMessageOpen, setIsMessageOpen] = useState(null);
+  const [messages, setMessages] = useState<string[]>([]);
+  const [userFlats, setUserFlats] = useState<string[]>([]);
+  const [isMessageOpen, setIsMessageOpen] = useState<boolean | null>(null);
   const messagesCollection = collection(db, `contacts`);
   const userFlatsDoc = doc(db, "users", userId);
 
@@ -74,7 +75,7 @@ export const Messages = ({ userId }) => {
             </div>
             {isMessageOpen === id && (
               <FullMessage>
-                <OpenMessageHeader classname='naglowekotwartejwaidomosci'>
+                <OpenMessageHeader>
                   <DateContainer>Od: {email} </DateContainer>
                 </OpenMessageHeader>
                 <div

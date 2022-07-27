@@ -13,8 +13,14 @@ import {
   doc,
 } from "firebase/firestore";
 
-export const ClientPanel = ({userId, favourites, activeFlat}) => {
-  const [flatsFromDb, setFlatsFromDb] = useState([]);
+interface Props {
+  userId: string;
+  favourites: Object[];
+  activeFlat: string;
+}
+
+export const ClientPanel = ({ userId, favourites, activeFlat }: Props) => {
+  const [flatsFromDb, setFlatsFromDb] = useState<Object[]>([]);
   const getFlats = () => {
     const flatsCollection = collection(db, "flats");
     const currentLoginUserId = userId;
@@ -31,13 +37,17 @@ export const ClientPanel = ({userId, favourites, activeFlat}) => {
   };
 
   useEffect(() => {
-
     getFlats();
   }, []);
 
   return (
     <div>
-      <SearchResultsList flats={flatsFromDb} userId={userId} favourites={favourites} activeFlat={activeFlat} />
+      <SearchResultsList
+        flats={flatsFromDb}
+        userId={userId}
+        favourites={favourites}
+        activeFlat={activeFlat}
+      />
     </div>
   );
 };
