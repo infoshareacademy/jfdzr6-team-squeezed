@@ -3,6 +3,16 @@ import { sliderData } from "./slider-data";
 import { SearchBar } from "../SearchOffers/SearchBar/SearchBar";
 import { MegaSlider } from "./Slider.Styled";
 
+interface Props {
+  flatsFromDb: Object[];
+  setFlats: React.Dispatch<React.SetStateAction<Object[]>>;
+  setFavourites: React.Dispatch<React.SetStateAction<Object[] | null>>;
+  flats: Object[];
+  setIsLanding: React.Dispatch<React.SetStateAction<boolean>>;
+  setActiveFlat: React.Dispatch<React.SetStateAction<string>>;
+  activeFlat: string;
+}
+
 export const Slider = ({
   flats,
   flatsFromDb,
@@ -11,7 +21,7 @@ export const Slider = ({
   setIsLanding,
   setActiveFlat,
   activeFlat,
-}) => {
+}: Props) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideLength = sliderData.length;
 

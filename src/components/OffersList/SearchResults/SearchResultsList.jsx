@@ -27,12 +27,12 @@ import {
   faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Carousel, Button, Spinner } from "react-bootstrap";
+import { Carousel, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FavouriteBtn } from "./FavouriteBtn/FavouriteBtn";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../../utils/firebase";
-
+import { Spinner } from "../../../utils/Spinner";
 export const SearchResultsList = ({
   flats,
   favourites,
@@ -57,9 +57,9 @@ export const SearchResultsList = ({
     } else {
       setFlatsToRender(flats);
     }
-    if (activeFlat != "") {
-      moveActiveFlatOnTop();
-    } 
+    // if (activeFlat != "") {
+    //   moveActiveFlatOnTop();
+    // } 
   }, [favourites, flats, activeFlat]);
   const handleDeleteFlat = async (flatId) => {
     await deleteDoc(doc(db, "flats", flatId));
@@ -89,10 +89,10 @@ export const SearchResultsList = ({
                 className={
                   !!userId
                     ? "twoColumnLayoutBox"
-                    : "singleColumnLayoutBox" &&
-                      (activeFlat !== "" && activeFlat === flat.id
+                    : "singleColumnLayoutBox" +
+                      activeFlat !== "" && activeFlat === flat.id
                         ? "activeFlat"
-                        : "inactiveFlat")
+                        : "inactiveFlat"
                 }>
                 {!!flat.photos && flat.photos.length > 0 ? (
                   <>
@@ -185,6 +185,7 @@ export const SearchResultsList = ({
             <InfoBox>Brak wyników do wyświetlenia</InfoBox>
           </OfferBackground>
         )}
+        {!flats && <Spinner />}
         {currentPhotoInfo.length > 0 ? (
           <MoreInfoBox>
             <div className='closeIcon'>

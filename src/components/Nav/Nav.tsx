@@ -7,6 +7,21 @@ import { useEffect } from "react";
 import logo from "./logo/logo.ico";
 import Burger from "./Burger";
 import { useState } from "react";
+import React from "react";
+
+interface Props {
+  isAuth: any;
+  email: string;
+  flatsFromDb: Object[];
+  setFlats: React.Dispatch<React.SetStateAction<Object[]>>;
+  setFavourites: React.Dispatch<React.SetStateAction<Object[] | null>>;
+  flats: Object[];
+  setIsLanding: React.Dispatch<React.SetStateAction<boolean>>;
+  isLanding: boolean;
+  favourites: Object[] | null;
+  setActiveFlat: React.Dispatch<React.SetStateAction<string>>;
+  activeFlat: string;
+}
 
 export const Navigation = ({
   isAuth,
@@ -20,8 +35,8 @@ export const Navigation = ({
   favourites,
   setActiveFlat,
   activeFlat,
-}) => {
-  const [open, setOpen] = useState(false);
+}: Props) => {
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
     <>
@@ -35,17 +50,29 @@ export const Navigation = ({
           </div>
           <ul className='homeLink'>
             <li>
-              <NavLink onClick={() => setOpen(!open)} to='/'>
+              <NavLink
+                onClick={() => {
+                  setOpen(!open);
+                }}
+                to='/'>
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink onClick={() => setOpen(!open)} to='o-nas'>
+              <NavLink
+                onClick={() => {
+                  setOpen(!open);
+                }}
+                to='o-nas'>
                 O Nas
               </NavLink>
             </li>
             <li>
-              <NavLink onClick={() => setOpen(!open)} to='kontakt'>
+              <NavLink
+                onClick={() => {
+                  setOpen(!open);
+                }}
+                to='kontakt'>
                 Kontakt
               </NavLink>
             </li>
@@ -73,12 +100,20 @@ export const Navigation = ({
             {!isAuth && (
               <>
                 <li>
-                  <NavLink onClick={() => setOpen(!open)} to='auth/register'>
+                  <NavLink
+                    onClick={() => {
+                      setOpen(!open);
+                    }}
+                    to='auth/register'>
                     Rejestracja
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink onClick={() => setOpen(!open)} to='auth/login'>
+                  <NavLink
+                    onClick={() => {
+                      setOpen(!open);
+                    }}
+                    to='auth/login'>
                     Logowanie
                   </NavLink>
                 </li>
@@ -88,22 +123,39 @@ export const Navigation = ({
             {isAuth && (
               <>
                 <li>
-                  <NavLink onClick={() => setOpen(!open)} to='mypanel'>
+                  <NavLink
+                    onClick={() => {
+                      setOpen(!open);
+                      setActiveFlat("");
+                    }}
+                    to='mypanel'>
                     Mój panel
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink onClick={() => setOpen(!open)} to='messages'>
+                  <NavLink
+                    onClick={() => {
+                      setOpen(!open);
+                    }}
+                    to='messages'>
                     Wiadomości
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink onClick={() => setOpen(!open)} to='addoffer'>
+                  <NavLink
+                    onClick={() => {
+                      setOpen(!open);
+                    }}
+                    to='addoffer'>
                     Dodaj ogłoszenie
                   </NavLink>
                 </li>
                 <li onClick={() => signOut(auth)}>
-                  <NavLink onClick={() => setOpen(!open)} to='/'>
+                  <NavLink
+                    onClick={() => {
+                      setOpen(!open);
+                    }}
+                    to='/'>
                     Wyloguj się
                   </NavLink>
                 </li>

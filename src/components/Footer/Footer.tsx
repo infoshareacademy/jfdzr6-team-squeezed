@@ -7,15 +7,18 @@ import {
 
 import { SocialMedia, FooterContainer } from "./Footer.styled";
 import { NavLink } from "react-router-dom";
+import React from "react";
 
 export const Footer = () => {
   return (
     <FooterContainer>
-      <NavLink to="/statute">REGULAMIN</NavLink>
+      <NavLink to='/statute'>REGULAMIN</NavLink>
 
-      <NavLink to="/privacy">POLITYKA PRYWATNOŚCI</NavLink>
+      <NavLink to='/privacy'>POLITYKA PRYWATNOŚCI</NavLink>
 
-      <a href="https://github.com/infoshareacademy/jfdzr6-team-squeezed" target={"_blank"}>
+      <a
+        href='https://github.com/infoshareacademy/jfdzr6-team-squeezed'
+        target={"_blank"}>
         LINK DO GITHUB
       </a>
 
@@ -23,7 +26,7 @@ export const Footer = () => {
         <SocialMedia>
           <p>ZNAJDŹ NAS W SOCIAL MEDIA:</p>
 
-          <div className="fontsAwesomContainer">
+          <div className='fontsAwesomContainer'>
             <div>
               <FontAwesomeIcon icon={faFacebook} />
             </div>

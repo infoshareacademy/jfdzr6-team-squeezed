@@ -21,11 +21,13 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../utils/firebase";
 import { Link } from "react-router-dom";
+import { Spinner } from "../../../utils/Spinner";
+import React from "react";
 
 export const Messages = ({ userId }) => {
-  const [messages, setMessages] = useState([]);
-  const [userFlats, setUserFlats] = useState([]);
-  const [isMessageOpen, setIsMessageOpen] = useState(null);
+  const [messages, setMessages] = useState<string[]>([]);
+  const [userFlats, setUserFlats] = useState<string[]>([]);
+  const [isMessageOpen, setIsMessageOpen] = useState<boolean | null>(null);
   const messagesCollection = collection(db, `contacts`);
   const userFlatsDoc = doc(db, "users", userId);
 
@@ -54,7 +56,7 @@ export const Messages = ({ userId }) => {
 
   const handleOpenMessage = (id) => {
     id === isMessageOpen ? setIsMessageOpen(null) : setIsMessageOpen(id);
-    updateDoc(doc(db, "contacts", id), { isRead: true })
+    updateDoc(doc(db, "contacts", id), { isRead: true });
   };
   const header = true;
   const renderMessageList = messages.map((arr) =>
@@ -66,14 +68,14 @@ export const Messages = ({ userId }) => {
               className='przyciskrozwin'
               style={{ display: "flex", gap: "20px" }}>
               <DateContainer>{createAt.toDate().toDateString()} </DateContainer>
-              <span className={isRead ? '' : 'message-title'}>
+              <span className={isRead ? "" : "message-title"}>
                 {" "}
                 {message?.slice(0, 50)} {message.length > 50 ? "(...)" : null}
               </span>
             </div>
             {isMessageOpen === id && (
               <FullMessage>
-                <OpenMessageHeader classname='naglowekotwartejwaidomosci'>
+                <OpenMessageHeader>
                   <DateContainer>Od: {email} </DateContainer>
                 </OpenMessageHeader>
                 <div
@@ -95,15 +97,18 @@ export const Messages = ({ userId }) => {
   }, [isMessageOpen]);
 
   useEffect(() => {
-    const promises = userFlats.map((flatId) => {
+    const promises = userFlats?.map((flatId) => {
       const q = query(messagesCollection, where("recipient", "==", flatId));
       return getMessages(q);
     });
     Promise.all(promises).then((data) => {
       setMessages(data);
-      console.log(data);
     });
   }, [userFlats]);
+
+  const Loading = () => {
+    if (messages.length === 0) return <Spinner />;
+  };
 
   return (
     <>
@@ -111,7 +116,15 @@ export const Messages = ({ userId }) => {
         <MessageContainer header={header}>
           <h1 style={{ padding: "0 15px" }}>WIADOMOŚCI</h1>
         </MessageContainer>
-        <StyledInboxContainer>{renderMessageList}</StyledInboxContainer>
+        <StyledInboxContainer>
+          {renderMessageList.length == 0 ? (
+            <Spinner />
+          ) : messages.length > 0 ? (
+            renderMessageList
+          ) : (
+            "Skrzynka pusta"
+          )}
+        </StyledInboxContainer>
       </MessagesWrapper>
     </>
   );

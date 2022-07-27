@@ -17,3 +17,4 @@ export const SearchResultListParent = styled.div`
   overflow-y: scroll;
   height: 85vh;
 `;
+
